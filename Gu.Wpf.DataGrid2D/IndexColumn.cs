@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
@@ -13,25 +14,38 @@
         {
             Index = index;
             Bind(this, HeaderProperty, headers, GetPath(index));
+            //Bind(this, HeaderStyleProperty, dataGrid, GetPath(HeaderStyleProperty));
+            //Bind(this, HeaderStringFormatProperty, dataGrid, GetPath(HeaderStringFormatProperty));
+            //Bind(this, HeaderTemplateProperty, dataGrid, GetPath(HeaderTemplateProperty));
+            //Bind(this, HeaderTemplateSelectorProperty, dataGrid, GetPath(HeaderTemplateSelectorProperty));
+            HeaderStyle = dataGrid.GetHeaderStyle();
+            HeaderStringFormat = dataGrid.GetHeaderStringFormat();
+            HeaderTemplate = dataGrid.GetHeaderTemplate();
+            HeaderTemplateSelector = dataGrid.GetHeaderTemplateSelector();
 
-            Bind(this, HeaderStyleProperty, dataGrid, GetPath(HeaderStyleProperty));
-            Bind(this, HeaderStringFormatProperty, dataGrid, GetPath(HeaderStringFormatProperty));
-            Bind(this, HeaderTemplateProperty, dataGrid, GetPath(HeaderTemplateProperty));
-            Bind(this, HeaderTemplateSelectorProperty, dataGrid, GetPath(HeaderTemplateSelectorProperty));
-
-            Bind(this, CellTemplateProperty, dataGrid, GetPath(CellTemplateProperty));
-            Bind(this, CellTemplateSelectorProperty, dataGrid, GetPath(CellTemplateSelectorProperty));
-            Bind(this, CellEditingTemplateProperty, dataGrid, GetPath(CellEditingTemplateProperty));
-            Bind(this, CellEditingTemplateSelectorProperty, dataGrid, GetPath(CellEditingTemplateSelectorProperty));
-
-            CellTemplate = dataGrid.ItemTemplate;
+            //Bind(this, CellTemplateProperty, dataGrid, GetPath(CellTemplateProperty));
+            //Bind(this, CellTemplateSelectorProperty, dataGrid, GetPath(CellTemplateSelectorProperty));
+            //Bind(this, CellEditingTemplateProperty, dataGrid, GetPath(CellEditingTemplateProperty));
+            //Bind(this, CellEditingTemplateSelectorProperty, dataGrid, GetPath(CellEditingTemplateSelectorProperty));
+            CellTemplate = dataGrid.GetCellTemplate();
+            CellTemplateSelector = dataGrid.GetCellTemplateSelector();
+            CellEditingTemplate = dataGrid.GetCellEditingTemplate();
+            CellEditingTemplateSelector = dataGrid.GetCellEditingTemplateSelector();
         }
 
         public int Index { get; private set; }
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
-            Bind(cell, FrameworkElement.DataContextProperty, dataItem, GetPath(Index));
+            var array = dataItem as Array;
+            if (array != null)
+            {
+                Bind(cell, FrameworkElement.DataContextProperty, dataItem, GetPath(Index));
+            }
+            else
+            {
+                cell.DataContext = dataItem;
+            }
             var frameworkElement = base.GenerateElement(cell, dataItem);
             return frameworkElement;
         }
@@ -69,7 +83,8 @@
             PropertyPath path;
             if (!PropertyPaths.TryGetValue(property, out path))
             {
-                path = new PropertyPath(property.Name);
+                path = new PropertyPath(string.Format("({0}.{1})", typeof(Source2D).Name, property.Name));
+                path = new PropertyPath(property);
                 PropertyPaths[property] = path;
             }
             return path;

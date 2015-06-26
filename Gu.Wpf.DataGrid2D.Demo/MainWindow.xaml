@@ -4,8 +4,8 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:dataGrid2D="http://gu.se/DataGrid2D"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="525"
         Height="350"
@@ -21,12 +21,53 @@
                       >
             <TextBlock Text="{Binding}" />
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type demo:ItemVm}">
+            <TextBlock Background="Gainsboro"
+                       Text="{Binding Value}"
+                       />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ItemTemplate"
+                      DataType="{x:Type demo:ItemVm}"
+                      >
+            <TextBlock Background="Aqua"
+                       Text="{Binding Value}"
+                       />
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderItemTemplate"
+                      DataType="{x:Type demo:ItemVm}"
+                      >
+            <TextBlock Background="HotPink"
+                       Text="{Binding Value}"
+                       />
+        </DataTemplate>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <DataGrid AutoGenerateColumns="False"
-                  ItemTemplate="{StaticResource IntTemplate}"
                   ItemsSource="{Binding Rows}"
+                  dataGrid2D:Source2D.CellTemplate="{StaticResource IntTemplate}"
                   dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
+                  />
+
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Items}"
+                  dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
+                  />
+
+        <DataGrid Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Items}"
+                  dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
+                  dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
+                  dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
                   />
     </Grid>
 </Window>

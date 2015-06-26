@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Tests
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
@@ -19,6 +20,7 @@
         [Test]
         public void GenerateDataGridTemplateColumnAttachedPropertyFields()
         {
+            IEnumerable ints = new int[2, 2];
             DumpFields(typeof(Source2D), GetDpFields(typeof(DataGridTemplateColumn)));
         }
 
