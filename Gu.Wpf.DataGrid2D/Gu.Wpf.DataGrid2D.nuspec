@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$id$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <description>$description$</description>
+    <copyright>Copyright 2014</copyright>
+  </metadata>
+  <files>
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.DataGrid2D.dll" target="lib\net45" />
+    <file src="\bin\CreateNugetPackage\Gu.Wpf.DataGrid2D.XML" target="lib\net45" />
+  </files>
+</package>

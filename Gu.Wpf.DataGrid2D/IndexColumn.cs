@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-
-namespace Gu.Wpf.DataGrid2D
+﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+
     public class IndexColumn : DataGridTemplateColumn
     {
         private static readonly Dictionary<int, PropertyPath> IndexPaths = new Dictionary<int, PropertyPath>();
@@ -13,6 +13,17 @@ namespace Gu.Wpf.DataGrid2D
         {
             Index = index;
             Bind(this, HeaderProperty, headers, GetPath(index));
+
+            Bind(this, HeaderStyleProperty, dataGrid, GetPath(HeaderStyleProperty));
+            Bind(this, HeaderStringFormatProperty, dataGrid, GetPath(HeaderStringFormatProperty));
+            Bind(this, HeaderTemplateProperty, dataGrid, GetPath(HeaderTemplateProperty));
+            Bind(this, HeaderTemplateSelectorProperty, dataGrid, GetPath(HeaderTemplateSelectorProperty));
+
+            Bind(this, CellTemplateProperty, dataGrid, GetPath(CellTemplateProperty));
+            Bind(this, CellTemplateSelectorProperty, dataGrid, GetPath(CellTemplateSelectorProperty));
+            Bind(this, CellEditingTemplateProperty, dataGrid, GetPath(CellEditingTemplateProperty));
+            Bind(this, CellEditingTemplateSelectorProperty, dataGrid, GetPath(CellEditingTemplateSelectorProperty));
+
             CellTemplate = dataGrid.ItemTemplate;
         }
 

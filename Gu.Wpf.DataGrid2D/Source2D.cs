@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Controls;
-
-namespace Gu.Wpf.DataGrid2D
+﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System;
     using System.Windows;
+    using System.Windows.Controls;
 
     public static class Source2D
     {
@@ -60,8 +59,6 @@ namespace Gu.Wpf.DataGrid2D
            typeof(DataTemplateSelector),
            typeof(Source2D),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
-
-        private static readonly RoutedEventHandler OnLoadedHandler = OnLoaded;
 
         public static void SetHeaders(this DataGrid element, object[] value)
         {
@@ -176,8 +173,8 @@ namespace Gu.Wpf.DataGrid2D
             element.SetValue(CellEditingTemplateProperty, value);
         }
 
-        // [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        // [AttachedPropertyBrowsableForType(typeof(SomeControl))]
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static DataTemplate GetCellEditingTemplate(this DependencyObject element)
         {
             return (DataTemplate)element.GetValue(CellEditingTemplateProperty);
@@ -186,19 +183,13 @@ namespace Gu.Wpf.DataGrid2D
         private static void OnHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            if (dataGrid.IsLoaded)
-            {
-                ApplyHeades(dataGrid);
-            }
-            dataGrid.RemoveHandler(FrameworkElement.LoadedEvent, OnLoadedHandler);
-            dataGrid.AddHandler(FrameworkElement.LoadedEvent, OnLoadedHandler);
-        }
-
-        private static void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            var dataGrid = (DataGrid)sender;
-            dataGrid.RemoveHandler(FrameworkElement.LoadedEvent, OnLoadedHandler);
             ApplyHeades(dataGrid);
+            //if (dataGrid.IsLoaded)
+            //{
+
+            //}
+            //dataGrid.RemoveHandler(FrameworkElement.LoadedEvent, OnLoadedHandler);
+            //dataGrid.AddHandler(FrameworkElement.LoadedEvent, OnLoadedHandler);
         }
 
         private static void ApplyHeades(DataGrid dataGrid)

@@ -1,4 +1,4 @@
-﻿<Application x:Class="_2DDataGrid.App"
+﻿<Application x:Class="Gu.Wpf.DataGrid2D.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">

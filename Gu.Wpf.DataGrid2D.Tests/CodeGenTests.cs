@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Controls;
-using NUnit.Framework;
-
-namespace Gu.Wpf.DataGrid2D.Tests
+﻿namespace Gu.Wpf.DataGrid2D.Tests
 {
-    public class CodeGen
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Windows;
+    using System.Windows.Controls;
+    using NUnit.Framework;
+
+    public class CodeGenTests
     {
         public static readonly DependencyProperty CellTemplateProperty = DependencyProperty.RegisterAttached(
             "CellTemplate",
@@ -40,6 +40,26 @@ namespace Gu.Wpf.DataGrid2D.Tests
         {
             var headerFields = GetDpFields(typeof(DataGridColumn)).Where(x => x.Name.StartsWith("Header")).ToArray();
             DumpMethods(headerFields);
+        }
+
+        [Test]
+        public void DumpDataGridTemplateColumnBindingsTest()
+        {
+            var readOnlyList = GetDpFields(typeof(DataGridTemplateColumn));
+            foreach (var fieldInfo in readOnlyList)
+            {
+                Console.WriteLine("            Bind(this, {0}, dataGrid, GetPath({0}));",fieldInfo.Name);
+            }
+        }
+
+        [Test]
+        public void DumpDataGridColumnBindingsTest()
+        {
+            var readOnlyList = GetDpFields(typeof(DataGridColumn)).Where(f=>f.Name.StartsWith("Header"));
+            foreach (var fieldInfo in readOnlyList)
+            {
+                Console.WriteLine("            Bind(this, {0}, dataGrid, GetPath({0}));", fieldInfo.Name);
+            }
         }
 
         //public static void SetCellTemplate(this DataGrid element, DataTemplate value)

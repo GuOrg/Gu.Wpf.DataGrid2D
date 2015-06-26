@@ -2,15 +2,16 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Markup;
+using System.Resources;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataGrid2D")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Gu.Wpf.DataGrid2D")]
+[assembly: AssemblyDescription("Attached properties for DataGrid to enable binding to 2D sources.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DataGrid2D")]
+[assembly: AssemblyCompany("Johan Larsson")]
+[assembly: AssemblyProduct("Gu.Wpf.DataGrid2D")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -37,3 +38,4 @@ using System.Windows.Markup;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: XmlnsDefinition("http://gu.se/DataGrid2D", "Gu.Wpf.DataGrid2D")]
 [assembly: XmlnsPrefix("http://gu.se/DataGrid2D", "dataGrid2D")]
+[assembly: NeutralResourcesLanguageAttribute("en")]

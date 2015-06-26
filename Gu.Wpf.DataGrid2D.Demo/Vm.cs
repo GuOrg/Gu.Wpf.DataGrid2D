@@ -1,4 +1,4 @@
-﻿namespace _2DDataGrid
+﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
     public class Vm
     {
