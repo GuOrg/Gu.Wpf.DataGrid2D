@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DDataGrid", "2DDataGrid\2DDataGrid.csproj", "{AD21B5EF-1BF4-4089-838B-47A58C1EC8FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.DataGrid2D", "DataGrid2D\Gu.Wpf.DataGrid2D.csproj", "{53AF7FFF-BCAD-43A5-8367-48429B2878BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.DataGrid2D.Tests", "Gu.Wpf.DataGrid2D.Tests\Gu.Wpf.DataGrid2D.Tests.csproj", "{E5FCD5C0-4746-4264-BF7F-F07756C74255}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{AD21B5EF-1BF4-4089-838B-47A58C1EC8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD21B5EF-1BF4-4089-838B-47A58C1EC8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD21B5EF-1BF4-4089-838B-47A58C1EC8FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53AF7FFF-BCAD-43A5-8367-48429B2878BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53AF7FFF-BCAD-43A5-8367-48429B2878BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53AF7FFF-BCAD-43A5-8367-48429B2878BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53AF7FFF-BCAD-43A5-8367-48429B2878BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5FCD5C0-4746-4264-BF7F-F07756C74255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5FCD5C0-4746-4264-BF7F-F07756C74255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FCD5C0-4746-4264-BF7F-F07756C74255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FCD5C0-4746-4264-BF7F-F07756C74255}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
