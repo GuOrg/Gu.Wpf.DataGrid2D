@@ -14,11 +14,6 @@
         {
             Index = index;
             Bind(this, HeaderProperty, headers, GetPath(index));
-            //Bind(this, HeaderStyleProperty, dataGrid, GetPath(HeaderStyleProperty));
-            //Bind(this, HeaderStringFormatProperty, dataGrid, GetPath(HeaderStringFormatProperty));
-            //Bind(this, HeaderTemplateProperty, dataGrid, GetPath(HeaderTemplateProperty));
-            //Bind(this, HeaderTemplateSelectorProperty, dataGrid, GetPath(HeaderTemplateSelectorProperty));
-            HeaderStyle = dataGrid.GetHeaderStyle();
             HeaderStringFormat = dataGrid.GetHeaderStringFormat();
             HeaderTemplate = dataGrid.GetHeaderTemplate();
             HeaderTemplateSelector = dataGrid.GetHeaderTemplateSelector();

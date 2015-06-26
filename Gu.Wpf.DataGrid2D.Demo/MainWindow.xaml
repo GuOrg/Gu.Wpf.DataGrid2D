@@ -43,9 +43,45 @@
                        Text="{Binding Value}"
                        />
         </DataTemplate>
+
+        <Style x:Key="CellStyle"
+               TargetType="{x:Type DataGridCell}"
+               >
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <ContentPresenter Margin="1"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Center"
+                                          />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ColumnHeaderStyle"
+               TargetType="{x:Type DataGridColumnHeader}"
+               >
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -66,6 +102,17 @@
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Items}"
                   dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
+                  dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
+                  dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
+                  />
+
+        <DataGrid Grid.Row="3"
+                  AutoGenerateColumns="False"
+                  CellStyle="{StaticResource CellStyle}"
+                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                  ItemsSource="{Binding Items}"
+                  dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
+                  dataGrid2D:Source2D.EvenSpacing="True"
                   dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
                   dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
                   />

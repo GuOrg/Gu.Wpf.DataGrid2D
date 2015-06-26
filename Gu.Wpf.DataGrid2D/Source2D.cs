@@ -13,11 +13,11 @@
             typeof(Source2D),
             new PropertyMetadata(default(object[]), OnHeadersChanged));
 
-        public static readonly DependencyProperty HeaderStyleProperty = DependencyProperty.RegisterAttached(
-           "HeaderStyle",
-           typeof(Style),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(Style)));
+        public static readonly DependencyProperty EvenSpacingProperty = DependencyProperty.RegisterAttached(
+            "EvenSpacing",
+            typeof(bool),
+            typeof(Source2D),
+            new PropertyMetadata(default(bool)));
 
         public static readonly DependencyProperty HeaderStringFormatProperty = DependencyProperty.RegisterAttached(
            "HeaderStringFormat",
@@ -61,6 +61,8 @@
            typeof(Source2D),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
 
+        private static readonly SizeChangedEventHandler OnSizeChangedHandler = OnSizeChanged;
+
         public static void SetHeaders(this DataGrid element, object[] value)
         {
             element.SetValue(HeadersProperty, value);
@@ -73,16 +75,16 @@
             return (object[])element.GetValue(HeadersProperty);
         }
 
-        public static void SetHeaderStyle(this DataGrid element, Style value)
+        public static void SetEvenSpacing(this DataGrid element, bool value)
         {
-            element.SetValue(HeaderStyleProperty, value);
+            element.SetValue(EvenSpacingProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static Style GetHeaderStyle(this DataGrid element)
+        public static bool GetEvenSpacing(this DataGrid element)
         {
-            return (Style)element.GetValue(HeaderStyleProperty);
+            return (bool)element.GetValue(EvenSpacingProperty);
         }
 
         public static void SetHeaderStringFormat(this DataGrid element, String value)
@@ -195,6 +197,18 @@
 
         private static void ApplyHeades(DataGrid dataGrid)
         {
+            dataGrid.AutoGenerateColumns = false;
+            dataGrid.CanUserAddRows = false;
+            dataGrid.CanUserDeleteRows = false;
+            if (dataGrid.GetEvenSpacing())
+            {
+                dataGrid.CanUserResizeColumns = false;
+                dataGrid.UpdateHandler(FrameworkElement.SizeChangedEvent, OnSizeChangedHandler);
+            }
+            //dataGrid.CanUserReorderColumns = false;
+            //dataGrid.CanUserSortColumns = false;
+            //dataGrid.CanUserSortColumns = false;
+
             var objects = dataGrid.GetHeaders();
             if (objects == null)
             {
@@ -205,6 +219,22 @@
             {
                 var templateColumn = new IndexColumn(dataGrid, objects, i);
                 dataGrid.Columns.Add(templateColumn);
+            }
+        }
+
+
+        private static void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (!e.WidthChanged)
+            {
+                return;
+            }
+            var dataGrid = (DataGrid)sender;
+            double totalWidth = dataGrid.ActualWidth - dataGrid.CellsPanelHorizontalOffset - dataGrid.RowHeaderWidth;
+            var columnWidth = totalWidth / dataGrid.Columns.Count;
+            foreach (var column in dataGrid.Columns)
+            {
+                column.Width = columnWidth;
             }
         }
     }

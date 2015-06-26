@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="IndexColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UiElementExt.cs" />
     <Compile Include="Source2D.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
