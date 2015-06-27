@@ -16,9 +16,6 @@
             HeaderTemplate = dataGrid.GetHeaderTemplate();
             HeaderTemplateSelector = dataGrid.GetHeaderTemplateSelector();
 
-            Width = dataGrid.GetWidth();
-            MinWidth = dataGrid.GetMinWidth();
-            MaxWidth = dataGrid.GetMaxWidth();
             //Bind(this, CellTemplateProperty, dataGrid, GetPath(CellTemplateProperty));
             //Bind(this, CellTemplateSelectorProperty, dataGrid, GetPath(CellTemplateSelectorProperty));
             //Bind(this, CellEditingTemplateProperty, dataGrid, GetPath(CellEditingTemplateProperty));

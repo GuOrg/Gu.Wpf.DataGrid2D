@@ -33,7 +33,10 @@
         </DataTemplate>
 
         <DataTemplate x:Key="SampleHeaderItemTemplate" DataType="{x:Type demo:ItemVm}">
-            <TextBlock Background="LightBlue" Text="{Binding Value}" />
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       Text="{Binding Value}" />
         </DataTemplate>
 
         <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
@@ -120,8 +123,8 @@
         <DataGrid CellStyle="{StaticResource CellStyle}"
                   ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                   ColumnWidth="*"
-                  SelectionUnit="Cell"
                   ItemsSource="{Binding ListListItems}"
+                  SelectionUnit="Cell"
                   dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
                   dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
                   dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
@@ -135,18 +138,17 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
+
                 <DataGrid Grid.Column="0"
                           HeadersVisibility="None"
                           SelectionUnit="Cell"
                           dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
 
                 <DataGrid Grid.Column="1"
-                          ColumnWidth="*"
+                          ColumnWidth="SizeToHeader"
                           SelectionUnit="Cell"
                           dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
-                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}"
-                          dataGrid2D:Source2D.Width="SizeToHeader" />
+                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
             </Grid>
         </GroupBox>
     </WrapPanel>
