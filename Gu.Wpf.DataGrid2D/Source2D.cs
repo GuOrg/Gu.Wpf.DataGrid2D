@@ -245,18 +245,6 @@
             return (DataTemplateSelector)element.GetValue(CellEditingTemplateSelectorProperty);
         }
 
-        public static void SetCellEditingTemplate(this DependencyObject element, DataTemplate value)
-        {
-            element.SetValue(CellEditingTemplateProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplate GetCellEditingTemplate(this DependencyObject element)
-        {
-            return (DataTemplate)element.GetValue(CellEditingTemplateProperty);
-        }
-
         private static void OnHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
