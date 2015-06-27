@@ -41,16 +41,7 @@
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
-            var list = dataItem as IList;
-            if (list != null)
-            {
-                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index);
-            }
-            else
-            {
-                var enumerable = (IEnumerable<object>)dataItem;
-                cell.DataContext = enumerable.ElementAt(Index);
-            }
+            SetDataContext(cell, dataItem);
             var frameworkElement = base.GenerateElement(cell, dataItem);
             if (frameworkElement == null)
             {
@@ -63,6 +54,24 @@
                 return contentPresenter;
             }
             return frameworkElement;
+        }
+
+        private void SetDataContext(DataGridCell cell, object dataItem)
+        {
+            var list = dataItem as IList;
+            if (list != null)
+            {
+                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index); 
+                return;
+            }
+            var rol = dataItem as IReadOnlyList<object>;
+            if (rol != null)
+            {
+                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index);
+                return;
+            }
+            var enumerable = (IEnumerable<object>) dataItem;
+            cell.DataContext = enumerable.ElementAt(Index);
         }
     }
 }

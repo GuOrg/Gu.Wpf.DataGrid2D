@@ -6,8 +6,6 @@
              xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <demo:Vm />
@@ -18,10 +16,6 @@
             <TextBlock HorizontalAlignment="Center"
                        Background="AntiqueWhite"
                        Text="{Binding}" />
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type demo:ItemVm}">
-            <TextBlock Background="Gainsboro" Text="{Binding Value}" />
         </DataTemplate>
 
         <DataTemplate x:Key="SampleItemTemplate" DataType="{x:Type demo:ItemVm}">
@@ -94,41 +88,20 @@
                 </Grid.ColumnDefinitions>
 
                 <DataGrid Grid.Column="0"
-                          CellStyle="{StaticResource CellStyle}"
-                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-                          ItemsSource="{Binding ListListItems}"
+                          ItemsSource="{Binding ListOfListsOfItems}"
                           SelectionUnit="Cell"
-                          dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
-                          dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}" />
+                          dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}" />
 
                 <DataGrid Grid.Column="1"
-                          CellStyle="{StaticResource CellStyle}"
-                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                           SelectionUnit="Cell"
-                          dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
-                          dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
-                          dataGrid2D:Source2D.RowsSource="{Binding ListListItems}" />
+                          dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
+                          dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
 
                 <DataGrid Grid.Column="2"
-                          CellStyle="{StaticResource CellStyle}"
-                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                           SelectionUnit="Cell"
-                          dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                          dataGrid2D:Source2D.RowsSource="{Binding ListListItems}" />
+                          dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
             </Grid>
         </GroupBox>
-
-        <DataGrid CellStyle="{StaticResource CellStyle}"
-                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-                  ColumnWidth="*"
-                  ItemsSource="{Binding ListListItems}"
-                  SelectionUnit="Cell"
-                  dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
-                  dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                  dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
-                  dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}" />
 
         <GroupBox Header="int[,]">
             <Grid>
@@ -150,6 +123,18 @@
                           dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
                           dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
             </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Styles and Templates">
+            <DataGrid CellStyle="{StaticResource CellStyle}"
+                      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                      ColumnWidth="*"
+                      ItemsSource="{Binding ListOfListsOfItems}"
+                      SelectionUnit="Cell"
+                      dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
+                      dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
+                      dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
+                      dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}" />
         </GroupBox>
     </WrapPanel>
 </UserControl>

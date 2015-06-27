@@ -267,6 +267,10 @@
             // Should not be a problem since binding both RowSource and ItemsSource makes very little sense.
             BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
             var rows = (IEnumerable)e.NewValue;
+            if (rows != null)
+            {
+                Helpers.Bind(dataGrid, ItemsControl.ItemsSourceProperty, dataGrid, RowsSourceProperty);                
+            }
             UpdateColumns(rows, dataGrid);
         }
 
@@ -274,7 +278,6 @@
         {
             if (rows != null)
             {
-                Helpers.Bind(dataGrid, ItemsControl.ItemsSourceProperty, dataGrid, RowsSourceProperty);
                 var firstRow = (IEnumerable)rows.First();
                 if (firstRow != null)
                 {

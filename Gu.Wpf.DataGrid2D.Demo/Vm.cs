@@ -15,11 +15,11 @@
             JaggedRows[2] = new[] { 5, 6 };
 
             int count = 1;
-            ListListItems = new List<List<ItemVm>>();
+            ListOfListsOfItems = new List<List<ItemVm>>();
             for (int i = 0; i < 3; i++)
             {
                 var row = new List<ItemVm>();
-                ListListItems.Add(row);
+                ListOfListsOfItems.Add(row);
                 for (int j = 0; j < 2; j++)
                 {
                     row.Add(new ItemVm(count));
@@ -38,7 +38,7 @@
         
         public int[][] JaggedRows { get; private set; }
 
-        public List<List<ItemVm>> ListListItems { get; private set; } 
+        public List<List<ItemVm>> ListOfListsOfItems { get; private set; } 
 
         public int[,] Data2D { get; private set; }
     }

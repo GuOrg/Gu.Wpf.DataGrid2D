@@ -88,15 +88,31 @@
 
         internal static int Count(this IEnumerable collection)
         {
-            var array = collection as IList;
-            if (array != null)
+            if (collection == null)
             {
-                return array.Count;
+                return 0;
+            }
+            var col = collection as ICollection;
+            if (col != null)
+            {
+                return col.Count;
+            }
+
+            var rol = collection as IReadOnlyCollection<object>;
+            if (rol != null)
+            {
+                return rol.Count;
             }
             int count = 0;
-            foreach (var item in collection)
+            var enumerator = collection.GetEnumerator();
+            while (enumerator.MoveNext())
             {
                 count++;
+            }
+            var disposable = enumerator as IDisposable;
+            if (disposable != null)
+            {
+                disposable.Dispose();
             }
             return count;
         }

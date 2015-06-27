@@ -10,8 +10,7 @@
         Width="525"
         Height="350"
         d:DataContext="{d:DesignInstance demo:Vm}"
-        mc:Ignorable="d"
-        >
+        mc:Ignorable="d">
     <TabControl>
         <TabItem Header="Samples">
             <demo:SamplesView />
