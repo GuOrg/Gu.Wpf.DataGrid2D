@@ -1,0 +1,186 @@
+﻿<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.SamplesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dataGrid2D="http://gu.se/DataGrid2D"
+             xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d"
+             >
+    <UserControl.DataContext>
+        <demo:Vm />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="IntTemplate"
+                      DataType="{x:Type system:Int32}"
+                      >
+            <TextBlock HorizontalAlignment="Center"
+                       Background="AntiqueWhite"
+                       Text="{Binding}"
+                       />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type demo:ItemVm}">
+            <TextBlock Background="Gainsboro"
+                       Text="{Binding Value}"
+                       />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ItemTemplate"
+                      DataType="{x:Type demo:ItemVm}"
+                      >
+            <TextBlock Background="LightGoldenrodYellow"
+                       Text="{Binding Name}"
+                       />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ItemEditTemplate"
+                      DataType="{x:Type demo:ItemVm}"
+                      >
+            <TextBox Background="White"
+                     Text="{Binding Value}"
+                     />
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderItemTemplate"
+                      DataType="{x:Type demo:ItemVm}"
+                      >
+            <TextBlock Background="LightBlue"
+                       Text="{Binding Value}"
+                       />
+        </DataTemplate>
+
+        <Style x:Key="CellStyle"
+               TargetType="{x:Type DataGridCell}"
+               >
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <ContentPresenter Margin="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ColumnHeaderStyle"
+               TargetType="{x:Type DataGridColumnHeader}"
+               >
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <WrapPanel>
+        <GroupBox Header="Jagged">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Column="0"
+                          ItemsSource="{Binding JaggedRows}"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
+                          />
+
+                <DataGrid Grid.Column="1"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
+                          dataGrid2D:Source2D.RowsSource="{Binding JaggedRows}"
+                          />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1"
+                  Header="ListOfLists"
+                  >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Grid.Column="0"
+                          CellStyle="{StaticResource CellStyle}"
+                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                          ItemsSource="{Binding ListListItems}"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
+                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
+                          dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
+                          />
+
+                <DataGrid Grid.Column="1"
+                          CellStyle="{StaticResource CellStyle}"
+                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
+                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
+                          dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
+                          dataGrid2D:Source2D.RowsSource="{Binding ListListItems}"
+                          />
+
+                <DataGrid Grid.Column="2"
+                          CellStyle="{StaticResource CellStyle}"
+                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
+                          dataGrid2D:Source2D.RowsSource="{Binding ListListItems}"
+                          />
+            </Grid>
+        </GroupBox>
+
+        <DataGrid CellStyle="{StaticResource CellStyle}"
+                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                  ColumnWidth="*"
+                  ItemsSource="{Binding ListListItems}"
+                  dataGrid2D:Source2D.CellEditingTemplate="{StaticResource ItemEditTemplate}"
+                  dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
+                  dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
+                  dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}"
+                  />
+
+        <GroupBox Grid.Row="3"
+                  Grid.Column="0"
+                  Header="int[,]"
+                  >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Column="0"
+                          HeadersVisibility="None"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}"
+                          />
+
+                <DataGrid Grid.Column="1"
+                          ColumnWidth="*"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
+                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}"
+                          dataGrid2D:Source2D.Width="SizeToHeader"
+                          />
+            </Grid>
+        </GroupBox>
+    </WrapPanel>
+</UserControl>

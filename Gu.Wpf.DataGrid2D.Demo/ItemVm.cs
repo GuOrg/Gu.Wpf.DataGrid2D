@@ -7,18 +7,55 @@
 
     public class ItemVm : INotifyPropertyChanged
     {
+        private int _value;
+
+        private string _name;
+
         public ItemVm(int value)
         {
-            Value = "Item: " + value;
+            Value = value;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Value { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (value == _name)
+                {
+                    return;
+                }
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                if (value == _value)
+                {
+                    return;
+                }
+                _value = value;
+                OnPropertyChanged();
+                Name = "Item: " + value;
+            }
+        }
 
         public override string ToString()
         {
-            return Value;
+            return Name;
         }
 
         [NotifyPropertyChangedInvocator]

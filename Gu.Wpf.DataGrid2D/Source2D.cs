@@ -2,9 +2,12 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
 
     public static class Source2D
     {
@@ -303,10 +306,9 @@
             dataGrid.CanUserAddRows = false;
             dataGrid.CanUserDeleteRows = false;
             var array = (Array)e.NewValue;
-            dataGrid.Items.Clear();
             if (array != null)
             {
-
+                var rows = new List<IList>();
                 for (int i = 0; i < array.GetLength(0); i++)
                 {
                     var row = new object[array.GetLength(1)];
@@ -314,13 +316,9 @@
                     {
                         row[j] = array.GetValue(i, j);
                     }
-                    dataGrid.Items.Add(row);
+                    rows.Add(row);
                 }
-
-                for (int i = 0; i < array.GetLength(1); i++)
-                {
-                    AddColumn(dataGrid, i);
-                }
+                dataGrid.SetRowsSource(rows);
             }
         }
 
@@ -330,20 +328,28 @@
             dataGrid.AutoGenerateColumns = false;
             dataGrid.CanUserAddRows = false;
             dataGrid.CanUserDeleteRows = false;
-            var rows = e.NewValue as IEnumerable;
-            dataGrid.Items.Clear();
+            // Better to use ItemsSource than adding items manually
+            // Adding manually does not create an editable collectionview and probably more things.
+            // Should not be a problem since binding both RowSource and ItemsSource makes very little sense.
+            BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
+            var rows = (IEnumerable)e.NewValue;
+            UpdateColumns(rows, dataGrid);
+        }
+
+        private static void UpdateColumns(IEnumerable rows, DataGrid dataGrid)
+        {
             if (rows != null)
             {
-                foreach (var row in rows)
+                Helpers.Bind(dataGrid, ItemsControl.ItemsSourceProperty, dataGrid, RowsSourceProperty);
+                var firstRow = (IEnumerable)rows.First();
+                if (firstRow != null)
                 {
-                    dataGrid.Items.Add(row);
-                }
-                int i = 0;
-                var firstRow = (IEnumerable)dataGrid.Items[0];
-                foreach (var cell in firstRow)
-                {
-                    AddColumn(dataGrid, i);
-                    i++;
+                    int i = 0;
+                    foreach (var cells in firstRow)
+                    {
+                        AddColumn(dataGrid, i);
+                        i++;
+                    }
                 }
             }
         }

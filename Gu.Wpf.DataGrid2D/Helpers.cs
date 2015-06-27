@@ -11,7 +11,9 @@
     internal static class Helpers
     {
         private static readonly Dictionary<int, PropertyPath> IndexPaths = new Dictionary<int, PropertyPath>();
-        private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths = new Dictionary<DependencyProperty, PropertyPath>();
+
+        private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths =
+            new Dictionary<DependencyProperty, PropertyPath>();
 
         internal static DataTemplate CreateDefaultTemplate()
         {
@@ -27,19 +29,41 @@
             element.AddHandler(routedEvent, handler);
         }
 
-        internal static void Bind(DependencyObject target, DependencyProperty targetProperty, object source, PropertyPath path)
+        internal static BindingExpression Bind(
+            DependencyObject target,
+            DependencyProperty targetProperty,
+            object source,
+            DependencyProperty sourceProperty)
         {
-            var binding = new Binding
-            {
-                Path = path,
-                Source = source,
-                Mode = BindingMode.OneWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-            BindingOperations.SetBinding(target, targetProperty, binding);
+            return Bind(target, targetProperty, source, GetPath(sourceProperty));
         }
 
-        internal static PropertyPath GetPath(int index)
+        internal static BindingExpression Bind(
+            DependencyObject target,
+            DependencyProperty targetProperty,
+            object source,
+            int sourceIndex)
+        {
+            return Bind(target, targetProperty, source, GetPath(sourceIndex));
+        }
+
+        internal static BindingExpression Bind(
+            DependencyObject target,
+            DependencyProperty targetProperty,
+            object source,
+            PropertyPath path)
+        {
+            var binding = new Binding
+                              {
+                                  Path = path,
+                                  Source = source,
+                                  Mode = BindingMode.OneWay,
+                                  UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                              };
+            return (BindingExpression)BindingOperations.SetBinding(target, targetProperty, binding);
+        }
+
+        private static PropertyPath GetPath(int index)
         {
             PropertyPath path;
             if (!IndexPaths.TryGetValue(index, out path))
@@ -50,7 +74,7 @@
             return path;
         }
 
-        internal static PropertyPath GetPath(DependencyProperty property)
+        private static PropertyPath GetPath(DependencyProperty property)
         {
             PropertyPath path;
             if (!PropertyPaths.TryGetValue(property, out path))
@@ -75,6 +99,18 @@
                 count++;
             }
             return count;
+        }
+
+        internal static object First(this IEnumerable collection)
+        {
+            var enumerator = collection.GetEnumerator();
+            object first = enumerator.MoveNext() ? enumerator.Current : null;
+            var disposable = enumerator as IDisposable;
+            if (disposable != null)
+            {
+                disposable.Dispose();
+            }
+            return first;
         }
     }
 }

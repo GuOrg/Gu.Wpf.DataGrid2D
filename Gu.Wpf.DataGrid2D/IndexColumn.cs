@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -38,7 +37,7 @@
 
         public void BindHeader(object[] headers, int index)
         {
-            Helpers.Bind(this, HeaderProperty, headers, Helpers.GetPath(index));
+            Helpers.Bind(this, HeaderProperty, headers,index);
         }
 
         public int Index { get; private set; }
@@ -48,7 +47,7 @@
             var list = dataItem as IList;
             if (list != null)
             {
-                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Helpers.GetPath(Index));
+                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index);
             }
             else
             {
