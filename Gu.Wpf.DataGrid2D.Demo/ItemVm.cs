@@ -16,6 +16,11 @@
 
         public string Value { get; set; }
 
+        public override string ToString()
+        {
+            return Value;
+        }
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

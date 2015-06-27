@@ -66,6 +66,18 @@
             }
         }
 
+        [TestCase(typeof(DataGridColumn))]
+        [TestCase(typeof(DataGridTemplateColumn))]
+        public void DumpAllDps(Type type)
+        {
+            var dps = GetDpFields(type);
+            foreach (var fieldInfo in dps)
+            {
+                var dp = (DependencyProperty)fieldInfo.GetValue(null);
+                Console.WriteLine("{0} {1} {2} {3}", fieldInfo.Name, dp.Name, dp.PropertyType, dp.DefaultMetadata.DefaultValue);
+            }
+        }
+
         private static IReadOnlyList<FieldInfo> GetDpFields(Type from)
         {
             var dps = from.GetFields(BindingFlags.Static | BindingFlags.Public)
@@ -80,7 +92,7 @@
             {
                 var dp = (DependencyProperty)info.GetValue(null);
                 var metadata = dp.DefaultMetadata;
-                
+
                 var name = info.Name.Replace("Property", "");
                 Console.WriteLine(
                     "    public static readonly DependencyProperty {0}Property = DependencyProperty.RegisterAttached(", name);
@@ -97,16 +109,16 @@
         {
             foreach (var info in dps)
             {
-                var dp = (DependencyProperty) info.GetValue(null);
+                var dp = (DependencyProperty)info.GetValue(null);
                 var metadata = dp.DefaultMetadata;
                 var fpm = metadata as FrameworkPropertyMetadata;
                 if (fpm != null)
                 {
-                    Console.WriteLine("{0} {1} Default: {2}, Flags: ", info.Name, metadata.GetType().Name, fpm.DefaultValue);                    
+                    Console.WriteLine("{0} {1} Default: {2}, Flags: ", info.Name, metadata.GetType().Name, fpm.DefaultValue);
                 }
                 else
                 {
-                    Console.WriteLine("{0} {1} Default: {2}", info.Name, metadata.GetType().Name, metadata.DefaultValue);                    
+                    Console.WriteLine("{0} {1} Default: {2}", info.Name, metadata.GetType().Name, metadata.DefaultValue);
                 }
             }
         }

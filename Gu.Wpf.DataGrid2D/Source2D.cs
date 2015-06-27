@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -18,6 +19,12 @@
             typeof(Array),
             typeof(Source2D),
             new PropertyMetadata(default(Array), OnItemsSource2DChanged), OnValidateItemsSource2D);
+
+        public static readonly DependencyProperty RowsSourceProperty = DependencyProperty.RegisterAttached(
+            "RowsSource",
+            typeof(IEnumerable),
+            typeof(Source2D),
+            new PropertyMetadata(default(IEnumerable), OnRowsSourceChanged), OnValidateRowsSource);
 
         public static readonly DependencyProperty HeaderStringFormatProperty = DependencyProperty.RegisterAttached(
            "HeaderStringFormat",
@@ -91,16 +98,28 @@
             return (object[])element.GetValue(HeadersProperty);
         }
 
-        public static void SetItemsSource2D(this DependencyObject element, object[,] value)
+        public static void SetItemsSource2D(this DataGrid element, object[,] value)
         {
             element.SetValue(ItemsSource2DProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static object[,] GetItemsSource2D(this DependencyObject element)
+        public static object[,] GetItemsSource2D(this DataGrid element)
         {
             return (object[,])element.GetValue(ItemsSource2DProperty);
+        }
+
+        public static void SetRowsSource(this DataGrid element, IEnumerable value)
+        {
+            element.SetValue(RowsSourceProperty, value);
+        }
+
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
+        public static IEnumerable GetRowsSource(this DataGrid element)
+        {
+            return (IEnumerable)element.GetValue(RowsSourceProperty);
         }
 
         public static void SetHeaderStringFormat(this DataGrid element, String value)
@@ -284,8 +303,10 @@
             dataGrid.CanUserAddRows = false;
             dataGrid.CanUserDeleteRows = false;
             var array = (Array)e.NewValue;
+            dataGrid.Items.Clear();
             if (array != null)
             {
+
                 for (int i = 0; i < array.GetLength(0); i++)
                 {
                     var row = new object[array.GetLength(1)];
@@ -296,22 +317,51 @@
                     dataGrid.Items.Add(row);
                 }
 
-                for (int i = 0; i < array.GetLength(0); i++)
+                for (int i = 0; i < array.GetLength(1); i++)
                 {
-                    if (dataGrid.Columns.Count > i)
-                    {
-                        var column = dataGrid.Columns[i] as IndexColumn;
-                        if (column == null)
-                        {
-                            throw new InvalidOperationException();
-                        }
-                    }
-                    else
-                    {
-                        var templateColumn = new IndexColumn(dataGrid, i);
-                        dataGrid.Columns.Add(templateColumn);
-                    }
+                    AddColumn(dataGrid, i);
                 }
+            }
+        }
+
+        private static void OnRowsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var dataGrid = (DataGrid)d;
+            dataGrid.AutoGenerateColumns = false;
+            dataGrid.CanUserAddRows = false;
+            dataGrid.CanUserDeleteRows = false;
+            var rows = e.NewValue as IEnumerable;
+            dataGrid.Items.Clear();
+            if (rows != null)
+            {
+                foreach (var row in rows)
+                {
+                    dataGrid.Items.Add(row);
+                }
+                int i = 0;
+                var firstRow = (IEnumerable)dataGrid.Items[0];
+                foreach (var cell in firstRow)
+                {
+                    AddColumn(dataGrid, i);
+                    i++;
+                }
+            }
+        }
+
+        private static void AddColumn(DataGrid dataGrid, int i)
+        {
+            if (dataGrid.Columns.Count > i)
+            {
+                var column = dataGrid.Columns[i] as IndexColumn;
+                if (column == null)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+            else
+            {
+                var templateColumn = new IndexColumn(dataGrid, i);
+                dataGrid.Columns.Add(templateColumn);
             }
         }
 
@@ -325,12 +375,39 @@
             return true;
         }
 
-        private static DataTemplate CreateDefaultTemplate()
+        private static bool OnValidateRowsSource(object value)
         {
-            var dataTemplate = new DataTemplate();
-            var factory = new FrameworkElementFactory(typeof(ContentPresenter));
-            dataTemplate.VisualTree = factory;
-            return dataTemplate;
+            if (value == null)
+            {
+                return true;
+            }
+            var rows = value as IEnumerable;
+            if (rows == null)
+            {
+                return false;
+            }
+            int columnCount = -1;
+            foreach (var row in rows)
+            {
+                var cells = row as IEnumerable;
+                if (cells == null)
+                {
+                    return false;
+                }
+                if (columnCount == -1)
+                {
+                    columnCount = cells.Count();
+                }
+                else
+                {
+                    if (columnCount != cells.Count())
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }

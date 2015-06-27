@@ -7,19 +7,20 @@
     {
         public Vm()
         {
-            Data = new[,] { { 1, 2 }, { 3, 4 } };
+            Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
             ColumnHeaders = new[] { "Col1", "Col2" };
-            Rows = new int[2][];
-            Rows[0] = new[] { 1, 2 };
-            Rows[1] = new[] { 3, 4 };
+            JaggedRows = new int[3][];
+            JaggedRows[0] = new[] { 1, 2 };
+            JaggedRows[1] = new[] { 3, 4 };
+            JaggedRows[2] = new[] { 5, 6 };
 
             int count = 1;
-            Items = new List<List<ItemVm>>();
-            for (int i = 0; i < 2; i++)
+            ListListItems = new List<List<ItemVm>>();
+            for (int i = 0; i < 3; i++)
             {
                 var row = new List<ItemVm>();
-                Items.Add(row);
-                for (int j = 3; j < 4; j++)
+                ListListItems.Add(row);
+                for (int j = 0; j < 2; j++)
                 {
                     row.Add(new ItemVm(count));
                     count++;
@@ -35,10 +36,10 @@
        
         public ItemVm[] ColumnItemHeaders { get; private set; }
         
-        public int[][] Rows { get; private set; }
+        public int[][] JaggedRows { get; private set; }
 
-        public List<List<ItemVm>> Items { get; private set; } 
+        public List<List<ItemVm>> ListListItems { get; private set; } 
 
-        public int[,] Data { get; private set; }
+        public int[,] Data2D { get; private set; }
     }
 }

@@ -1,16 +1,15 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
 
     public class IndexColumn : DataGridTemplateColumn
     {
-        private static readonly Dictionary<int, PropertyPath> IndexPaths = new Dictionary<int, PropertyPath>();
-        private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths = new Dictionary<DependencyProperty, PropertyPath>();
-
         public IndexColumn(DataGrid dataGrid, int index)
         {
             Index = index;
@@ -39,21 +38,22 @@
 
         public void BindHeader(object[] headers, int index)
         {
-            Bind(this, HeaderProperty, headers, GetPath(index));            
+            Helpers.Bind(this, HeaderProperty, headers, Helpers.GetPath(index));
         }
 
         public int Index { get; private set; }
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
-            var array = dataItem as Array;
-            if (array != null)
+            var list = dataItem as IList;
+            if (list != null)
             {
-                Bind(cell, FrameworkElement.DataContextProperty, dataItem, GetPath(Index));
+                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Helpers.GetPath(Index));
             }
             else
             {
-                cell.DataContext = dataItem;
+                var enumerable = (IEnumerable<object>)dataItem;
+                cell.DataContext = enumerable.ElementAt(Index);
             }
             var frameworkElement = base.GenerateElement(cell, dataItem);
             if (frameworkElement == null)
@@ -67,41 +67,6 @@
                 return contentPresenter;
             }
             return frameworkElement;
-        }
-
-        private static void Bind(DependencyObject target, DependencyProperty targetProperty, object source, PropertyPath path)
-        {
-            var binding = new Binding
-            {
-                Path = path,
-                Source = source,
-                Mode = BindingMode.OneWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-            BindingOperations.SetBinding(target, targetProperty, binding);
-        }
-
-        private static PropertyPath GetPath(int index)
-        {
-            PropertyPath path;
-            if (!IndexPaths.TryGetValue(index, out path))
-            {
-                path = new PropertyPath(string.Format("[{0}]", index));
-                IndexPaths[index] = path;
-            }
-            return path;
-        }
-
-        private static PropertyPath GetPath(DependencyProperty property)
-        {
-            PropertyPath path;
-            if (!PropertyPaths.TryGetValue(property, out path))
-            {
-                path = new PropertyPath(string.Format("({0}.{1})", typeof(Source2D).Name, property.Name));
-                path = new PropertyPath(property);
-                PropertyPaths[property] = path;
-            }
-            return path;
         }
     }
 }
