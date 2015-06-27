@@ -10,14 +10,17 @@
     {
         private static readonly Dictionary<int, PropertyPath> IndexPaths = new Dictionary<int, PropertyPath>();
         private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths = new Dictionary<DependencyProperty, PropertyPath>();
-        public IndexColumn(DataGrid dataGrid, object[] headers, int index)
+
+        public IndexColumn(DataGrid dataGrid, int index)
         {
             Index = index;
-            Bind(this, HeaderProperty, headers, GetPath(index));
             HeaderStringFormat = dataGrid.GetHeaderStringFormat();
             HeaderTemplate = dataGrid.GetHeaderTemplate();
             HeaderTemplateSelector = dataGrid.GetHeaderTemplateSelector();
 
+            Width = dataGrid.GetWidth();
+            MinWidth = dataGrid.GetMinWidth();
+            MaxWidth = dataGrid.GetMaxWidth();
             //Bind(this, CellTemplateProperty, dataGrid, GetPath(CellTemplateProperty));
             //Bind(this, CellTemplateSelectorProperty, dataGrid, GetPath(CellTemplateSelectorProperty));
             //Bind(this, CellEditingTemplateProperty, dataGrid, GetPath(CellEditingTemplateProperty));
@@ -26,6 +29,17 @@
             CellTemplateSelector = dataGrid.GetCellTemplateSelector();
             CellEditingTemplate = dataGrid.GetCellEditingTemplate();
             CellEditingTemplateSelector = dataGrid.GetCellEditingTemplateSelector();
+        }
+
+        public IndexColumn(DataGrid dataGrid, object[] headers, int index)
+            : this(dataGrid, index)
+        {
+            BindHeader(headers, index);
+        }
+
+        public void BindHeader(object[] headers, int index)
+        {
+            Bind(this, HeaderProperty, headers, GetPath(index));            
         }
 
         public int Index { get; private set; }
@@ -42,12 +56,17 @@
                 cell.DataContext = dataItem;
             }
             var frameworkElement = base.GenerateElement(cell, dataItem);
+            if (frameworkElement == null)
+            {
+                ContentPresenter contentPresenter = new ContentPresenter
+                {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                BindingOperations.SetBinding(contentPresenter, ContentPresenter.ContentProperty, new Binding());
+                return contentPresenter;
+            }
             return frameworkElement;
-        }
-
-        protected override void RefreshCellContent(FrameworkElement element, string propertyName)
-        {
-            base.RefreshCellContent(element, propertyName);
         }
 
         private static void Bind(DependencyObject target, DependencyProperty targetProperty, object source, PropertyPath path)

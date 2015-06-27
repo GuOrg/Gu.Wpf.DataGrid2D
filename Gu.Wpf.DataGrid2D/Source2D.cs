@@ -13,11 +13,11 @@
             typeof(Source2D),
             new PropertyMetadata(default(object[]), OnHeadersChanged));
 
-        public static readonly DependencyProperty EvenSpacingProperty = DependencyProperty.RegisterAttached(
-            "EvenSpacing",
-            typeof(bool),
+        public static readonly DependencyProperty ItemsSource2DProperty = DependencyProperty.RegisterAttached(
+            "ItemsSource2D",
+            typeof(Array),
             typeof(Source2D),
-            new PropertyMetadata(default(bool)));
+            new PropertyMetadata(default(Array), OnItemsSource2DChanged), OnValidateItemsSource2D);
 
         public static readonly DependencyProperty HeaderStringFormatProperty = DependencyProperty.RegisterAttached(
            "HeaderStringFormat",
@@ -36,6 +36,24 @@
            typeof(DataTemplateSelector),
            typeof(Source2D),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
+
+        public static readonly DependencyProperty WidthProperty = DependencyProperty.RegisterAttached(
+           "Width",
+           typeof(DataGridLength),
+           typeof(Source2D),
+           new FrameworkPropertyMetadata(DataGridLength.Auto));
+
+        public static readonly DependencyProperty MinWidthProperty = DependencyProperty.RegisterAttached(
+           "MinWidth",
+           typeof(Double),
+           typeof(Source2D),
+           new FrameworkPropertyMetadata(20d));
+
+        public static readonly DependencyProperty MaxWidthProperty = DependencyProperty.RegisterAttached(
+           "MaxWidth",
+           typeof(Double),
+           typeof(Source2D),
+           new FrameworkPropertyMetadata(double.PositiveInfinity));
 
         public static readonly DependencyProperty CellTemplateProperty = DependencyProperty.RegisterAttached(
            "CellTemplate",
@@ -61,8 +79,6 @@
            typeof(Source2D),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
 
-        private static readonly SizeChangedEventHandler OnSizeChangedHandler = OnSizeChanged;
-
         public static void SetHeaders(this DataGrid element, object[] value)
         {
             element.SetValue(HeadersProperty, value);
@@ -75,16 +91,16 @@
             return (object[])element.GetValue(HeadersProperty);
         }
 
-        public static void SetEvenSpacing(this DataGrid element, bool value)
+        public static void SetItemsSource2D(this DependencyObject element, object[,] value)
         {
-            element.SetValue(EvenSpacingProperty, value);
+            element.SetValue(ItemsSource2DProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static bool GetEvenSpacing(this DataGrid element)
+        public static object[,] GetItemsSource2D(this DependencyObject element)
         {
-            return (bool)element.GetValue(EvenSpacingProperty);
+            return (object[,])element.GetValue(ItemsSource2DProperty);
         }
 
         public static void SetHeaderStringFormat(this DataGrid element, String value)
@@ -121,6 +137,42 @@
         public static DataTemplateSelector GetHeaderTemplateSelector(this DataGrid element)
         {
             return (DataTemplateSelector)element.GetValue(HeaderTemplateSelectorProperty);
+        }
+
+        public static void SetWidth(this DataGrid element, DataGridLength value)
+        {
+            element.SetValue(WidthProperty, value);
+        }
+
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
+        public static DataGridLength GetWidth(this DataGrid element)
+        {
+            return (DataGridLength)element.GetValue(WidthProperty);
+        }
+
+        public static void SetMinWidth(this DataGrid element, Double value)
+        {
+            element.SetValue(MinWidthProperty, value);
+        }
+
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
+        public static Double GetMinWidth(this DataGrid element)
+        {
+            return (Double)element.GetValue(MinWidthProperty);
+        }
+
+        public static void SetMaxWidth(this DataGrid element, Double value)
+        {
+            element.SetValue(MaxWidthProperty, value);
+        }
+
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
+        public static Double GetMaxWidth(this DataGrid element)
+        {
+            return (Double)element.GetValue(MaxWidthProperty);
         }
 
         public static void SetCellTemplate(this DataGrid element, DataTemplate value)
@@ -200,42 +252,85 @@
             dataGrid.AutoGenerateColumns = false;
             dataGrid.CanUserAddRows = false;
             dataGrid.CanUserDeleteRows = false;
-            if (dataGrid.GetEvenSpacing())
-            {
-                dataGrid.CanUserResizeColumns = false;
-                dataGrid.UpdateHandler(FrameworkElement.SizeChangedEvent, OnSizeChangedHandler);
-            }
             //dataGrid.CanUserReorderColumns = false;
             //dataGrid.CanUserSortColumns = false;
             //dataGrid.CanUserSortColumns = false;
 
-            var objects = dataGrid.GetHeaders();
-            if (objects == null)
+            var headers = dataGrid.GetHeaders();
+            if (headers == null)
             {
-                dataGrid.Columns.Clear();
+                //dataGrid.Columns.Clear();
                 return;
             }
-            for (int i = 0; i < objects.Length; i++)
+            for (int i = 0; i < headers.Length; i++)
             {
-                var templateColumn = new IndexColumn(dataGrid, objects, i);
-                dataGrid.Columns.Add(templateColumn);
+                if (dataGrid.Columns.Count > i)
+                {
+                    var column = (IndexColumn)dataGrid.Columns[i];
+                    column.BindHeader(headers, i);
+                }
+                else
+                {
+                    var templateColumn = new IndexColumn(dataGrid, headers, i);
+                    dataGrid.Columns.Add(templateColumn);
+                }
             }
         }
 
-
-        private static void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        private static void OnItemsSource2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!e.WidthChanged)
+            var dataGrid = (DataGrid)d;
+            dataGrid.AutoGenerateColumns = false;
+            dataGrid.CanUserAddRows = false;
+            dataGrid.CanUserDeleteRows = false;
+            var array = (Array)e.NewValue;
+            if (array != null)
             {
-                return;
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    var row = new object[array.GetLength(1)];
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        row[j] = array.GetValue(i, j);
+                    }
+                    dataGrid.Items.Add(row);
+                }
+
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    if (dataGrid.Columns.Count > i)
+                    {
+                        var column = dataGrid.Columns[i] as IndexColumn;
+                        if (column == null)
+                        {
+                            throw new InvalidOperationException();
+                        }
+                    }
+                    else
+                    {
+                        var templateColumn = new IndexColumn(dataGrid, i);
+                        dataGrid.Columns.Add(templateColumn);
+                    }
+                }
             }
-            var dataGrid = (DataGrid)sender;
-            double totalWidth = dataGrid.ActualWidth - dataGrid.CellsPanelHorizontalOffset - dataGrid.RowHeaderWidth;
-            var columnWidth = totalWidth / dataGrid.Columns.Count;
-            foreach (var column in dataGrid.Columns)
+        }
+
+        private static bool OnValidateItemsSource2D(object value)
+        {
+            var array = value as Array;
+            if (array != null)
             {
-                column.Width = columnWidth;
+                return array.Rank == 2;
             }
+            return true;
+        }
+
+        private static DataTemplate CreateDefaultTemplate()
+        {
+            var dataTemplate = new DataTemplate();
+            var factory = new FrameworkElementFactory(typeof(ContentPresenter));
+            dataTemplate.VisualTree = factory;
+            return dataTemplate;
         }
     }
 }

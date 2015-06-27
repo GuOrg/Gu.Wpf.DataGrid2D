@@ -11,70 +11,60 @@
 
     public class CodeGenTests
     {
-        public static readonly DependencyProperty CellTemplateProperty = DependencyProperty.RegisterAttached(
-            "CellTemplate",
-            typeof(DataTemplate),
-            typeof(Source2D),
-            new FrameworkPropertyMetadata(default(DataTemplate)));
-       
-        [Test]
-        public void GenerateDataGridTemplateColumnAttachedPropertyFields()
+        private readonly string[] _excluded = { "HeaderProperty ", "HeaderStyleProperty", "ActualWidthProperty" };
+
+        [TestCase(typeof(DataGridColumn), "Header")]
+        [TestCase(typeof(DataGridColumn), "Width")]
+        [TestCase(typeof(DataGridTemplateColumn), "")]
+        public void GenerateAttachedPropertyFields(Type type, string contains)
         {
-            IEnumerable ints = new int[2, 2];
-            DumpFields(typeof(Source2D), GetDpFields(typeof(DataGridTemplateColumn)));
+            var properties =
+                GetDpFields(type)
+                    .Where(x => x.Name.Contains(contains))
+                    .Where(x => !_excluded.Contains(x.Name))
+                    .ToArray();
+            DumpFields(typeof(Source2D), properties);
+            DumpMetaData(properties);
         }
 
-        [Test]
-        public void GenerateDataGridColumnAttachedPropertyFields()
+        [TestCase(typeof(DataGridColumn), "Header")]
+        [TestCase(typeof(DataGridColumn), "Width")]
+        [TestCase(typeof(DataGridTemplateColumn), "")]
+        public void GenerateDataGridColumnMethods(Type type, string contains)
         {
-            var headerFields = GetDpFields(typeof (DataGridColumn)).Where(x => x.Name.StartsWith("Header")).ToArray();
-            DumpFields(typeof(Source2D), headerFields);
+            var properties =
+                GetDpFields(type)
+                    .Where(x => x.Name.Contains(contains))
+                    .Where(x => !_excluded.Contains(x.Name))
+                    .ToArray();
+            DumpMethods(properties);
         }
 
-        [Test]
-        public void GenerateDataGridTemplateColumnMethods()
+        [TestCase(false, typeof(DataGridColumn), "Header")]
+        [TestCase(false, typeof(DataGridColumn), "Width")]
+        [TestCase(false, typeof(DataGridTemplateColumn), "")]
+        public void DumpDataGridColumnBindingsTest(bool bind, Type type, string contains)
         {
-            DumpMethods(GetDpFields(typeof(DataGridTemplateColumn)));
-        }
-
-        [Test]
-        public void GenerateDataGridColumnMethods()
-        {
-            var headerFields = GetDpFields(typeof(DataGridColumn)).Where(x => x.Name.StartsWith("Header")).ToArray();
-            DumpMethods(headerFields);
-        }
-
-        [Test]
-        public void DumpDataGridTemplateColumnBindingsTest()
-        {
-            var readOnlyList = GetDpFields(typeof(DataGridTemplateColumn));
-            foreach (var fieldInfo in readOnlyList)
+            var properties =
+                GetDpFields(type)
+                    .Where(x => x.Name.Contains(contains))
+                    .Where(x => !_excluded.Contains(x.Name))
+                    .Select(x => x.Name)
+                    .Distinct()
+                    .Concat(_excluded.Except(new[] { "ActualWidthProperty", "HeaderProperty" }))
+                    .ToArray();
+            foreach (var name in properties)
             {
-                Console.WriteLine("            Bind(this, {0}, dataGrid, GetPath({0}));",fieldInfo.Name);
+                if (bind)
+                {
+                    Console.WriteLine("            Bind(this, {0}, dataGrid, GetPath({0}));", name);
+                }
+                else
+                {
+                    Console.WriteLine("            {0} = dataGrid.Get{0}();", name.Replace("Property", ""));
+                }
             }
         }
-
-        [Test]
-        public void DumpDataGridColumnBindingsTest()
-        {
-            var readOnlyList = GetDpFields(typeof(DataGridColumn)).Where(f=>f.Name.StartsWith("Header"));
-            foreach (var fieldInfo in readOnlyList)
-            {
-                Console.WriteLine("            Bind(this, {0}, dataGrid, GetPath({0}));", fieldInfo.Name);
-            }
-        }
-
-        //public static void SetCellTemplate(this DataGrid element, DataTemplate value)
-        //{
-        //    element.SetValue(CellTemplateProperty, value);
-        //}
-
-        //[AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        //[AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        //public static DataTemplate GetCellTemplate(this DataGrid element)
-        //{
-        //    return (DataTemplate)element.GetValue(CellTemplateProperty);
-        //}
 
         private static IReadOnlyList<FieldInfo> GetDpFields(Type from)
         {
@@ -89,6 +79,8 @@
             foreach (var info in dps)
             {
                 var dp = (DependencyProperty)info.GetValue(null);
+                var metadata = dp.DefaultMetadata;
+                
                 var name = info.Name.Replace("Property", "");
                 Console.WriteLine(
                     "    public static readonly DependencyProperty {0}Property = DependencyProperty.RegisterAttached(", name);
@@ -98,6 +90,24 @@
                 Console.WriteLine(@"       new FrameworkPropertyMetadata(default({0})));", dp.PropertyType.Name);
 
                 Console.WriteLine();
+            }
+        }
+
+        private static void DumpMetaData(IEnumerable<FieldInfo> dps)
+        {
+            foreach (var info in dps)
+            {
+                var dp = (DependencyProperty) info.GetValue(null);
+                var metadata = dp.DefaultMetadata;
+                var fpm = metadata as FrameworkPropertyMetadata;
+                if (fpm != null)
+                {
+                    Console.WriteLine("{0} {1} Default: {2}, Flags: ", info.Name, metadata.GetType().Name, fpm.DefaultValue);                    
+                }
+                else
+                {
+                    Console.WriteLine("{0} {1} Default: {2}", info.Name, metadata.GetType().Name, metadata.DefaultValue);                    
+                }
             }
         }
 
