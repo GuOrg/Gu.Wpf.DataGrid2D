@@ -16,13 +16,18 @@
 
             int count = 1;
             ListOfListsOfItems = new List<List<ItemVm>>();
+            RowVms = new List<RowVm>();
             for (int i = 0; i < 3; i++)
             {
                 var row = new List<ItemVm>();
                 ListOfListsOfItems.Add(row);
+
+                var rowVm = new RowVm("Row" + i);
+                RowVms.Add(rowVm);
                 for (int j = 0; j < 2; j++)
                 {
                     row.Add(new ItemVm(count));
+                    rowVm.Add(new ItemVm(count));
                     count++;
                 }
             }
@@ -30,15 +35,20 @@
             ColumnItemHeaders = Enumerable.Range(0, 2)
                                           .Select(x => new ItemVm(x))
                                           .ToArray();
+            RowHeaders = Enumerable.Range(0, 3).Select(x => "Row" + x).ToArray();
         }
 
         public string[] ColumnHeaders { get; private set; }
+        
+        public string[] RowHeaders { get; private set; }
        
         public ItemVm[] ColumnItemHeaders { get; private set; }
         
         public int[][] JaggedRows { get; private set; }
 
-        public List<List<ItemVm>> ListOfListsOfItems { get; private set; } 
+        public List<List<ItemVm>> ListOfListsOfItems { get; private set; }
+      
+        public List<RowVm> RowVms { get; private set; } 
 
         public int[,] Data2D { get; private set; }
     }

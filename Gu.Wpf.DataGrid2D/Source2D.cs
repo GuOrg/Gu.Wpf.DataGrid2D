@@ -1,4 +1,6 @@
-﻿namespace Gu.Wpf.DataGrid2D
+﻿using System.Windows.Controls.Primitives;
+
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections;
@@ -11,11 +13,11 @@
 
     public static class Source2D
     {
-        public static readonly DependencyProperty HeadersProperty = DependencyProperty.RegisterAttached(
-            "Headers",
-            typeof(object[]),
+        public static readonly DependencyProperty ColumnHeadersSourceProperty = DependencyProperty.RegisterAttached(
+            "ColumnHeadersSource",
+            typeof(IEnumerable),
             typeof(Source2D),
-            new PropertyMetadata(default(object[]), OnHeadersChanged));
+            new PropertyMetadata(null, OnColumnHeadersChanged), OnValidateHeaders);
 
         public static readonly DependencyProperty ItemsSource2DProperty = DependencyProperty.RegisterAttached(
             "ItemsSource2D",
@@ -71,16 +73,16 @@
            typeof(Source2D),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
 
-        public static void SetHeaders(this DataGrid element, object[] value)
+        public static void SetColumnHeadersSource(this DataGrid element, IEnumerable value)
         {
-            element.SetValue(HeadersProperty, value);
+            element.SetValue(ColumnHeadersSourceProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static object[] GetHeaders(this DataGrid element)
+        public static IEnumerable GetColumnHeadersSource(this DataGrid element)
         {
-            return (object[])element.GetValue(HeadersProperty);
+            return (IEnumerable)element.GetValue(ColumnHeadersSourceProperty);
         }
 
         public static void SetItemsSource2D(this DataGrid element, object[,] value)
@@ -191,34 +193,20 @@
             return (DataTemplateSelector)element.GetValue(CellEditingTemplateSelectorProperty);
         }
 
-        private static void OnHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnColumnHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            ApplyHeades(dataGrid);
-            //if (dataGrid.IsLoaded)
-            //{
-
-            //}
-            //dataGrid.RemoveHandler(FrameworkElement.LoadedEvent, OnLoadedHandler);
-            //dataGrid.AddHandler(FrameworkElement.LoadedEvent, OnLoadedHandler);
-        }
-
-        private static void ApplyHeades(DataGrid dataGrid)
-        {
             dataGrid.AutoGenerateColumns = false;
             dataGrid.CanUserAddRows = false;
             dataGrid.CanUserDeleteRows = false;
-            //dataGrid.CanUserReorderColumns = false;
-            //dataGrid.CanUserSortColumns = false;
-            //dataGrid.CanUserSortColumns = false;
 
-            var headers = dataGrid.GetHeaders();
+            var headers = dataGrid.GetColumnHeadersSource();
             if (headers == null)
             {
-                //dataGrid.Columns.Clear();
                 return;
             }
-            for (int i = 0; i < headers.Length; i++)
+            var count = headers.Count();
+            for (int i = 0; i < count; i++)
             {
                 if (dataGrid.Columns.Count > i)
                 {
@@ -269,7 +257,7 @@
             var rows = (IEnumerable)e.NewValue;
             if (rows != null)
             {
-                Helpers.Bind(dataGrid, ItemsControl.ItemsSourceProperty, dataGrid, RowsSourceProperty);                
+                Helpers.Bind(dataGrid, ItemsControl.ItemsSourceProperty, dataGrid, RowsSourceProperty);
             }
             UpdateColumns(rows, dataGrid);
         }
@@ -306,6 +294,25 @@
                 var templateColumn = new IndexColumn(dataGrid, i);
                 dataGrid.Columns.Add(templateColumn);
             }
+        }
+
+        private static bool OnValidateHeaders(object value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+            var list = value as IList;
+            if (list != null)
+            {
+                return true;
+            }
+            var rol = value as IReadOnlyList<object>;
+            if (rol != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         private static bool OnValidateItemsSource2D(object value)

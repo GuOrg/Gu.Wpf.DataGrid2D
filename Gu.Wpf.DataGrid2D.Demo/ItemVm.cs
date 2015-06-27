@@ -10,6 +10,7 @@
         private int _value;
 
         private string _name;
+        private bool _isSelected;
 
         public ItemVm(int value)
         {
@@ -17,6 +18,17 @@
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                if (value == _isSelected) return;
+                _isSelected = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Name
         {

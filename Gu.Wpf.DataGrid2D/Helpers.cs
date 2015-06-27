@@ -92,6 +92,7 @@
             {
                 return 0;
             }
+
             var col = collection as ICollection;
             if (col != null)
             {
@@ -103,17 +104,20 @@
             {
                 return rol.Count;
             }
+
             int count = 0;
             var enumerator = collection.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 count++;
             }
+
             var disposable = enumerator as IDisposable;
             if (disposable != null)
             {
                 disposable.Dispose();
             }
+
             return count;
         }
 

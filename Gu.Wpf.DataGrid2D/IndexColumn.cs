@@ -26,15 +26,21 @@
             CellEditingTemplateSelector = dataGrid.GetCellEditingTemplateSelector();
         }
 
-        public IndexColumn(DataGrid dataGrid, object[] headers, int index)
+        /// <summary>
+        /// IEnumerable here relies on validation previously
+        /// </summary>
+        /// <param name="dataGrid"></param>
+        /// <param name="headers"></param>
+        /// <param name="index"></param>
+        internal IndexColumn(DataGrid dataGrid, IEnumerable headers, int index)
             : this(dataGrid, index)
         {
             BindHeader(headers, index);
         }
 
-        public void BindHeader(object[] headers, int index)
+        internal void BindHeader(IEnumerable headers, int index)
         {
-            Helpers.Bind(this, HeaderProperty, headers,index);
+            Helpers.Bind(this, HeaderProperty, headers, index);
         }
 
         public int Index { get; private set; }
@@ -61,7 +67,7 @@
             var list = dataItem as IList;
             if (list != null)
             {
-                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index); 
+                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index);
                 return;
             }
             var rol = dataItem as IReadOnlyList<object>;
@@ -70,7 +76,7 @@
                 Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index);
                 return;
             }
-            var enumerable = (IEnumerable<object>) dataItem;
+            var enumerable = (IEnumerable<object>)dataItem;
             cell.DataContext = enumerable.ElementAt(Index);
         }
     }

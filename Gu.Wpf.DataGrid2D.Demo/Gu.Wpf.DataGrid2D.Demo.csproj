@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="ItemVm.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="RowVm.cs" />
     <Compile Include="SamplesView.xaml.cs">
       <DependentUpon>SamplesView.xaml</DependentUpon>
     </Compile>
