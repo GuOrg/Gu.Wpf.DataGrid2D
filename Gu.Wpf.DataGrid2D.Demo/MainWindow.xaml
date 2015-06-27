@@ -16,7 +16,9 @@
     </Window.DataContext>
     <Window.Resources>
         <DataTemplate x:Key="IntTemplate" DataType="{x:Type system:Int32}">
-            <TextBlock Text="{Binding}" HorizontalAlignment="Center" />
+            <TextBlock HorizontalAlignment="Center"
+                       Background="AntiqueWhite"
+                       Text="{Binding}" />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type demo:ItemVm}">
@@ -24,24 +26,20 @@
         </DataTemplate>
 
         <DataTemplate x:Key="ItemTemplate" DataType="{x:Type demo:ItemVm}">
-            <TextBlock Background="Aqua" Text="{Binding Value}" />
+            <TextBlock Background="LightGoldenrodYellow" Text="{Binding Value}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderItemTemplate" DataType="{x:Type demo:ItemVm}">
-            <TextBlock Background="HotPink" Text="{Binding Value}" />
+            <TextBlock Background="LightBlue" Text="{Binding Value}" />
         </DataTemplate>
 
         <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="Padding" Value="0" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            <Setter Property="VerticalContentAlignment" Value="Stretch" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <ContentPresenter Margin="1"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Center" />
+                        <ContentPresenter Margin="1" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -50,8 +48,6 @@
         <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Padding" Value="0" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            <Setter Property="VerticalContentAlignment" Value="Stretch" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
@@ -63,27 +59,32 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <DataGrid ItemsSource="{Binding Rows}"
-                  dataGrid2D:Source2D.CellTemplate="{StaticResource IntTemplate}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Row="0"
+                  Grid.Column="0"
+                  ItemsSource="{Binding Rows}"
                   dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}" />
 
         <DataGrid Grid.Row="1"
-                  ItemsSource="{Binding Items}"
-                  dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}" />
-
-        <DataGrid Grid.Row="2"
+                  Grid.Column="0"
+                  CellStyle="{StaticResource CellStyle}"
+                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                   ItemsSource="{Binding Items}"
                   dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
                   dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
                   dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}" />
 
-        <DataGrid Grid.Row="3"
+        <DataGrid Grid.Row="2"
+                  Grid.Column="0"
                   CellStyle="{StaticResource CellStyle}"
                   ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                   ColumnWidth="*"
@@ -91,24 +92,22 @@
                   dataGrid2D:Source2D.CellTemplate="{StaticResource ItemTemplate}"
                   dataGrid2D:Source2D.HeaderTemplate="{StaticResource HeaderItemTemplate}"
                   dataGrid2D:Source2D.Headers="{Binding ColumnItemHeaders}" />
-     
-        <GroupBox Grid.Row="4" Header="int[,]">
+
+        <GroupBox Grid.Row="3" Grid.Column="0" Header="int[,]">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <DataGrid Grid.Column="0"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="0"
                           HeadersVisibility="None"
-                          
                           dataGrid2D:Source2D.ItemsSource2D="{Binding Data}" />
 
-                <DataGrid Grid.Column="1"
+                <DataGrid Grid.Row="1"
                           ColumnWidth="*"
-                          dataGrid2D:Source2D.Width="SizeToHeader"
                           dataGrid2D:Source2D.Headers="{Binding ColumnHeaders}"
-                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data}" />
+                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data}"
+                          dataGrid2D:Source2D.Width="SizeToHeader" />
             </Grid>
         </GroupBox>
 
