@@ -1,10 +1,15 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
+    using System.Runtime.CompilerServices;
+    using Gu.Wpf.DataGrid2D.Demo.Annotations;
 
-    public class Vm
+    public class Vm : INotifyPropertyChanged
     {
+        private object _selectedItem;
+
         public Vm()
         {
             Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
@@ -17,6 +22,7 @@
             int count = 1;
             ListOfListsOfItems = new List<List<ItemVm>>();
             RowVms = new List<RowVm>();
+            AllRowsItems = new List<ItemVm>();
             for (int i = 0; i < 3; i++)
             {
                 var row = new List<ItemVm>();
@@ -27,7 +33,9 @@
                 for (int j = 0; j < 2; j++)
                 {
                     row.Add(new ItemVm(count));
-                    rowVm.Add(new ItemVm(count));
+                    var itemVm = new ItemVm(count);
+                    rowVm.Add(itemVm);
+                    AllRowsItems.Add(itemVm);
                     count++;
                 }
             }
@@ -38,6 +46,8 @@
             RowHeaders = Enumerable.Range(0, 3).Select(x => "Row" + x).ToArray();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string[] ColumnHeaders { get; private set; }
         
         public string[] RowHeaders { get; private set; }
@@ -47,9 +57,32 @@
         public int[][] JaggedRows { get; private set; }
 
         public List<List<ItemVm>> ListOfListsOfItems { get; private set; }
-      
+
+        public List<ItemVm> AllRowsItems { get; private set; }
+        
         public List<RowVm> RowVms { get; private set; } 
 
         public int[,] Data2D { get; private set; }
+
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (Equals(value, _selectedItem))
+                {
+                    return;
+                }
+                _selectedItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -63,7 +63,7 @@
             return (BindingExpression)BindingOperations.SetBinding(target, targetProperty, binding);
         }
 
-        private static PropertyPath GetPath(int index)
+        internal static PropertyPath GetPath(int index)
         {
             PropertyPath path;
             if (!IndexPaths.TryGetValue(index, out path))
@@ -74,7 +74,7 @@
             return path;
         }
 
-        private static PropertyPath GetPath(DependencyProperty property)
+        internal static PropertyPath GetPath(DependencyProperty property)
         {
             PropertyPath path;
             if (!PropertyPaths.TryGetValue(property, out path))
@@ -105,20 +105,8 @@
                 return rol.Count;
             }
 
-            int count = 0;
-            var enumerator = collection.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                count++;
-            }
-
-            var disposable = enumerator as IDisposable;
-            if (disposable != null)
-            {
-                disposable.Dispose();
-            }
-
-            return count;
+            return collection.Cast<object>()
+                             .Count();
         }
 
         internal static object First(this IEnumerable collection)

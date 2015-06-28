@@ -43,7 +43,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridCell}">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Margin="1"  />
+                            <ContentPresenter Margin="1" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -147,7 +147,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
+
                 <DataGrid CellStyle="{StaticResource CellStyle}"
                           ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                           ColumnWidth="*"
@@ -158,18 +161,19 @@
                           dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
                           dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}" />
 
-                <DataGrid Grid.Column="1"
+                <DataGrid Grid.Column="2"
+                          Background="{x:Null}"
                           CellStyle="{StaticResource CellStyle}"
                           ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
                           ColumnWidth="*"
-                          ItemsSource="{Binding RowVms}"
-                          Background="{x:Null}"
                           RowBackground="{x:Null}"
                           SelectionUnit="Cell"
                           dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
                           dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
                           dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
-                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}">
+                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
+                          dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
+                          dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}">
                     <DataGrid.RowHeaderStyle>
                         <Style TargetType="DataGridRowHeader">
                             <Setter Property="Content" Value="{Binding Name}" />
@@ -185,6 +189,10 @@
                         </Style>
                     </DataGrid.RowHeaderStyle>
                 </DataGrid>
+
+                <ListBox Grid.Column="3"
+                         ItemsSource="{Binding AllRowsItems}"
+                         SelectedItem="{Binding SelectedItem}" />
             </Grid>
         </GroupBox>
     </WrapPanel>

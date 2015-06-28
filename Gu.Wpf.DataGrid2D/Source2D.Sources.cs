@@ -1,17 +1,14 @@
-﻿using System.Windows.Controls.Primitives;
-
-namespace Gu.Wpf.DataGrid2D
+﻿namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Data;
 
-    public static class Source2D
+    public static partial class Source2D
     {
         public static readonly DependencyProperty ColumnHeadersSourceProperty = DependencyProperty.RegisterAttached(
             "ColumnHeadersSource",
@@ -31,48 +28,6 @@ namespace Gu.Wpf.DataGrid2D
             typeof(Source2D),
             new PropertyMetadata(default(IEnumerable), OnRowsSourceChanged), OnValidateRowsSource);
 
-        public static readonly DependencyProperty HeaderStringFormatProperty = DependencyProperty.RegisterAttached(
-           "HeaderStringFormat",
-           typeof(String),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(String)));
-
-        public static readonly DependencyProperty HeaderTemplateProperty = DependencyProperty.RegisterAttached(
-           "HeaderTemplate",
-           typeof(DataTemplate),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(DataTemplate)));
-
-        public static readonly DependencyProperty HeaderTemplateSelectorProperty = DependencyProperty.RegisterAttached(
-           "HeaderTemplateSelector",
-           typeof(DataTemplateSelector),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(DataTemplateSelector)));
-
-        public static readonly DependencyProperty CellTemplateProperty = DependencyProperty.RegisterAttached(
-           "CellTemplate",
-           typeof(DataTemplate),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(DataTemplate)));
-
-        public static readonly DependencyProperty CellTemplateSelectorProperty = DependencyProperty.RegisterAttached(
-           "CellTemplateSelector",
-           typeof(DataTemplateSelector),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(DataTemplateSelector)));
-
-        public static readonly DependencyProperty CellEditingTemplateProperty = DependencyProperty.RegisterAttached(
-           "CellEditingTemplate",
-           typeof(DataTemplate),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(DataTemplate)));
-
-        public static readonly DependencyProperty CellEditingTemplateSelectorProperty = DependencyProperty.RegisterAttached(
-           "CellEditingTemplateSelector",
-           typeof(DataTemplateSelector),
-           typeof(Source2D),
-           new FrameworkPropertyMetadata(default(DataTemplateSelector)));
-
         public static void SetColumnHeadersSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(ColumnHeadersSourceProperty, value);
@@ -85,16 +40,16 @@ namespace Gu.Wpf.DataGrid2D
             return (IEnumerable)element.GetValue(ColumnHeadersSourceProperty);
         }
 
-        public static void SetItemsSource2D(this DataGrid element, object[,] value)
+        public static void SetItemsSource2D(this DataGrid element, Array value)
         {
             element.SetValue(ItemsSource2DProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static object[,] GetItemsSource2D(this DataGrid element)
+        public static Array GetItemsSource2D(this DataGrid element)
         {
-            return (object[,])element.GetValue(ItemsSource2DProperty);
+            return (Array)element.GetValue(ItemsSource2DProperty);
         }
 
         public static void SetRowsSource(this DataGrid element, IEnumerable value)
@@ -107,90 +62,6 @@ namespace Gu.Wpf.DataGrid2D
         public static IEnumerable GetRowsSource(this DataGrid element)
         {
             return (IEnumerable)element.GetValue(RowsSourceProperty);
-        }
-
-        public static void SetHeaderStringFormat(this DataGrid element, String value)
-        {
-            element.SetValue(HeaderStringFormatProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static String GetHeaderStringFormat(this DataGrid element)
-        {
-            return (String)element.GetValue(HeaderStringFormatProperty);
-        }
-
-        public static void SetHeaderTemplate(this DataGrid element, DataTemplate value)
-        {
-            element.SetValue(HeaderTemplateProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplate GetHeaderTemplate(this DataGrid element)
-        {
-            return (DataTemplate)element.GetValue(HeaderTemplateProperty);
-        }
-
-        public static void SetHeaderTemplateSelector(this DataGrid element, DataTemplateSelector value)
-        {
-            element.SetValue(HeaderTemplateSelectorProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplateSelector GetHeaderTemplateSelector(this DataGrid element)
-        {
-            return (DataTemplateSelector)element.GetValue(HeaderTemplateSelectorProperty);
-        }
-
-        public static void SetCellTemplate(this DataGrid element, DataTemplate value)
-        {
-            element.SetValue(CellTemplateProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplate GetCellTemplate(this DataGrid element)
-        {
-            return (DataTemplate)element.GetValue(CellTemplateProperty);
-        }
-
-        public static void SetCellTemplateSelector(this DataGrid element, DataTemplateSelector value)
-        {
-            element.SetValue(CellTemplateSelectorProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplateSelector GetCellTemplateSelector(this DataGrid element)
-        {
-            return (DataTemplateSelector)element.GetValue(CellTemplateSelectorProperty);
-        }
-
-        public static void SetCellEditingTemplate(this DataGrid element, DataTemplate value)
-        {
-            element.SetValue(CellEditingTemplateProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplate GetCellEditingTemplate(this DataGrid element)
-        {
-            return (DataTemplate)element.GetValue(CellEditingTemplateProperty);
-        }
-
-        public static void SetCellEditingTemplateSelector(this DataGrid element, DataTemplateSelector value)
-        {
-            element.SetValue(CellEditingTemplateSelectorProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplateSelector GetCellEditingTemplateSelector(this DataGrid element)
-        {
-            return (DataTemplateSelector)element.GetValue(CellEditingTemplateSelectorProperty);
         }
 
         private static void OnColumnHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
