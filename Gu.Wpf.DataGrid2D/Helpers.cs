@@ -7,6 +7,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
+    using System.Windows.Media;
 
     internal static class Helpers
     {
@@ -119,6 +120,16 @@
                 disposable.Dispose();
             }
             return first;
+        }
+
+        internal static IEnumerable<DependencyObject> Ancestors(this DependencyObject o)
+        {
+            var parent = VisualTreeHelper.GetParent(o);
+            while (parent != null)
+            {
+                yield return parent;
+                parent = VisualTreeHelper.GetParent(parent);
+            }
         }
     }
 }
