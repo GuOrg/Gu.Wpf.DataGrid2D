@@ -30,9 +30,16 @@ Sample where ListOfListsOfItems is ```List<List<ItemVm>>```
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/UNQsW3q.png)
 
-```SelectedCellItem``` lets you bind the item of the currently selected cell.
+## SelectedCellItem
+Lets you bind the item of the currently selected cell.
+```
+<DataGrid Grid.Column="0"
+          SelectionUnit="Cell"
+          dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
+          dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}" />
+``` 
 
-Support for styles & templates:
+## Styles & templates:
 ```
 <DataGrid Grid.Column="2"
           Background="{x:Null}"
@@ -67,3 +74,25 @@ Support for styles & templates:
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/qSKJ8Ga.png)
 
+## Rownumbers
+```
+<DataGrid dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}">
+    <DataGrid.RowStyle>
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="dataGrid2D:Index.In" 
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+            <Setter Property="dataGrid2D:Index.StartAt" Value="1"/>
+        </Style>
+    </DataGrid.RowStyle>
+
+    <DataGrid.RowHeaderStyle>
+        <Style TargetType="{x:Type DataGridRowHeader}">
+            <Setter Property="Content" 
+                    Value="{Binding Path=(dataGrid2D:Index.Of), 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+        </Style>
+    </DataGrid.RowHeaderStyle>
+</DataGrid>
+```
+Renders:
+![Rownumbers render](http://i.imgur.com/VkDap9E.png)
