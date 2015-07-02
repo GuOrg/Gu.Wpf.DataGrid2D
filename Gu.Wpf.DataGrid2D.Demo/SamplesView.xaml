@@ -141,7 +141,23 @@
                           dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
             </Grid>
         </GroupBox>
+        <GroupBox Header="SelectedCellItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Column="0"
+                          SelectionUnit="Cell"
+                          dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
+                          dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}"/>
 
+                <ListBox Grid.Column="1"
+                         ItemsSource="{Binding AllRowsItems}"
+                         SelectedItem="{Binding SelectedItem}" />
+            </Grid>
+
+        </GroupBox>
         <GroupBox Header="Styles and Templates">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -172,8 +188,7 @@
                           dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
                           dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
                           dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
-                          dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
-                          dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}">
+                          dataGrid2D:Source2D.RowsSource="{Binding RowVms}">
                     <DataGrid.RowHeaderStyle>
                         <Style TargetType="DataGridRowHeader">
                             <Setter Property="Content" Value="{Binding Name}" />
@@ -189,10 +204,6 @@
                         </Style>
                     </DataGrid.RowHeaderStyle>
                 </DataGrid>
-
-                <ListBox Grid.Column="3"
-                         ItemsSource="{Binding AllRowsItems}"
-                         SelectedItem="{Binding SelectedItem}" />
             </Grid>
         </GroupBox>
 
