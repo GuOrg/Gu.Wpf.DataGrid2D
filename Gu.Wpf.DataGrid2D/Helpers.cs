@@ -80,7 +80,6 @@
             PropertyPath path;
             if (!PropertyPaths.TryGetValue(property, out path))
             {
-                //path = new PropertyPath(string.Format("({0}.{1})", typeof(Source2D).Name, property.Name));
                 path = new PropertyPath(property);
                 PropertyPaths[property] = path;
             }
