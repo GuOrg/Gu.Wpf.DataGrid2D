@@ -76,6 +76,35 @@
             {
                 return;
             }
+            
+            //Subscribe to Colection changed events
+              var action = new NotifyCollectionChangedEventHandler(
+                    (o, args) =>
+                    {
+                      var dg = (DataGrid)d;
+                      var rows = (IEnumerable)o;
+
+                      if (dg != null)
+                      {
+                        UpdateColumns(rows, dataGrid);
+                      }
+                    });
+
+            if (e.OldValue != null)
+            {
+              var coll =  e.OldValue as INotifyCollectionChanged ;
+              // Unsubscribe from CollectionChanged on the old collection
+              if(coll!=null)coll.CollectionChanged -= action;
+            }
+
+            if (e.NewValue != null)
+            {
+              var coll = e.NewValue as INotifyCollectionChanged;
+              
+              // Subscribe to CollectionChanged on the new collection
+              if (coll != null) coll.CollectionChanged += action;
+            }
+            
             var count = headers.Count();
             for (int i = 0; i < count; i++)
             {
