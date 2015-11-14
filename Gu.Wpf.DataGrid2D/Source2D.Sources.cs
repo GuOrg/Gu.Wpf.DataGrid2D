@@ -131,7 +131,8 @@
             var rows = (IEnumerable)e.NewValue;
             if (rows != null)
             {
-                BindingHelper.Bind(dataGrid, ItemsControl.ItemsSourceProperty, dataGrid, RowsSourceProperty);
+                dataGrid.Bind(ItemsControl.ItemsSourceProperty)
+                        .OneWayTo(dataGrid, RowsSourceProperty);
             }
 
             UpdateColumns(rows, dataGrid);

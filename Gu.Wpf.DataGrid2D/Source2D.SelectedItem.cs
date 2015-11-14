@@ -2,11 +2,10 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
 
     public static partial class Source2D
     {
-        private static readonly object Unset = $"{nameof(Source2D)}.Unset";
+        private const string Unset = "Unset";
 
         public static readonly DependencyProperty SelectedCellItemProperty = DependencyProperty.RegisterAttached(
             "SelectedCellItem",
@@ -21,7 +20,9 @@
             "CurrentCellProxy",
             typeof(object),
             typeof(Source2D),
-            new PropertyMetadata(Unset, OnCurrentCellProxyChanged));
+            new PropertyMetadata(
+                Unset,
+                OnCurrentCellProxyChanged));
 
         private static void OnCurrentCellProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -55,17 +56,11 @@
         private static void OnSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-
-            if (e.OldValue == Unset)
+            var defaultValue = CurrentCellProxyProperty.GetMetadata(dataGrid).DefaultValue;
+            if (Equals(e.OldValue, defaultValue))
             {
-                var binding = new Binding
-                {
-                    Source = dataGrid,
-                    Path = BindingHelper.GetPath(DataGrid.CurrentCellProperty),
-                    Mode = BindingMode.OneWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                };
-                BindingOperations.SetBinding(dataGrid, CurrentCellProxyProperty, binding);
+                dataGrid.Bind(CurrentCellProxyProperty)
+                        .OneWayTo(dataGrid, DataGrid.CurrentCellProperty);
             }
 
             SelectCellFor(dataGrid, e.NewValue);

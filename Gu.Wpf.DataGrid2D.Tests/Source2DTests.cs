@@ -9,19 +9,19 @@
     [RequiresSTA]
     public class Source2DTests
     {
+        public int[,] Data2D { get; set; }
+
         [Test]
         public void BindItemsSource2D()
         {
-            Data2d = new[,] { { 1, 2 }, { 3, 4 } };
+            Data2D = new[,] { { 1, 2 }, { 3, 4 } };
             var dataGrid = new DataGrid();
             dataGrid.Bind(Source2D.ItemsSource2DProperty)
-                    .OneWayTo(this, new PropertyPath(nameof(Data2d)));
+                    .OneWayTo(this, new PropertyPath(nameof(Data2D)));
             Assert.AreEqual(2, dataGrid.Columns.Count);
-            var rowsSource = (List<IList>)dataGrid.GetRowsSource();
+            var rowsSource = (List<RowView>)dataGrid.GetRowsSource();
             CollectionAssert.AreEqual(new[] { 1, 2 }, rowsSource[0]);
             CollectionAssert.AreEqual(new[] { 3, 4 }, rowsSource[1]);
         }
-
-        public int[,] Data2d { get; set; }
     }
 }

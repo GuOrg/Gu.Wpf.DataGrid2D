@@ -5,7 +5,7 @@
     public class RowViewTests
     {
         [Test]
-        public void TestName()
+        public void WrapsRow()
         {
             var ints = new[,] { { 1, 2 }, { 3, 4 } };
             var row0 = new RowView(ints, 0);
