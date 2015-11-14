@@ -35,15 +35,17 @@
         internal IndexColumn(DataGrid dataGrid, IEnumerable headers, int index)
             : this(dataGrid, index)
         {
-            BindHeader(headers, index);
+            this.Bind(HeaderProperty)
+                .OneWayTo(headers, index);
         }
+
+        public int Index { get; }
 
         internal void BindHeader(IEnumerable headers, int index)
         {
-            Helpers.Bind(this, HeaderProperty, headers, index);
+            this.Bind(HeaderProperty)
+                .OneWayTo(headers, index);
         }
-
-        public int Index { get; private set; }
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
@@ -59,23 +61,19 @@
                 BindingOperations.SetBinding(contentPresenter, ContentPresenter.ContentProperty, new Binding());
                 return contentPresenter;
             }
+
             return frameworkElement;
         }
 
         private void SetDataContext(DataGridCell cell, object dataItem)
         {
-            var list = dataItem as IList;
-            if (list != null)
+            if (dataItem is IList || dataItem is IReadOnlyList<object>)
             {
-                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index);
+                cell.Bind(FrameworkElement.DataContextProperty)
+                    .OneWayTo(dataItem, Index);
                 return;
             }
-            var rol = dataItem as IReadOnlyList<object>;
-            if (rol != null)
-            {
-                Helpers.Bind(cell, FrameworkElement.DataContextProperty, dataItem, Index);
-                return;
-            }
+
             var enumerable = (IEnumerable<object>)dataItem;
             cell.DataContext = enumerable.ElementAt(Index);
         }

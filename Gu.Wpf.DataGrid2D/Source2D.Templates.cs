@@ -1,6 +1,6 @@
-﻿namespace Gu.Wpf.DataGrid2D
+﻿#pragma warning disable 1591
+namespace Gu.Wpf.DataGrid2D
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -8,9 +8,9 @@
     {
         public static readonly DependencyProperty HeaderStringFormatProperty = DependencyProperty.RegisterAttached(
            "HeaderStringFormat",
-           typeof(String),
+           typeof(string),
            typeof(Source2D),
-           new FrameworkPropertyMetadata(default(String)));
+           new FrameworkPropertyMetadata(default(string)));
 
         public static readonly DependencyProperty HeaderTemplateProperty = DependencyProperty.RegisterAttached(
            "HeaderTemplate",
@@ -48,16 +48,16 @@
            typeof(Source2D),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
 
-        public static void SetHeaderStringFormat(this DataGrid element, String value)
+        public static void SetHeaderStringFormat(this DataGrid element, string value)
         {
             element.SetValue(HeaderStringFormatProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static String GetHeaderStringFormat(this DataGrid element)
+        public static string GetHeaderStringFormat(this DataGrid element)
         {
-            return (String)element.GetValue(HeaderStringFormatProperty);
+            return (string)element.GetValue(HeaderStringFormatProperty);
         }
 
         public static void SetHeaderTemplate(this DataGrid element, DataTemplate value)

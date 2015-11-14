@@ -21,8 +21,8 @@
 
         public static readonly DependencyProperty StartAtProperty = DependencyProperty.RegisterAttached(
             "StartAt",
-            typeof (int),
-            typeof (Index),
+            typeof(int),
+            typeof(Index),
             new PropertyMetadata(default(int)));
 
         public static void SetOf(this DataGridRow element, int value)

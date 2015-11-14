@@ -6,7 +6,7 @@
 
     public static partial class Source2D
     {
-        private static readonly object Unset = "Source2D.Unset";
+        private static readonly object Unset = $"{nameof(Source2D)}.Unset";
 
         public static readonly DependencyProperty SelectedCellItemProperty = DependencyProperty.RegisterAttached(
             "SelectedCellItem",
@@ -34,17 +34,21 @@
                 {
                     dataGrid.SetValue(SelectedCellItemProperty, null);
                 }
+
                 return;
             }
-            var cell = cellInfo.GetCell();
-            if (cell != null)
-            {
-                var currentValue = cell.DataContext;
 
-                if (dataGrid.GetSelectedCellItem() != currentValue)
-                {
-                    dataGrid.SetValue(SelectedCellItemProperty, currentValue);
-                }
+            var cell = cellInfo.GetCell();
+            if (cell == null)
+            {
+                return;
+            }
+
+            var currentValue = cell.DataContext;
+
+            if (dataGrid.GetSelectedCellItem() != currentValue)
+            {
+                dataGrid.SetValue(SelectedCellItemProperty, currentValue);
             }
         }
 
@@ -57,12 +61,13 @@
                 var binding = new Binding
                 {
                     Source = dataGrid,
-                    Path = Helpers.GetPath(DataGrid.CurrentCellProperty),
+                    Path = BindingHelper.GetPath(DataGrid.CurrentCellProperty),
                     Mode = BindingMode.OneWay,
                     UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 };
                 BindingOperations.SetBinding(dataGrid, CurrentCellProxyProperty, binding);
             }
+
             SelectCellFor(dataGrid, e.NewValue);
         }
 
@@ -89,11 +94,13 @@
                     return;
                 }
             }
+
             dataGrid.UnselectAllCells();
             if (item == null)
             {
                 return;
             }
+
             foreach (var row in dataGrid.Items)
             {
                 foreach (var column in dataGrid.Columns)
@@ -120,6 +127,7 @@
             {
                 return cellContent.Parent as DataGridCell;
             }
+
             return null;
         }
     }
