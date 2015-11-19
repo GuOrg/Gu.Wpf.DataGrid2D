@@ -120,9 +120,10 @@
         private static void OnRowsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            dataGrid.AutoGenerateColumns = false;
-            dataGrid.CanUserAddRows = false;
-            dataGrid.CanUserDeleteRows = false;
+            dataGrid.AutoGenerateColumns = true;
+
+            // dataGrid.CanUserAddRows = false;
+            // dataGrid.CanUserDeleteRows = false;
 
             // Better to use ItemsSource than adding items manually
             // Adding manually does not create an editable collectionview and probably more things.

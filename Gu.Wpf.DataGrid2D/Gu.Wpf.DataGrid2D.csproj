@@ -45,7 +45,9 @@
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\Helpers.cs" />
     <Compile Include="IndexColumn.cs" />
+    <Compile Include="Internals\IndexPropertyDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Array2DView.cs" />
     <Compile Include="RowView.cs" />
     <Compile Include="Source2D.SelectedItem.cs" />
     <Compile Include="Source2D.Sources.cs" />
