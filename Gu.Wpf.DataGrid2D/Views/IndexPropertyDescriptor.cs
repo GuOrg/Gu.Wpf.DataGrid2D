@@ -5,7 +5,9 @@
 
     public class IndexPropertyDescriptor : PropertyDescriptor
     {
-        public IndexPropertyDescriptor(string name, Attribute[] attrs) 
+        private readonly Type componentType;
+
+        public IndexPropertyDescriptor(string name, Attribute[] attrs)
             : base(name, attrs)
         {
         }
@@ -15,10 +17,16 @@
         {
         }
 
-        public IndexPropertyDescriptor(MemberDescriptor descr, Attribute[] attrs) 
+        public IndexPropertyDescriptor(MemberDescriptor descr, Attribute[] attrs)
             : base(descr, attrs)
         {
         }
+
+        public override Type ComponentType => this.componentType;
+
+        public override bool IsReadOnly => false;
+
+        public override Type PropertyType => typeof(object);
 
         public override bool CanResetValue(object component)
         {
@@ -44,9 +52,5 @@
         {
             throw new NotImplementedException();
         }
-
-        public override Type ComponentType { get; }
-        public override bool IsReadOnly { get; }
-        public override Type PropertyType { get; }
     }
 }

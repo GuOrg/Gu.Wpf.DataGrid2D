@@ -70,7 +70,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    
+
     <UniformGrid Columns="2">
         <DataGrid CellStyle="{StaticResource CellStyle}"
                   ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"

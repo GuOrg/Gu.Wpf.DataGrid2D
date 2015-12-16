@@ -37,7 +37,7 @@
                       SelectionUnit="Cell"
                       dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}" />
         </GroupBox>
-        
+
         <GroupBox>
             <GroupBox.Header>
                 <StackPanel>
@@ -63,7 +63,7 @@
                       SelectionUnit="Cell"
                       dataGrid2D:Source2D.RowsSource="{Binding DifferentLengths}" />
         </GroupBox>
-        
+
         <GroupBox>
             <GroupBox.Header>
                 <StackPanel>

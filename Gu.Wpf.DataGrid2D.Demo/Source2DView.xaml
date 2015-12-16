@@ -24,10 +24,10 @@
                   SelectionUnit="Cell"
                   dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
 
-        <DataGrid Grid.Column="1"
+        <!--<DataGrid Grid.Column="1"
                   ColumnWidth="SizeToHeader"
                   SelectionUnit="Cell"
                   dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                  dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
+                  dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />-->
     </Grid>
 </UserControl>

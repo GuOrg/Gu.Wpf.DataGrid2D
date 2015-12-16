@@ -100,6 +100,17 @@ namespace Gu.Wpf.DataGrid2D
                 return this.OneWayTo(source, sourcePath);
             }
 
+            internal BindingExpression OneWayTo(object source)
+            {
+                var binding = new Binding
+                {
+                    Source = source,
+                    Mode = BindingMode.OneWay,
+                };
+
+                return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
+            }
+
             internal BindingExpression OneWayTo(object source, PropertyPath sourcePath)
             {
                 var binding = new Binding
