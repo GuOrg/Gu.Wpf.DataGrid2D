@@ -5,15 +5,18 @@
 
     public class IndexPropertyDescriptor : PropertyDescriptor
     {
-        public IndexPropertyDescriptor(string name, Attribute[] attrs) : base(name, attrs)
+        public IndexPropertyDescriptor(string name, Attribute[] attrs) 
+            : base(name, attrs)
         {
         }
 
-        public IndexPropertyDescriptor(MemberDescriptor descr) : base(descr)
+        public IndexPropertyDescriptor(MemberDescriptor descr)
+            : base(descr)
         {
         }
 
-        public IndexPropertyDescriptor(MemberDescriptor descr, Attribute[] attrs) : base(descr, attrs)
+        public IndexPropertyDescriptor(MemberDescriptor descr, Attribute[] attrs) 
+            : base(descr, attrs)
         {
         }
 

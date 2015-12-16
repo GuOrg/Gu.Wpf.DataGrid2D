@@ -4,11 +4,11 @@ namespace Gu.Wpf.DataGrid2D
 
     public class Array2DView
     {
-        private readonly Array _source;
+        private readonly Array source;
 
         public Array2DView(Array source)
         {
-            _source = source;
+            this.source = source;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Tests
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
@@ -9,9 +8,10 @@
     using System.Windows.Controls;
     using NUnit.Framework;
 
+    [Explicit]
     public class CodeGenTests
     {
-        private readonly string[] _excluded = { "HeaderProperty ", "HeaderStyleProperty", "ActualWidthProperty" };
+        private readonly string[] excluded = { "HeaderProperty ", "HeaderStyleProperty", "ActualWidthProperty" };
 
         [TestCase(typeof(DataGridColumn), "Header")]
         [TestCase(typeof(DataGridColumn), "Width")]
@@ -21,7 +21,7 @@
             var properties =
                 GetDpFields(type)
                     .Where(x => x.Name.Contains(contains))
-                    .Where(x => !_excluded.Contains(x.Name))
+                    .Where(x => !this.excluded.Contains(x.Name))
                     .ToArray();
             DumpFields(typeof(Source2D), properties);
             DumpMetaData(properties);
@@ -35,7 +35,7 @@
             var properties =
                 GetDpFields(type)
                     .Where(x => x.Name.Contains(contains))
-                    .Where(x => !_excluded.Contains(x.Name))
+                    .Where(x => !this.excluded.Contains(x.Name))
                     .ToArray();
             DumpMethods(properties);
         }
@@ -48,10 +48,10 @@
             var properties =
                 GetDpFields(type)
                     .Where(x => x.Name.Contains(contains))
-                    .Where(x => !_excluded.Contains(x.Name))
+                    .Where(x => !this.excluded.Contains(x.Name))
                     .Select(x => x.Name)
                     .Distinct()
-                    .Concat(_excluded.Except(new[] { "ActualWidthProperty", "HeaderProperty" }))
+                    .Concat(this.excluded.Except(new[] { "ActualWidthProperty", "HeaderProperty" }))
                     .ToArray();
             foreach (var name in properties)
             {

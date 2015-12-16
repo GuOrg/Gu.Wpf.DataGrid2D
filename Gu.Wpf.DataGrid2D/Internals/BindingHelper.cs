@@ -79,25 +79,25 @@ namespace Gu.Wpf.DataGrid2D
 
         internal struct BindingBuilder
         {
-            private readonly DependencyObject _target;
-            private readonly DependencyProperty _targetProperty;
+            private readonly DependencyObject target;
+            private readonly DependencyProperty targetProperty;
 
             internal BindingBuilder(DependencyObject target, DependencyProperty targetProperty)
             {
-                _target = target;
-                _targetProperty = targetProperty;
+                this.target = target;
+                this.targetProperty = targetProperty;
             }
 
             internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty)
             {
                 var sourcePath = GetPath(sourceProperty);
-                return OneWayTo(source, sourcePath);
+                return this.OneWayTo(source, sourcePath);
             }
 
             internal BindingExpression OneWayTo(object source, int index)
             {
                 var sourcePath = GetPath(index);
-                return OneWayTo(source, sourcePath);
+                return this.OneWayTo(source, sourcePath);
             }
 
             internal BindingExpression OneWayTo(object source, PropertyPath sourcePath)
@@ -110,7 +110,7 @@ namespace Gu.Wpf.DataGrid2D
                     UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
                 };
 
-                return (BindingExpression)BindingOperations.SetBinding(_target, _targetProperty, binding);
+                return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
             }
         }
     }

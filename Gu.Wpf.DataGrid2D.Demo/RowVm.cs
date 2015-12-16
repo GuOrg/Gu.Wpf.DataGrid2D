@@ -7,36 +7,36 @@ namespace Gu.Wpf.DataGrid2D.Demo
 {
     public class RowVm : List<ItemVm>, INotifyPropertyChanged
     {
-        private string _name;
+        private string name;
 
         public RowVm(string name)
         {
-            _name = name;
+            this.name = name;
         }
 
         public RowVm(string name, IEnumerable<ItemVm> items)
             :base(items)
         {
-            _name = name;
+            this.name = name;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string Name
         {
-            get { return _name; }
+            get { return this.name; }
             set
             {
-                if (value == _name) return;
-                _name = value;
-                OnPropertyChanged();
+                if (value == this.name) return;
+                this.name = value;
+                this.OnPropertyChanged();
             }
         }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
+            var handler = this.PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }

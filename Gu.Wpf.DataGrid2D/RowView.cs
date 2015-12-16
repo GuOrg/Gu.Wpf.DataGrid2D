@@ -8,28 +8,28 @@
 
     public class RowView : IReadOnlyList<object>, ICustomTypeDescriptor
     {
-        private readonly Array _source;
-        private readonly int _rowIndex;
+        private readonly Array source;
+        private readonly int rowIndex;
 
         public RowView(Array source, int rowIndex)
         {
-            _source = source;
-            _rowIndex = rowIndex;
+            this.source = source;
+            this.rowIndex = rowIndex;
         }
 
-        public int Count => _source.GetLength(0);
+        public int Count => this.source.GetLength(0);
 
-        public object this[int index] => _source.GetValue(_rowIndex, index);
+        public object this[int index] => this.source.GetValue(this.rowIndex, index);
 
         public IEnumerator<object> GetEnumerator()
         {
-            for (int j = 0; j < _source.GetLength(1); j++)
+            for (int j = 0; j < this.source.GetLength(1); j++)
             {
-                yield return _source.GetValue(_rowIndex, j);
+                yield return this.source.GetValue(this.rowIndex, j);
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
         AttributeCollection ICustomTypeDescriptor.GetAttributes()
         {
@@ -78,7 +78,7 @@
 
         PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties()
         {
-            var properties = Enumerable.Range(0, _source.GetLength(0) - 1)
+            var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
                                        .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
                                        .ToArray();
             return new PropertyDescriptorCollection(properties);
@@ -86,7 +86,7 @@
 
         PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes)
         {
-            var properties = Enumerable.Range(0, _source.GetLength(0) - 1)
+            var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
                                       .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
                                       .ToArray();
             return new PropertyDescriptorCollection(properties);

@@ -7,26 +7,26 @@
 
     public class ItemVm : INotifyPropertyChanged
     {
-        private int _value;
+        private int value;
 
-        private string _name;
-        private bool _isSelected;
+        private string name;
+        private bool isSelected;
 
         public ItemVm(int value)
         {
-            Value = value;
+            this.Value = value;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get { return this.isSelected; }
             set
             {
-                if (value == _isSelected) return;
-                _isSelected = value;
-                OnPropertyChanged();
+                if (value == this.isSelected) return;
+                this.isSelected = value;
+                this.OnPropertyChanged();
             }
         }
 
@@ -34,16 +34,16 @@
         {
             get
             {
-                return _name;
+                return this.name;
             }
             set
             {
-                if (value == _name)
+                if (value == this.name)
                 {
                     return;
                 }
-                _name = value;
-                OnPropertyChanged();
+                this.name = value;
+                this.OnPropertyChanged();
             }
         }
 
@@ -51,29 +51,29 @@
         {
             get
             {
-                return _value;
+                return this.value;
             }
             set
             {
-                if (value == _value)
+                if (value == this.value)
                 {
                     return;
                 }
-                _value = value;
-                OnPropertyChanged();
-                Name = "Item: " + value;
+                this.value = value;
+                this.OnPropertyChanged();
+                this.Name = "Item: " + value;
             }
         }
 
         public override string ToString()
         {
-            return Name;
+            return this.Name;
         }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
+            var handler = this.PropertyChanged;
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));

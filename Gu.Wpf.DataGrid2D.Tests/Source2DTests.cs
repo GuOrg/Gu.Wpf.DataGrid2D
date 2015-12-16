@@ -14,10 +14,10 @@
         [Test]
         public void BindItemsSource2D()
         {
-            Data2D = new[,] { { 1, 2 }, { 3, 4 } };
+            this.Data2D = new[,] { { 1, 2 }, { 3, 4 } };
             var dataGrid = new DataGrid();
             dataGrid.Bind(Source2D.ItemsSource2DProperty)
-                    .OneWayTo(this, new PropertyPath(nameof(Data2D)));
+                    .OneWayTo(this, new PropertyPath(nameof(this.Data2D)));
             Assert.AreEqual(2, dataGrid.Columns.Count);
             var rowsSource = (List<RowView>)dataGrid.GetRowsSource();
             CollectionAssert.AreEqual(new[] { 1, 2 }, rowsSource[0]);

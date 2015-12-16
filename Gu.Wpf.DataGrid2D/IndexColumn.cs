@@ -11,19 +11,15 @@
     {
         public IndexColumn(DataGrid dataGrid, int index)
         {
-            Index = index;
-            HeaderStringFormat = dataGrid.GetHeaderStringFormat();
-            HeaderTemplate = dataGrid.GetHeaderTemplate();
-            HeaderTemplateSelector = dataGrid.GetHeaderTemplateSelector();
+            this.Index = index;
+            this.HeaderStringFormat = dataGrid.GetHeaderStringFormat();
+            this.HeaderTemplate = dataGrid.GetHeaderTemplate();
+            this.HeaderTemplateSelector = dataGrid.GetHeaderTemplateSelector();
 
-            //Bind(this, CellTemplateProperty, dataGrid, GetPath(CellTemplateProperty));
-            //Bind(this, CellTemplateSelectorProperty, dataGrid, GetPath(CellTemplateSelectorProperty));
-            //Bind(this, CellEditingTemplateProperty, dataGrid, GetPath(CellEditingTemplateProperty));
-            //Bind(this, CellEditingTemplateSelectorProperty, dataGrid, GetPath(CellEditingTemplateSelectorProperty));
-            CellTemplate = dataGrid.GetCellTemplate();
-            CellTemplateSelector = dataGrid.GetCellTemplateSelector();
-            CellEditingTemplate = dataGrid.GetCellEditingTemplate();
-            CellEditingTemplateSelector = dataGrid.GetCellEditingTemplateSelector();
+            this.CellTemplate = dataGrid.GetCellTemplate();
+            this.CellTemplateSelector = dataGrid.GetCellTemplateSelector();
+            this.CellEditingTemplate = dataGrid.GetCellEditingTemplate();
+            this.CellEditingTemplateSelector = dataGrid.GetCellEditingTemplateSelector();
         }
 
         /// <summary>
@@ -49,7 +45,7 @@
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
-            SetDataContext(cell, dataItem);
+            this.SetDataContext(cell, dataItem);
             var frameworkElement = base.GenerateElement(cell, dataItem);
             if (frameworkElement == null)
             {
@@ -70,12 +66,12 @@
             if (dataItem is IList || dataItem is IReadOnlyList<object>)
             {
                 cell.Bind(FrameworkElement.DataContextProperty)
-                    .OneWayTo(dataItem, Index);
+                    .OneWayTo(dataItem, this.Index);
                 return;
             }
 
             var enumerable = (IEnumerable<object>)dataItem;
-            cell.DataContext = enumerable.ElementAt(Index);
+            cell.DataContext = enumerable.ElementAt(this.Index);
         }
     }
 }
