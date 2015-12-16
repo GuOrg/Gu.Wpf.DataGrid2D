@@ -104,17 +104,16 @@
             var array = (Array)e.NewValue;
             if (array == null)
             {
-                dataGrid.SetRowsSource(null);
+                BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
                 return;
             }
 
-            var rows = new List<RowView>();
-            for (int i = 0; i < array.GetLength(0); i++)
+            var rows = (IEnumerable)e.NewValue;
+            if (rows != null)
             {
-                rows.Add(new RowView(array, i));
+                dataGrid.Bind(ItemsControl.ItemsSourceProperty)
+                        .OneWayTo(dataGrid, RowsSourceProperty);
             }
-
-            dataGrid.SetRowsSource(rows);
         }
 
         private static void OnRowsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -122,8 +121,8 @@
             var dataGrid = (DataGrid)d;
             dataGrid.AutoGenerateColumns = true;
 
-            // dataGrid.CanUserAddRows = false;
-            // dataGrid.CanUserDeleteRows = false;
+            dataGrid.CanUserAddRows = false;
+            dataGrid.CanUserDeleteRows = false;
 
             // Better to use ItemsSource than adding items manually
             // Adding manually does not create an editable collectionview and probably more things.

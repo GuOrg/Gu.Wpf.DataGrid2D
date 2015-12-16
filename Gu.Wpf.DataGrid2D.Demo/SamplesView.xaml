@@ -7,224 +7,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
-    <UserControl.DataContext>
-        <demo:Vm />
-    </UserControl.DataContext>
 
-    <UserControl.Resources>
-        <DataTemplate x:Key="IntTemplate" DataType="{x:Type system:Int32}">
-            <TextBlock HorizontalAlignment="Center"
-                       Background="AntiqueWhite"
-                       Text="{Binding}" />
-        </DataTemplate>
 
-        <DataTemplate x:Key="SampleItemTemplate" DataType="{x:Type demo:ItemVm}">
-            <TextBlock Background="LightGoldenrodYellow" Text="{Binding Name}" />
-        </DataTemplate>
-
-        <DataTemplate x:Key="SampleItemEditTemplate" DataType="{x:Type demo:ItemVm}">
-            <TextBox Background="White" Text="{Binding Value}" />
-        </DataTemplate>
-
-        <DataTemplate x:Key="SampleHeaderItemTemplate" DataType="{x:Type demo:ItemVm}">
-            <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold"
-                       Text="{Binding Value}" />
-        </DataTemplate>
-
-        <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
-            <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Margin="1" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="BorderBrush" Value="CornflowerBlue" />
-                    <Setter Property="Foreground" Value="Black" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                        <ContentPresenter />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-
-    <WrapPanel>
+    <UniformGrid Columns="1">
         <GroupBox Header="Jagged">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <DataGrid Grid.Column="0"
-                          ItemsSource="{Binding JaggedRows}"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}" />
-
-                <DataGrid Grid.Column="1"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                          dataGrid2D:Source2D.RowsSource="{Binding JaggedRows}" />
-            </Grid>
+            <demo:JaggedSourcesView />
         </GroupBox>
 
         <GroupBox Header="ListOfLists">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <DataGrid Grid.Column="0"
-                          ItemsSource="{Binding ListOfListsOfItems}"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}" />
-
-                <DataGrid Grid.Column="1"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
-
-                <DataGrid Grid.Column="2"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                          dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
-
-                <DataGrid Grid.Column="2"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                          dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
-            </Grid>
+            <demo:ListOfListsView />
         </GroupBox>
 
         <GroupBox Header="int[,]">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <DataGrid Grid.Column="0"
-                          HeadersVisibility="None"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
-
-                <DataGrid Grid.Column="1"
-                          ColumnWidth="SizeToHeader"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                          dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
-            </Grid>
+            <demo:Source2DView />
         </GroupBox>
+
         <GroupBox Header="SelectedCellItem">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <DataGrid Grid.Column="0"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
-                          dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}"/>
-
-                <ListBox Grid.Column="1"
-                         ItemsSource="{Binding AllRowsItems}"
-                         SelectedItem="{Binding SelectedItem}" />
-            </Grid>
-
+            <demo:SelectedItemView />
         </GroupBox>
+
         <GroupBox Header="Styles and Templates">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <DataGrid CellStyle="{StaticResource CellStyle}"
-                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-                          ColumnWidth="*"
-                          ItemsSource="{Binding ListOfListsOfItems}"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
-                          dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
-                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}" />
-
-                <DataGrid Grid.Column="2"
-                          Background="{x:Null}"
-                          CellStyle="{StaticResource CellStyle}"
-                          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-                          ColumnWidth="*"
-                          RowBackground="{x:Null}"
-                          SelectionUnit="Cell"
-                          dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
-                          dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
-                          dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
-                          dataGrid2D:Source2D.RowsSource="{Binding RowVms}">
-                    <DataGrid.RowHeaderStyle>
-                        <Style TargetType="DataGridRowHeader">
-                            <Setter Property="Content" Value="{Binding Name}" />
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Background" Value="Gainsboro" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
-                                        <ContentPresenter Margin="1" />
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DataGrid.RowHeaderStyle>
-                </DataGrid>
-            </Grid>
+            <demo:StyledView />
         </GroupBox>
 
         <GroupBox Header="RowNumbers">
             <DataGrid dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}">
                 <DataGrid.RowStyle>
                     <Style TargetType="{x:Type DataGridRow}">
-                        <Setter Property="dataGrid2D:Index.In" 
-                                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-                        <Setter Property="dataGrid2D:Index.StartAt" Value="1"/>
+                        <Setter Property="dataGrid2D:Index.In" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                        <Setter Property="dataGrid2D:Index.StartAt" Value="1" />
                     </Style>
                 </DataGrid.RowStyle>
 
                 <DataGrid.RowHeaderStyle>
                     <Style TargetType="{x:Type DataGridRowHeader}">
-                        <Setter Property="Content" 
-                                Value="{Binding Path=(dataGrid2D:Index.Of), 
-                                                RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+                        <Setter Property="Content" Value="{Binding Path=(dataGrid2D:Index.Of), RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
                     </Style>
                 </DataGrid.RowHeaderStyle>
             </DataGrid>
         </GroupBox>
-    </WrapPanel>
+    </UniformGrid>
 </UserControl>

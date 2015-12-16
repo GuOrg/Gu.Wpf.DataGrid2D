@@ -53,13 +53,51 @@
       <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemVm.cs" />
+    <Compile Include="JaggedSourcesView.xaml.cs">
+      <DependentUpon>JaggedSourcesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JaggedSourcesVm.cs">
+      <DependentUpon>JaggedSourcesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListOfListsView.xaml.cs">
+      <DependentUpon>ListOfListsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListOfListsVm.cs">
+      <DependentUpon>ListOfListsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RowVm.cs" />
     <Compile Include="SamplesView.xaml.cs">
       <DependentUpon>SamplesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectedItemView.xaml.cs">
+      <DependentUpon>SelectedItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectedItemVm.cs">
+      <DependentUpon>SelectedItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source2DView.xaml.cs">
+      <DependentUpon>Source2DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source2DVm.cs">
+      <DependentUpon>Source2DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StyledView.xaml.cs">
+      <DependentUpon>StyledView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StyledVm.cs">
+      <DependentUpon>StyledView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vm.cs" />
     <Page Include="DebugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JaggedSourcesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListOfListsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,6 +114,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SamplesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectedItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source2DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StyledView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
