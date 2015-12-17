@@ -44,6 +44,7 @@
     <Compile Include="Index.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\ColumnHeaderListener.cs" />
+    <Compile Include="Internals\EnumerableExt.cs" />
     <Compile Include="Internals\Helpers.cs" />
     <Compile Include="IndexColumn.cs" />
     <Compile Include="Internals\RoutedEventExt.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="ItemsSource.RowsSource.cs" />
     <Compile Include="ItemsSource.Templates.cs" />
     <Compile Include="Views\BaseClasses\RowView.cs" />
+    <Compile Include="Views\Lists2DView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

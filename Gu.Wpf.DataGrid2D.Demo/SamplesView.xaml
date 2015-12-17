@@ -10,17 +10,18 @@
 
 
     <UniformGrid Columns="1">
-        <!--<GroupBox Header="Jagged">
+        <GroupBox Header="Jagged">
             <demo:JaggedSourcesView />
         </GroupBox>
 
+        <!--
         <GroupBox Header="ListOfLists">
             <demo:ListOfListsView />
         </GroupBox>-->
 
-        <GroupBox Header="int[,]">
+        <!--<GroupBox Header="int[,]">
             <demo:Source2DView />
-        </GroupBox>
+        </GroupBox>-->
 
         <!--<GroupBox Header="SelectedCellItem">
             <demo:SelectedItemView />
