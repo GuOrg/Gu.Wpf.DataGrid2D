@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internals\Array2DViewTests.cs" />
     <Compile Include="SelectedCellItemTests.cs" />
-    <Compile Include="Source2DTests.cs" />
+    <Compile Include="ItemsSourceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
