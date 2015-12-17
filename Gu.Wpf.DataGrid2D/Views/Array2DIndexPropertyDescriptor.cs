@@ -6,15 +6,16 @@
 
     internal class Array2DIndexPropertyDescriptor : PropertyDescriptor
     {
-        private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> Cache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
+        private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> RowDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
+        private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> ColumnDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
         private readonly Type elementType;
-        private readonly int columnIndex;
+        private readonly int index;
 
-        private Array2DIndexPropertyDescriptor(Type elementType, int columnIndex)
-            : base($"C{columnIndex}", null)
+        private Array2DIndexPropertyDescriptor(Type elementType, int index)
+            : base($"C{index}", null)
         {
             this.elementType = elementType;
-            this.columnIndex = columnIndex;
+            this.index = index;
         }
 
         public override Type ComponentType => this.elementType;
@@ -23,9 +24,14 @@
 
         public override Type PropertyType => this.elementType;
 
-        public static PropertyDescriptorCollection GetPropertyDescriptorCollection(Array source)
+        internal static PropertyDescriptorCollection GetRowPropertyDescriptorCollection(Array source)
         {
-            return Cache.GetValue(source, CreatePropertyDescriptorCollection);
+            return RowDescriptorCache.GetValue(source, CreateRowPropertyDescriptorCollection);
+        }
+
+        internal static PropertyDescriptorCollection GetColumnPropertyDescriptorCollection(Array source)
+        {
+            return ColumnDescriptorCache.GetValue(source, CreateColumnPropertyDescriptorCollection);
         }
 
         public override bool CanResetValue(object component) => false;
@@ -34,7 +40,12 @@
         {
             var rowView = (Array2DRowView)component;
             var source = (Array)rowView.Source.Target;
-            return source?.GetValue(rowView.RowIndex, this.columnIndex);
+            if (rowView.IsTransposed)
+            {
+                return source?.GetValue(this.index, rowView.Index);
+            }
+
+            return source?.GetValue(rowView.Index, this.index);
         }
 
         public override void ResetValue(object component)
@@ -46,7 +57,14 @@
         {
             var rowView = (Array2DRowView)component;
             var source = (Array)rowView.Source.Target;
-            source?.SetValue(value, rowView.RowIndex, this.columnIndex);
+            if (rowView.IsTransposed)
+            {
+                source?.SetValue(value, this.index, rowView.Index);
+            }
+            else
+            {
+                source?.SetValue(value, rowView.Index, this.index);
+            }
         }
 
         public override bool ShouldSerializeValue(object component)
@@ -54,11 +72,25 @@
             return true;
         }
 
-        private static PropertyDescriptorCollection CreatePropertyDescriptorCollection(Array source)
+        private static PropertyDescriptorCollection CreateRowPropertyDescriptorCollection(Array source)
         {
             var elementType = source.GetType().GetElementType();
-            var descriptors = new Array2DIndexPropertyDescriptor[source.GetLength(0)];
-            for (int i = 0; i < source.GetLength(1); i++)
+            var n = source.GetLength(1);
+            var descriptors = new Array2DIndexPropertyDescriptor[n];
+            for (int i = 0; i < n; i++)
+            {
+                descriptors[i] = new Array2DIndexPropertyDescriptor(elementType, i);
+            }
+
+            return new PropertyDescriptorCollection(descriptors);
+        }
+
+        private static PropertyDescriptorCollection CreateColumnPropertyDescriptorCollection(Array source)
+        {
+            var elementType = source.GetType().GetElementType();
+            var n = source.GetLength(0);
+            var descriptors = new Array2DIndexPropertyDescriptor[n];
+            for (int i = 0; i < n; i++)
             {
                 descriptors[i] = new Array2DIndexPropertyDescriptor(elementType, i);
             }

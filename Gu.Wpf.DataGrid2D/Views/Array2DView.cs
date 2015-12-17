@@ -7,16 +7,27 @@ namespace Gu.Wpf.DataGrid2D
 
     public class Array2DView : IList
     {
-        private readonly Array source;
+        private readonly WeakReference source = new WeakReference(null);
         private readonly Array2DRowView[] rows;
 
-        public Array2DView(Array source)
+        private Array2DView(Array source, bool transposed)
         {
-            this.source = source;
-            this.rows = new Array2DRowView[source.GetLength(0)];
-            for (int i = 0; i < source.GetLength(0); i++)
+            this.source.Target = source;
+            if (transposed)
             {
-                this.rows[i] = new Array2DRowView(source, i);
+                this.rows = new Array2DRowView[source.GetLength(1)];
+                for (int i = 0; i < source.GetLength(1); i++)
+                {
+                    this.rows[i] = Array2DRowView.CreateForColumn(source, i);
+                }
+            }
+            else
+            {
+                this.rows = new Array2DRowView[source.GetLength(0)];
+                for (int i = 0; i < source.GetLength(0); i++)
+                {
+                    this.rows[i] = Array2DRowView.CreateForRow(source, i);
+                }
             }
         }
 
@@ -26,9 +37,9 @@ namespace Gu.Wpf.DataGrid2D
 
         public bool IsFixedSize => true;
 
-        object ICollection.SyncRoot => this.source.SyncRoot;
+        object ICollection.SyncRoot => ((Array)this.source.Target)?.SyncRoot;
 
-        bool ICollection.IsSynchronized => this.source.IsSynchronized;
+        bool ICollection.IsSynchronized => ((Array)this.source.Target)?.IsSynchronized == true;
 
         public Array2DRowView this[int index] => this.rows[index];
 
@@ -36,6 +47,16 @@ namespace Gu.Wpf.DataGrid2D
         {
             get { return this[index]; }
             set { ThrowNotSupported(); }
+        }
+
+        internal static Array2DView Create(Array source)
+        {
+            return new Array2DView(source, false);
+        }
+
+        internal static Array2DView CreateTransposed(Array source)
+        {
+            return new Array2DView(source, true);
         }
 
         public IEnumerator<Array2DRowView> GetEnumerator() => ((IList<Array2DRowView>)this.rows).GetEnumerator();

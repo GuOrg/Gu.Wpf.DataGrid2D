@@ -10,16 +10,27 @@
         <local:Source2DVm />
     </UserControl.DataContext>
     <UniformGrid Rows="1">
-        <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+        <GroupBox Header="Auto columns">
+            <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+        </GroupBox>
 
-        <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+        <GroupBox Header="Auto columns transposed">
+            <DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+        </GroupBox>
+        
+        <GroupBox Header="Readonly">
+            <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+        </GroupBox>
 
-        <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
-                <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <GroupBox Header="Explicit columns">
+            <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+                    <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
 
         <!--<DataGrid ColumnWidth="SizeToHeader"
                   SelectionUnit="Cell"
