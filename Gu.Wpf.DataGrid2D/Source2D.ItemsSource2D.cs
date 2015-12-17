@@ -29,9 +29,6 @@
         private static void OnItemsSource2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            dataGrid.AutoGenerateColumns = true;
-            dataGrid.CanUserAddRows = false;
-            dataGrid.CanUserDeleteRows = false;
             var array = (Array)e.NewValue;
             if (array == null)
             {

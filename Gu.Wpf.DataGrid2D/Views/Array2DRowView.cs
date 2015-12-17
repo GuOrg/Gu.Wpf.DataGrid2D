@@ -4,7 +4,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.ComponentModel;
     using System.Linq;
 
-    public class Array2DRowView : ICustomTypeDescriptor
+    public class Array2DRowView : CustomTypeDescriptor
     {
         private readonly Array source;
         private readonly int rowIndex;
@@ -15,85 +15,38 @@ namespace Gu.Wpf.DataGrid2D
             this.source = source;
             this.rowIndex = rowIndex;
             var indexPropertyDescriptors = Enumerable.Range(0, this.source.GetLength(0) - 1)
-                                                     .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
+                                                     .Select(x => new IndexPropertyDescriptor(
+                                                                       source.GetType().GetElementType(),
+                                                                      () => source.GetValue(rowIndex, x),
+                                                                      o => source.SetValue(o, rowIndex, x),
+                                                                      $"C{x}"))
                                                      .ToArray();
             this.properties = new PropertyDescriptorCollection(indexPropertyDescriptors);
         }
 
-        //int IReadOnlyCollection<object>.Count => this.source.GetLength(0);
-
-        //object IReadOnlyList<object>.this[int index] => this.source.GetValue(this.rowIndex, index);
-
-        //IEnumerator<object> IEnumerable<object>.GetEnumerator()
-        //{
-        //    for (int j = 0; j < this.source.GetLength(1); j++)
-        //    {
-        //        yield return this.source.GetValue(this.rowIndex, j);
-        //    }
-        //}
-
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //    return ((IReadOnlyList<object>)this).GetEnumerator();
-        //}
-
-        AttributeCollection ICustomTypeDescriptor.GetAttributes()
+        public override string GetClassName()
         {
-            return AttributeCollection.Empty;
+            return base.GetClassName();
         }
 
-        string ICustomTypeDescriptor.GetClassName()
+        public override PropertyDescriptor GetDefaultProperty()
         {
-            return nameof(Array2DRowView);
+            return base.GetDefaultProperty();
         }
 
-        string ICustomTypeDescriptor.GetComponentName()
+        public override PropertyDescriptorCollection GetProperties()
         {
-            throw new NotImplementedException();
+            return this.properties;
         }
 
-        TypeConverter ICustomTypeDescriptor.GetConverter()
+        public override PropertyDescriptorCollection GetProperties(Attribute[] attributes)
         {
-            throw new NotImplementedException();
+            return this.properties;
         }
 
-        EventDescriptor ICustomTypeDescriptor.GetDefaultEvent()
+        public override object GetPropertyOwner(PropertyDescriptor pd)
         {
-            throw new NotImplementedException();
-        }
-
-        PropertyDescriptor ICustomTypeDescriptor.GetDefaultProperty()
-        {
-            throw new NotImplementedException();
-        }
-
-        object ICustomTypeDescriptor.GetEditor(Type editorBaseType)
-        {
-            throw new NotImplementedException();
-        }
-
-        EventDescriptorCollection ICustomTypeDescriptor.GetEvents()
-        {
-            return EventDescriptorCollection.Empty;
-        }
-
-        EventDescriptorCollection ICustomTypeDescriptor.GetEvents(Attribute[] attributes)
-        {
-            return EventDescriptorCollection.Empty;
-        }
-
-        PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties() => this.properties;
-
-        PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes) => this.properties;
-
-        object ICustomTypeDescriptor.GetPropertyOwner(PropertyDescriptor pd)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void ThrowNotSupported()
-        {
-            throw new NotSupportedException();
+            return base.GetPropertyOwner(pd);
         }
     }
 }

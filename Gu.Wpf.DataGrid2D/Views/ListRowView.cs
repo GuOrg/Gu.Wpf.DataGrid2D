@@ -78,18 +78,20 @@
 
         PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties()
         {
-            var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
-                                       .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
-                                       .ToArray();
-            return new PropertyDescriptorCollection(properties);
+            throw new NotFiniteNumberException();
+            //var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
+            //                           .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
+            //                           .ToArray();
+            //return new PropertyDescriptorCollection(properties);
         }
 
         PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes)
         {
-            var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
-                                      .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
-                                      .ToArray();
-            return new PropertyDescriptorCollection(properties);
+            throw new NotImplementedException();
+            //var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
+            //                          .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
+            //                          .ToArray();
+            //return new PropertyDescriptorCollection(properties);
         }
 
         object ICustomTypeDescriptor.GetPropertyOwner(PropertyDescriptor pd)

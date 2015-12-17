@@ -1,16 +1,19 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
 
     public static partial class Source2D
     {
         public static readonly DependencyProperty ColumnHeadersSourceProperty = DependencyProperty.RegisterAttached(
             "ColumnHeadersSource",
-            typeof (IEnumerable),
-            typeof (Source2D),
+            typeof(IEnumerable),
+            typeof(Source2D),
             new PropertyMetadata(null, OnColumnHeadersChanged),
             OnValidateHeaders);
 
@@ -30,29 +33,26 @@
         private static void OnColumnHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            dataGrid.AutoGenerateColumns = false;
-            dataGrid.CanUserAddRows = false;
-            dataGrid.CanUserDeleteRows = false;
-
             var headers = dataGrid.GetColumnHeadersSource();
             if (headers == null)
             {
+                foreach (var column in dataGrid.Columns)
+                {
+                    BindingOperations.ClearBinding(column, DataGridColumn.HeaderProperty);
+                }
+
                 return;
             }
 
+            throw new NotImplementedException("Subscribe to headers incc if incc");
+            throw new NotImplementedException("Bind to dataGrid.Columns.Count");
+
             var count = headers.Count();
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < Math.Min(count, dataGrid.Columns.Count); i++)
             {
-                if (dataGrid.Columns.Count > i)
-                {
-                    var column = (IndexColumn)dataGrid.Columns[i];
-                    column.BindHeader(headers, i);
-                }
-                else
-                {
-                    var templateColumn = new IndexColumn(dataGrid, headers, i);
-                    dataGrid.Columns.Add(templateColumn);
-                }
+                var column = dataGrid.Columns[i];
+                column.Bind(DataGridColumn.HeaderProperty)
+                      .OneWayTo(headers, i);
             }
         }
 
