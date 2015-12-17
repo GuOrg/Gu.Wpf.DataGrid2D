@@ -77,10 +77,10 @@
                   ColumnWidth="*"
                   ItemsSource="{Binding ListOfListsOfItems}"
                   SelectionUnit="Cell"
-                  dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
-                  dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                  dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
-                  dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}" />
+                  dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
+                  dataGrid2D:ItemsSource.CellTemplate="{StaticResource SampleItemTemplate}"
+                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnItemHeaders}"
+                  dataGrid2D:ItemsSource.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}" />
 
         <DataGrid Grid.Column="2"
                   Background="{x:Null}"
@@ -89,11 +89,11 @@
                   ColumnWidth="*"
                   RowBackground="{x:Null}"
                   SelectionUnit="Cell"
-                  dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
-                  dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-                  dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
-                  dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
-                  dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}">
+                  dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
+                  dataGrid2D:ItemsSource.CellTemplate="{StaticResource SampleItemTemplate}"
+                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnItemHeaders}"
+                  dataGrid2D:ItemsSource.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
+                  dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfItems}">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="DataGridRowHeader">
                     <Setter Property="Content" Value="{Binding Name}" />

@@ -3,14 +3,14 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    public static partial class Source2D
+    public static partial class ItemsSource
     {
         private const string Unset = "Unset";
 
         public static readonly DependencyProperty SelectedCellItemProperty = DependencyProperty.RegisterAttached(
             "SelectedCellItem",
             typeof(object),
-            typeof(Source2D),
+            typeof(ItemsSource),
             new FrameworkPropertyMetadata(
                 Unset,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
@@ -19,7 +19,7 @@
         private static readonly DependencyProperty CurrentCellProxyProperty = DependencyProperty.RegisterAttached(
             "CurrentCellProxy",
             typeof(object),
-            typeof(Source2D),
+            typeof(ItemsSource),
             new PropertyMetadata(
                 Unset,
                 OnCurrentCellProxyChanged));

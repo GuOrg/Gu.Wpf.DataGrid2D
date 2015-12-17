@@ -4,48 +4,48 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
-    public static partial class Source2D
+    public static partial class ItemsSource
     {
         public static readonly DependencyProperty HeaderStringFormatProperty = DependencyProperty.RegisterAttached(
            "HeaderStringFormat",
            typeof(string),
-           typeof(Source2D),
+           typeof(ItemsSource),
            new FrameworkPropertyMetadata(default(string)));
 
         public static readonly DependencyProperty HeaderTemplateProperty = DependencyProperty.RegisterAttached(
            "HeaderTemplate",
            typeof(DataTemplate),
-           typeof(Source2D),
+           typeof(ItemsSource),
            new FrameworkPropertyMetadata(default(DataTemplate)));
 
         public static readonly DependencyProperty HeaderTemplateSelectorProperty = DependencyProperty.RegisterAttached(
            "HeaderTemplateSelector",
            typeof(DataTemplateSelector),
-           typeof(Source2D),
+           typeof(ItemsSource),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
 
         public static readonly DependencyProperty CellTemplateProperty = DependencyProperty.RegisterAttached(
            "CellTemplate",
            typeof(DataTemplate),
-           typeof(Source2D),
+           typeof(ItemsSource),
            new FrameworkPropertyMetadata(default(DataTemplate)));
 
         public static readonly DependencyProperty CellTemplateSelectorProperty = DependencyProperty.RegisterAttached(
            "CellTemplateSelector",
            typeof(DataTemplateSelector),
-           typeof(Source2D),
+           typeof(ItemsSource),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
 
         public static readonly DependencyProperty CellEditingTemplateProperty = DependencyProperty.RegisterAttached(
            "CellEditingTemplate",
            typeof(DataTemplate),
-           typeof(Source2D),
+           typeof(ItemsSource),
            new FrameworkPropertyMetadata(default(DataTemplate)));
 
         public static readonly DependencyProperty CellEditingTemplateSelectorProperty = DependencyProperty.RegisterAttached(
            "CellEditingTemplateSelector",
            typeof(DataTemplateSelector),
-           typeof(Source2D),
+           typeof(ItemsSource),
            new FrameworkPropertyMetadata(default(DataTemplateSelector)));
 
         public static void SetHeaderStringFormat(this DataGrid element, string value)

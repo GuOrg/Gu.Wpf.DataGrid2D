@@ -42,7 +42,7 @@ namespace Gu.Wpf.DataGrid2D
 
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
-        public void CopyTo(Array array, int index) => this.rows.CopyTo(array,index);
+        void ICollection.CopyTo(Array array, int index) => this.rows.CopyTo(array, index);
 
         int IList.Add(object value) => ThrowNotSupported<int>();
 
@@ -52,11 +52,11 @@ namespace Gu.Wpf.DataGrid2D
 
         int IList.IndexOf(object value) => Array.IndexOf(this.rows, value);
 
-        public void Insert(int index, object value) => ThrowNotSupported();
+        void IList.Insert(int index, object value) => ThrowNotSupported();
 
-        public void Remove(object value) => ThrowNotSupported();
+        void IList.Remove(object value) => ThrowNotSupported();
 
-        public void RemoveAt(int index) => ThrowNotSupported();
+        void IList.RemoveAt(int index) => ThrowNotSupported();
 
         private static void ThrowNotSupported()
         {

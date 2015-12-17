@@ -23,7 +23,7 @@
                     .Where(x => x.Name.Contains(contains))
                     .Where(x => !this.excluded.Contains(x.Name))
                     .ToArray();
-            DumpFields(typeof(Source2D), properties);
+            DumpFields(typeof(ItemsSource), properties);
             DumpMetaData(properties);
         }
 

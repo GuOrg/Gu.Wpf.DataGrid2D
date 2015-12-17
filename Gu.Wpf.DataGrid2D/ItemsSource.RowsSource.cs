@@ -7,12 +7,12 @@
     using System.Windows.Controls;
     using System.Windows.Data;
 
-   public static partial class Source2D
+   public static partial class ItemsSource
     {
         public static readonly DependencyProperty RowsSourceProperty = DependencyProperty.RegisterAttached(
             "RowsSource",
             typeof(IEnumerable),
-            typeof(Source2D),
+            typeof(ItemsSource),
             new PropertyMetadata(default(IEnumerable), OnRowsSourceChanged),
             OnValidateRowsSource);
 

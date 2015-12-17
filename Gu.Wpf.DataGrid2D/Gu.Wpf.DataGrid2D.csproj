@@ -51,6 +51,7 @@
     <Compile Include="Source2D.ItemsSource2D.cs" />
     <Compile Include="Views\Array2DRowView.cs" />
     <Compile Include="Views\Array2DView.cs" />
+    <Compile Include="Views\Array2DIndexPropertyDescriptor.cs" />
     <Compile Include="Views\ListRowView.cs" />
     <Compile Include="Source2D.SelectedItem.cs" />
     <Compile Include="Source2D.RowsSource.cs" />
@@ -64,14 +65,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6')">
-      <PropertyGroup>
-        <__paket__StyleCop_Analyzers_targets>StyleCop.Analyzers</__paket__StyleCop_Analyzers_targets>
-      </PropertyGroup>
-    </When>
-  </Choose>
-  <Import Project="..\packages\StyleCop.Analyzers\build\$(__paket__StyleCop_Analyzers_targets).targets" Condition="Exists('..\packages\StyleCop.Analyzers\build\$(__paket__StyleCop_Analyzers_targets).targets')" Label="Paket" />
+  <ItemGroup>
+    <None Include="Gu.Wpf.DataGrid2D.ruleset" />
+    <None Include="stylecop.json" />
+  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\Newtonsoft.Json.dll">
       <Paket>True</Paket>
@@ -83,9 +80,4 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Gu.Wpf.DataGrid2D.ruleset" />
-    <None Include="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup />
 </Project>

@@ -21,7 +21,7 @@
                       VerticalAlignment="Center"
                       ItemsSource="{Binding JaggedRows}"
                       SelectionUnit="Cell"
-                      dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}" />
+                      dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}" />
         </GroupBox>
 
         <GroupBox>
@@ -35,7 +35,7 @@
                       VerticalAlignment="Center"
                       ItemsSource="{Binding DifferentLengths}"
                       SelectionUnit="Cell"
-                      dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}" />
+                      dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}" />
         </GroupBox>
 
         <GroupBox>
@@ -48,7 +48,7 @@
             <DataGrid HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       SelectionUnit="Cell"
-                      dataGrid2D:Source2D.RowsSource="{Binding JaggedRows}" />
+                      dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
         </GroupBox>
 
         <GroupBox>
@@ -61,7 +61,7 @@
             <DataGrid HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       SelectionUnit="Cell"
-                      dataGrid2D:Source2D.RowsSource="{Binding DifferentLengths}" />
+                      dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
         </GroupBox>
 
         <GroupBox>
@@ -74,8 +74,8 @@
             <DataGrid HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       SelectionUnit="Cell"
-                      dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                      dataGrid2D:Source2D.RowsSource="{Binding JaggedRows}" />
+                      dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                      dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
         </GroupBox>
     </UniformGrid>
 </UserControl>

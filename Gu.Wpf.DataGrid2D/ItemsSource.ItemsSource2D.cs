@@ -5,25 +5,25 @@
     using System.Windows.Controls;
     using System.Windows.Data;
 
-    public static partial class Source2D
+    public static partial class ItemsSource
     {
-        public static readonly DependencyProperty ItemsSource2DProperty = DependencyProperty.RegisterAttached(
-            "ItemsSource2D",
+        public static readonly DependencyProperty Array2DProperty = DependencyProperty.RegisterAttached(
+            "Array2D",
             typeof(Array),
-            typeof(Source2D),
+            typeof(ItemsSource),
             new PropertyMetadata(default(Array), OnItemsSource2DChanged),
             OnValidateItemsSource2D);
 
-        public static void SetItemsSource2D(this DataGrid element, Array value)
+        public static void SetArray2D(this DataGrid element, Array value)
         {
-            element.SetValue(ItemsSource2DProperty, value);
+            element.SetValue(Array2DProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static Array GetItemsSource2D(this DataGrid element)
+        public static Array GetArray2D(this DataGrid element)
         {
-            return (Array)element.GetValue(ItemsSource2DProperty);
+            return (Array)element.GetValue(Array2DProperty);
         }
 
         private static void OnItemsSource2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

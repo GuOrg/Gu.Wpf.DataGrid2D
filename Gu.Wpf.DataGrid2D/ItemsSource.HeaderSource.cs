@@ -8,12 +8,12 @@
     using System.Windows.Controls;
     using System.Windows.Data;
 
-    public static partial class Source2D
+    public static partial class ItemsSource
     {
         public static readonly DependencyProperty ColumnHeadersSourceProperty = DependencyProperty.RegisterAttached(
             "ColumnHeadersSource",
             typeof(IEnumerable),
-            typeof(Source2D),
+            typeof(ItemsSource),
             new PropertyMetadata(null, OnColumnHeadersChanged),
             OnValidateHeaders);
 

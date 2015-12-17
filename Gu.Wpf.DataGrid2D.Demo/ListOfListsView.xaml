@@ -14,22 +14,22 @@
                   VerticalAlignment="Center"
                   ItemsSource="{Binding ListOfListsOfItems}"
                   SelectionUnit="Cell"
-                  dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}" />
+                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}" />
 
         <DataGrid HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   ItemsSource="{Binding ListOfListsOfInts}"
                   SelectionUnit="Cell"
-                  dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}" />
+                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}" />
 
-        <DataGrid SelectionUnit="Cell" dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
-
-        <DataGrid SelectionUnit="Cell"
-                  dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                  dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
+        <DataGrid SelectionUnit="Cell" dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfItems}" />
 
         <DataGrid SelectionUnit="Cell"
-                  dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-                  dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
+                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                  dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfItems}" />
+
+        <DataGrid SelectionUnit="Cell"
+                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                  dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfItems}" />
     </UniformGrid>
 </UserControl>

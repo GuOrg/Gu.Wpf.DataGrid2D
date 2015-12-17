@@ -19,8 +19,8 @@
             </Grid.ColumnDefinitions>
             <DataGrid Grid.Column="0"
                       SelectionUnit="Cell"
-                      dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
-                      dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}" />
+                      dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
+                      dataGrid2D:ItemsSource.SelectedCellItem="{Binding SelectedItem}" />
 
             <ListBox Grid.Column="1"
                      ItemsSource="{Binding AllRowsItems}"

@@ -10,12 +10,11 @@
         <local:Source2DVm />
     </UserControl.DataContext>
     <UniformGrid Rows="1">
-        <DataGrid dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
-        
-        <DataGrid dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" IsReadOnly="True" />
+        <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
 
-        <DataGrid AutoGenerateColumns="False"
-                  dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}">
+        <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+
+        <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
                 <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />

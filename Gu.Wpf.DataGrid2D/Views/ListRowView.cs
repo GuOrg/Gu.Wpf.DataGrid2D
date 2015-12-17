@@ -79,7 +79,7 @@
         PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties()
         {
             throw new NotFiniteNumberException();
-            //var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
+            //var properties = Enumerable.Range(0, this.Source.GetLength(0) - 1)
             //                           .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
             //                           .ToArray();
             //return new PropertyDescriptorCollection(properties);
@@ -88,7 +88,7 @@
         PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes)
         {
             throw new NotImplementedException();
-            //var properties = Enumerable.Range(0, this.source.GetLength(0) - 1)
+            //var properties = Enumerable.Range(0, this.Source.GetLength(0) - 1)
             //                          .Select(x => new IndexPropertyDescriptor($"[{x}]", null))
             //                          .ToArray();
             //return new PropertyDescriptorCollection(properties);
