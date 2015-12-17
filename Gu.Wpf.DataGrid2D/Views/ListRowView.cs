@@ -4,7 +4,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Linq;
 
     public class ListRowView : IReadOnlyList<object>, ICustomTypeDescriptor
     {

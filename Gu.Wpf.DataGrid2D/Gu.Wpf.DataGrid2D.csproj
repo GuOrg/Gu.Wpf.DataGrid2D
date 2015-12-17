@@ -51,17 +51,19 @@
     <Compile Include="ItemsSource.Array2DTransposed.cs" />
     <Compile Include="ItemsSource.Events.cs" />
     <Compile Include="ItemsSource.RowHeadersSource.cs" />
-    <Compile Include="Views\IndexPropertyDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ItemsSource.ColumnHeadersSource.cs" />
     <Compile Include="ItemsSource.Array2D.cs" />
     <Compile Include="Views\Array2DRowView.cs" />
     <Compile Include="Views\Array2DView.cs" />
     <Compile Include="Views\Array2DIndexPropertyDescriptor.cs" />
+    <Compile Include="Views\BaseClasses\IndexPropertyDescriptor.cs" />
+    <Compile Include="Views\ListIndexPropertyDescriptor.cs" />
     <Compile Include="Views\ListRowView.cs" />
     <Compile Include="ItemsSource.SelectedItem.cs" />
     <Compile Include="ItemsSource.RowsSource.cs" />
     <Compile Include="ItemsSource.Templates.cs" />
+    <Compile Include="Views\BaseClasses\RowView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -118,12 +118,7 @@
             }
 
             var cellContent = info.Column.GetCellContent(info.Item);
-            if (cellContent != null)
-            {
-                return cellContent.Parent as DataGridCell;
-            }
-
-            return null;
+            return cellContent?.Parent as DataGridCell;
         }
     }
 }

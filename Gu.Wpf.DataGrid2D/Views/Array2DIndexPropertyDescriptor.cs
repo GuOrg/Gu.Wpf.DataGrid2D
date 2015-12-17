@@ -4,25 +4,15 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    internal class Array2DIndexPropertyDescriptor : PropertyDescriptor
+    internal class Array2DIndexPropertyDescriptor : IndexPropertyDescriptor
     {
         private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> RowDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
         private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> ColumnDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
-        private readonly Type elementType;
-        private readonly int index;
 
         private Array2DIndexPropertyDescriptor(Type elementType, int index)
-            : base($"C{index}", null)
+            : base(elementType, index)
         {
-            this.elementType = elementType;
-            this.index = index;
         }
-
-        public override Type ComponentType => this.elementType;
-
-        public override bool IsReadOnly => false;
-
-        public override Type PropertyType => this.elementType;
 
         internal static PropertyDescriptorCollection GetRowPropertyDescriptorCollection(Array source)
         {
@@ -34,12 +24,10 @@
             return ColumnDescriptorCache.GetValue(source, CreateColumnPropertyDescriptorCollection);
         }
 
-        public override bool CanResetValue(object component) => false;
-
         public override object GetValue(object component)
         {
             var rowView = (Array2DRowView)component;
-            var source = (Array)rowView.Source.Target;
+            var source = rowView.Source;
             if (rowView.IsTransposed)
             {
                 return source?.GetValue(this.index, rowView.Index);
@@ -48,15 +36,10 @@
             return source?.GetValue(rowView.Index, this.index);
         }
 
-        public override void ResetValue(object component)
-        {
-            // NOP
-        }
-
         public override void SetValue(object component, object value)
         {
             var rowView = (Array2DRowView)component;
-            var source = (Array)rowView.Source.Target;
+            var source = (Array)rowView.Source;
             if (rowView.IsTransposed)
             {
                 source?.SetValue(value, this.index, rowView.Index);
@@ -65,11 +48,6 @@
             {
                 source?.SetValue(value, rowView.Index, this.index);
             }
-        }
-
-        public override bool ShouldSerializeValue(object component)
-        {
-            return true;
         }
 
         private static PropertyDescriptorCollection CreateRowPropertyDescriptorCollection(Array source)

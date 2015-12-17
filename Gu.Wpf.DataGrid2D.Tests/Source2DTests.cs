@@ -1,28 +1,48 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Tests
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
     using NUnit.Framework;
 
     [RequiresSTA]
-    public class Source2DTests
+    public class ItemsSourceTests
     {
         public int[,] Data2D { get; set; }
 
         [Test]
-        public void BindItemsSource2D()
+        public void Array2D()
         {
-            Assert.Fail();
-            //this.Data2D = new[,] { { 1, 2 }, { 3, 4 } };
-            //var dataGrid = new DataGrid();
-            //dataGrid.Bind(ItemsSource.Array2DProperty)
-            //        .OneWayTo(this, new PropertyPath(nameof(this.Data2D)));
-            //Assert.AreEqual(2, dataGrid.Columns.Count);
-            //var rowsSource = (List<Array2DRowView>)dataGrid.GetRowsSource();
-            //CollectionAssert.AreEqual(new[] { 1, 2 }, rowsSource[0]);
-            //CollectionAssert.AreEqual(new[] { 3, 4 }, rowsSource[1]);
+            this.Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var dataGrid = new DataGrid();
+            dataGrid.Bind(ItemsSource.Array2DProperty)
+                    .OneWayTo(this, new PropertyPath(nameof(this.Data2D)));
+            Assert.AreEqual(2, dataGrid.Columns.Count);
+            Assert.AreEqual(3, dataGrid.Items.Count);
+
+            Assert.AreEqual(1, dataGrid.GetValue(0, 0));
+            Assert.AreEqual(2, dataGrid.GetValue(1, 0));
+            Assert.AreEqual(3, dataGrid.GetValue(0, 1));
+            Assert.AreEqual(4, dataGrid.GetValue(1, 1));
+            Assert.AreEqual(5, dataGrid.GetValue(0, 2));
+            Assert.AreEqual(6, dataGrid.GetValue(1, 2));
+        }
+
+        [Test]
+        public void Array2DTransposed()
+        {
+            this.Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var dataGrid = new DataGrid();
+            //dataGrid.SetArray2D(this.Data2D);
+            dataGrid.Bind(ItemsSource.Array2DTransposedProperty)
+                    .OneWayTo(this, new PropertyPath(nameof(this.Data2D)));
+            Assert.AreEqual(3, dataGrid.Columns.Count);
+            Assert.AreEqual(2, dataGrid.Items.Count);
+            Assert.AreEqual(1, dataGrid.GetValue(0, 0));
+            Assert.AreEqual(3, dataGrid.GetValue(1, 0));
+            Assert.AreEqual(5, dataGrid.GetValue(2, 0));
+            Assert.AreEqual(2, dataGrid.GetValue(0, 1));
+            Assert.AreEqual(4, dataGrid.GetValue(1, 1));
+            Assert.AreEqual(6, dataGrid.GetValue(2, 1));
         }
     }
 }
