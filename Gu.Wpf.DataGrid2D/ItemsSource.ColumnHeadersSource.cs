@@ -3,7 +3,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
@@ -17,6 +16,13 @@
             new PropertyMetadata(null, OnColumnHeadersChanged),
             OnValidateHeaders);
 
+        private static readonly RoutedEventHandler OnColumnsChangedHandler = OnColumnsChanged;
+
+        private static readonly DependencyProperty ColumnHeaderListenerProperty = DependencyProperty.RegisterAttached(
+            "ColumnHeaderListener",
+            typeof(ColumnHeaderListener),
+            typeof(ItemsSource),
+            new PropertyMetadata(default(ColumnHeaderListener)));
 
         public static void SetColumnHeadersSource(this DataGrid element, IEnumerable value)
         {
@@ -33,7 +39,10 @@
         private static void OnColumnHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            var headers = dataGrid.GetColumnHeadersSource();
+            var headers = (IEnumerable)e.NewValue;
+            (dataGrid.GetValue(ColumnHeaderListenerProperty) as IDisposable)?.Dispose();
+            dataGrid.ClearValue(ColumnHeaderListenerProperty);
+
             if (headers == null)
             {
                 foreach (var column in dataGrid.Columns)
@@ -41,12 +50,19 @@
                     BindingOperations.ClearBinding(column, DataGridColumn.HeaderProperty);
                 }
 
+                dataGrid.RemoveHandler(ColumnsChangedEvent, OnColumnsChangedHandler);
                 return;
             }
 
-            throw new NotImplementedException("Subscribe to headers incc if incc");
-            throw new NotImplementedException("Bind to dataGrid.Columns.Count");
+            dataGrid.SetValue(ColumnHeaderListenerProperty, new ColumnHeaderListener(dataGrid));
+            dataGrid.UpdateHandler(ColumnsChangedEvent, OnColumnsChangedHandler);
+            OnColumnsChanged(dataGrid, null);
+        }
 
+        private static void OnColumnsChanged(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var dataGrid = (DataGrid)sender;
+            var headers = dataGrid.GetColumnHeadersSource();
             var count = headers.Count();
             for (int i = 0; i < Math.Min(count, dataGrid.Columns.Count); i++)
             {

@@ -5,8 +5,11 @@
         public Source2DVm()
         {
             this.Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-            this.ColumnHeaders = new[] { "Col1", "Col2" };
+            this.RowHeaders = new[] { "1", "2", "3" };
+            this.ColumnHeaders = new[] { "AA", "AB", "AC" };
         }
+
+        public string[] RowHeaders { get; }
 
         public string[] ColumnHeaders { get; }
 

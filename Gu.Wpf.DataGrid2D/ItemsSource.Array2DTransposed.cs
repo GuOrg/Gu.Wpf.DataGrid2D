@@ -39,6 +39,7 @@
             var array2DView = Array2DView.CreateTransposed(array);
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(array2DView);
+            dataGrid.RaiseEvent(new RoutedEventArgs(ColumnsChangedEvent));
         }
     }
 }

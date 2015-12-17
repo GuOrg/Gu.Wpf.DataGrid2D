@@ -18,12 +18,6 @@
             return dataTemplate;
         }
 
-        internal static void UpdateHandler(this UIElement element, RoutedEvent routedEvent, Delegate handler)
-        {
-            element.RemoveHandler(routedEvent, handler);
-            element.AddHandler(routedEvent, handler);
-        }
-
         internal static int Count(this IEnumerable collection)
         {
             if (collection == null)
