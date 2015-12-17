@@ -31,10 +31,10 @@
 
                 <GroupBox Header="With headers">
                     <DataGrid ColumnWidth="SizeToHeader"
-                          SelectionUnit="Cell"
-                          dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                          dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                          dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"/>
+                              SelectionUnit="Cell"
+                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                              dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                              dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>
@@ -61,10 +61,10 @@
 
                 <GroupBox Header="With headers">
                     <DataGrid ColumnWidth="SizeToHeader"
-                          SelectionUnit="Cell"
-                          dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}"
-                          dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                          dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"/>
+                              SelectionUnit="Cell"
+                              dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}"
+                              dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                              dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>

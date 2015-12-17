@@ -9,73 +9,64 @@
     <UserControl.DataContext>
         <local:JaggedSourcesVm />
     </UserControl.DataContext>
-    <UniformGrid Columns="5">
-        <GroupBox>
-            <GroupBox.Header>
-                <StackPanel>
-                    <TextBlock Text="ItemsSource: JaggedRows" />
-                    <TextBlock Text="Headers: Binding ColumnHeaders" />
-                </StackPanel>
-            </GroupBox.Header>
-            <DataGrid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      ItemsSource="{Binding JaggedRows}"
-                      SelectionUnit="Cell"
-                      dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}" />
+    <UniformGrid Columns="1">
+        <GroupBox Header="Vanilla">
+            <UniformGrid Rows="1">
+                <GroupBox Header="Auto columns">
+                    <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
+                </GroupBox>
+
+                <GroupBox Header="Readonly">
+                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
+                </GroupBox>
+
+                <GroupBox Header="Explicit columns">
+                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+                            <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+
+                <GroupBox Header="With headers">
+                    <DataGrid ColumnWidth="SizeToHeader"
+                              SelectionUnit="Cell"
+                              dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                              dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
+                              dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
+                </GroupBox>
+            </UniformGrid>
         </GroupBox>
 
-        <GroupBox>
-            <GroupBox.Header>
-                <StackPanel>
-                    <TextBlock Text="ItemsSource: DifferentLengths" />
-                    <TextBlock Text="Headers: Binding ColumnHeaders" />
-                </StackPanel>
-            </GroupBox.Header>
-            <DataGrid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      ItemsSource="{Binding DifferentLengths}"
-                      SelectionUnit="Cell"
-                      dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}" />
-        </GroupBox>
+        <GroupBox Header="Transposed">
+            <UniformGrid Rows="1">
+                <GroupBox Header="Auto columns">
+                    <DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                </GroupBox>
 
-        <GroupBox>
-            <GroupBox.Header>
-                <StackPanel>
-                    <TextBlock Text="RowsSource: JaggedRows" />
-                    <TextBlock Text="Headers: -" />
-                </StackPanel>
-            </GroupBox.Header>
-            <DataGrid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      SelectionUnit="Cell"
-                      dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
-        </GroupBox>
+                <GroupBox Header="Readonly">
+                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                </GroupBox>
 
-        <GroupBox>
-            <GroupBox.Header>
-                <StackPanel>
-                    <TextBlock Text="RowsSource: DifferentLengths" />
-                    <TextBlock Text="Headers: -" />
-                </StackPanel>
-            </GroupBox.Header>
-            <DataGrid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      SelectionUnit="Cell"
-                      dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
-        </GroupBox>
+                <GroupBox Header="Explicit columns">
+                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+                            <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                            <DataGridTextColumn Binding="{Binding C2}" Header="Col 3" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
 
-        <GroupBox>
-            <GroupBox.Header>
-                <StackPanel>
-                    <TextBlock Text="Source: RowsSource" />
-                    <TextBlock Text="Headers: Binding" />
-                </StackPanel>
-            </GroupBox.Header>
-            <DataGrid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      SelectionUnit="Cell"
-                      dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                      dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
+                <GroupBox Header="With headers">
+                    <DataGrid ColumnWidth="SizeToHeader"
+                              SelectionUnit="Cell"
+                              dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}"
+                              dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                              dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
+                </GroupBox>
+            </UniformGrid>
         </GroupBox>
     </UniformGrid>
 </UserControl>

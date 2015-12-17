@@ -19,6 +19,8 @@ namespace Gu.Wpf.DataGrid2D
 
         public int Index { get; }
 
+        public int Count => this.properties.Count;
+
         public bool IsTransposed { get; }
 
         public override string GetClassName() => this.GetType().FullName;
