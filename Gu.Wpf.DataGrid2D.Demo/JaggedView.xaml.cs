@@ -3,11 +3,11 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for JaggedSourcesView.xaml
+    /// Interaction logic for JaggedView.xaml
     /// </summary>
-    public partial class JaggedSourcesView : UserControl
+    public partial class JaggedView : UserControl
     {
-        public JaggedSourcesView()
+        public JaggedView()
         {
             InitializeComponent();
         }

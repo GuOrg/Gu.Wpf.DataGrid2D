@@ -30,7 +30,7 @@
                 </GroupBox>
 
                 <GroupBox Header="With headers">
-                    <DataGrid ColumnWidth="SizeToHeader"
+                    <DataGrid ColumnWidth="SizeToCells"
                               SelectionUnit="Cell"
                               dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
                               dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"

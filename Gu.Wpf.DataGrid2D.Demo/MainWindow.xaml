@@ -12,10 +12,30 @@
         d:DataContext="{d:DesignInstance demo:Vm}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="Samples">
-            <demo:SamplesView />
+        <TabItem Header="int[,]">
+            <demo:Source2DView />
         </TabItem>
 
+        <TabItem Header="int[][]">
+            <demo:JaggedView />
+        </TabItem>
+
+        <TabItem Header="List&lt;List&lt;T&gt;&gt;">
+            <demo:ListOfListsView />
+        </TabItem>
+
+        <TabItem Header="SelectedCellItem">
+            <demo:SelectedItemView />
+        </TabItem>
+
+        <TabItem Header="Styles">
+            <demo:StyledView />
+        </TabItem>
+
+        <TabItem Header="RowNumbers">
+            <demo:RowNumbersView />
+        </TabItem>
+        
         <TabItem Header="Debug">
             <demo:DebugView />
         </TabItem>

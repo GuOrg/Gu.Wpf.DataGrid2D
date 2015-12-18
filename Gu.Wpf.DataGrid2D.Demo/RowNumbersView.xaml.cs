@@ -3,11 +3,11 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for StyledView.xaml
+    /// Interaction logic for RowNumbersView.xaml
     /// </summary>
-    public partial class StyledView : UserControl
+    public partial class RowNumbersView : UserControl
     {
-        public StyledView()
+        public RowNumbersView()
         {
             InitializeComponent();
         }

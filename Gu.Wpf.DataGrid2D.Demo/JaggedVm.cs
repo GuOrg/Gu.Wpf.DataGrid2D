@@ -1,8 +1,8 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
-    public class JaggedSourcesVm
+    public class JaggedVm
     {
-        public JaggedSourcesVm()
+        public JaggedVm()
         {
             this.RowHeaders = new[] { "1", "2", "3" };
             this.ColumnHeaders = new[] { "AA", "AB", "AC" };

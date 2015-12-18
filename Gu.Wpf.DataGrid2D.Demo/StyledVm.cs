@@ -7,9 +7,10 @@
     {
         public StyledVm()
         {
-            this.ColumnHeaders = new[] { "Col1", "Col2" };
+            this.RowHeaders = new[] { "1", "2" };
+            this.ColumnHeaders = new[] { "AA", "AB" };
             this.ListOfListsOfItems = new List<List<ItemVm>>();
-            var count = 0;
+            var count = 1;
             for (int i = 0; i < 3; i++)
             {
                 var itemRow = new List<ItemVm>();
@@ -27,6 +28,8 @@
                                                .Select(x => new ItemVm(x))
                                                .ToArray();
         }
+
+        public string[] RowHeaders { get; }
 
         public string[] ColumnHeaders { get; }
 

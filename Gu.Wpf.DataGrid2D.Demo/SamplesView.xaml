@@ -11,7 +11,7 @@
 
     <UniformGrid Columns="1">
         <GroupBox Header="Jagged">
-            <demo:JaggedSourcesView />
+            <demo:JaggedView />
         </GroupBox>
 
         <GroupBox Header="ListOfLists">
@@ -22,29 +22,14 @@
             <demo:Source2DView />
         </GroupBox>
 
-        <!--<GroupBox Header="SelectedCellItem">
-            <demo:SelectedItemView />
-        </GroupBox>
+
 
         <GroupBox Header="Styles and Templates">
             <demo:StyledView />
         </GroupBox>
 
         <GroupBox Header="RowNumbers">
-            <DataGrid dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}">
-                <DataGrid.RowStyle>
-                    <Style TargetType="{x:Type DataGridRow}">
-                        <Setter Property="dataGrid2D:Index.In" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-                        <Setter Property="dataGrid2D:Index.StartAt" Value="1" />
-                    </Style>
-                </DataGrid.RowStyle>
 
-                <DataGrid.RowHeaderStyle>
-                    <Style TargetType="{x:Type DataGridRowHeader}">
-                        <Setter Property="Content" Value="{Binding Path=(dataGrid2D:Index.Of), RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
-                    </Style>
-                </DataGrid.RowHeaderStyle>
-            </DataGrid>
-        </GroupBox>-->
+        </GroupBox>
     </UniformGrid>
 </UserControl>

@@ -13,7 +13,7 @@
         {
             var rowVms = new List<RowVm>();
             var allRowsItems = new List<ItemVm>();
-            int count = 0;
+            int count = 1;
 
             for (int i = 0; i < 3; i++)
             {

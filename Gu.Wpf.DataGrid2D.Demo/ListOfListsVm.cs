@@ -10,7 +10,7 @@
             this.ColumnHeaders = new[] { "AA", "AB" , "AC"};
             this.ListOfListsOfItems = new List<List<ItemVm>>();
             this.ListOfListsOfInts = new List<List<int>>();
-            var count = 0;
+            var count = 1;
             for (int i = 0; i < 3; i++)
             {
                 var itemRow = new List<ItemVm>();

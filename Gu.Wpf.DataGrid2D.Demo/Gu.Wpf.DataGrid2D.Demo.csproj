@@ -52,12 +52,12 @@
     <Compile Include="DebugView.xaml.cs">
       <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemVm.cs" />
-    <Compile Include="JaggedSourcesView.xaml.cs">
-      <DependentUpon>JaggedSourcesView.xaml</DependentUpon>
+    <Compile Include="Misc\ItemVm.cs" />
+    <Compile Include="JaggedView.xaml.cs">
+      <DependentUpon>JaggedView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="JaggedSourcesVm.cs">
-      <DependentUpon>JaggedSourcesView.xaml</DependentUpon>
+    <Compile Include="JaggedVm.cs">
+      <DependentUpon>JaggedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListOfListsView.xaml.cs">
       <DependentUpon>ListOfListsView.xaml</DependentUpon>
@@ -65,8 +65,17 @@
     <Compile Include="ListOfListsVm.cs">
       <DependentUpon>ListOfListsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs">
+      <DependentUpon>RowNumbersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="RowVm.cs" />
+    <Compile Include="RowNumbersView.xaml.cs">
+      <DependentUpon>RowNumbersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\RowVm.cs" />
+    <Compile Include="RowNumbersVm.cs">
+      <DependentUpon>RowNumbersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SamplesView.xaml.cs">
       <DependentUpon>SamplesView.xaml</DependentUpon>
     </Compile>
@@ -93,7 +102,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="JaggedSourcesView.xaml">
+    <Page Include="JaggedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +122,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RowNumbersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SamplesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -11,20 +11,14 @@
     <UserControl.DataContext>
         <local:SelectedItemVm />
     </UserControl.DataContext>
-    <Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <DataGrid Grid.Column="0"
-                      SelectionUnit="Cell"
-                      dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
-                      dataGrid2D:ItemsSource.SelectedCellItem="{Binding SelectedItem}" />
+    <UniformGrid Rows="1">
+        <DataGrid SelectionUnit="Cell"
+                  dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
+                  dataGrid2D:ItemsSource.SelectedCellItem="{Binding SelectedItem}" />
 
-            <ListBox Grid.Column="1"
-                     ItemsSource="{Binding AllRowsItems}"
-                     SelectedItem="{Binding SelectedItem}" />
-        </Grid>
-    </Grid>
+        <ListBox HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 ItemsSource="{Binding AllRowsItems}"
+                 SelectedItem="{Binding SelectedItem}" />
+    </UniformGrid>
 </UserControl>
