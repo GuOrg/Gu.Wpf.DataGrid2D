@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Tests.Internals
+﻿namespace Gu.Wpf.DataGrid2D.Tests.Views
 {
     using NUnit.Framework;
 

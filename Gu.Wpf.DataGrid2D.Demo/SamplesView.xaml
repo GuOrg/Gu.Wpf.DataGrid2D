@@ -14,14 +14,13 @@
             <demo:JaggedSourcesView />
         </GroupBox>
 
-        <!--
         <GroupBox Header="ListOfLists">
             <demo:ListOfListsView />
-        </GroupBox>-->
+        </GroupBox>
 
-        <!--<GroupBox Header="int[,]">
+        <GroupBox Header="int[,]">
             <demo:Source2DView />
-        </GroupBox>-->
+        </GroupBox>
 
         <!--<GroupBox Header="SelectedCellItem">
             <demo:SelectedItemView />

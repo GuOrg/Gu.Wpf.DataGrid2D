@@ -49,9 +49,11 @@
     <Compile Include="IndexColumn.cs" />
     <Compile Include="Internals\RoutedEventExt.cs" />
     <Compile Include="Internals\RowHeaderListener.cs" />
+    <Compile Include="Internals\TypeExt.cs" />
     <Compile Include="ItemsSource.Array2DTransposed.cs" />
     <Compile Include="ItemsSource.Events.cs" />
     <Compile Include="ItemsSource.RowHeadersSource.cs" />
+    <Compile Include="ItemsSource.ColumnsSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ItemsSource.ColumnHeadersSource.cs" />
     <Compile Include="ItemsSource.Array2D.cs" />

@@ -6,7 +6,8 @@
     {
         public ListOfListsVm()
         {
-            this.ColumnHeaders = new[] { "Col1", "Col2" };
+            this.RowHeaders = new[] { "1", "2" , "3"};
+            this.ColumnHeaders = new[] { "AA", "AB" , "AC"};
             this.ListOfListsOfItems = new List<List<ItemVm>>();
             this.ListOfListsOfInts = new List<List<int>>();
             var count = 0;
@@ -25,6 +26,8 @@
                 }
             }
         }
+
+        public object RowHeaders { get; }
 
         public string[] ColumnHeaders { get; }
 

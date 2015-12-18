@@ -22,13 +22,15 @@ namespace Gu.Wpf.DataGrid2D
 
         public int Count => this.rows.Count;
 
-        bool IList.IsReadOnly => false;
+        bool IList.IsReadOnly => this.Source.IsReadOnly();
 
         bool IList.IsFixedSize => true;
 
         object ICollection.SyncRoot => (this.source.Target as ICollection)?.SyncRoot;
 
         bool ICollection.IsSynchronized => (this.source.Target as ICollection)?.IsSynchronized == true;
+
+        internal IEnumerable<IEnumerable> Source => (IEnumerable<IEnumerable>)this.source.Target;
 
         public ListRowView this[int index] => this.rows[index];
 
@@ -80,7 +82,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private void ResetRows()
         {
-            var source = (IEnumerable<IEnumerable>)this.source.Target;
+            var source = this.Source;
             this.rows.Clear();
             if (source == null || !source.Any())
             {
@@ -89,8 +91,7 @@ namespace Gu.Wpf.DataGrid2D
 
             if (this.IsTransposed)
             {
-                var allElementTypes = source.Select(x => x.GetType()
-                                                          .GetElementType())
+                var allElementTypes = source.Select(x => x.GetElementType())
                                        .Distinct()
                                        .ToList();
                 var elementType = allElementTypes.Count > 1
@@ -98,9 +99,9 @@ namespace Gu.Wpf.DataGrid2D
                                       : allElementTypes[0];
 
                 var maxColumnCount = source.Count();
-
-                var propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, null, maxColumnCount);
-                for (int i = 0; i < maxColumnCount; i++)
+                var rowCount = source.Max(x => x.Count());
+                var propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, maxColumnCount);
+                for (int i = 0; i < rowCount; i++)
                 {
                     var listRowView = new ListRowView(source, i, propertyDescriptors, true);
                     this.rows.Add(listRowView);
@@ -113,15 +114,11 @@ namespace Gu.Wpf.DataGrid2D
                 var tempCache = new List<Tuple<Type, PropertyDescriptorCollection>>();
                 foreach (var row in source)
                 {
-                    var elementType = row.GetType().GetElementType();
+                    var elementType = row.GetElementType();
                     var propertyDescriptors = tempCache.FirstOrDefault(x => x.Item1 == elementType)?.Item2;
                     if (propertyDescriptors == null)
                     {
-                        var indexer = row.GetType()
-                                         .GetProperties()
-                                         .SingleOrDefault(x => x.GetIndexParameters()
-                                                                .Length == 1);
-                        propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, indexer, maxColumnCount);
+                        propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, maxColumnCount);
                         tempCache.Add(Tuple.Create(elementType, propertyDescriptors));
                     }
 

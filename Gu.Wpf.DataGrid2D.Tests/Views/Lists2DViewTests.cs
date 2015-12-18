@@ -1,4 +1,4 @@
-namespace Gu.Wpf.DataGrid2D.Tests.Internals
+namespace Gu.Wpf.DataGrid2D.Tests.Views
 {
     using NUnit.Framework;
 
@@ -14,6 +14,8 @@ namespace Gu.Wpf.DataGrid2D.Tests.Internals
 
             Assert.AreEqual(0, view[0].Index);
             Assert.AreEqual(2, view[0].Count);
+            Assert.AreEqual(false, view[0].IsTransposed);
+            Assert.AreEqual(typeof(int), view[0].GetProperties()[0].ComponentType);
             Assert.AreEqual(1, view[0].GetProperties()[0].GetValue(view[0]));
             Assert.AreEqual(2, view[0].GetProperties()[1].GetValue(view[0]));
 
@@ -37,7 +39,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Internals
         public void Edit(int r, int c, int value)
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
-            var view = Array2DView.Create(ints);
+            var view = Lists2DView.Create(ints);
             var row = view[r];
             var property = row.GetProperties()[c];
             property.SetValue(row, value);
@@ -49,7 +51,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Internals
         public void CreateTransposed()
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
-            var view = Array2DView.CreateTransposed(ints);
+            var view = Lists2DView.CreateTransposed(ints);
 
             Assert.AreEqual(2, view.Count);
 
@@ -75,7 +77,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Internals
         public void EditTransposed(int r, int c, int value)
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
-            var view = Array2DView.CreateTransposed(ints);
+            var view = Lists2DView.CreateTransposed(ints);
             var row = view[r];
             var property = row.GetProperties()[c];
             property.SetValue(row, value);

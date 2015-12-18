@@ -1,16 +1,55 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
 
     internal static class EnumerableExt
     {
-        public static T ElementAtOrDefault<T>(this IEnumerable source, int index)
+        internal static Type GetElementType(this IEnumerable enumerable)
+        {
+            var type = enumerable.GetType();
+            if (type.HasElementType)
+            {
+                return type.GetElementType();
+            }
+            if (type.IsEnumerableOfT())
+            {
+                return type.GetEnumerableItemType();
+            }
+
+            return typeof (object);
+        }
+
+        internal static bool IsReadOnly(this IEnumerable<IEnumerable> source)
+        {
+            return !source.All(x => x is IList);
+        }
+
+        internal static void SetElementAt(this IEnumerable source, int index, object value)
+        {
+            var list = source as IList;
+            if (list != null)
+            {
+                list[index] = value;
+                return;
+            }
+
+            throw new NotSupportedException();
+            var type = source.GetType();
+            var propertyInfos = type.GetProperties();
+            var indexerPropertyInfo = propertyInfos.Single(x => x.GetIndexParameters()
+                                                          .Length == 1);
+            indexerPropertyInfo.SetValue(source, value, new object[] { index });
+        }
+
+        internal static T ElementAtOrDefault<T>(this IEnumerable source, int index)
         {
             return (T)(source.ElementAtOrDefault(index) ?? default(T));
         }
 
-        public static object ElementAtOrDefault(this IEnumerable source, int index)
+        internal static object ElementAtOrDefault(this IEnumerable source, int index)
         {
             if (source == null)
             {

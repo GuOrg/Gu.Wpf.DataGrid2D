@@ -13,15 +13,19 @@
         <GroupBox Header="Vanilla">
             <UniformGrid Rows="1">
                 <GroupBox Header="Auto columns">
-                    <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
+                    <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
                 </GroupBox>
 
+                <GroupBox Header="Auto columns">
+                    <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
+                </GroupBox>
+                
                 <GroupBox Header="Readonly">
-                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
+                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}">
+                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
                             <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
@@ -34,7 +38,7 @@
                               SelectionUnit="Cell"
                               dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
                               dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
-                              dataGrid2D:ItemsSource.RowsSource="{Binding JaggedRows}" />
+                              dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>
@@ -42,15 +46,15 @@
         <GroupBox Header="Transposed">
             <UniformGrid Rows="1">
                 <GroupBox Header="Auto columns">
-                    <DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                    <DataGrid dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Readonly">
-                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
+                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
                             <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
@@ -62,8 +66,8 @@
                 <GroupBox Header="With headers">
                     <DataGrid ColumnWidth="SizeToHeader"
                               SelectionUnit="Cell"
-                              dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}"
                               dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                              dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}"
                               dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
                 </GroupBox>
             </UniformGrid>
