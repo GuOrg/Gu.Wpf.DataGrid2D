@@ -9,17 +9,18 @@
     <UserControl.DataContext>
         <local:RowNumbersVm />
     </UserControl.DataContext>
-    <DataGrid ItemsSource="{Binding Persons}">
-        <DataGrid.RowStyle>
+    <DataGrid ItemsSource="{Binding Persons}"
+        dataGrid2D:Index.StartAt="1">
+        <!--<DataGrid.RowStyle>
             <Style TargetType="{x:Type DataGridRow}">
                 <Setter Property="dataGrid2D:Index.In" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                 <Setter Property="dataGrid2D:Index.StartAt" Value="1" />
             </Style>
-        </DataGrid.RowStyle>
+        </DataGrid.RowStyle>-->
 
         <DataGrid.RowHeaderStyle>
             <Style TargetType="{x:Type DataGridRowHeader}">
-                <Setter Property="Content" Value="{Binding Path=(dataGrid2D:Index.Of), RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+                <Setter Property="Content" Value="{Binding Path=(dataGrid2D:Index.OfRow), RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
             </Style>
         </DataGrid.RowHeaderStyle>
     </DataGrid>

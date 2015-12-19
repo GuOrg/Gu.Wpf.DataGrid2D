@@ -1,14 +1,20 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.Collections.ObjectModel;
+    using System.Linq;
 
     public class RowNumbersVm
     {
-        public ObservableCollection<Person> Persons { get; } = new ObservableCollection<Person>
-                                                               {
-                                                                   new Person { FirstName = "Johan", LastName = "Larsson" },
-                                                                   new Person { FirstName = "Erik", LastName = "Svensson" },
-                                                                   new Person { FirstName = "Robert", LastName = "Johnsson" },
-                                                               };
+        private static string[] FirstNames = { "Johan", "Erik", "Lynn" };
+        private static string[] LastNames = { "Larsson", "Svensson", "Skeet" };
+
+        public ObservableCollection<Person> Persons { get; } = CreatePersons(100);
+
+        private static ObservableCollection<Person> CreatePersons(int n)
+        {
+            var persons = Enumerable.Range(0, n)
+                                    .Select(x => new Person { FirstName = FirstNames[x % 3], LastName = LastNames[x % 3] });
+            return new ObservableCollection<Person>(persons);
+        }
     }
 }

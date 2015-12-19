@@ -49,12 +49,12 @@
                     BindingOperations.ClearBinding(row, DataGridRow.HeaderProperty);
                 }
 
-                dataGrid.RemoveHandler(RowsChangedEvent, OnRowsChangedHandler);
+                dataGrid.RemoveHandler(Events.RowsChanged, OnRowsChangedHandler);
                 return;
             }
 
             dataGrid.SetValue(RowHeaderListenerProperty, new RowHeaderListener(dataGrid));
-            dataGrid.UpdateHandler(RowsChangedEvent, OnRowsChangedHandler);
+            dataGrid.UpdateHandler(Events.RowsChanged, OnRowsChangedHandler);
             OnRowsChanged(dataGrid, null);
         }
 

@@ -40,7 +40,7 @@
             var view = Lists2DView.CreateTransposed(source);
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(view);
-            dataGrid.RaiseEvent(new RoutedEventArgs(ColumnsChangedEvent));
+            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
         }
     }
 }

@@ -40,7 +40,7 @@
             var view = Lists2DView.Create(array);
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(view);
-            dataGrid.RaiseEvent(new RoutedEventArgs(ColumnsChangedEvent));
+            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
         }
 
         private static bool OnValidateRowsSource(object value)

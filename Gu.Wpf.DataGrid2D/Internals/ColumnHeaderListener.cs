@@ -7,7 +7,7 @@
 
     internal class ColumnHeaderListener : IDisposable
     {
-        private static readonly RoutedEventArgs ColumnsChangedEventArgs = new RoutedEventArgs(ItemsSource.ColumnsChangedEvent);
+        private static readonly RoutedEventArgs ColumnsChangedEventArgs = new RoutedEventArgs(Events.ColumnsChanged);
 
         private readonly DataGrid dataGrid;
         private bool disposed;
