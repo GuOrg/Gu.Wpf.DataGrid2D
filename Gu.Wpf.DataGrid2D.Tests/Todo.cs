@@ -5,9 +5,10 @@
     public class Todo
     {
         [Test]
-        public void TransposedItemsSource()
+        public void PropertySource()
         {
-            Assert.Inconclusive("Transpose a list of persons for propertygrid");
+            Assert.Fail("Transpose a list of persons for propertygrid");
+            Assert.Fail("Coerce single item to singleton");
         }
     }
 }

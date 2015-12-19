@@ -2,5 +2,6 @@ FRAMEWORK: >= NET45
 NUGET
   remote: http://www.nuget.org/api/v2
   specs:
+    JetBrains.Annotations (10.0.0)
     NUnit (2.6.4)
     StyleCop.Analyzers (1.0.0-rc2)

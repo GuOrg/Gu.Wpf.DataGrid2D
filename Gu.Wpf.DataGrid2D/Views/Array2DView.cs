@@ -49,12 +49,12 @@ namespace Gu.Wpf.DataGrid2D
             set { ThrowNotSupported(); }
         }
 
-        internal static Array2DView Create(Array source)
+        public static Array2DView Create(Array source)
         {
             return new Array2DView(source, false);
         }
 
-        internal static Array2DView CreateTransposed(Array source)
+        public static Array2DView CreateTransposed(Array source)
         {
             return new Array2DView(source, true);
         }

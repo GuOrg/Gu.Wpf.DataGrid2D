@@ -2,10 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:dataGrid2D="http://gu.se/DataGrid2D"
         xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="MainWindow"
         Width="525"
         Height="350"
@@ -35,7 +33,7 @@
         <TabItem Header="RowNumbers">
             <demo:RowNumbersView />
         </TabItem>
-        
+
         <TabItem Header="Debug">
             <demo:DebugView />
         </TabItem>

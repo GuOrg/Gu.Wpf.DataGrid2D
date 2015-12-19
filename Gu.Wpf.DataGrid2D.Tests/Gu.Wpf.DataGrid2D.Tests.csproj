@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGen\CodeGenTests.cs" />
+    <Compile Include="Helpers\CollectionChangedEventArgsComparer.cs" />
     <Compile Include="Helpers\DataGridExt.cs" />
     <Compile Include="Internals\EnumerableExtTests.cs" />
     <Compile Include="Todo.cs" />

@@ -1,6 +1,9 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Tests.Views
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
     using NUnit.Framework;
 
     public partial class Lists2DViewTests
@@ -32,10 +35,10 @@
                 Assert.AreEqual(3, view[1].GetProperties()[0].GetValue(view[1]));
                 Assert.AreEqual(4, view[1].GetProperties()[1].GetValue(view[1]));
 
-                Assert.AreEqual(2, view[3].Index);
-                Assert.AreEqual(2, view[3].Count);
-                Assert.AreEqual(5, view[3].GetProperties()[0].GetValue(view[3]));
-                Assert.AreEqual(6, view[3].GetProperties()[1].GetValue(view[3]));
+                Assert.AreEqual(2, view[2].Index);
+                Assert.AreEqual(2, view[2].Count);
+                Assert.AreEqual(5, view[2].GetProperties()[0].GetValue(view[2]));
+                Assert.AreEqual(6, view[2].GetProperties()[1].GetValue(view[2]));
             }
 
             [Test]
@@ -48,10 +51,20 @@
                                new ObservableCollection<int>(new[] {5, 6})
                            };
                 var view = Lists2DView.Create(ints);
-                int count = 0;
-                view.CollectionChanged += (_, __) => count++;
+
+                var expectedPropertyChanges = new List<string>();
+                ((INotifyPropertyChanged)ints).PropertyChanged += (_, e) => expectedPropertyChanges.Add(e.PropertyName);
+                var actualPropertyChanges = new List<string>();
+                view.PropertyChanged += (_, e) => actualPropertyChanges.Add(e.PropertyName);
+
+                var expectedCollectionChanges = new List<NotifyCollectionChangedEventArgs>();
+                ints.CollectionChanged += (_, e) => expectedCollectionChanges.Add(e);
+                var actualCollectionChanges = new List<NotifyCollectionChangedEventArgs>();
+                view.CollectionChanged += (_, e) => actualCollectionChanges.Add(e);
                 ints.Add(new ObservableCollection<int>(new[] { 7, 8 }));
-                Assert.AreEqual(1, count);
+
+                CollectionAssert.AreEqual(expectedPropertyChanges, actualPropertyChanges);
+                CollectionAssert.AreEqual(expectedCollectionChanges, actualCollectionChanges, CollectionChangedEventArgsComparer.Default);
                 Assert.AreEqual(4, view.Count);
 
                 Assert.AreEqual(0, view[0].Index);
@@ -71,10 +84,10 @@
                 Assert.AreEqual(5, view[2].GetProperties()[0].GetValue(view[2]));
                 Assert.AreEqual(6, view[2].GetProperties()[1].GetValue(view[2]));
 
-                Assert.AreEqual(3, view[2].Index);
-                Assert.AreEqual(3, view[2].Count);
-                Assert.AreEqual(7, view[2].GetProperties()[0].GetValue(view[2]));
-                Assert.AreEqual(8, view[2].GetProperties()[1].GetValue(view[2]));
+                Assert.AreEqual(3, view[3].Index);
+                Assert.AreEqual(2, view[3].Count);
+                Assert.AreEqual(7, view[3].GetProperties()[0].GetValue(view[3]));
+                Assert.AreEqual(8, view[3].GetProperties()[1].GetValue(view[3]));
             }
 
             [Test]
@@ -87,10 +100,19 @@
                                new ObservableCollection<int>(new[] {5, 6})
                            };
                 var view = Lists2DView.Create(ints);
-                int count = 0;
-                view.CollectionChanged += (_, __) => count++;
+                var expectedPropertyChanges = new List<string>();
+                ((INotifyPropertyChanged)ints).PropertyChanged += (_, e) => expectedPropertyChanges.Add(e.PropertyName);
+                var actualPropertyChanges = new List<string>();
+                view.PropertyChanged += (_, e) => actualPropertyChanges.Add(e.PropertyName);
+
+                var expectedCollectionChanges = new List<NotifyCollectionChangedEventArgs>();
+                ints.CollectionChanged += (_, e) => expectedCollectionChanges.Add(e);
+                var actualCollectionChanges = new List<NotifyCollectionChangedEventArgs>();
+                view.CollectionChanged += (_, e) => actualCollectionChanges.Add(e);
+                ints.Add(new ObservableCollection<int>(new[] { 7, 8 }));
                 ints[2].Add(7);
-                Assert.AreEqual(1, count);
+                CollectionAssert.AreEqual(expectedPropertyChanges, actualPropertyChanges);
+                CollectionAssert.AreEqual(expectedCollectionChanges, actualCollectionChanges, CollectionChangedEventArgsComparer.Default);
 
                 Assert.AreEqual(3, view.Count);
 
@@ -117,7 +139,8 @@
                 Assert.AreEqual(8, view[2].GetProperties()[1].GetValue(view[2]));
 
                 ints[1].Add(-3);
-                Assert.AreEqual(1, count); // should not notify if length does not change
+                CollectionAssert.AreEqual(expectedPropertyChanges, actualPropertyChanges);
+                CollectionAssert.AreEqual(expectedCollectionChanges, actualCollectionChanges, CollectionChangedEventArgsComparer.Default);
             }
         }
     }
