@@ -43,11 +43,13 @@
     <Compile Include="CodeGen\CodeGenTests.cs" />
     <Compile Include="Helpers\DataGridExt.cs" />
     <Compile Include="Internals\EnumerableExtTests.cs" />
-    <Compile Include="Views\Lists2DViewTests.cs" />
+    <Compile Include="Todo.cs" />
+    <Compile Include="Views\Lists2DViewTests.Arrays.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Array2DViewTests.cs" />
     <Compile Include="SelectedCellItemTests.cs" />
     <Compile Include="ItemsSourceTests.cs" />
+    <Compile Include="Views\Lists2DViewTests.ObservableCollections.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />

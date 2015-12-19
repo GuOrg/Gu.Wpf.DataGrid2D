@@ -3,10 +3,11 @@ namespace Gu.Wpf.DataGrid2D
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Linq;
 
-    public class Lists2DView : IList
+    public class Lists2DView : IList, INotifyCollectionChanged
     {
         private readonly WeakReference source = new WeakReference(null);
         private readonly List<ListRowView> rows = new List<ListRowView>();
@@ -17,6 +18,8 @@ namespace Gu.Wpf.DataGrid2D
             this.source.Target = source;
             this.ResetRows();
         }
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public bool IsTransposed { get; }
 
@@ -127,6 +130,11 @@ namespace Gu.Wpf.DataGrid2D
                     index++;
                 }
             }
+        }
+
+        protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            this.CollectionChanged?.Invoke(this, e);
         }
     }
 }

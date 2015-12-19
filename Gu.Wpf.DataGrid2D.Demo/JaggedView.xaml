@@ -19,7 +19,7 @@
                 <GroupBox Header="Auto columns">
                     <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
                 </GroupBox>
-                
+
                 <GroupBox Header="Readonly">
                     <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
                 </GroupBox>
@@ -49,8 +49,8 @@
                     <DataGrid dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}" />
                 </GroupBox>
 
-                <GroupBox Header="Readonly">
-                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}" />
+                <GroupBox Header="Auto columns">
+                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.ColumnsSource="{Binding DifferentLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Explicit columns">

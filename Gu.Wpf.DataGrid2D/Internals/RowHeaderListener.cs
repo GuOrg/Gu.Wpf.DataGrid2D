@@ -16,7 +16,7 @@ namespace Gu.Wpf.DataGrid2D
         public RowHeaderListener(DataGrid dataGrid)
         {
             this.dataGrid = dataGrid;
-            dataGrid.ItemContainerGenerator.ItemsChanged += this.OnItemsChanged;
+            ////dataGrid.ItemContainerGenerator.ItemsChanged += this.OnItemsChanged;
             dataGrid.ItemContainerGenerator.StatusChanged += this.OnStatusChanged;
             var headers = dataGrid.GetRowHeadersSource() as INotifyCollectionChanged;
             if (headers != null)
@@ -33,7 +33,7 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             this.disposed = true;
-            this.dataGrid.ItemContainerGenerator.ItemsChanged -= this.OnItemsChanged;
+            ////this.dataGrid.ItemContainerGenerator.ItemsChanged -= this.OnItemsChanged;
             this.dataGrid.ItemContainerGenerator.StatusChanged -= this.OnStatusChanged;
             var headers = this.dataGrid.GetRowHeadersSource() as INotifyCollectionChanged;
             if (headers != null)
@@ -42,10 +42,10 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        private void OnItemsChanged(object o, ItemsChangedEventArgs e)
-        {
-            this.dataGrid.RaiseEvent(RowsChangedEventArgs);
-        }
+        ////private void OnItemsChanged(object o, ItemsChangedEventArgs e)
+        ////{
+        ////    this.dataGrid.RaiseEvent(RowsChangedEventArgs);
+        ////}
 
         private void OnHeadersChanged(object o, NotifyCollectionChangedEventArgs e)
         {
