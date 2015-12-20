@@ -27,6 +27,21 @@ namespace Gu.Wpf.DataGrid2D
             this.source.Target = source;
             this.ResetRows();
             var incc = source as INotifyCollectionChanged;
+            if (isTransposed)
+            {
+                this.MaxColumnCount = source.Count();
+                var allElementTypes = this.Source.Select(x => x.GetElementType())
+                                          .Distinct()
+                                          .ToList();
+                this.ElementType = allElementTypes.Count > 1
+                                      ? typeof(object)
+                                      : allElementTypes[0];
+            }
+            else
+            {
+                this.MaxColumnCount = source.Max(x => x.Count());
+                this.ElementType = source.ElementAtOrDefault<IEnumerable>(0).GetElementType();
+            }
 
             if (incc != null)
             {
@@ -62,6 +77,10 @@ namespace Gu.Wpf.DataGrid2D
         object ICollection.SyncRoot => (this.source.Target as ICollection)?.SyncRoot;
 
         bool ICollection.IsSynchronized => (this.source.Target as ICollection)?.IsSynchronized == true;
+
+        internal Type ElementType { get; }
+
+        internal int MaxColumnCount { get; }
 
         internal IEnumerable<IEnumerable> Source => (IEnumerable<IEnumerable>)this.source.Target;
 
@@ -244,20 +263,18 @@ namespace Gu.Wpf.DataGrid2D
 
             if (this.IsTransposed)
             {
-                var maxColumnCount = source.Count();
                 var rowCount = source.Max(x => x.Count());
                 for (int i = 0; i < rowCount; i++)
                 {
-                    var listRowView = this.CreateRow(i, maxColumnCount);
+                    var listRowView = this.CreateRow(i);
                     this.rows.Add(listRowView);
                 }
             }
             else
             {
-                var maxColumnCount = source.Max(x => x.Count());
                 for (int index = 0; index < source.Count(); index++)
                 {
-                    var listRowView = this.CreateRow(index, maxColumnCount);
+                    var listRowView = this.CreateRow(index);
                     this.rows.Add(listRowView);
                 }
             }
@@ -270,13 +287,9 @@ namespace Gu.Wpf.DataGrid2D
         private void AddRows(int newStartingIndex, int count)
         {
             var newItems = new List<ListRowView>();
-            var maxColumnCount = this.IsTransposed
-                                     ? this.Source.Count()
-                                     : this.Source.Max(x => x.Count());
-
             for (int index = newStartingIndex; index < newStartingIndex + count; index++)
             {
-                var listRowView = this.CreateRow(index, maxColumnCount);
+                var listRowView = this.CreateRow(index);
                 this.rows.Add(listRowView);
                 newItems.Add(listRowView);
             }
@@ -300,36 +313,28 @@ namespace Gu.Wpf.DataGrid2D
             this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, oldItems, oldStartingIndex));
         }
 
-        private ListRowView CreateRow(int index, int maxColumnCount)
+        private ListRowView CreateRow(int index)
         {
             if (this.IsTransposed)
             {
                 PropertyDescriptorCollection propertyDescriptors = null;
-                Type elementType = null;
                 if (this.rows.Count == 0)
                 {
-                    var allElementTypes = this.Source.Select(x => x.GetElementType())
-                          .Distinct()
-                          .ToList();
-                    elementType = allElementTypes.Count > 1
-                                          ? typeof(object)
-                                          : allElementTypes[0];
-                    propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, maxColumnCount);
+                    propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ElementType, this.MaxColumnCount);
                 }
                 else
                 {
-                    elementType = this.rows[0].ElementType;
                     propertyDescriptors = this.rows[0].GetProperties();
                 }
 
-                return new ListRowView(this.Source, index, elementType, propertyDescriptors, true);
+                return new ListRowView(this.Source, index, this.ElementType, propertyDescriptors, true);
             }
             else
             {
                 var elementType = this.Source.ElementAtOrDefault<IEnumerable>(index).GetElementType();
                 var propertyDescriptors = this.rows.FirstOrDefault(x => x.ElementType == elementType)
                                               ?.GetProperties() ??
-                                          ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, maxColumnCount);
+                                          ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, this.MaxColumnCount);
 
                 return new ListRowView(this.Source, index, elementType, propertyDescriptors, false);
             }

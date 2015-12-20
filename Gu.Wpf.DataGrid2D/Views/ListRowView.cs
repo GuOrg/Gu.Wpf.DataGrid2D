@@ -9,6 +9,8 @@
 
     public class ListRowView : RowView<IEnumerable<IEnumerable>>, INotifyPropertyChanged
     {
+        private static readonly EventDescriptorCollection Events = TypeDescriptor.GetEvents(typeof(ListRowView));
+
         internal ListRowView(IEnumerable<IEnumerable> source, int index, Type elementType, PropertyDescriptorCollection properties, bool isTransposed)
             : base(source, index, properties, isTransposed)
         {
@@ -18,6 +20,10 @@
         public event PropertyChangedEventHandler PropertyChanged;
 
         internal Type ElementType { get; }
+
+        public override EventDescriptorCollection GetEvents() => Events;
+
+        public override EventDescriptorCollection GetEvents(Attribute[] attributes) => Events;
 
         internal void RaiseAllChanged()
         {

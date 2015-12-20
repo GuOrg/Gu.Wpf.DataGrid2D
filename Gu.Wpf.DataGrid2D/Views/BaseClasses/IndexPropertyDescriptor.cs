@@ -6,20 +6,22 @@ namespace Gu.Wpf.DataGrid2D
     internal abstract class IndexPropertyDescriptor : PropertyDescriptor
     {
         private readonly Type elementType;
-        protected readonly int index;
 
-        protected IndexPropertyDescriptor(Type elementType, int index)
+        protected IndexPropertyDescriptor(Type elementType, int index, bool isReadOnly)
             : base($"C{index}", null)
         {
+            this.IsReadOnly = isReadOnly;
             this.elementType = elementType;
-            this.index = index;
+            this.Index = index;
         }
 
         public override Type ComponentType => this.elementType;
 
-        public override bool IsReadOnly => false;
+        public override bool IsReadOnly { get; }
 
         public override Type PropertyType => this.elementType;
+
+        protected int Index { get; }
 
         public override bool CanResetValue(object component) => false;
 

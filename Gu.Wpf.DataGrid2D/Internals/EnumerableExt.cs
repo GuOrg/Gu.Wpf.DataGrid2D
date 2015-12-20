@@ -14,12 +14,13 @@
             {
                 return type.GetElementType();
             }
+
             if (type.IsEnumerableOfT())
             {
                 return type.GetEnumerableItemType();
             }
 
-            return typeof (object);
+            return typeof(object);
         }
 
         internal static bool IsReadOnly(this IEnumerable<IEnumerable> source)
@@ -47,6 +48,28 @@
             var indexerPropertyInfo = propertyInfos.Single(x => x.GetIndexParameters()
                                                           .Length == 1);
             indexerPropertyInfo.SetValue(source, value, new object[] { index });
+        }
+
+        internal static int IndexOf(this IEnumerable source, object item)
+        {
+            var list = source as IList;
+            if (list != null)
+            {
+                return list.IndexOf(item);
+            }
+
+            int index = 0;
+            foreach (var element in source)
+            {
+                if (Equals(element, item))
+                {
+                    return index;
+                }
+
+                index++;
+            }
+
+            return -1;
         }
 
         internal static T ElementAtOrDefault<T>(this IEnumerable source, int index)

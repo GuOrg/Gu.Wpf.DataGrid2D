@@ -40,7 +40,7 @@
 
             dataGrid.Bind(ItemsSourceProxyProperty)
                     .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
-            UpdateListViewSource(dataGrid);
+            UpdateItemsSource(dataGrid);
         }
 
         private static bool OnValidateRowsSource(object value)

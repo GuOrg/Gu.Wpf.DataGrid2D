@@ -22,6 +22,10 @@
             <demo:ListOfListsView />
         </TabItem>
 
+        <TabItem Header="Transposed">
+            <demo:TransposedView />
+        </TabItem>
+        
         <TabItem Header="SelectedCellItem">
             <demo:SelectedView />
         </TabItem>

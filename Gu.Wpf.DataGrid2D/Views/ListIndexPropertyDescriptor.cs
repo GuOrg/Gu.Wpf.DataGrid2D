@@ -4,12 +4,11 @@
     using System.Collections;
     using System.ComponentModel;
     using System.Linq;
-    using System.Reflection;
 
     internal class ListIndexPropertyDescriptor : IndexPropertyDescriptor
     {
         private ListIndexPropertyDescriptor(Type elementType, int index)
-            : base(elementType, index)
+            : base(elementType, index, false)
         {
         }
 
@@ -19,14 +18,14 @@
             if (listRowView.IsTransposed)
             {
                 return listRowView.Source
-                                  .ElementAtOrDefault<IEnumerable>(this.index)
+                                  .ElementAtOrDefault<IEnumerable>(this.Index)
                                   .ElementAtOrDefault(listRowView.Index);
             }
             else
             {
                 return listRowView.Source
                                   .ElementAtOrDefault<IEnumerable>(listRowView.Index)
-                                  .ElementAtOrDefault(this.index);
+                                  .ElementAtOrDefault(this.Index);
             }
         }
 
@@ -35,13 +34,13 @@
             var listRowView = (ListRowView)component;
             if (listRowView.IsTransposed)
             {
-                var list = listRowView.Source.ElementAtOrDefault<IEnumerable>(this.index);
+                var list = listRowView.Source.ElementAtOrDefault<IEnumerable>(this.Index);
                 list.SetElementAt(listRowView.Index, value);
             }
             else
             {
                 var list = listRowView.Source.ElementAtOrDefault<IEnumerable>(listRowView.Index);
-                list.SetElementAt(this.index, value);
+                list.SetElementAt(this.Index, value);
             }
         }
 

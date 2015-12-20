@@ -38,34 +38,38 @@ namespace Gu.Wpf.DataGrid2D
             var view = (Lists2DView)sender;
             if (ReferenceEquals(view.DataGrid.GetRowsSource(), view.Source))
             {
-                UpdateListViewSource(view.DataGrid);
+                UpdateItemsSource(view.DataGrid);
                 return;
             }
 
             if (ReferenceEquals(view.DataGrid.GetColumnsSource(), view.Source))
             {
-                UpdateListViewSource(view.DataGrid);
+                UpdateItemsSource(view.DataGrid);
                 return;
             }
 
             throw new ArgumentOutOfRangeException();
         }
 
-        private static void UpdateListViewSource(DataGrid dataGrid)
+        private static void UpdateItemsSource(DataGrid dataGrid)
         {
-            Lists2DView view = null;
+            IEnumerable view = null;
             var rowsSource = (IEnumerable<IEnumerable>)dataGrid.GetRowsSource();
             if (rowsSource != null)
             {
                 view = Lists2DView.Create(rowsSource);
             }
-            else
+
+            var colsSource = (IEnumerable<IEnumerable>)dataGrid.GetColumnsSource();
+            if (colsSource != null)
             {
-                var colsSource = (IEnumerable<IEnumerable>)dataGrid.GetColumnsSource();
-                if (colsSource != null)
-                {
-                    view = Lists2DView.CreateTransposed(colsSource);
-                }
+                view = Lists2DView.CreateTransposed(colsSource);
+            }
+
+            var transposedSource = dataGrid.GetTransposedSource();
+            if (transposedSource != null)
+            {
+                view = new TransformedItemsSource(transposedSource);
             }
 
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)

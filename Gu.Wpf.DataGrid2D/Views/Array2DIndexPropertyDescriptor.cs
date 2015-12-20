@@ -10,7 +10,7 @@
         private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> ColumnDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
 
         private Array2DIndexPropertyDescriptor(Type elementType, int index)
-            : base(elementType, index)
+            : base(elementType, index, false)
         {
         }
 
@@ -30,10 +30,10 @@
             var source = rowView.Source;
             if (rowView.IsTransposed)
             {
-                return source?.GetValue(this.index, rowView.Index);
+                return source?.GetValue(this.Index, rowView.Index);
             }
 
-            return source?.GetValue(rowView.Index, this.index);
+            return source?.GetValue(rowView.Index, this.Index);
         }
 
         public override void SetValue(object component, object value)
@@ -42,11 +42,11 @@
             var source = (Array)rowView.Source;
             if (rowView.IsTransposed)
             {
-                source?.SetValue(value, this.index, rowView.Index);
+                source?.SetValue(value, this.Index, rowView.Index);
             }
             else
             {
-                source?.SetValue(value, rowView.Index, this.index);
+                source?.SetValue(value, rowView.Index, this.Index);
             }
         }
 
