@@ -38,23 +38,36 @@
             var view = (Lists2DView)sender;
             if (ReferenceEquals(view.DataGrid.GetRowsSource(), view.Source))
             {
-                UpdateListViewSource(view.DataGrid, Lists2DView.Create);
+                UpdateListViewSource(view.DataGrid);
                 return;
             }
 
             if (ReferenceEquals(view.DataGrid.GetColumnsSource(), view.Source))
             {
-                UpdateListViewSource(view.DataGrid, Lists2DView.CreateTransposed);
+                UpdateListViewSource(view.DataGrid);
                 return;
             }
 
             throw new ArgumentOutOfRangeException();
         }
 
-        private static void UpdateListViewSource(DataGrid dataGrid, Func<IEnumerable<IEnumerable>, Lists2DView> viewCreator)
+        private static void UpdateListViewSource(DataGrid dataGrid)
         {
+            Lists2DView view = null;
             var rowsSource = (IEnumerable<IEnumerable>)dataGrid.GetRowsSource();
-            var view = viewCreator(rowsSource);
+            if (rowsSource != null)
+            {
+                view = Lists2DView.Create(rowsSource);
+            }
+            else
+            {
+                var colsSource = (IEnumerable<IEnumerable>)dataGrid.GetColumnsSource();
+                if (colsSource != null)
+                {
+                    view = Lists2DView.CreateTransposed(colsSource);
+                }
+            }
+
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(view);
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));

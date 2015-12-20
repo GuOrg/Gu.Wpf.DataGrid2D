@@ -41,7 +41,7 @@
 
             dataGrid.Bind(ItemsSourceProxyProperty)
                     .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
-            UpdateListViewSource(dataGrid, Lists2DView.Create);
+            UpdateListViewSource(dataGrid);
         }
 
         private static bool OnValidateRowsSource(object value)

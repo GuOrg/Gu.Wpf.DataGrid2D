@@ -40,7 +40,7 @@
 
             dataGrid.Bind(ItemsSourceProxyProperty)
                     .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
-            UpdateListViewSource(dataGrid, Lists2DView.CreateTransposed);
+            UpdateListViewSource(dataGrid);
         }
     }
 }
