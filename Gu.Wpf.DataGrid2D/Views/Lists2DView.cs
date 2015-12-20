@@ -8,9 +8,10 @@ namespace Gu.Wpf.DataGrid2D
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows;
+    using System.Windows.Controls;
     using JetBrains.Annotations;
 
-    public class Lists2DView : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener
+    public class Lists2DView : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable
     {
         private static readonly NotifyCollectionChangedEventArgs NotifyCollectionResetEventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
         private static readonly PropertyChangedEventArgs CountPropertyChangedEventArgs = new PropertyChangedEventArgs(nameof(Count));
@@ -42,6 +43,14 @@ namespace Gu.Wpf.DataGrid2D
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
+        /// <summary>
+        /// Not sure how to best handle the situation when the number of columns changes.
+        /// Testing to raise this event and refresh the ItemsSource binding in the DataGrid.
+        /// Just adding a column would not play nice with explicit columns.
+        /// This way will not be ideal for performance if it changes frequently
+        /// </summary>
+        internal event EventHandler ColumnsChanged;
+
         public bool IsTransposed { get; }
 
         public int Count => this.rows.Count;
@@ -55,6 +64,8 @@ namespace Gu.Wpf.DataGrid2D
         bool ICollection.IsSynchronized => (this.source.Target as ICollection)?.IsSynchronized == true;
 
         internal IEnumerable<IEnumerable> Source => (IEnumerable<IEnumerable>)this.source.Target;
+
+        internal DataGrid DataGrid { get; set; }
 
         public ListRowView this[int index] => this.rows[index];
 
@@ -74,25 +85,20 @@ namespace Gu.Wpf.DataGrid2D
             return new Lists2DView(source, true);
         }
 
-        public IEnumerator<ListRowView> GetEnumerator() => this.rows.GetEnumerator();
+        public void Dispose()
+        {
+            var incc = this.Source as INotifyCollectionChanged;
 
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+            if (incc != null)
+            {
+                CollectionChangedEventManager.RemoveListener(incc, this);
+            }
 
-        void ICollection.CopyTo(Array array, int index) => ((IList)this.rows).CopyTo(array, index);
-
-        int IList.Add(object value) => ThrowNotSupported<int>();
-
-        bool IList.Contains(object value) => this.rows.Contains(value);
-
-        void IList.Clear() => ThrowNotSupported();
-
-        int IList.IndexOf(object value) => this.rows.IndexOf((ListRowView)value);
-
-        void IList.Insert(int index, object value) => ThrowNotSupported();
-
-        void IList.Remove(object value) => ThrowNotSupported();
-
-        void IList.RemoveAt(int index) => ThrowNotSupported();
+            foreach (var row in this.Source.OfType<INotifyCollectionChanged>())
+            {
+                CollectionChangedEventManager.RemoveListener(row, this);
+            }
+        }
 
         bool IWeakEventListener.ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
@@ -124,7 +130,7 @@ namespace Gu.Wpf.DataGrid2D
 
                 if (this.IsTransposed)
                 {
-                    throw new NotSupportedException($"{nameof(Lists2DView)} does not support changing number of columns dynamically yet.");
+                    this.OnColumnsChanged();
                 }
                 else
                 {
@@ -194,6 +200,26 @@ namespace Gu.Wpf.DataGrid2D
 
             return true;
         }
+
+        public IEnumerator<ListRowView> GetEnumerator() => this.rows.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+
+        void ICollection.CopyTo(Array array, int index) => ((IList)this.rows).CopyTo(array, index);
+
+        int IList.Add(object value) => ThrowNotSupported<int>();
+
+        bool IList.Contains(object value) => this.rows.Contains(value);
+
+        void IList.Clear() => ThrowNotSupported();
+
+        int IList.IndexOf(object value) => this.rows.IndexOf((ListRowView)value);
+
+        void IList.Insert(int index, object value) => ThrowNotSupported();
+
+        void IList.Remove(object value) => ThrowNotSupported();
+
+        void IList.RemoveAt(int index) => ThrowNotSupported();
 
         private static void ThrowNotSupported()
         {
@@ -323,6 +349,11 @@ namespace Gu.Wpf.DataGrid2D
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void OnColumnsChanged()
+        {
+            this.ColumnsChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

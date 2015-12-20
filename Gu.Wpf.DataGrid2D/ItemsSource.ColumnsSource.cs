@@ -34,13 +34,13 @@
             if (source == null)
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
+                BindingOperations.ClearBinding(dataGrid, ItemsSourceProxyProperty);
                 return;
             }
 
-            var view = Lists2DView.CreateTransposed(source);
-            dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                    .OneWayTo(view);
-            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
+            dataGrid.Bind(ItemsSourceProxyProperty)
+                    .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
+            UpdateListViewSource(dataGrid, Lists2DView.CreateTransposed);
         }
     }
 }

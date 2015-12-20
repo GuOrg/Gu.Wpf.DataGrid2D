@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Windows;
@@ -30,17 +31,17 @@
         private static void OnRowsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            var array = (IEnumerable<IEnumerable>)e.NewValue;
-            if (array == null)
+            var source = (IEnumerable<IEnumerable>)e.NewValue;
+            if (source == null)
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
+                BindingOperations.ClearBinding(dataGrid, ItemsSourceProxyProperty);
                 return;
             }
 
-            var view = Lists2DView.Create(array);
-            dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                    .OneWayTo(view);
-            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
+            dataGrid.Bind(ItemsSourceProxyProperty)
+                    .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
+            UpdateListViewSource(dataGrid, Lists2DView.Create);
         }
 
         private static bool OnValidateRowsSource(object value)
