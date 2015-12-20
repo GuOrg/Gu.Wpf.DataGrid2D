@@ -3,11 +3,11 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for SelectedItemView.xaml
+    /// Interaction logic for SelectedView.xaml
     /// </summary>
-    public partial class SelectedItemView : UserControl
+    public partial class SelectedView : UserControl
     {
-        public SelectedItemView()
+        public SelectedView()
         {
             InitializeComponent();
         }

@@ -8,7 +8,7 @@
         public StyledVm()
         {
             this.RowHeaders = new[] { "1", "2" };
-            this.ColumnHeaders = new[] { "AA", "AB" };
+            this.ColumnHeaders = new[] { "A", "B" };
             this.ListOfListsOfItems = new List<List<ItemVm>>();
             var count = 1;
             for (int i = 0; i < 3; i++)

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Gu.Wpf.DataGrid2D.Demo.Annotations;
-
-namespace Gu.Wpf.DataGrid2D.Demo
+﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+    using JetBrains.Annotations;
+
     public class RowVm : List<ItemVm>, INotifyPropertyChanged
     {
         private string name;

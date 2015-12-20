@@ -6,7 +6,7 @@
         {
             this.Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
             this.RowHeaders = new[] { "1", "2", "3" };
-            this.ColumnHeaders = new[] { "AA", "AB", "AC" };
+            this.ColumnHeaders = new[] { "A", "B", "C" };
         }
 
         public string[] RowHeaders { get; }

@@ -2,17 +2,30 @@
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using NUnit.Framework;
 
     public class EnumerableExtTests
     {
         [Test]
-        public void IsReadonly()
+        public void EnumerableEnumerableIntIsReadOnly()
         {
-            Assert.Fail("False for enumerable of primitive");
-            Assert.Fail("True for IList of primitive");
-            Assert.Fail("True for enumerable of class");
-            //Assert.AreEqual(true,Enumerable.Repeat(1,2).IsReadOnly());
+            var enumerable = Enumerable.Repeat(Enumerable.Repeat(1, 1), 1);
+            Assert.AreEqual(true, enumerable.IsReadOnly());
+        }
+
+        [Test]
+        public void EnumerableEnumerableDummyItemIsEditable()
+        {
+            var enumerable = Enumerable.Repeat(Enumerable.Repeat(new DummyItem(), 1), 1);
+            Assert.AreEqual(false, enumerable.IsReadOnly());
+        }
+
+        [Test]
+        public void EnumerableIListIsEditable()
+        {
+            var enumerable = Enumerable.Repeat(new int[1], 1);
+            Assert.AreEqual(false, enumerable.IsReadOnly());
         }
 
         [Test]

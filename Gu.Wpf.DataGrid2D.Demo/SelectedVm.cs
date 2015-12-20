@@ -3,13 +3,14 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using Gu.Wpf.DataGrid2D.Demo.Annotations;
+    using JetBrains.Annotations;
 
-    public class SelectedItemVm : INotifyPropertyChanged
+    public class SelectedVm : INotifyPropertyChanged
     {
-        private object selectedItem;
+        private ItemVm selectedItem;
+        private RowColumnIndex? index;
 
-        public SelectedItemVm()
+        public SelectedVm()
         {
             var rowVms = new List<RowVm>();
             var allRowsItems = new List<ItemVm>();
@@ -38,7 +39,7 @@
 
         public IReadOnlyList<ItemVm> AllRowsItems { get; }
 
-        public object SelectedItem
+        public ItemVm SelectedItem
         {
             get { return this.selectedItem; }
             set
@@ -52,6 +53,16 @@
             }
         }
 
+        public RowColumnIndex? Index
+        {
+            get { return this.index; }
+            set
+            {
+                if (value.Equals(this.index)) return;
+                this.index = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

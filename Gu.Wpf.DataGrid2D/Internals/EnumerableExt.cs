@@ -24,7 +24,12 @@
 
         internal static bool IsReadOnly(this IEnumerable<IEnumerable> source)
         {
-            return !source.All(x => x is IList);
+            if (source.All(x => x is IList))
+            {
+                return false;
+            }
+
+            return source.Any(x => x.GetElementType().IsPrimitive);
         }
 
         internal static void SetElementAt(this IEnumerable source, int index, object value)

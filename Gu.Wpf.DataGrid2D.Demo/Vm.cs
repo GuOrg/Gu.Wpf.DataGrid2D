@@ -1,18 +1,14 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using Gu.Wpf.DataGrid2D.Demo.Annotations;
+    using JetBrains.Annotations;
 
     public class Vm : INotifyPropertyChanged
     {
         public Vm()
         {
-
-
-
             this.RowHeaders = Enumerable.Range(0, 3).Select(x => "Row" + x).ToArray();
         }
 

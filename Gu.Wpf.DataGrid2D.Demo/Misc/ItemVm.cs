@@ -2,8 +2,8 @@
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using JetBrains.Annotations;
 
-    using Gu.Wpf.DataGrid2D.Demo.Annotations;
 
     public class ItemVm : INotifyPropertyChanged
     {

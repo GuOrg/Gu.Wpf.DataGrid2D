@@ -7,7 +7,7 @@
         public ListOfListsVm()
         {
             this.RowHeaders = new[] { "1", "2" , "3"};
-            this.ColumnHeaders = new[] { "AA", "AB" , "AC"};
+            this.ColumnHeaders = new[] { "A", "B" , "C"};
             this.ListOfListsOfItems = new List<List<ItemVm>>();
             this.ListOfListsOfInts = new List<List<int>>();
             var count = 1;

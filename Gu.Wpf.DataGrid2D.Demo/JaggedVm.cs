@@ -5,7 +5,7 @@
         public JaggedVm()
         {
             this.RowHeaders = new[] { "1", "2", "3" };
-            this.ColumnHeaders = new[] { "AA", "AB", "AC" };
+            this.ColumnHeaders = new[] { "A", "B", "C" };
 
             this.SameLengths = new int[3][];
             this.SameLengths[0] = new[] { 1, 2 };

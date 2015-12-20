@@ -59,13 +59,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ItemsSource.ColumnHeadersSource.cs" />
     <Compile Include="ItemsSource.Array2D.cs" />
+    <Compile Include="RowColumnIndex.cs" />
     <Compile Include="Views\Array2DRowView.cs" />
     <Compile Include="Views\Array2DView.cs" />
     <Compile Include="Views\Array2DIndexPropertyDescriptor.cs" />
     <Compile Include="Views\BaseClasses\IndexPropertyDescriptor.cs" />
     <Compile Include="Views\ListIndexPropertyDescriptor.cs" />
     <Compile Include="Views\ListRowView.cs" />
-    <Compile Include="ItemsSource.SelectedItem.cs" />
+    <Compile Include="Selected.cs" />
     <Compile Include="ItemsSource.RowsSource.cs" />
     <Compile Include="ItemsSource.Templates.cs" />
     <Compile Include="Views\BaseClasses\RowView.cs" />

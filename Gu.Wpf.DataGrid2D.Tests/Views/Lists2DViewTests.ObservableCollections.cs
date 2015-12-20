@@ -99,7 +99,7 @@
                                new ObservableCollection<int>(new[] {3, 4}),
                                new ObservableCollection<int>(new[] {5, 6})
                            };
-                var view = Lists2DView.Create(ints);
+                var view = Lists2DView.CreateTransposed(ints);
                 var expectedPropertyChanges = new List<string>();
                 ((INotifyPropertyChanged)ints).PropertyChanged += (_, e) => expectedPropertyChanges.Add(e.PropertyName);
                 var actualPropertyChanges = new List<string>();
@@ -109,8 +109,8 @@
                 ints.CollectionChanged += (_, e) => expectedCollectionChanges.Add(e);
                 var actualCollectionChanges = new List<NotifyCollectionChangedEventArgs>();
                 view.CollectionChanged += (_, e) => actualCollectionChanges.Add(e);
-                ints.Add(new ObservableCollection<int>(new[] { 7, 8 }));
-                ints[2].Add(7);
+                ints[0].Add(-3);
+
                 CollectionAssert.AreEqual(expectedPropertyChanges, actualPropertyChanges);
                 CollectionAssert.AreEqual(expectedCollectionChanges, actualCollectionChanges, CollectionChangedEventArgsComparer.Default);
 

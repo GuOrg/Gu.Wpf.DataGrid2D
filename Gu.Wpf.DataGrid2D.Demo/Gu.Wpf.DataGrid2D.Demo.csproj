@@ -68,7 +68,6 @@
     <Compile Include="Person.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RowNumbersView.xaml.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
     </Compile>
@@ -79,11 +78,11 @@
     <Compile Include="SamplesView.xaml.cs">
       <DependentUpon>SamplesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SelectedItemView.xaml.cs">
-      <DependentUpon>SelectedItemView.xaml</DependentUpon>
+    <Compile Include="SelectedView.xaml.cs">
+      <DependentUpon>SelectedView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SelectedItemVm.cs">
-      <DependentUpon>SelectedItemView.xaml</DependentUpon>
+    <Compile Include="SelectedVm.cs">
+      <DependentUpon>SelectedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source2DView.xaml.cs">
       <DependentUpon>Source2DView.xaml</DependentUpon>
@@ -130,7 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SelectedItemView.xaml">
+    <Page Include="SelectedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,4 +183,15 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1')">
+      <ItemGroup>
+        <Reference Include="JetBrains.Annotations">
+          <HintPath>..\packages\JetBrains.Annotations\lib\net20\JetBrains.Annotations.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
 </Project>

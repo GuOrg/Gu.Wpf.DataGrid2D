@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Windows;

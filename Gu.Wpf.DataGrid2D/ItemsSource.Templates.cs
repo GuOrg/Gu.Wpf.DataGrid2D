@@ -1,5 +1,4 @@
-﻿#pragma warning disable 1591
-namespace Gu.Wpf.DataGrid2D
+﻿namespace Gu.Wpf.DataGrid2D
 {
     using System.Windows;
     using System.Windows.Controls;

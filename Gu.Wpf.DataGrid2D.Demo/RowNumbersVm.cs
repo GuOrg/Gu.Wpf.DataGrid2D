@@ -6,14 +6,14 @@
     public class RowNumbersVm
     {
         private static string[] FirstNames = { "Johan", "Erik", "Lynn" };
-        private static string[] LastNames = { "Larsson", "Svensson", "Skeet" };
+        private static string[] LastNames = { "Larsson", "Svensson" };
 
         public ObservableCollection<Person> Persons { get; } = CreatePersons(100);
 
         private static ObservableCollection<Person> CreatePersons(int n)
         {
             var persons = Enumerable.Range(0, n)
-                                    .Select(x => new Person { FirstName = FirstNames[x % 3], LastName = LastNames[x % 3] });
+                                    .Select(x => new Person { FirstName = FirstNames[x % 3], LastName = LastNames[x % 2] });
             return new ObservableCollection<Person>(persons);
         }
     }

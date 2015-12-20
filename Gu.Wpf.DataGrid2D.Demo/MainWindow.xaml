@@ -23,7 +23,7 @@
         </TabItem>
 
         <TabItem Header="SelectedCellItem">
-            <demo:SelectedItemView />
+            <demo:SelectedView />
         </TabItem>
 
         <TabItem Header="Styles">
