@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+﻿namespace Gu.Wpf.DataGrid2D.Tests.Views.Stubs
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -18,7 +18,6 @@
                 if (value == this.firstName) return;
                 this.firstName = value;
                 this.OnPropertyChanged();
-                //this.OnPropertyChanged(nameof(this.FullName));
             }
         }
 
@@ -30,11 +29,8 @@
                 if (value == this.lastName) return;
                 this.lastName = value;
                 this.OnPropertyChanged();
-                //this.OnPropertyChanged(nameof(this.FullName));
             }
         }
-
-        //public string FullName => $"{this.FirstName} {this.LastName}";
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

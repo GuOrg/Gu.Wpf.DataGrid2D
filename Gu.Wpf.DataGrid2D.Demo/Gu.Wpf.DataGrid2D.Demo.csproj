@@ -99,7 +99,9 @@
     <Compile Include="TransposedView.xaml.cs">
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TransposedVm.cs" />
+    <Compile Include="TransposedVm.cs">
+      <DependentUpon>TransposedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vm.cs" />
     <Page Include="DebugView.xaml">
       <SubType>Designer</SubType>

@@ -4,11 +4,6 @@
 
     public class Todo
     {
-        [Test]
-        public void PropertySource()
-        {
-            Assert.Fail("Transpose a list of persons for propertygrid");
-            Assert.Fail("Coerce single item to singleton");
-        }
+
     }
 }

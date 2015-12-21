@@ -27,11 +27,6 @@ namespace Gu.Wpf.DataGrid2D
 
         public override string GetClassName() => this.GetType().FullName;
 
-        public override PropertyDescriptor GetDefaultProperty()
-        {
-            return base.GetDefaultProperty();
-        }
-
         public override PropertyDescriptorCollection GetProperties()
         {
             return this.properties;
@@ -40,11 +35,6 @@ namespace Gu.Wpf.DataGrid2D
         public override PropertyDescriptorCollection GetProperties(Attribute[] attributes)
         {
             return this.properties;
-        }
-
-        public override object GetPropertyOwner(PropertyDescriptor pd)
-        {
-            return base.GetPropertyOwner(pd);
         }
     }
 }

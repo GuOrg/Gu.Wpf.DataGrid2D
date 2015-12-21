@@ -23,12 +23,14 @@
 
                 Assert.AreEqual(3, view.Count);
 
-                Assert.AreEqual(0, view[0].Index);
-                Assert.AreEqual(2, view[0].Count);
-                Assert.AreEqual(false, view[0].IsTransposed);
-                Assert.AreEqual(typeof(int), view[0].GetProperties()[0].ComponentType);
-                Assert.AreEqual(1, view[0].GetProperties()[0].GetValue(view[0]));
-                Assert.AreEqual(2, view[0].GetProperties()[1].GetValue(view[0]));
+                var row0 = view[0];
+                Assert.AreEqual(0, row0.Index);
+                Assert.AreEqual(2, row0.Count);
+                Assert.AreEqual(false, row0.IsTransposed);
+                Assert.AreEqual(typeof(int), row0.GetProperties()[0].ComponentType);
+                Assert.AreEqual(1, row0.GetProperties()[0].GetValue(row0));
+                Assert.AreEqual(typeof(int), row0.GetProperties()[0].ComponentType);
+                Assert.AreEqual(2, row0.GetProperties()[1].GetValue(row0));
 
                 Assert.AreEqual(1, view[1].Index);
                 Assert.AreEqual(2, view[1].Count);

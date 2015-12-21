@@ -20,17 +20,17 @@
 
         <TabItem Header="List&lt;List&lt;T&gt;&gt;">
             <demo:ListOfListsView />
-        </TabItem>
+        </TabItem>-->
 
         <TabItem Header="Transposed">
             <demo:TransposedView />
-        </TabItem>-->
-        
-        <TabItem Header="SelectedCellItem">
+        </TabItem>
+
+        <!--<TabItem Header="SelectedCellItem">
             <demo:SelectedView />
         </TabItem>
 
-        <!--<TabItem Header="Styles">
+        <TabItem Header="Styles">
             <demo:StyledView />
         </TabItem>
 

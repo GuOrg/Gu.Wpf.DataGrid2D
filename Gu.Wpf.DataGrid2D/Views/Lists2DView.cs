@@ -11,7 +11,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using JetBrains.Annotations;
 
-    public class Lists2DView : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable
+    public class Lists2DView : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable, IView2D
     {
         private static readonly NotifyCollectionChangedEventArgs NotifyCollectionResetEventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
         private static readonly PropertyChangedEventArgs CountPropertyChangedEventArgs = new PropertyChangedEventArgs(nameof(Count));
@@ -65,7 +65,7 @@ namespace Gu.Wpf.DataGrid2D
         /// Just adding a column would not play nice with explicit columns.
         /// This way will not be ideal for performance if it changes frequently
         /// </summary>
-        internal event EventHandler ColumnsChanged;
+        public event EventHandler ColumnsChanged;
 
         public bool IsTransposed { get; }
 
@@ -79,13 +79,15 @@ namespace Gu.Wpf.DataGrid2D
 
         bool ICollection.IsSynchronized => (this.source.Target as ICollection)?.IsSynchronized == true;
 
+        IEnumerable IView2D.Source => Source;
+
+        DataGrid IView2D.DataGrid { get; set; }
+
         internal Type ElementType { get; }
 
         internal int MaxColumnCount { get; }
 
         internal IEnumerable<IEnumerable> Source => (IEnumerable<IEnumerable>)this.source.Target;
-
-        internal DataGrid DataGrid { get; set; }
 
         public ListRowView this[int index] => this.rows[index];
 

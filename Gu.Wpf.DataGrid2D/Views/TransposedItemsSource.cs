@@ -7,20 +7,21 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Windows;
+    using System.Windows.Controls;
 
-    public class TransformedItemsSource : IList, IDisposable, IWeakEventListener
+    public class TransposedItemsSource : IList, IDisposable, IWeakEventListener, IView2D
     {
         private readonly WeakReference source;
-        private readonly IReadOnlyList<TransformedRow> rows;
+        private readonly IReadOnlyList<TransposedRow> rows;
         private bool disposed;
 
-        public TransformedItemsSource(IEnumerable source)
+        public TransposedItemsSource(IEnumerable source)
         {
             this.source = new WeakReference(source);
             var type = source.GetElementType();
             this.Properties = TypeDescriptor.GetProperties(type);
             this.rows = this.Properties.OfType<PropertyDescriptor>()
-                            .Select(x => new TransformedRow(this, x))
+                            .Select(x => new TransposedRow(this, x))
                             .ToList();
 
             this.IsReadOnly = this.Properties.OfType<PropertyDescriptor>()
@@ -43,7 +44,7 @@
         /// Just adding a column would not play nice with explicit columns.
         /// This way will not be ideal for performance if it changes frequently
         /// </summary>
-        internal event EventHandler ColumnsChanged;
+        public event EventHandler ColumnsChanged;
 
         public int Count => this.rows.Count;
 
@@ -55,9 +56,15 @@
 
         bool ICollection.IsSynchronized => ((ICollection)this.rows).IsSynchronized;
 
-        internal IEnumerable<object> Source => (IEnumerable<object>)this.source.Target;
+        IEnumerable IView2D.Source => Source;
+
+        DataGrid IView2D.DataGrid { get; set; }
+
+        public IEnumerable<object> Source => (IEnumerable<object>)this.source.Target;
 
         internal PropertyDescriptorCollection Properties { get; }
+
+        public TransposedRow this[int index] => this.rows[index];
 
         object IList.this[int index]
         {
@@ -84,7 +91,9 @@
             return false;
         }
 
-        public IEnumerator GetEnumerator() => this.rows.GetEnumerator();
+        public IEnumerator<TransposedRow> GetEnumerator() => this.rows.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.rows.GetEnumerator();
 
         void ICollection.CopyTo(Array array, int index) => ((IList)this.rows).CopyTo(array, index);
 

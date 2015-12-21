@@ -10,7 +10,28 @@
         <local:TransposedVm />
     </UserControl.DataContext>
     <UniformGrid Rows="1">
-        <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}" />
-        <DataGrid dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" />
+        <GroupBox Header="Explicit columns">
+            <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                    <DataGridTextColumn Binding="{Binding C0}" Header="Value" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <GroupBox Header="Singleton">
+            <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}" />
+        </GroupBox>
+
+        <GroupBox Header="ObservableCollection&lt;Person&gt;">
+            <DataGrid dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" />
+        </GroupBox>
+
+        <GroupBox Header="Source data">
+            <DataGrid CanUserAddRows="True"
+                      CanUserDeleteRows="True"
+                      ItemsSource="{Binding Persons}"
+                      SelectionUnit="FullRow" />
+        </GroupBox>
     </UniformGrid>
 </UserControl>

@@ -18,37 +18,25 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void OnItemsSourceProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var oldList2DView = e.OldValue as Lists2DView;
-            if (oldList2DView != null)
+            var oldView = e.OldValue as IView2D;
+            if (oldView != null)
             {
-                oldList2DView.Dispose();
-                oldList2DView.ColumnsChanged -= OnViewColumnsChanged;
+                oldView.Dispose();
+                oldView.ColumnsChanged -= OnViewColumnsChanged;
             }
 
-            var newLists2DView = e.NewValue as Lists2DView;
-            if (newLists2DView != null)
+            var newView = e.NewValue as IView2D;
+            if (newView != null)
             {
-                newLists2DView.ColumnsChanged += OnViewColumnsChanged;
-                newLists2DView.DataGrid = (DataGrid)d;
+                newView.ColumnsChanged += OnViewColumnsChanged;
+                newView.DataGrid = (DataGrid)d;
             }
         }
 
         private static void OnViewColumnsChanged(object sender, EventArgs e)
         {
-            var view = (Lists2DView)sender;
-            if (ReferenceEquals(view.DataGrid.GetRowsSource(), view.Source))
-            {
-                UpdateItemsSource(view.DataGrid);
-                return;
-            }
-
-            if (ReferenceEquals(view.DataGrid.GetColumnsSource(), view.Source))
-            {
-                UpdateItemsSource(view.DataGrid);
-                return;
-            }
-
-            throw new ArgumentOutOfRangeException();
+            var view = (IView2D)sender;
+            UpdateItemsSource(view.DataGrid);
         }
 
         private static void UpdateItemsSource(DataGrid dataGrid)
@@ -69,7 +57,7 @@ namespace Gu.Wpf.DataGrid2D
             var transposedSource = dataGrid.GetTransposedSource();
             if (transposedSource != null)
             {
-                view = new TransformedItemsSource(transposedSource);
+                view = new TransposedItemsSource(transposedSource);
             }
 
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)

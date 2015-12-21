@@ -65,6 +65,7 @@
     <Compile Include="Views\Array2DView.cs" />
     <Compile Include="Views\Array2DIndexPropertyDescriptor.cs" />
     <Compile Include="Views\BaseClasses\IndexPropertyDescriptor.cs" />
+    <Compile Include="Views\IView2D.cs" />
     <Compile Include="Views\NamePropertyDescriptor.cs" />
     <Compile Include="Views\ListIndexPropertyDescriptor.cs" />
     <Compile Include="Views\ListRowView.cs" />
@@ -73,9 +74,9 @@
     <Compile Include="ItemsSource.Templates.cs" />
     <Compile Include="Views\BaseClasses\RowView.cs" />
     <Compile Include="Views\Lists2DView.cs" />
-    <Compile Include="Views\TransformedItemsSource.cs" />
-    <Compile Include="Views\TransformedPropertyDescriptor.cs" />
-    <Compile Include="Views\TransformedRow.cs" />
+    <Compile Include="Views\TransposedItemsSource.cs" />
+    <Compile Include="Views\TransposedPropertyDescriptor.cs" />
+    <Compile Include="Views\TransposedRow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,8 +9,7 @@
     <UserControl.DataContext>
         <local:RowNumbersVm />
     </UserControl.DataContext>
-    <DataGrid ItemsSource="{Binding Persons}"
-        dataGrid2D:Index.StartAt="1">
+    <DataGrid ItemsSource="{Binding Persons}" dataGrid2D:Index.StartAt="1">
         <!--<DataGrid.RowStyle>
             <Style TargetType="{x:Type DataGridRow}">
                 <Setter Property="dataGrid2D:Index.In" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />

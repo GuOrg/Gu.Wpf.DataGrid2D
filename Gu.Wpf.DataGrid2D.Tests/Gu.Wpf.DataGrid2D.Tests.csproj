@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="CodeGen\CodeGenTests.cs" />
     <Compile Include="Helpers\CollectionChangedEventArgsComparer.cs" />
-    <Compile Include="Helpers\DataGridExt.cs" />
+    <Compile Include="Helpers\DataGridTestExt.cs" />
     <Compile Include="Internals\Stubs\DummyItem.cs" />
     <Compile Include="Internals\EnumerableExtTests.cs" />
     <Compile Include="Todo.cs" />
@@ -52,6 +52,8 @@
     <Compile Include="SelectedTests.cs" />
     <Compile Include="ItemsSourceTests.cs" />
     <Compile Include="Views\Lists2DViewTests.ObservableCollections.cs" />
+    <Compile Include="Views\Stubs\Person.cs" />
+    <Compile Include="Views\TransposedSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
@@ -74,6 +76,17 @@
   </Target>
   -->
   <Import Project="..\.paket\paket.targets" />
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1')">
+      <ItemGroup>
+        <Reference Include="JetBrains.Annotations">
+          <HintPath>..\packages\JetBrains.Annotations\lib\net20\JetBrains.Annotations.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1')">
       <ItemGroup>

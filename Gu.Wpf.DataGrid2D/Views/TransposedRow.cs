@@ -5,13 +5,13 @@
     using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
-    public class TransformedRow : CustomTypeDescriptor, INotifyPropertyChanged
+    public class TransposedRow : CustomTypeDescriptor, INotifyPropertyChanged
     {
-        private static readonly EventDescriptorCollection Events = TypeDescriptor.GetEvents(typeof(TransformedRow));
+        private static readonly EventDescriptorCollection Events = TypeDescriptor.GetEvents(typeof(TransposedRow));
         private readonly PropertyDescriptorCollection properties;
 
-        internal TransformedRow(
-            TransformedItemsSource source,
+        internal TransposedRow(
+            TransposedItemsSource source,
             PropertyDescriptor property)
         {
             this.Source = source;
@@ -21,7 +21,7 @@
             propertyDescriptors[0] = new NamePropertyDescriptor(property);
             for (int i = 0; i < count; i++)
             {
-                propertyDescriptors[i + 1] = new TransformedPropertyDescriptor(i, property);
+                propertyDescriptors[i + 1] = new TransposedPropertyDescriptor(i, property);
             }
 
             this.properties = new PropertyDescriptorCollection(propertyDescriptors, true);
@@ -31,7 +31,7 @@
 
         internal PropertyDescriptor Property { get; }
 
-        internal TransformedItemsSource Source { get; }
+        internal TransposedItemsSource Source { get; }
 
         public override EventDescriptorCollection GetEvents() => Events;
 
