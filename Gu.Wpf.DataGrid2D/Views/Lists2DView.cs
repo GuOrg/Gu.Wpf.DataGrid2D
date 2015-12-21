@@ -25,8 +25,6 @@ namespace Gu.Wpf.DataGrid2D
         {
             this.IsTransposed = isTransposed;
             this.source.Target = source;
-            this.ResetRows();
-            var incc = source as INotifyCollectionChanged;
             if (isTransposed)
             {
                 this.MaxColumnCount = source.Count();
@@ -43,6 +41,9 @@ namespace Gu.Wpf.DataGrid2D
                 this.ElementType = source.ElementAtOrDefault<IEnumerable>(0).GetElementType();
             }
 
+            this.ResetRows();
+
+            var incc = source as INotifyCollectionChanged;
             if (incc != null)
             {
                 CollectionChangedEventManager.AddListener(incc, this);

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
@@ -13,7 +14,6 @@
         public SelectedVm()
         {
             var rowVms = new List<RowVm>();
-            var allRowsItems = new List<ItemVm>();
             int count = 1;
 
             for (int i = 0; i < 3; i++)
@@ -24,13 +24,12 @@
                 {
                     var itemVm = new ItemVm(count);
                     rowVm.Add(itemVm);
-                    allRowsItems.Add(itemVm);
                     count++;
                 }
             }
 
             this.RowVms = rowVms;
-            this.AllRowsItems = allRowsItems;
+            this.AllRowsItems = rowVms.SelectMany(x=>x).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

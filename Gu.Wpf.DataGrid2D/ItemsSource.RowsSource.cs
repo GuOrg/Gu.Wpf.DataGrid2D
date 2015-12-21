@@ -12,8 +12,10 @@
             "RowsSource",
             typeof(IEnumerable),
             typeof(ItemsSource),
-            new PropertyMetadata(default(IEnumerable), OnRowsSourceChanged),
-            OnValidateRowsSource);
+            new PropertyMetadata(
+                default(IEnumerable),
+                OnRowsSourceChanged),
+                OnValidateRowsSource);
 
         public static void SetRowsSource(this DataGrid element, IEnumerable value)
         {

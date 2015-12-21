@@ -10,7 +10,7 @@
         d:DataContext="{d:DesignInstance demo:Vm}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="int[,]">
+        <!--<TabItem Header="int[,]">
             <demo:Source2DView />
         </TabItem>
 
@@ -24,13 +24,13 @@
 
         <TabItem Header="Transposed">
             <demo:TransposedView />
-        </TabItem>
+        </TabItem>-->
         
         <TabItem Header="SelectedCellItem">
             <demo:SelectedView />
         </TabItem>
 
-        <TabItem Header="Styles">
+        <!--<TabItem Header="Styles">
             <demo:StyledView />
         </TabItem>
 
@@ -40,7 +40,7 @@
 
         <TabItem Header="Debug">
             <demo:DebugView />
-        </TabItem>
+        </TabItem>-->
     </TabControl>
 
 </Window>

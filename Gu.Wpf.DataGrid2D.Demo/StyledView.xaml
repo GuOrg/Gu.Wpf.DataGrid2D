@@ -83,7 +83,6 @@
                   dataGrid2D:ItemsSource.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}" />
         </GroupBox>
 
-
         <DataGrid Background="{x:Null}"
                   CellStyle="{StaticResource CellStyle}"
                   ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
@@ -109,6 +108,7 @@
                     </Setter>
                 </Style>
             </DataGrid.RowHeaderStyle>
+            
         </DataGrid>
     </UniformGrid>
 </UserControl>

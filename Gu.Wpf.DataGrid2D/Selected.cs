@@ -82,9 +82,8 @@
                 if (dataGrid.GetCellItem() != null)
                 {
                     dataGrid.SetValue(CellItemProperty, null);
-                    var dataGridRow = dataGrid.ItemContainerGenerator.ContainerFromItem(cellInfo.Item);
-                    var rowIndex = dataGrid.ItemContainerGenerator.IndexFromContainer(dataGridRow);
-                    dataGrid.SetValue(IndexProperty, new RowColumnIndex(rowIndex, cellInfo.Column.DisplayIndex));
+                    var rowColumnIndex = new RowColumnIndex(dataGrid.SelectedIndex, cellInfo.Column.DisplayIndex);
+                    dataGrid.SetValue(IndexProperty, rowColumnIndex);
                 }
 
                 return;
@@ -93,20 +92,27 @@
             var cell = cellInfo.GetCell();
             if (cell == null)
             {
+                dataGrid.SetValue(CellItemProperty, null);
+                dataGrid.SetValue(IndexProperty, null);
                 return;
             }
 
-            var currentValue = cell.DataContext;
-
-            if (dataGrid.GetCellItem() != currentValue)
-            {
-                dataGrid.SetValue(CellItemProperty, currentValue);
-            }
+            var containerFromItem = dataGrid.ItemContainerGenerator.ContainerFromItem(dataGrid.CurrentItem);
+            var rowIndex = dataGrid.ItemContainerGenerator.IndexFromContainer(containerFromItem);
+            var colIndex = dataGrid.CurrentColumn.DisplayIndex;
+            var index = new RowColumnIndex(rowIndex, colIndex);
+            dataGrid.SetValue(IndexProperty, index);
         }
 
         private static void OnCellItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
+            if (e.NewValue == null)
+            {
+                dataGrid.UnselectAllCells();
+                return;
+            }
+
             ////dataGrid.SetValue(IsUpdatingProperty, true);
             var selectedCells = dataGrid.SelectedCells;
             if (selectedCells.Count == 1)
@@ -119,10 +125,6 @@
             }
 
             dataGrid.UnselectAllCells();
-            if (e.NewValue == null)
-            {
-                return;
-            }
 
             foreach (var row in dataGrid.Items)
             {
@@ -153,7 +155,6 @@
 
         private static void OnIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
         }
 
         private static object OnIndexCoerce(DependencyObject d, object basevalue)
@@ -183,7 +184,7 @@
             if (BindingOperations.GetBinding(dataGrid, CurrentCellProxyProperty) == null)
             {
                 dataGrid.Bind(CurrentCellProxyProperty)
-                        .OneWayTo(dataGrid, DataGrid.CurrentCellProperty);
+                        .TwoWayTo(dataGrid, DataGrid.CurrentCellProperty);
             }
         }
     }
