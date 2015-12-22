@@ -7,10 +7,11 @@
         Title="MainWindow"
         Width="525"
         Height="350"
+        AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MainWindow}"
         d:DataContext="{d:DesignInstance demo:Vm}"
         mc:Ignorable="d">
     <TabControl>
-        <!--<TabItem Header="int[,]">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
             <demo:Source2DView />
         </TabItem>
 
@@ -20,13 +21,13 @@
 
         <TabItem Header="List&lt;List&lt;T&gt;&gt;">
             <demo:ListOfListsView />
-        </TabItem>-->
+        </TabItem>
 
         <TabItem Header="Transposed">
             <demo:TransposedView />
         </TabItem>
 
-        <!--<TabItem Header="SelectedCellItem">
+        <TabItem Header="SelectedCellItem">
             <demo:SelectedView />
         </TabItem>
 
@@ -40,7 +41,7 @@
 
         <TabItem Header="Debug">
             <demo:DebugView />
-        </TabItem>-->
+        </TabItem>
     </TabControl>
 
 </Window>

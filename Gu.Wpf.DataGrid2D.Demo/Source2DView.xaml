@@ -10,10 +10,10 @@
         <local:Source2DVm />
     </UserControl.DataContext>
     <UniformGrid Columns="1">
-        <GroupBox Header="Vanilla">
+        <GroupBox AutomationProperties.AutomationId="{x:Static local:AutomationIds.VanillaGroupBox}" Header="Vanilla">
             <UniformGrid Rows="1">
                 <GroupBox Header="Auto columns">
-                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalAutoColumns}" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                 </GroupBox>
 
                 <GroupBox Header="Readonly">
