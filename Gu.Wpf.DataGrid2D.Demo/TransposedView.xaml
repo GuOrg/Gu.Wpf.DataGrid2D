@@ -11,7 +11,9 @@
     </UserControl.DataContext>
     <UniformGrid Rows="1">
         <GroupBox Header="Explicit columns">
-            <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
+            <DataGrid AutoGenerateColumns="False"
+                      AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedExplicitColumns}"
+                      dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
                     <DataGridTextColumn Binding="{Binding C0}" Header="Value" />
@@ -20,11 +22,11 @@
         </GroupBox>
 
         <GroupBox Header="Singleton">
-            <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}" />
+            <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedSingleton}" dataGrid2D:ItemsSource.PropertySource="{Binding Person}" />
         </GroupBox>
 
         <GroupBox Header="ObservableCollection&lt;Person&gt;">
-            <DataGrid dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" />
+            <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedObservableCollection}" dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" />
         </GroupBox>
 
         <GroupBox Header="Source data">

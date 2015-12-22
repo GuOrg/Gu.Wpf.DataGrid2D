@@ -9,6 +9,13 @@
         public static readonly string MultiDimensionalAutoColumns = Create();
         public static readonly string MultiDimensionalExplicitColumns = Create();
         public static readonly string MultiDimensionalWithHeaders = Create();
+        public static readonly string MultiDimensionalExplicitColumnsTransposed = Create();
+        public static readonly string MultiDimensionalWithHeadersTransposed = Create();
+        public static readonly string MultiDimensionalAutoColumnsTransposed = Create();
+        public static readonly string TransposedTab = Create();
+        public static readonly string TransposedExplicitColumns = Create();
+        public static readonly string TransposedSingleton = Create();
+        public static readonly string TransposedObservableCollection = Create();
 
         private static string Create([CallerMemberName] string name = null)
         {

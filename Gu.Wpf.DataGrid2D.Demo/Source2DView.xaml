@@ -45,7 +45,7 @@
         <GroupBox Header="Transposed">
             <UniformGrid Rows="1">
                 <GroupBox Header="Auto columns">
-                    <DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalAutoColumnsTransposed}" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
                 </GroupBox>
 
                 <GroupBox Header="Readonly">
@@ -53,7 +53,9 @@
                 </GroupBox>
 
                 <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
+                    <DataGrid AutoGenerateColumns="False"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalExplicitColumnsTransposed}"
+                              dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
                             <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
@@ -63,7 +65,8 @@
                 </GroupBox>
 
                 <GroupBox Header="With headers">
-                    <DataGrid ColumnWidth="SizeToHeader"
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalWithHeadersTransposed}"
+                              ColumnWidth="SizeToHeader"
                               SelectionUnit="Cell"
                               dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}"
                               dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"

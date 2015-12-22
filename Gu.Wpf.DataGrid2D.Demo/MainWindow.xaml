@@ -23,7 +23,7 @@
             <demo:ListOfListsView />
         </TabItem>
 
-        <TabItem Header="Transposed">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.TransposedTab}" Header="Transposed">
             <demo:TransposedView />
         </TabItem>
 
