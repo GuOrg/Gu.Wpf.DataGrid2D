@@ -30,7 +30,8 @@
         </GroupBox>
 
         <GroupBox Header="Source data">
-            <DataGrid CanUserAddRows="True"
+            <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.ReferenceDataGrid}"
+                      CanUserAddRows="True"
                       CanUserDeleteRows="True"
                       ItemsSource="{Binding Persons}"
                       SelectionUnit="FullRow" />

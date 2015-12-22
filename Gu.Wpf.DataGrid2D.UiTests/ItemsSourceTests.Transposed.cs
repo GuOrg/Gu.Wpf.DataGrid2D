@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Gu.Wpf.DataGrid2D.UiTests
+﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
-    using System.Diagnostics;
-    using System.Windows.Controls;
     using Gu.Wpf.DataGrid2D.Demo;
     using NUnit.Framework;
     using TestStack.White;
     using TestStack.White.Factory;
-    using TestStack.White.UIItems.Finders;
+    using TestStack.White.UIItems;
     using TestStack.White.UIItems.TabItems;
-    using TestStack.White.UIItems.WPFUIItems;
-    using ListView = TestStack.White.UIItems.ListView;
+    using TestStack.White.WindowsAPI;
 
     public partial class ItemsSourceTests
     {
@@ -27,9 +18,9 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.AttachOrLaunch(ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(SearchCriteria.ByAutomationId(AutomationIds.TransposedTab));
+                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(SearchCriteria.ByAutomationId(AutomationIds.TransposedExplicitColumns));
+                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedExplicitColumns);
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -53,9 +44,9 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.AttachOrLaunch(ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(SearchCriteria.ByAutomationId(AutomationIds.TransposedTab));
+                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(SearchCriteria.ByAutomationId(AutomationIds.TransposedSingleton));
+                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedSingleton);
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -79,9 +70,9 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.AttachOrLaunch(ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(SearchCriteria.ByAutomationId(AutomationIds.TransposedTab));
+                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(SearchCriteria.ByAutomationId(AutomationIds.TransposedObservableCollection));
+                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -105,21 +96,80 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ObservableCollectionEditInViewUpdatesDataContext()
+            public void ObservableCollectionEditCellInViewUpdatesDataContext()
             {
                 using (var app = Application.AttachOrLaunch(ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(SearchCriteria.ByAutomationId(AutomationIds.TransposedTab));
+                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(SearchCriteria.ByAutomationId(AutomationIds.TransposedObservableCollection));
+                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+                    var cell = dataGrid.Rows[0].Cells[1];
+                    cell.Click();
+                    cell.Enter("New Value");
+                    dataGrid.Select(1); // lose focus
 
-                    Assert.Fail("Edit value and check that other view updates");
+                    var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
+                    Assert.AreEqual("New Value", reference.Rows[0].Cells[0].Text);
                 }
             }
 
             [Test]
-            public void TestName()
+            public void ObservableCollectionEditDataContextUpdatesView()
+            {
+                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                {
+                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    page.Select();
+                    var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
+
+                    var cell = reference.Rows[0].Cells[0];
+                    cell.Click();
+                    cell.Enter("New Value");
+
+                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+                    Assert.AreEqual("Johan", dataGrid.Rows[0].Cells[1].Text);
+                    reference.Select(1);
+                    Assert.AreEqual("New Value", dataGrid.Rows[0].Cells[1].Text);
+                }
+            }
+
+            [Test]
+            public void ObservableCollectionRemoveRowInDataContext()
+            {
+                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                {
+                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    page.Select();
+
+                    var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
+                    reference.Select(1);
+                    reference.KeyIn(KeyboardInput.SpecialKeys.DELETE);
+
+                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+
+                    Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
+                    Assert.AreEqual(2, dataGrid.Rows.Count);
+
+                    var c0 = dataGrid.Header.Columns[0].Text;
+                    Assert.AreEqual("Name", c0);
+                    var c1 = dataGrid.Header.Columns[1].Text;
+                    Assert.AreEqual("C0", c1);
+                    var c2 = dataGrid.Header.Columns[2].Text;
+                    Assert.AreEqual("C1", c2);
+
+                    Assert.AreEqual("FirstName", dataGrid.Cell(c0, 0).Text);
+                    Assert.AreEqual("LastName", dataGrid.Cell(c0, 1).Text);
+
+                    Assert.AreEqual("Johan", dataGrid.Cell(c1, 0).Text);
+                    Assert.AreEqual("Larsson", dataGrid.Cell(c1, 1).Text);
+                }
+            }
+
+            [Test]
+            public void Reminder()
             {
                 Assert.Fail("Name column is readonly");
             }

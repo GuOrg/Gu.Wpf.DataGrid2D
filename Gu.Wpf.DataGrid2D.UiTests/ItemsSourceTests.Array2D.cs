@@ -18,9 +18,9 @@
                 using (var app = Application.AttachOrLaunch(ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(SearchCriteria.ByAutomationId(AutomationIds.MultiDimensionalTab));
+                    var page = window.Get<TabPage>(AutomationIds.MultiDimensionalTab);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(SearchCriteria.ByAutomationId(AutomationIds.MultiDimensionalAutoColumns));
+                    var dataGrid = page.Get<ListView>(AutomationIds.MultiDimensionalAutoColumns);
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -46,9 +46,9 @@
                 using (var app = Application.AttachOrLaunch(ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(SearchCriteria.ByAutomationId(AutomationIds.MultiDimensionalTab));
+                    var page = window.Get<TabPage>(AutomationIds.MultiDimensionalTab);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(SearchCriteria.ByAutomationId(AutomationIds.MultiDimensionalExplicitColumns));
+                    var dataGrid = page.Get<ListView>(AutomationIds.MultiDimensionalExplicitColumns);
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -74,9 +74,9 @@
                 using (var app = Application.AttachOrLaunch(ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(SearchCriteria.ByAutomationId(AutomationIds.MultiDimensionalTab));
+                    var page = window.Get<TabPage>(AutomationIds.MultiDimensionalTab);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(SearchCriteria.ByAutomationId(AutomationIds.MultiDimensionalWithHeaders));
+                    var dataGrid = page.Get<ListView>(AutomationIds.MultiDimensionalWithHeaders);
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);

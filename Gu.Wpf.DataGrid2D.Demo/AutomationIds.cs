@@ -16,6 +16,7 @@
         public static readonly string TransposedExplicitColumns = Create();
         public static readonly string TransposedSingleton = Create();
         public static readonly string TransposedObservableCollection = Create();
+        public static readonly string ReferenceDataGrid = Create();
 
         private static string Create([CallerMemberName] string name = null)
         {
