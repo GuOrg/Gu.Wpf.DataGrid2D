@@ -10,7 +10,7 @@
         <local:Source2DVm />
     </UserControl.DataContext>
     <UniformGrid Columns="1">
-        <GroupBox AutomationProperties.AutomationId="{x:Static local:AutomationIds.VanillaGroupBox}" Header="Vanilla">
+        <GroupBox Header="Vanilla">
             <UniformGrid Rows="1">
                 <GroupBox Header="Auto columns">
                     <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalAutoColumns}" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
@@ -21,7 +21,9 @@
                 </GroupBox>
 
                 <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
+                    <DataGrid AutoGenerateColumns="False"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalExplicitColumns}"
+                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
                             <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
@@ -30,7 +32,8 @@
                 </GroupBox>
 
                 <GroupBox Header="With headers">
-                    <DataGrid ColumnWidth="SizeToHeader"
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalWithHeaders}"
+                              ColumnWidth="SizeToHeader"
                               SelectionUnit="Cell"
                               dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                               dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
