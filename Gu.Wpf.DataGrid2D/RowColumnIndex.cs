@@ -1,7 +1,10 @@
 namespace Gu.Wpf.DataGrid2D
 {
     using System;
+    using System.ComponentModel;
+    using System.Text.RegularExpressions;
 
+    [TypeConverter(typeof(RowColumnIndexConverter))]
     public struct RowColumnIndex : IEquatable<RowColumnIndex>
     {
         internal static readonly RowColumnIndex Unset = new RowColumnIndex(-1);
@@ -42,6 +45,44 @@ namespace Gu.Wpf.DataGrid2D
             return !left.Equals(right);
         }
 
+        public static RowColumnIndex Parse(string text)
+        {
+            RowColumnIndex result;
+            if (TryParse(text, out result))
+            {
+                return result;
+            }
+
+            throw new FormatException($"Could not parse '{text}' to a {typeof(RowColumnIndex)}");
+        }
+
+        public static bool TryParse(string text, out RowColumnIndex result)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                result = RowColumnIndex.Unset;
+                return false;
+            }
+
+            var match = Regex.Match(text, @"^ *R(?<row>\d+) *C(?<col>\d+) *$");
+            if (match.Success)
+            {
+                int row;
+                int col;
+                if (int.TryParse(match.Groups["row"].Value, out row) &&
+                    int.TryParse(match.Groups["col"].Value, out col) &&
+                    row >= 0 &&
+                    col >= 0)
+                {
+                    result = new RowColumnIndex(row, col);
+                    return true;
+                }
+            }
+
+            result = RowColumnIndex.Unset;
+            return false;
+        }
+
         public bool Equals(RowColumnIndex other)
         {
             return this.Row == other.Row && this.Column == other.Column;
@@ -63,6 +104,11 @@ namespace Gu.Wpf.DataGrid2D
             {
                 return (this.Row * 397) ^ this.Column;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"R{this.Row} C{this.Column}";
         }
     }
 }

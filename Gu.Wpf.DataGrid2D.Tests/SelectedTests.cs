@@ -13,6 +13,7 @@
             var dataGrid = new DataGrid();
             dataGrid.Bind(ItemsSource.Array2DProperty)
                     .OneWayTo(data);
+
             Assert.AreEqual(null, Selected.GetIndex(dataGrid));
             Assert.AreEqual(null, Selected.GetCellItem(dataGrid));
 

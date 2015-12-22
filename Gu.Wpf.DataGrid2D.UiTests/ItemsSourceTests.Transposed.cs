@@ -15,7 +15,7 @@
             [Test]
             public void ExplicitColumns()
             {
-                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(AutomationIds.TransposedTab);
@@ -41,7 +41,7 @@
             [Test]
             public void Singleton()
             {
-                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(AutomationIds.TransposedTab);
@@ -67,7 +67,7 @@
             [Test]
             public void ObservableCollection()
             {
-                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(AutomationIds.TransposedTab);
@@ -98,7 +98,7 @@
             [Test]
             public void ObservableCollectionEditCellInViewUpdatesDataContext()
             {
-                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(AutomationIds.TransposedTab);
@@ -117,7 +117,7 @@
             [Test]
             public void ObservableCollectionEditDataContextUpdatesView()
             {
-                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(AutomationIds.TransposedTab);
@@ -138,7 +138,7 @@
             [Test]
             public void ObservableCollectionRemoveRowInDataContext()
             {
-                using (var app = Application.AttachOrLaunch(ProcessStartInfo))
+                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(AutomationIds.TransposedTab);
@@ -157,8 +157,6 @@
                     Assert.AreEqual("Name", c0);
                     var c1 = dataGrid.Header.Columns[1].Text;
                     Assert.AreEqual("C0", c1);
-                    var c2 = dataGrid.Header.Columns[2].Text;
-                    Assert.AreEqual("C1", c2);
 
                     Assert.AreEqual("FirstName", dataGrid.Cell(c0, 0).Text);
                     Assert.AreEqual("LastName", dataGrid.Cell(c0, 1).Text);
@@ -171,7 +169,7 @@
             [Test]
             public void Reminder()
             {
-                Assert.Fail("Name column is readonly");
+                Assert.Inconclusive("Check that name column is readonly");
             }
         }
     }

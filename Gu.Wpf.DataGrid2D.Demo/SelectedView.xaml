@@ -12,7 +12,8 @@
         <local:SelectedVm />
     </UserControl.DataContext>
     <UniformGrid Rows="1">
-        <DataGrid SelectionUnit="Cell"
+        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionGrid}"
+                  SelectionUnit="Cell"
                   dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
                   dataGrid2D:Selected.CellItem="{Binding SelectedItem}" />
 
@@ -36,18 +37,21 @@
                                Text="Index: " />
                     <TextBlock Grid.Row="0"
                                Grid.Column="1"
+                               AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedIndex}"
                                Text="{Binding Index}" />
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
                                Text="Item: " />
                     <TextBlock Grid.Row="1"
                                Grid.Column="1"
+                               AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedItem}"
                                Text="{Binding SelectedItem.Name}" />
                 </Grid>
 
                 <ListBox Grid.Row="1"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center"
+                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
                          ItemsSource="{Binding AllRowsItems}"
                          SelectedItem="{Binding SelectedItem}" />
             </Grid>

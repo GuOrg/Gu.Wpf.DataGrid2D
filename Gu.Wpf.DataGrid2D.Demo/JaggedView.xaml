@@ -13,11 +13,11 @@
         <GroupBox Header="Vanilla">
             <UniformGrid Rows="1">
                 <GroupBox Header="Auto columns">
-                    <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedAutoColumns}" dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Auto columns">
-                    <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedAutoColumnsDifferentLengths}" dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Readonly">
@@ -25,7 +25,9 @@
                 </GroupBox>
 
                 <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}">
+                    <DataGrid AutoGenerateColumns="False"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedExplicitColumns}"
+                              dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
                             <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
@@ -34,7 +36,8 @@
                 </GroupBox>
 
                 <GroupBox Header="With headers">
-                    <DataGrid ColumnWidth="SizeToHeader"
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedWithHeaders}"
+                              ColumnWidth="SizeToHeader"
                               SelectionUnit="Cell"
                               dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
                               dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
@@ -46,15 +49,19 @@
         <GroupBox Header="Transposed">
             <UniformGrid Rows="1">
                 <GroupBox Header="Auto columns">
-                    <DataGrid dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}" />
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedAutoColumnsTransposed}" dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Auto columns">
-                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.ColumnsSource="{Binding DifferentLengths}" />
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedAutoColumnsDifferentLengthsTransposed}"
+                              IsReadOnly="True"
+                              dataGrid2D:ItemsSource.ColumnsSource="{Binding DifferentLengths}" />
                 </GroupBox>
 
                 <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}">
+                    <DataGrid AutoGenerateColumns="False"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedExplicitColumnsTransposed}"
+                              dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
                             <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
@@ -64,7 +71,8 @@
                 </GroupBox>
 
                 <GroupBox Header="With headers">
-                    <DataGrid ColumnWidth="SizeToHeader"
+                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.JaggedWithHeadersTransposed}"
+                              ColumnWidth="SizeToHeader"
                               SelectionUnit="Cell"
                               dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
                               dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}"

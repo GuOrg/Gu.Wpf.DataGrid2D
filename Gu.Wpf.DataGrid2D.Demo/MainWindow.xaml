@@ -15,7 +15,7 @@
             <demo:Source2DView />
         </TabItem>
 
-        <TabItem Header="int[][]">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.JaggedTab}" Header="int[][]">
             <demo:JaggedView />
         </TabItem>
 
@@ -27,7 +27,7 @@
             <demo:TransposedView />
         </TabItem>
 
-        <TabItem Header="SelectedCellItem">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.SelectionTab}" Header="SelectedCellItem">
             <demo:SelectedView />
         </TabItem>
 

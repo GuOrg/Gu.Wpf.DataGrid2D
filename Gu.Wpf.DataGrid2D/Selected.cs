@@ -1,5 +1,7 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System.Linq;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
@@ -64,7 +66,7 @@
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static RowColumnIndex? GetIndex(this DataGrid element)
         {
-            return (RowColumnIndex)element.GetValue(IndexProperty);
+            return (RowColumnIndex?)element.GetValue(IndexProperty);
         }
 
         private static void OnCurrentCellProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -82,8 +84,7 @@
                 if (dataGrid.GetCellItem() != null)
                 {
                     dataGrid.SetValue(CellItemProperty, null);
-                    var rowColumnIndex = new RowColumnIndex(dataGrid.SelectedIndex, cellInfo.Column.DisplayIndex);
-                    dataGrid.SetValue(IndexProperty, rowColumnIndex);
+                    dataGrid.SetValue(IndexProperty, dataGrid.SelectedIndex());
                 }
 
                 return;
@@ -155,6 +156,29 @@
 
         private static void OnIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            var dataGrid = (DataGrid)d;
+            if (dataGrid.SelectedIndex() == (RowColumnIndex?)dataGrid.GetValue(IndexProperty))
+            {
+                return;
+            }
+
+            var rowColumnIndex = (RowColumnIndex?)e.NewValue;
+            if (rowColumnIndex == null)
+            {
+                dataGrid.UnselectAllCells();
+                return;
+            }
+
+            var dataGridColumn = dataGrid.Columns[rowColumnIndex.Value.Column];
+            var row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(rowColumnIndex.Value.Row);
+            var content = dataGridColumn.GetCellContent(row);
+            var cell = content.Ancestors()
+                                        .OfType<DataGridCell>()
+                                        .FirstOrDefault();
+            if (cell != null)
+            {
+                cell.IsSelected = true;
+            }
         }
 
         private static object OnIndexCoerce(DependencyObject d, object basevalue)
@@ -186,6 +210,23 @@
                 dataGrid.Bind(CurrentCellProxyProperty)
                         .TwoWayTo(dataGrid, DataGrid.CurrentCellProperty);
             }
+        }
+
+        private static RowColumnIndex? SelectedIndex(this DataGrid dataGrid)
+        {
+            var selectedCells = dataGrid.SelectedCells;
+            if (selectedCells.Count != 1)
+            {
+                return null;
+            }
+
+            var cell = selectedCells[0].GetCell();
+            if (cell != null)
+            {
+                return new RowColumnIndex(dataGrid.SelectedIndex, cell.Column.DisplayIndex);
+            }
+
+            return null;
         }
     }
 }
