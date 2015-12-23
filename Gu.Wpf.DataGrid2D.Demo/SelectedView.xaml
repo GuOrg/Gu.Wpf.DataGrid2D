@@ -47,13 +47,18 @@
                                AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedItem}"
                                Text="{Binding SelectedItem.Name}" />
                 </Grid>
+                <UniformGrid Grid.Row="1">
+                    <ListBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
+                             ItemsSource="{Binding AllRowsItems}"
+                             SelectedItem="{Binding SelectedItem}" />
 
-                <ListBox Grid.Row="1"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
-                         ItemsSource="{Binding AllRowsItems}"
-                         SelectedItem="{Binding SelectedItem}" />
+                    <ListBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             ItemsSource="{Binding Indices}"
+                             SelectedItem="{Binding SelectedItem}" />
+                </UniformGrid>
             </Grid>
         </GroupBox>
     </UniformGrid>
