@@ -14,7 +14,15 @@
                   SelectionUnit="Cell"
                   dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
                   dataGrid2D:Selected.CellItem="{Binding SelectedItem}"
-                  dataGrid2D:Selected.Index="{Binding Index}" />
+                  dataGrid2D:Selected.Index="{Binding Index}">
+            <!--<DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsS}"></DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>-->
+        </DataGrid>
 
         <Grid>
             <Grid.RowDefinitions>
@@ -50,6 +58,7 @@
                            AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedItem}"
                            Text="{Binding SelectedItem.Name}" />
                 <Button Grid.Row="2"
+                        Grid.Column="0"
                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionLoseFocusButton}"
                         Content="Lose focus" />
             </Grid>

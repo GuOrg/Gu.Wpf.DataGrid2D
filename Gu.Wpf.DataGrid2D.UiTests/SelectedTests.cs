@@ -61,47 +61,23 @@
                 Assert.IsFalse(cell.IsFocussed);
                 indexBox.Text = "R1 C1";
                 loseFocusButton.Click();
-                Assert.IsFalse(cell.IsFocussed);
+                Assert.IsTrue(cell.IsFocussed);
                 Assert.AreEqual("Item: 4", itemBox.Text);
 
-                //dataGrid.Cell(c1, 2).Click();
-                //Assert.AreEqual("R2 C1", indexBox.Text);
-                //Assert.AreEqual("Item: 6", itemBox.Text);
+                cell = dataGrid.Cell(c0, 0);
+                Assert.IsFalse(cell.IsFocussed);
+                indexBox.Text = "R0 C0";
+                loseFocusButton.Click();
+                Assert.IsTrue(cell.IsFocussed);
+                Assert.AreEqual("Item: 1", itemBox.Text);
+
+                // Not sure how we want to handle out of bounds
+                Assert.IsTrue(cell.IsFocussed);
+                indexBox.Text = "R10 C10";
+                loseFocusButton.Click();
+                Assert.IsFalse(cell.IsFocussed);
+                Assert.AreEqual("Item: 1", itemBox.Text);
             }
         }
-
-        //[Test]
-        //public void TracksSelected()
-        //{
-        //    var data = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-        //    var dataGrid = new DataGrid();
-        //    dataGrid.Bind(ItemsSource.Array2DProperty)
-        //            .OneWayTo(data);
-
-        //    Assert.AreEqual(null, Selected.GetIndex(dataGrid));
-        //    Assert.AreEqual(null, Selected.GetCellItem(dataGrid));
-
-        //    var index = new RowColumnIndex(0, 0);
-        //    Selected.SetIndex(dataGrid, index);
-        //    Assert.AreEqual(index, Selected.GetIndex(dataGrid));
-        //    Assert.AreEqual(1, Selected.GetCellItem(dataGrid));
-        //}
-
-        //[Test]
-        //public void ChangeSelectedIndex()
-        //{
-        //    var data = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-        //    var dataGrid = new DataGrid();
-        //    dataGrid.Bind(ItemsSource.Array2DProperty)
-        //            .OneWayTo(data);
-        //    dataGrid.SelectionUnit = DataGridSelectionUnit.Cell;
-        //    dataGrid.Initialize();
-        //    var index = new RowColumnIndex(0, 0);
-        //    dataGrid.SetValue(Selected.IndexProperty, index);
-        //    Assert.AreEqual(index, Selected.GetIndex(dataGrid));
-        //    Assert.AreEqual(1, Selected.GetCellItem(dataGrid));
-        //    Assert.AreEqual(0, dataGrid.SelectedIndex);
-        //    Assert.AreEqual(1, dataGrid.SelectedItem);
-        //}
     }
 }
