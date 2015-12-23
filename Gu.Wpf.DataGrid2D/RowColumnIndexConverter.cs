@@ -4,7 +4,6 @@ namespace Gu.Wpf.DataGrid2D
     using System.ComponentModel;
     using System.ComponentModel.Design.Serialization;
     using System.Globalization;
-    using System.Reflection;
 
     /// <devdoc>
     /// <para>Provides a type converter to convert <see cref='RowColumnIndex'/>
@@ -34,7 +33,7 @@ namespace Gu.Wpf.DataGrid2D
         /// </devdoc>
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            if (destinationType == typeof(InstanceDescriptor))
+            if ((destinationType == typeof(string)) || (destinationType == typeof(InstanceDescriptor)))
             {
                 return true;
             }
@@ -73,18 +72,18 @@ namespace Gu.Wpf.DataGrid2D
         /// </devdoc>
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
-            if (destinationType == null)
+            if (value is RowColumnIndex)
             {
-                throw new ArgumentNullException(nameof(destinationType));
-            }
-
-            if (destinationType == typeof(InstanceDescriptor) && value is RowColumnIndex)
-            {
-                var ctor = typeof(RowColumnIndex).GetConstructor(new Type[] { typeof(int), typeof(int) });
-                if (ctor != null)
+                var index = (RowColumnIndex)value;
+                if (destinationType == typeof(string))
                 {
-                    var args = new object[] { ((RowColumnIndex)value).Row, ((RowColumnIndex)value).Column };
-                    return new InstanceDescriptor(ctor, args);
+                    return index.ToString();
+                }
+
+                if (destinationType == typeof(InstanceDescriptor))
+                {
+                    var ci = typeof(RowColumnIndex).GetConstructor(new[] { typeof(int), typeof(int) });
+                    return new InstanceDescriptor(ci, new object[] { index.Row, index.Column });
                 }
             }
 

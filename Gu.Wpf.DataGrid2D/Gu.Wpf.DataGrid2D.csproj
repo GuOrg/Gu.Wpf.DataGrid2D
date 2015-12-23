@@ -44,11 +44,12 @@
     <Compile Include="Events.cs" />
     <Compile Include="Index.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
+    <Compile Include="Internals\BooleanBoxes.cs" />
     <Compile Include="Internals\ColumnHeaderListener.cs" />
     <Compile Include="Internals\EnumerableExt.cs" />
     <Compile Include="Internals\Helpers.cs" />
     <Compile Include="IndexColumn.cs" />
-    <Compile Include="Internals\RoutedEventExt.cs" />
+    <Compile Include="Internals\RoutedEventHelper.cs" />
     <Compile Include="Internals\RowHeaderListener.cs" />
     <Compile Include="Internals\RowsListener.cs" />
     <Compile Include="Internals\TypeExt.cs" />

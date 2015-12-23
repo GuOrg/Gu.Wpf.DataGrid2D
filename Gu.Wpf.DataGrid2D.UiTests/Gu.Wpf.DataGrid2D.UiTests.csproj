@@ -58,7 +58,7 @@
     <Compile Include="ItemsSourceTests.JaggedTransposed.cs" />
     <Compile Include="ItemsSourceTests.Transposed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ItemsSourceTests.cs" />
+    <Compile Include="SelectedTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />

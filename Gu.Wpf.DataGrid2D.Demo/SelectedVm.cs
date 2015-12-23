@@ -9,6 +9,7 @@
     public class SelectedVm : INotifyPropertyChanged
     {
         private ItemVm selectedItem;
+
         private RowColumnIndex? index;
 
         public SelectedVm()
@@ -29,16 +30,7 @@
             }
 
             this.RowVms = rowVms;
-            this.AllRowsItems = rowVms.SelectMany(x=>x).ToList();
-            this.Indices = new[]
-                           {
-                               new RowColumnIndex(0, 0),
-                               new RowColumnIndex(1, 0),
-                               new RowColumnIndex(2, 0),
-                               new RowColumnIndex(0, 1),
-                               new RowColumnIndex(1, 1),
-                               new RowColumnIndex(2, 1),
-                           };
+            this.AllRowsItems = rowVms.SelectMany(x => x).ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -46,7 +38,6 @@
         public IReadOnlyList<RowVm> RowVms { get; }
 
         public IReadOnlyList<ItemVm> AllRowsItems { get; }
-        public IReadOnlyList<RowColumnIndex> Indices { get; }
 
         public ItemVm SelectedItem
         {
@@ -67,7 +58,11 @@
             get { return this.index; }
             set
             {
-                if (value.Equals(this.index)) return;
+                if (value.Equals(this.index))
+                {
+                    return;
+                }
+
                 this.index = value;
                 this.OnPropertyChanged();
             }

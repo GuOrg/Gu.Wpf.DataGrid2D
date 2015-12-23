@@ -7,7 +7,7 @@ namespace Gu.Wpf.DataGrid2D
     [TypeConverter(typeof(RowColumnIndexConverter))]
     public struct RowColumnIndex : IEquatable<RowColumnIndex>
     {
-        internal static readonly RowColumnIndex Unset = new RowColumnIndex(-1);
+        public static readonly RowColumnIndex None = new RowColumnIndex(-1);
 
         public RowColumnIndex(int row, int column)
         {
@@ -60,11 +60,11 @@ namespace Gu.Wpf.DataGrid2D
         {
             if (string.IsNullOrWhiteSpace(text))
             {
-                result = RowColumnIndex.Unset;
+                result = RowColumnIndex.None;
                 return false;
             }
 
-            var match = Regex.Match(text, @"^ *R(?<row>\d+) *C(?<col>\d+) *$");
+            var match = Regex.Match(text, @"^ *R(?<row>\d+) *C(?<col>\d+) *$", RegexOptions.IgnoreCase);
             if (match.Success)
             {
                 int row;
@@ -79,7 +79,7 @@ namespace Gu.Wpf.DataGrid2D
                 }
             }
 
-            result = RowColumnIndex.Unset;
+            result = RowColumnIndex.None;
             return false;
         }
 

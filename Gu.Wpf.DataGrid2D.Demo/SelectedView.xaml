@@ -5,8 +5,6 @@
              xmlns:dataGrid2D="http://gu.se/DataGrid2D"
              xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <local:SelectedVm />
@@ -15,51 +13,60 @@
         <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionGrid}"
                   SelectionUnit="Cell"
                   dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
-                  dataGrid2D:Selected.CellItem="{Binding SelectedItem}" />
+                  dataGrid2D:Selected.CellItem="{Binding SelectedItem}"
+                  dataGrid2D:Selected.Index="{Binding Index}" />
 
-        <GroupBox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0"
-                               Grid.Column="0"
-                               Text="Index: " />
-                    <TextBlock Grid.Row="0"
-                               Grid.Column="1"
-                               AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedIndex}"
-                               Text="{Binding Index}" />
-                    <TextBlock Grid.Row="1"
-                               Grid.Column="0"
-                               Text="Item: " />
-                    <TextBlock Grid.Row="1"
-                               Grid.Column="1"
-                               AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedItem}"
-                               Text="{Binding SelectedItem.Name}" />
-                </Grid>
-                <UniformGrid Grid.Row="1">
-                    <ListBox HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
-                             ItemsSource="{Binding AllRowsItems}"
-                             SelectedItem="{Binding SelectedItem}" />
-
-                    <ListBox HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             ItemsSource="{Binding Indices}"
-                             SelectedItem="{Binding SelectedItem}" />
-                </UniformGrid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Index: " />
+                <TextBox Grid.Row="0"
+                         Grid.Column="1"
+                         MinWidth="50"
+                         HorizontalAlignment="Left"
+                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedIndex}"
+                         Text="{Binding Index,
+                                        TargetNullValue=''}" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Text="Item: " />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedItem}"
+                           Text="{Binding SelectedItem.Name}" />
+                <Button Grid.Row="2"
+                        AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionLoseFocusButton}"
+                        Content="Lose focus" />
             </Grid>
-        </GroupBox>
+
+            <UniformGrid Grid.Row="1">
+                <ListBox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
+                         ItemsSource="{Binding AllRowsItems}"
+                         SelectedItem="{Binding SelectedItem}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </UniformGrid>
+        </Grid>
     </UniformGrid>
 </UserControl>

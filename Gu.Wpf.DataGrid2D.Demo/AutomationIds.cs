@@ -33,6 +33,7 @@
         public static readonly string SelectionGrid = Create();
         public static readonly string SelectedIndex = Create();
         public static readonly string SelectedItem = Create();
+        public static readonly string SelectionLoseFocusButton = Create();
         public static readonly string SelectionList = Create();
 
 

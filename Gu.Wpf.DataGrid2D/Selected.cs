@@ -1,49 +1,49 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System;
+    using System.ComponentModel;
+    using System.Diagnostics;
     using System.Linq;
-    using System.Threading;
+    using System.Runtime.CompilerServices;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
 
     public static class Selected
     {
-        private static readonly string Unset = "Unset";
         public static readonly DependencyProperty CellItemProperty = DependencyProperty.RegisterAttached(
             "CellItem",
             typeof(object),
             typeof(Selected),
             new FrameworkPropertyMetadata(
-                Unset,
+                null,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnCellItemChanged,
-                OnCellItemCoerce));
+                OnCellItemIndexCoerce));
 
         public static readonly DependencyProperty IndexProperty = DependencyProperty.RegisterAttached(
             "Index",
             typeof(RowColumnIndex?),
             typeof(Selected),
             new FrameworkPropertyMetadata(
-                RowColumnIndex.Unset,
+                null,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnIndexChanged,
-                OnIndexCoerce));
+                OnSelectedIndexCoerce));
 
-        private static readonly DependencyProperty CurrentCellProxyProperty = DependencyProperty.RegisterAttached(
-            "CurrentCellProxy",
-            typeof(object),
+        private static readonly DependencyProperty IsSubscribingChangesProperty = DependencyProperty.RegisterAttached(
+            "IsSubscribingChanges",
+            typeof(bool),
             typeof(Selected),
-            new PropertyMetadata(
-                Unset,
-                OnCurrentCellProxyChanged));
+            new PropertyMetadata(BooleanBoxes.False));
 
-        ////private static readonly DependencyProperty IsUpdatingProperty = DependencyProperty.RegisterAttached(
-        ////    "IsUpdating",
-        ////    typeof(bool),
-        ////    typeof(Selected),
-        ////    new PropertyMetadata(
-        ////        false,
-        ////        OnCurrentCellProxyChanged));
+        private static readonly DependencyProperty IsUpdatingProperty = DependencyProperty.RegisterAttached(
+            "IsUpdating",
+            typeof(bool),
+            typeof(Selected),
+            new PropertyMetadata(BooleanBoxes.False));
+
+        private static readonly RoutedEventHandler SelectedCellsChangedHandler = OnSelectedCellsChanged;
 
         public static void SetCellItem(this DataGrid element, object value)
         {
@@ -69,86 +69,64 @@
             return (RowColumnIndex?)element.GetValue(IndexProperty);
         }
 
-        private static void OnCurrentCellProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnSelectedCellsChanged(object sender, RoutedEventArgs routedEventArgs)
         {
-            var dataGrid = (DataGrid)d;
-            ////if (Equals(dataGrid.GetValue(IsUpdatingProperty), true))
-            ////{
-            ////    return;
-            ////}
-
-            var cellInfo = (DataGridCellInfo)e.NewValue;
-
-            if (!cellInfo.IsValid)
+            var dataGrid = (DataGrid)sender;
+            if (Equals(dataGrid.GetValue(IsUpdatingProperty), BooleanBoxes.True))
             {
-                if (dataGrid.GetCellItem() != null)
+                return;
+            }
+
+            dataGrid.SetValue(IsUpdatingProperty, BooleanBoxes.True);
+            try
+            {
+                if (dataGrid.SelectedCells.Count != 1)
                 {
-                    dataGrid.SetValue(CellItemProperty, null);
-                    dataGrid.SetValue(IndexProperty, dataGrid.SelectedIndex());
+                    dataGrid.SetValue(IndexProperty, null);
+                    return;
                 }
 
-                return;
+                var index = dataGrid.SelectedRowColumnIndex();
+                dataGrid.SetValue(IndexProperty, index);
+                UpdateSelectedCellItemFromView(dataGrid);
             }
-
-            var cell = cellInfo.GetCell();
-            if (cell == null)
+            finally
             {
-                dataGrid.SetValue(CellItemProperty, null);
-                dataGrid.SetValue(IndexProperty, null);
-                return;
+                dataGrid.SetValue(IsUpdatingProperty, BooleanBoxes.False);
             }
-
-            var containerFromItem = dataGrid.ItemContainerGenerator.ContainerFromItem(dataGrid.CurrentItem);
-            var rowIndex = dataGrid.ItemContainerGenerator.IndexFromContainer(containerFromItem);
-            var colIndex = dataGrid.CurrentColumn.DisplayIndex;
-            var index = new RowColumnIndex(rowIndex, colIndex);
-            dataGrid.SetValue(IndexProperty, index);
         }
 
         private static void OnCellItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var dataGrid = (DataGrid)d;
-            if (e.NewValue == null)
+            if (Equals(d.GetValue(IsUpdatingProperty), BooleanBoxes.True))
             {
-                dataGrid.UnselectAllCells();
                 return;
             }
 
-            ////dataGrid.SetValue(IsUpdatingProperty, true);
-            var selectedCells = dataGrid.SelectedCells;
-            if (selectedCells.Count == 1)
+            d.SetValue(IsUpdatingProperty, BooleanBoxes.True);
+            try
             {
-                var cell = selectedCells[0].GetCell();
-                if (cell != null && cell.DataContext == e.NewValue)
+                var dataGrid = (DataGrid)d;
+                dataGrid.UnselectAllCells();
+                if (e.NewValue == null)
                 {
+                    dataGrid.SetIndex(null);
                     return;
                 }
+
+                throw new NotImplementedException();
             }
-
-            dataGrid.UnselectAllCells();
-
-            foreach (var row in dataGrid.Items)
+            finally
             {
-                foreach (var column in dataGrid.Columns)
-                {
-                    var content = column.GetCellContent(row);
-                    if (content != null && content.DataContext == e.NewValue)
-                    {
-                        var cell = (DataGridCell)content.Parent;
-                        cell.IsSelected = true;
-                    }
-                }
+                d.SetValue(IsUpdatingProperty, BooleanBoxes.False);
             }
-
-            ////dataGrid.SetValue(IsUpdatingProperty, false);
         }
 
-        private static object OnCellItemCoerce(DependencyObject d, object basevalue)
+        private static object OnCellItemIndexCoerce(DependencyObject d, object basevalue)
         {
-            BindCurrentCell((DataGrid)d);
-            if (Equals(basevalue, Unset))
+            if (Equals(d.GetValue(IsSubscribingChangesProperty), BooleanBoxes.False))
             {
-                return null;
+                SubscribeSelectionChanges((DataGrid)d);
             }
 
             return basevalue;
@@ -156,40 +134,69 @@
 
         private static void OnIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var dataGrid = (DataGrid)d;
-            if (dataGrid.SelectedIndex() == (RowColumnIndex?)dataGrid.GetValue(IndexProperty))
+            if (Equals(d.GetValue(IsUpdatingProperty), BooleanBoxes.True))
             {
                 return;
             }
 
-            var rowColumnIndex = (RowColumnIndex?)e.NewValue;
-            if (rowColumnIndex == null)
+            d.SetValue(IsUpdatingProperty, BooleanBoxes.True);
+            try
             {
+                var dataGrid = (DataGrid)d;
                 dataGrid.UnselectAllCells();
-                return;
-            }
+                var rowColumnIndex = (RowColumnIndex?)e.NewValue;
+                if (rowColumnIndex == null)
+                {
+                    return;
+                }
 
-            var dataGridColumn = dataGrid.Columns[rowColumnIndex.Value.Column];
-            var row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(rowColumnIndex.Value.Row);
-            var content = dataGridColumn.GetCellContent(row);
-            var cell = content.Ancestors()
-                                        .OfType<DataGridCell>()
-                                        .FirstOrDefault();
-            if (cell != null)
+                var cell = dataGrid.GetCell(rowColumnIndex.Value);
+                if (cell != null)
+                {
+                    cell.IsSelected = true;
+                }
+
+                UpdateSelectedCellItemFromView(dataGrid);
+            }
+            finally
             {
-                cell.IsSelected = true;
+                d.SetValue(IsUpdatingProperty, BooleanBoxes.False);
             }
         }
 
-        private static object OnIndexCoerce(DependencyObject d, object basevalue)
+        private static object OnSelectedIndexCoerce(DependencyObject d, object basevalue)
         {
-            BindCurrentCell((DataGrid)d);
-            if (Equals(basevalue, RowColumnIndex.Unset))
+            if (Equals(d.GetValue(IsSubscribingChangesProperty), BooleanBoxes.False))
+            {
+                SubscribeSelectionChanges((DataGrid)d);
+            }
+
+            return basevalue;
+        }
+
+        private static void SubscribeSelectionChanges(DataGrid dataGrid)
+        {
+            dataGrid.UpdateHandler(DataGridCell.SelectedEvent, SelectedCellsChangedHandler, true);
+            dataGrid.UpdateHandler(DataGridCell.UnselectedEvent, SelectedCellsChangedHandler, true);
+            dataGrid.SetValue(IsSubscribingChangesProperty, BooleanBoxes.True);
+        }
+
+        private static RowColumnIndex? SelectedRowColumnIndex(this DataGrid dataGrid)
+        {
+            var item = dataGrid.CurrentItem;
+            if (item == null)
             {
                 return null;
             }
 
-            return basevalue;
+            var row = dataGrid.ItemContainerGenerator.ContainerFromItem(item);
+            if (row == null || dataGrid.CurrentColumn == null)
+            {
+                return null;
+            }
+
+            var rowIndex = dataGrid.ItemContainerGenerator.IndexFromContainer(row);
+            return new RowColumnIndex(rowIndex, dataGrid.CurrentColumn.DisplayIndex);
         }
 
         private static DataGridCell GetCell(this DataGridCellInfo info)
@@ -200,33 +207,62 @@
             }
 
             var cellContent = info.Column.GetCellContent(info.Item);
-            return cellContent?.Parent as DataGridCell;
+            return cellContent?.Ancestors().OfType<DataGridCell>().FirstOrDefault();
         }
 
-        private static void BindCurrentCell(DataGrid dataGrid)
+        private static DataGridCell GetCell(this DataGrid dataGrid, RowColumnIndex index)
         {
-            if (BindingOperations.GetBinding(dataGrid, CurrentCellProxyProperty) == null)
-            {
-                dataGrid.Bind(CurrentCellProxyProperty)
-                        .TwoWayTo(dataGrid, DataGrid.CurrentCellProperty);
-            }
-        }
-
-        private static RowColumnIndex? SelectedIndex(this DataGrid dataGrid)
-        {
-            var selectedCells = dataGrid.SelectedCells;
-            if (selectedCells.Count != 1)
+            if (index.Column < 0 || index.Column >= dataGrid.Columns.Count)
             {
                 return null;
             }
 
-            var cell = selectedCells[0].GetCell();
-            if (cell != null)
+            if (index.Row < 0 || index.Row >= dataGrid.ItemContainerGenerator.Items.Count)
             {
-                return new RowColumnIndex(dataGrid.SelectedIndex, cell.Column.DisplayIndex);
+                return null;
             }
 
-            return null;
+            var dataGridColumn = dataGrid.Columns[index.Column];
+            var row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(index.Row);
+            var content = dataGridColumn.GetCellContent(row);
+            var cell = content.Ancestors()
+                              .OfType<DataGridCell>()
+                              .FirstOrDefault();
+
+            return cell;
+        }
+
+        private static void UpdateSelectedCellItemFromView(DataGrid dataGrid)
+        {
+            var index = dataGrid.GetIndex();
+            if (index == null)
+            {
+                dataGrid.SetValue(CellItemProperty, null);
+                return;
+            }
+
+            var boundColumn = dataGrid.Columns.FirstOrDefault(x => x.DisplayIndex == index.Value.Column) as DataGridBoundColumn;
+            var item = (dataGrid.ItemContainerGenerator.ContainerFromIndex(index.Value.Row) as DataGridRow)?.DataContext;
+            if (boundColumn == null || item == null)
+            {
+                dataGrid.SetValue(CellItemProperty, null);
+                return;
+            }
+
+            var binding = boundColumn.Binding as Binding;
+            var propertyDescriptor = TypeDescriptor.GetProperties(item)
+                                                   .OfType<PropertyDescriptor>()
+                                                   .SingleOrDefault(x => x.Name == binding?.Path.Path);
+
+            if (propertyDescriptor == null)
+            {
+                dataGrid.SetValue(CellItemProperty, null);
+            }
+            else
+            {
+                var value = propertyDescriptor.GetValue(item);
+                dataGrid.SetValue(CellItemProperty, value);
+            }
         }
     }
 }
