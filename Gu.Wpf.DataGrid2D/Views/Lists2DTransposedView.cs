@@ -13,8 +13,8 @@ namespace Gu.Wpf.DataGrid2D
             : base(source)
         {
             this.MaxColumnCount = source.Count();
-            this.RowCount = source.Max(x => x.Count());
-            this.ColumnIsReadOnlies = source.Select(x => x.Count() != this.RowCount)
+            var rowCount = source.Max(x => x.Count());
+            this.ColumnIsReadOnlies = source.Select(x => x.Count() != rowCount)
                                        .ToList();
             this.ColumnElementTypes = this.Source.Select(x => x.GetElementType())
                                      .ToList();
@@ -28,8 +28,6 @@ namespace Gu.Wpf.DataGrid2D
 
         internal int MaxColumnCount { get; }
 
-        internal int RowCount { get; }
-
         public override bool IsTransposed => true;
 
         public override bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
@@ -39,53 +37,121 @@ namespace Gu.Wpf.DataGrid2D
                 return false;
             }
 
-            base.ReceiveWeakEvent(managerType, sender, e);
-            if (ReferenceEquals(sender, this.Source))
+            var ccea = (NotifyCollectionChangedEventArgs)e;
+            if (this.IsColumnsChange(sender, ccea))
             {
                 this.OnColumnsChanged();
                 return true;
             }
 
-            var ccea = (NotifyCollectionChangedEventArgs)e;
-            var changed = (IEnumerable) sender;
-            switch (ccea.Action)
+            base.ReceiveWeakEvent(managerType, sender, e);
+            if (ReferenceEquals(sender, this.Source))
+            {
+                switch (ccea.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                    case NotifyCollectionChangedAction.Remove:
+                        throw new InvalidOperationException("Should never get here, this is a columns change.");
+                    case NotifyCollectionChangedAction.Replace:
+                        foreach (var row in this.Rows)
+                        {
+                            row.RaiseColumnsChanged(ccea.NewStartingIndex, 1);
+                        }
+
+                        break;
+                    case NotifyCollectionChangedAction.Move:
+                        foreach (var row in this.Rows)
+                        {
+                            row.RaiseColumnsChanged(ccea.OldStartingIndex, 1);
+                            row.RaiseColumnsChanged(ccea.NewStartingIndex, 1);
+                        }
+
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        this.ResetRows();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            else
+            {
+                var changed = (IEnumerable)sender;
+                var col = this.Source.IndexOf(changed);
+                switch (ccea.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        for (var i = changed.Count() - ccea.NewItems.Count; i < this.Rows.Count; i++)
+                        {
+                            this.Rows[i].RaiseColumnsChanged(col, 1);
+                        }
+
+                        break;
+                    case NotifyCollectionChangedAction.Remove:
+                        for (var i = changed.Count() - ccea.OldItems.Count; i < this.Rows.Count; i++)
+                        {
+                            this.Rows[i].RaiseColumnsChanged(col, 1);
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Replace:
+                        this.Rows[ccea.NewStartingIndex].RaiseColumnsChanged(col, 1);
+                        break;
+                    case NotifyCollectionChangedAction.Move:
+                        this.Rows[ccea.NewStartingIndex].RaiseColumnsChanged(col, 1);
+                        this.Rows[ccea.OldStartingIndex].RaiseColumnsChanged(col, 1);
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        foreach (var row in this.Rows)
+                        {
+                            row.RaiseColumnsChanged(col, 1);
+                        }
+
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            return true;
+        }
+
+        private bool IsColumnsChange(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    throw new NotImplementedException();
-                    break;
                 case NotifyCollectionChangedAction.Remove:
-                    if (this.ColumnIsReadOnlies[changed.Count() - 1] == false)
-                    {
-                        this.OnColumnsChanged();
-                        return true;
-                    }
-
-
-                    throw new NotImplementedException();
+                case NotifyCollectionChangedAction.Reset:
                     break;
                 case NotifyCollectionChangedAction.Replace:
-                    foreach (var listRowView in this.Rows)
-                    {
-                        this.Rows[ccea.NewStartingIndex].RaiseColumnsChanged(ccea.NewStartingIndex, ccea.NewItems.Count);
-                    }
-
-                    break;
                 case NotifyCollectionChangedAction.Move:
-                    foreach (var listRowView in this.Rows)
-                    {
-                        this.Rows[ccea.NewStartingIndex].RaiseColumnsChanged(ccea.OldStartingIndex, ccea.OldItems.Count);
-                        this.Rows[ccea.NewStartingIndex].RaiseColumnsChanged(ccea.NewStartingIndex, ccea.NewItems.Count);
-                    }
-
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    this.ResetRows();
-                    break;
+                    return false;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            return true;
+            if (ReferenceEquals(sender, this.Source))
+            {
+                return true;
+            }
+
+            var index = 0;
+            foreach (var row in this.Source)
+            {
+                var count = row.Count();
+                if (count == this.Rows.Count && this.ColumnIsReadOnlies[index] == true)
+                {
+                    return true;
+                }
+
+                if (count != this.Rows.Count && this.ColumnIsReadOnlies[index] == false)
+                {
+                    return true;
+                }
+
+                index++;
+            }
+
+            return false;
         }
 
         private void ResetRows()
@@ -100,7 +166,7 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             var rowCount = source.Max(x => x.Count());
-            for (int i = 0; i < rowCount; i++)
+            for (var i = 0; i < rowCount; i++)
             {
                 var listRowView = this.CreateRow(i);
                 this.Rows.Add(listRowView);

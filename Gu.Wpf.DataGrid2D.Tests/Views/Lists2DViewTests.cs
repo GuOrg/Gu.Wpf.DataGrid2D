@@ -137,41 +137,6 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         }
 
         [Test]
-        public void SignalsColumnsChanged()
-        {
-            var ints = new ObservableCollection<ObservableCollection<int>>
-                           {
-                               new ObservableCollection<int>(new[] {1, 2}),
-                               new ObservableCollection<int>(new[] {3, 4}),
-                               new ObservableCollection<int>(new[] {5, 6})
-                           };
-
-            var view = new Lists2DView(ints);
-
-            int count = 0;
-            view.ColumnsChanged += (_, __) => count++;
-            ints[0].RemoveAt(0);
-            Assert.AreEqual(1, count);
-
-            view = new Lists2DView(view.Source);
-            ints[1].RemoveAt(1);
-            Assert.AreEqual(1, count);
-
-            ints[0].Add(7);
-            Assert.AreEqual(1, count);
-
-            ints[1].Add(8);
-            Assert.AreEqual(2, count);
-            view = new Lists2DView(view.Source);
-
-            ints[1][0] = 10;
-            Assert.AreEqual(2, count);
-
-            ints.Add(new ObservableCollection<int>(new []{9}));
-            Assert.AreEqual(3, count);
-        }
-
-        [Test]
         public void ColumnsReadOnly()
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };

@@ -13,10 +13,10 @@ namespace Gu.Wpf.DataGrid2D
         {
             this.MaxColumnCount = source.Max(x => x.Count());
             this.ColumnElementTypes = Enumerable.Repeat(source.ElementAt(0).GetElementType(), this.MaxColumnCount).ToList();
-            var min = source.Min(x => x.Count());
+            var min = this.Source.Min(x => x.Count());
             this.ColumnIsReadOnlies = Enumerable.Repeat(false, min)
-                                           .Concat(Enumerable.Repeat(true, this.MaxColumnCount - min))
-                                           .ToList();
+                                                .Concat(Enumerable.Repeat(true, this.MaxColumnCount - min))
+                                                .ToList();
             this.ResetRows();
         }
 
@@ -35,8 +35,15 @@ namespace Gu.Wpf.DataGrid2D
                 return false;
             }
 
-            base.ReceiveWeakEvent(managerType, sender, e);
             var ccea = (NotifyCollectionChangedEventArgs)e;
+
+            if (this.IsColumnsChange(sender, ccea))
+            {
+                this.OnColumnsChanged();
+                return true;
+            }
+
+            base.ReceiveWeakEvent(managerType, sender, e);
             if (ReferenceEquals(sender, this.Source))
             {
                 switch (ccea.Action)
@@ -64,35 +71,15 @@ namespace Gu.Wpf.DataGrid2D
             else
             {
                 var changed = (IEnumerable)sender;
-
                 var row = this.Source.IndexOf(changed);
                 switch (ccea.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
-                        {
-                            var count = changed.Count();
-                            if (changed.Count() > this.MaxColumnCount)
-                            {
-                                this.OnColumnsChanged();
-                                return true;
-                            }
-
-                            this.Rows[row].RaiseColumnsChanged(count - ccea.NewItems.Count, ccea.NewItems.Count);
-                            break;
-                        }
-
+                        this.Rows[row].RaiseColumnsChanged(changed.Count() - ccea.NewItems.Count, ccea.NewItems.Count);
+                        break;
                     case NotifyCollectionChangedAction.Remove:
-                        {
-                            var count = changed.Count();
-                            if (this.ColumnIsReadOnlies[count - 1] == false)
-                            {
-                                this.OnColumnsChanged();
-                                return true;
-                            }
-
-                            this.Rows[row].RaiseColumnsChanged(count - ccea.OldItems.Count, ccea.OldItems.Count);
-                            break;
-                        }
+                        this.Rows[row].RaiseColumnsChanged(changed.Count() - ccea.OldItems.Count, ccea.OldItems.Count);
+                        break;
                     case NotifyCollectionChangedAction.Replace:
                         this.Rows[row].RaiseColumnsChanged(ccea.NewStartingIndex, 1);
                         break;
@@ -109,6 +96,51 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             return true;
+        }
+
+        private bool IsColumnsChange(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                case NotifyCollectionChangedAction.Remove:
+                case NotifyCollectionChangedAction.Reset:
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                case NotifyCollectionChangedAction.Move:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            var min = this.MaxColumnCount;
+            var max = 0;
+            foreach (var row in this.Source)
+            {
+                var count = row.Count();
+                if (count > max)
+                {
+                    max = count;
+                }
+
+                if (count < min)
+                {
+                    min = count;
+                }
+            }
+
+            if (max != this.MaxColumnCount)
+            {
+                return true;
+            }
+
+            var readOnlies = this.ColumnIsReadOnlies.Count(x => x == false);
+            if (min != readOnlies)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void ResetRows()

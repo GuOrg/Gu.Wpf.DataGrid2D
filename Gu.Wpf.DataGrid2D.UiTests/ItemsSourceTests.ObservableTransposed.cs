@@ -23,7 +23,7 @@
                     page.Select();
                     var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
 
-                    int[,] expected = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+                    int[,] expected = { { 1, 3, 5 }, { 2, 4, 6 } };
                     AssertDataGrid.AreEqual(expected, dataGrid);
                 }
             }
@@ -38,21 +38,24 @@
                     page.Select();
                     var dataGrid = page.Get<ListView>(AutomationIds.ExplicitColumnsTransposed);
 
-                    Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(3, dataGrid.Rows.Count);
+                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
+                    Assert.AreEqual(2, dataGrid.Rows.Count);
 
                     var c0 = dataGrid.Header.Columns[0].Text;
                     Assert.AreEqual("Col 1", c0);
                     var c1 = dataGrid.Header.Columns[1].Text;
                     Assert.AreEqual("Col 2", c1);
+                    var c2 = dataGrid.Header.Columns[2].Text;
+                    Assert.AreEqual("Col 3", c2);
 
                     Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("3", dataGrid.Cell(c0, 1).Text);
-                    Assert.AreEqual("5", dataGrid.Cell(c0, 2).Text);
+                    Assert.AreEqual("2", dataGrid.Cell(c0, 1).Text);
 
-                    Assert.AreEqual("2", dataGrid.Cell(c1, 0).Text);
+                    Assert.AreEqual("3", dataGrid.Cell(c1, 0).Text);
                     Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c1, 2).Text);
+
+                    Assert.AreEqual("5", dataGrid.Cell(c2, 0).Text);
+                    Assert.AreEqual("6", dataGrid.Cell(c2, 1).Text);
                 }
             }
 
@@ -66,25 +69,27 @@
                     page.Select();
                     var dataGrid = page.Get<ListView>(AutomationIds.WithHeadersTransposed);
 
-                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(3, dataGrid.Rows.Count);
+                    Assert.AreEqual(4, dataGrid.Rows[0].Cells.Count);
+                    Assert.AreEqual(2, dataGrid.Rows.Count);
 
                     var c0 = dataGrid.Header.Columns[0].Text;
                     Assert.AreEqual("A", c0);
                     var c1 = dataGrid.Header.Columns[1].Text;
                     Assert.AreEqual("B", c1);
+                    var c2 = dataGrid.Header.Columns[2].Text;
+                    Assert.AreEqual("C", c2);
 
                     Assert.AreEqual("1", dataGrid.Rows[0].Cells[0].Text);
                     Assert.AreEqual("2", dataGrid.Rows[1].Cells[0].Text);
-                    Assert.AreEqual("3", dataGrid.Rows[2].Cells[0].Text);
 
                     Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("3", dataGrid.Cell(c0, 1).Text);
-                    Assert.AreEqual("5", dataGrid.Cell(c0, 2).Text);
+                    Assert.AreEqual("2", dataGrid.Cell(c0, 1).Text);
 
-                    Assert.AreEqual("2", dataGrid.Cell(c1, 0).Text);
+                    Assert.AreEqual("3", dataGrid.Cell(c1, 0).Text);
                     Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c1, 2).Text);
+
+                    Assert.AreEqual("5", dataGrid.Cell(c2, 0).Text);
+                    Assert.AreEqual("6", dataGrid.Cell(c2, 1).Text);
                 }
             }
 
@@ -113,7 +118,7 @@
                     cell = dataGrid.Rows[1].Cells[2];
                     cell.Click();
                     cell.Enter("11");
-                    dataGrid.Select(1);
+                    dataGrid.Select(0);
                     expected[1, 2] = 11;
                     AssertDataGrid.AreEqual(expected, dataGrid);
                     AssertDataGrid.AreEqual(expected, readOnly);

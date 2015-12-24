@@ -47,6 +47,8 @@
     <Compile Include="Helpers\DataGridTestExt.cs" />
     <Compile Include="Internals\Stubs\DummyItem.cs" />
     <Compile Include="Internals\EnumerableExtTests.cs" />
+    <Compile Include="Views\Lists2DTransposedView.ColumnsChanged.cs" />
+    <Compile Include="Views\Lists2DViewTests.ColumnsChanged.cs" />
     <Compile Include="RowColumnIndexConverterTests.cs" />
     <Compile Include="RowColumnIndexTests.cs" />
     <Compile Include="Todo.cs" />
