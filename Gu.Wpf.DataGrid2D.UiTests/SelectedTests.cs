@@ -97,11 +97,16 @@
 
                 itemBox.Select(3);
                 Assert.AreEqual("R1 C1", indexBox.Text);
-                //Assert.AreEqual("Item: 4", itemBox.Text);
 
                 itemBox.Select(0);
                 Assert.AreEqual("R0 C0", indexBox.Text);
             }
+        }
+
+        [Test]
+        public void Reminder()
+        {
+            Assert.Inconclusive("Assert cell.IsSelected when supported");
         }
     }
 }

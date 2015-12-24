@@ -72,15 +72,15 @@
     <UniformGrid Columns="2">
         <GroupBox Header="RowsSource">
             <DataGrid CellStyle="{StaticResource CellStyle}"
-                  ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-                  ColumnWidth="*"
-                  dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfItems}"
-                  SelectionUnit="Cell"
-                  dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
-                  dataGrid2D:ItemsSource.CellTemplate="{StaticResource SampleItemTemplate}"
-                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnItemHeaders}"
-                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
-                  dataGrid2D:ItemsSource.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}" />
+                      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
+                      ColumnWidth="*"
+                      SelectionUnit="Cell"
+                      dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
+                      dataGrid2D:ItemsSource.CellTemplate="{StaticResource SampleItemTemplate}"
+                      dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnItemHeaders}"
+                      dataGrid2D:ItemsSource.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
+                      dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
+                      dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfItems}" />
         </GroupBox>
 
         <DataGrid Background="{x:Null}"
@@ -108,7 +108,7 @@
                     </Setter>
                 </Style>
             </DataGrid.RowHeaderStyle>
-            
+
         </DataGrid>
     </UniformGrid>
 </UserControl>

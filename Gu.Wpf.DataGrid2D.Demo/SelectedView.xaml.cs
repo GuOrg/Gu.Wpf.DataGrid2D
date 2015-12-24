@@ -9,7 +9,7 @@
     {
         public SelectedView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

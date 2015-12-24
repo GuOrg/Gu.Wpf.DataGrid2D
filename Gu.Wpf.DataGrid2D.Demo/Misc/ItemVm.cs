@@ -4,7 +4,6 @@
     using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
-
     public class ItemVm : INotifyPropertyChanged
     {
         private int value;

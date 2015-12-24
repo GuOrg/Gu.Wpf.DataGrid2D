@@ -9,7 +9,7 @@
     {
         public JaggedView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -66,6 +66,7 @@
       <DependentUpon>ListOfListsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AutomationIds.cs" />
+    <Compile Include="Misc\RelayCommand.cs" />
     <Compile Include="Person.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
     </Compile>

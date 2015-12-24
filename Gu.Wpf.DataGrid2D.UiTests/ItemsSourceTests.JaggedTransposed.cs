@@ -21,7 +21,7 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.JaggedAutoColumnsTransposed);
+                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -52,7 +52,7 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.JaggedAutoColumnsDifferentLengthsTransposed);
+                    var dataGrid = page.Get<ListView>(AutomationIds.DifferentLengthsTransposed);
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -86,7 +86,7 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.JaggedExplicitColumnsTransposed);
+                    var dataGrid = page.Get<ListView>(AutomationIds.ExplicitColumnsTransposed);
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -117,7 +117,7 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.JaggedWithHeadersTransposed);
+                    var dataGrid = page.Get<ListView>(AutomationIds.WithHeadersTransposed);
 
                     Assert.AreEqual(4, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -140,6 +140,34 @@
 
                     Assert.AreEqual("5", dataGrid.Cell(c2, 0).Text);
                     Assert.AreEqual("6", dataGrid.Cell(c2, 1).Text);
+                }
+            }
+
+            [Test]
+            public void ViewUpdatesSource()
+            {
+                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                {
+                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var page = window.Get<TabPage>(TabId);
+                    page.Select();
+                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
+                    var update = page.Get<Button>(AutomationIds.UpdateDataButton);
+                    var data = page.Get<Label>(AutomationIds.DataTextBox);
+
+                    var cell = dataGrid.Rows[0].Cells[0];
+                    cell.Click();
+                    cell.Enter("10");
+
+                    update.Click();
+                    Assert.AreEqual("{{10, 2}, {3, 4}, {5, 6}}", data.Text);
+
+                    cell = dataGrid.Rows[1].Cells[2];
+                    cell.Click();
+                    cell.Enter("11");
+
+                    update.Click();
+                    Assert.AreEqual("{{10, 2}, {3, 4}, {5, 11}}", data.Text);
                 }
             }
         }

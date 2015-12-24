@@ -9,70 +9,84 @@
     <UserControl.DataContext>
         <local:Source2DVm />
     </UserControl.DataContext>
-    <UniformGrid Columns="1">
-        <GroupBox Header="Vanilla">
-            <UniformGrid Rows="1">
-                <GroupBox Header="Auto columns">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalAutoColumns}" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
-                </GroupBox>
-
-                <GroupBox Header="Readonly">
-                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
-                </GroupBox>
-
-                <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False"
-                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalExplicitColumns}"
-                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
-                            <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </GroupBox>
-
-                <GroupBox Header="With headers">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalWithHeaders}"
-                              ColumnWidth="SizeToHeader"
-                              SelectionUnit="Cell"
-                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                              dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                              dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
-                </GroupBox>
-            </UniformGrid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="For UI tests">
+            <StackPanel>
+                <Button AutomationProperties.AutomationId="{x:Static local:AutomationIds.UpdateDataButton}"
+                        Command="{Binding UpdateDataCommand}"
+                        Content="UpdateData" />
+                <TextBlock AutomationProperties.AutomationId="{x:Static local:AutomationIds.DataTextBox}" Text="{Binding Data}" />
+            </StackPanel>
         </GroupBox>
+        <UniformGrid Grid.Column="1" Columns="1">
+            <GroupBox Header="Vanilla">
+                <UniformGrid Rows="1">
+                    <GroupBox Header="Auto columns">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+                    </GroupBox>
 
-        <GroupBox Header="Transposed">
-            <UniformGrid Rows="1">
-                <GroupBox Header="Auto columns">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalAutoColumnsTransposed}" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
-                </GroupBox>
+                    <GroupBox Header="Readonly">
+                        <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+                    </GroupBox>
 
-                <GroupBox Header="Readonly">
-                    <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
-                </GroupBox>
+                    <GroupBox Header="Explicit columns">
+                        <DataGrid AutoGenerateColumns="False"
+                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumns}"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+                                <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
 
-                <GroupBox Header="Explicit columns">
-                    <DataGrid AutoGenerateColumns="False"
-                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalExplicitColumnsTransposed}"
-                              dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
-                            <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
-                            <DataGridTextColumn Binding="{Binding C2}" Header="Col 3" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </GroupBox>
+                    <GroupBox Header="With headers">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.WithHeaders}"
+                                  ColumnWidth="SizeToHeader"
+                                  SelectionUnit="Cell"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
+                    </GroupBox>
+                </UniformGrid>
+            </GroupBox>
 
-                <GroupBox Header="With headers">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.MultiDimensionalWithHeadersTransposed}"
-                              ColumnWidth="SizeToHeader"
-                              SelectionUnit="Cell"
-                              dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}"
-                              dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                              dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
-                </GroupBox>
-            </UniformGrid>
-        </GroupBox>
-    </UniformGrid>
+            <GroupBox Header="Transposed">
+                <UniformGrid Rows="1">
+                    <GroupBox Header="Auto columns">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumnsTransposed}" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                    </GroupBox>
+
+                    <GroupBox Header="Readonly">
+                        <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                    </GroupBox>
+
+                    <GroupBox Header="Explicit columns">
+                        <DataGrid AutoGenerateColumns="False"
+                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumnsTransposed}"
+                                  dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+                                <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                                <DataGridTextColumn Binding="{Binding C2}" Header="Col 3" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <GroupBox Header="With headers">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.WithHeadersTransposed}"
+                                  ColumnWidth="SizeToHeader"
+                                  SelectionUnit="Cell"
+                                  dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}"
+                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
+                    </GroupBox>
+                </UniformGrid>
+            </GroupBox>
+        </UniformGrid>
+    </Grid>
 </UserControl>

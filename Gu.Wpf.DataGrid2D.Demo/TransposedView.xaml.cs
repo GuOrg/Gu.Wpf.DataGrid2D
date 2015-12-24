@@ -9,7 +9,7 @@
     {
         public TransposedView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

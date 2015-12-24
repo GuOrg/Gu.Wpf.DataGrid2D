@@ -4,10 +4,9 @@
 
     public class Todo
     {
-        [Test]
+        [Test, Explicit]
         public void Reminders()
         {
-            Assert.Inconclusive("TypeConverter for RowColumnIndex");
         }
     }
 }

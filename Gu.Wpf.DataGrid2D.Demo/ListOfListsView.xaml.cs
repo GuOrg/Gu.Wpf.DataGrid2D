@@ -9,7 +9,7 @@
     {
         public ListOfListsView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

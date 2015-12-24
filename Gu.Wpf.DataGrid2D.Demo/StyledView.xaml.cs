@@ -9,7 +9,7 @@
     {
         public StyledView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

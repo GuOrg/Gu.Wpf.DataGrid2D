@@ -9,7 +9,7 @@
     {
         public Source2DView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

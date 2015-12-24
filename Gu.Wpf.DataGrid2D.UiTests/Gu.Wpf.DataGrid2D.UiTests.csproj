@@ -55,8 +55,8 @@
     <Compile Include="Extensions\UIItemExt.cs" />
     <Compile Include="Extensions\UIItemTests.cs" />
     <Compile Include="Info.cs" />
-    <Compile Include="ItemsSourceTests.Jagged.cs" />
     <Compile Include="ItemsSourceTests.Array2D.cs" />
+    <Compile Include="ItemsSourceTests.Jagged.cs" />
     <Compile Include="ItemsSourceTests.Array2DTransposed.cs" />
     <Compile Include="ItemsSourceTests.JaggedTransposed.cs" />
     <Compile Include="ItemsSourceTests.Transposed.cs" />

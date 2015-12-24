@@ -5,23 +5,19 @@
     public static class AutomationIds
     {
         public static readonly string MainWindow = Create();
+        public static readonly string AutoColumns = Create();
+        public static readonly string ExplicitColumns = Create();
+        public static readonly string WithHeaders = Create();
+        public static readonly string AutoColumnsTransposed = Create();
+        public static readonly string ExplicitColumnsTransposed = Create();
+        public static readonly string WithHeadersTransposed = Create();
+        public static readonly string DifferentLengthsTransposed = Create();
+
         public static readonly string MultiDimensionalTab = Create();
-        public static readonly string MultiDimensionalAutoColumns = Create();
-        public static readonly string MultiDimensionalExplicitColumns = Create();
-        public static readonly string MultiDimensionalWithHeaders = Create();
-        public static readonly string MultiDimensionalExplicitColumnsTransposed = Create();
-        public static readonly string MultiDimensionalWithHeadersTransposed = Create();
-        public static readonly string MultiDimensionalAutoColumnsTransposed = Create();
 
         public static readonly string JaggedTab = Create();
-        public static readonly string JaggedAutoColumns = Create();
-        public static readonly string JaggedAutoColumnsDifferentLengths = Create();
-        public static readonly string JaggedExplicitColumns = Create();
-        public static readonly string JaggedWithHeaders = Create();
-        public static readonly string JaggedExplicitColumnsTransposed = Create();
-        public static readonly string JaggedWithHeadersTransposed = Create();
-        public static readonly string JaggedAutoColumnsTransposed = Create();
-        public static readonly string JaggedAutoColumnsDifferentLengthsTransposed = Create();
+        public static readonly string AutoColumnsDifferentLengths = Create();
+
 
         public static readonly string TransposedTab = Create();
         public static readonly string TransposedExplicitColumns = Create();
@@ -36,8 +32,8 @@
         public static readonly string SelectionLoseFocusButton = Create();
         public static readonly string SelectionList = Create();
 
-        public static readonly string CellIsSelected = Create();
-        public static readonly string CellIsReadonly = Create();
+        public static readonly string UpdateDataButton = Create();
+        public static readonly string DataTextBox = Create();
 
 
         private static string Create([CallerMemberName] string name = null)

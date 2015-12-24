@@ -9,7 +9,7 @@
     {
         public RowNumbersView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
