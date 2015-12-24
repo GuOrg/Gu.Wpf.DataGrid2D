@@ -46,7 +46,7 @@
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static object GetPropertySource(DependencyObject element)
         {
-            return (object)element.GetValue(PropertySourceProperty);
+            return element.GetValue(PropertySourceProperty);
         }
 
         private static void OnTransposedSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

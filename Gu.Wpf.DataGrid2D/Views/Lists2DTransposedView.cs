@@ -118,8 +118,7 @@ namespace Gu.Wpf.DataGrid2D
 
         protected override ListRowView CreateRow(int index)
         {
-            PropertyDescriptorCollection propertyDescriptors = null;
-            propertyDescriptors = this.Rows.Count == 0
+            PropertyDescriptorCollection propertyDescriptors = this.Rows.Count == 0
                                       ? ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ColumnElementTypes, this.ColumnIsReadOnlies, this.MaxColumnCount)
                                       : this.Rows[0].GetProperties();
 
