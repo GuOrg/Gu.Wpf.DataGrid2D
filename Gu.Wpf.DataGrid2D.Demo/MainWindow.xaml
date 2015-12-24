@@ -31,17 +31,8 @@
             <demo:SelectedView />
         </TabItem>
 
-        <TabItem Header="Styles">
-            <demo:StyledView />
-        </TabItem>
-
         <TabItem Header="RowNumbers">
             <demo:RowNumbersView />
         </TabItem>
-
-        <TabItem Header="Debug">
-            <demo:DebugView />
-        </TabItem>
     </TabControl>
-
 </Window>

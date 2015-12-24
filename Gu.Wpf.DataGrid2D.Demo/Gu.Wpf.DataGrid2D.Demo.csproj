@@ -52,9 +52,6 @@
     <Compile Include="Array2DVm.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DebugView.xaml.cs">
-      <DependentUpon>DebugView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Misc\ItemVm.cs" />
     <Compile Include="JaggedView.xaml.cs">
       <DependentUpon>JaggedView.xaml</DependentUpon>
@@ -80,9 +77,6 @@
     <Compile Include="RowNumbersVm.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SamplesView.xaml.cs">
-      <DependentUpon>SamplesView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SelectedView.xaml.cs">
       <DependentUpon>SelectedView.xaml</DependentUpon>
     </Compile>
@@ -92,12 +86,6 @@
     <Compile Include="Array2DView.xaml.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StyledView.xaml.cs">
-      <DependentUpon>StyledView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="StyledVm.cs">
-      <DependentUpon>StyledView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TransposedView.xaml.cs">
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
@@ -105,10 +93,6 @@
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vm.cs" />
-    <Page Include="DebugView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="JaggedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,19 +117,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SamplesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="SelectedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Array2DView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StyledView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

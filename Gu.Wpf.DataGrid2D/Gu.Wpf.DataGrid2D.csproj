@@ -48,7 +48,6 @@
     <Compile Include="Internals\ColumnHeaderListener.cs" />
     <Compile Include="Internals\EnumerableExt.cs" />
     <Compile Include="Internals\Helpers.cs" />
-    <Compile Include="IndexColumn.cs" />
     <Compile Include="Internals\RoutedEventHelper.cs" />
     <Compile Include="Internals\RowHeaderListener.cs" />
     <Compile Include="Internals\RowsListener.cs" />
@@ -76,7 +75,6 @@
     <Compile Include="Views\ListRowView.cs" />
     <Compile Include="Selected.cs" />
     <Compile Include="ItemsSource.RowsSource.cs" />
-    <Compile Include="ItemsSource.Templates.cs" />
     <Compile Include="Views\BaseClasses\RowView.cs" />
     <Compile Include="Views\Lists2DView.cs" />
     <Compile Include="Views\TransposedItemsSource.cs" />

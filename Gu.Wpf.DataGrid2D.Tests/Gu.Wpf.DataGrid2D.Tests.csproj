@@ -42,7 +42,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGen\CodeGenTests.cs" />
     <Compile Include="Helpers\CollectionChangedEventArgsComparer.cs" />
     <Compile Include="Helpers\DataGridTestExt.cs" />
     <Compile Include="Internals\Stubs\DummyItem.cs" />
