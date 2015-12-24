@@ -15,7 +15,9 @@
                       AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedExplicitColumns}"
                       dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                    <DataGridTextColumn Binding="{Binding Name}"
+                                        Header="Name"
+                                        IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding C0}" Header="Value" />
                 </DataGrid.Columns>
             </DataGrid>
