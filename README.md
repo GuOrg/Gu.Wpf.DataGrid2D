@@ -1,97 +1,116 @@
 # Gu.Wpf.DataGrid2D
 
 [![Join the chat at https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Extension methods for WPF DataGrid enabling binidng to T[,]
 
-Sample where Data2D is int[,]
-
+## Sample where Data2D is int[,]
+#### Simple
     <DataGrid HeadersVisibility="None"
-              SelectionUnit="Cell"
-              dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
+              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
 
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/00325df.png)
 
-With headers:
-```
-<DataGrid ColumnWidth="SizeToHeader"
-          SelectionUnit="Cell"
-          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnHeaders}"
-          dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}" />
-```
-Renders:
-![ItemsSource2D render](http://i.imgur.com/X1kTmUV.png)
-
-Sample where ListOfListsOfItems is ```List<List<ItemVm>>```
-```
-<DataGrid SelectionUnit="Cell"
-          HeadersVisibility="None"
-          dataGrid2D:Source2D.RowsSource="{Binding ListOfListsOfItems}" />
-```
+#### Explicit columns
+Columns are referred to by `C<zero_based_index>`
+<DataGrid AutoGenerateColumns="False"
+          dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
+    <DataGrid.Columns>
+        <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+        <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+        <DataGridTextColumn Binding="{Binding C2}" Header="Col 3" />
+    </DataGrid.Columns>
+</DataGrid>
 
 Renders:
-![ItemsSource2D render](http://i.imgur.com/UNQsW3q.png)
+![ItemsSource2D render](http://i.imgur.com/IHvEI0c.png)
 
-## SelectedCellItem
-Lets you bind the item of the currently selected cell.
+#### With headers:
 ```
-<DataGrid Grid.Column="0"
-          SelectionUnit="Cell"
-          dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
-          dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}" />
-``` 
+<DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+          dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+          dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
+```
+Renders:
+![With headers screenie](http://i.imgur.com/GtEOW5G.png)
 
-## Styles & templates:
+#### Transposed
 ```
-<DataGrid Grid.Column="2"
-          Background="{x:Null}"
-          CellStyle="{StaticResource CellStyle}"
-          ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}"
-          ColumnWidth="*"
-          RowBackground="{x:Null}"
-          SelectionUnit="Cell"
-          SelectionMode="Extended"
-          dataGrid2D:Source2D.CellEditingTemplate="{StaticResource SampleItemEditTemplate}"
-          dataGrid2D:Source2D.CellTemplate="{StaticResource SampleItemTemplate}"
-          dataGrid2D:Source2D.ColumnHeadersSource="{Binding ColumnItemHeaders}"
-          dataGrid2D:Source2D.HeaderTemplate="{StaticResource SampleHeaderItemTemplate}"
-          dataGrid2D:Source2D.RowsSource="{Binding RowVms}"
-          dataGrid2D:Source2D.SelectedCellItem="{Binding SelectedItem}">
-    <DataGrid.RowHeaderStyle>
-        <Style TargetType="DataGridRowHeader">
-            <Setter Property="Content" Value="{Binding Name}" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Background" Value="Gainsboro" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
-                        <ContentPresenter Margin="1" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </DataGrid.RowHeaderStyle>
+<DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+```
+Renders:
+![ItemsSource2D render](http://i.imgur.com/N6BJqIR.png)
+
+## Sample where ListOfListsOfItems is ```ObservableCollection<ObservableCollection<int>>```
+```
+<DataGrid HeadersVisibility="None"
+          dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfInts}" />
+```
+
+Renders:
+![ItemsSource2D render](http://i.imgur.com/00325df.png)
+
+## Transposed
+```
+<DataGrid HeadersVisibility="None"
+          dataGrid2D:ItemsSource.ColumnsSource="{Binding ListOfListsOfInts}" />
+```
+Renders:
+![ItemsSource2D render](http://i.imgur.com/N6BJqIR.png)
+
+#### Explicit columns
+The property name column is named `Name` and the following columns are named `C<zero_based_index>`
+```
+<DataGrid AutoGenerateColumns="False" 
+          dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}">
+    <DataGrid.Columns>
+        <DataGridTextColumn Binding="{Binding Name}" Header="Property" />
+        <DataGridTextColumn Binding="{Binding C0}" Header="Value 1" />
+        <DataGridTextColumn Binding="{Binding C1}" Header="Value 2" />
+    </DataGrid.Columns>
 </DataGrid>
 ```
+
 Renders:
-![ItemsSource2D render](http://i.imgur.com/qSKJ8Ga.png)
+![ItemsSource2D render](http://i.imgur.com/ftkeyDu.png)
+
+#### Different lengths
+Limited support for different lengths. Columns with blanks are default readonly.
+
+```
+<DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
+```
+
+Renders:
+![ItemsSource2D render](http://i.imgur.com/PPlT750.png)
+
+## Selection
+Lets you bind the item of the currently selected cell or index (row, col).
+This assumes that you have `SelectionUnit="Cell"` 
+```
+<DataGrid SelectionUnit="Cell"
+          dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
+          dataGrid2D:Selected.CellItem="{Binding SelectedItem}"
+          dataGrid2D:Selected.Index="{Binding Index}" />
+``` 
+
+## Transposed
+Support for transposing an itemssource, perhaps useful for property grid scenarios. Supports binding to single item or (Observable)Collection
+
+<DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
+
+Renders:
+![ItemsSource2D render](http://i.imgur.com/sn8VNKG.png)
 
 ## Rownumbers
+Conveninence attached property if you want to display rownumbers.
+Specify the number to start fom using `StartAt` 
 ```
-<DataGrid dataGrid2D:Source2D.ItemsSource2D="{Binding Data2D}">
-    <DataGrid.RowStyle>
-        <Style TargetType="{x:Type DataGridRow}">
-            <Setter Property="dataGrid2D:Index.In" 
-                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-            <Setter Property="dataGrid2D:Index.StartAt" Value="1"/>
-        </Style>
-    </DataGrid.RowStyle>
-
+<DataGrid ItemsSource="{Binding Persons}" dataGrid2D:Index.StartAt="1">
     <DataGrid.RowHeaderStyle>
         <Style TargetType="{x:Type DataGridRowHeader}">
-            <Setter Property="Content" 
-                    Value="{Binding Path=(dataGrid2D:Index.Of), 
-                                    RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+            <Setter Property="Content" Value="{Binding Path=(dataGrid2D:Index.OfRow), RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
         </Style>
     </DataGrid.RowHeaderStyle>
 </DataGrid>
