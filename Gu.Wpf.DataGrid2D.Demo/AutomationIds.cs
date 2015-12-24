@@ -36,6 +36,9 @@
         public static readonly string SelectionLoseFocusButton = Create();
         public static readonly string SelectionList = Create();
 
+        public static readonly string CellIsSelected = Create();
+        public static readonly string CellIsReadonly = Create();
+
 
         private static string Create([CallerMemberName] string name = null)
         {

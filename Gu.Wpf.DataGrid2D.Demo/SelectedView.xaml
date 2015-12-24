@@ -10,19 +10,12 @@
         <local:SelectedVm />
     </UserControl.DataContext>
     <UniformGrid Rows="1">
-        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionGrid}"
+        <DataGrid x:Name="DataGrid"
+                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionGrid}"
                   SelectionUnit="Cell"
                   dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
                   dataGrid2D:Selected.CellItem="{Binding SelectedItem}"
-                  dataGrid2D:Selected.Index="{Binding Index}">
-            <!--<DataGrid.CellStyle>
-                <Style TargetType="{x:Type DataGridCell}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsS}"></DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.CellStyle>-->
-        </DataGrid>
+                  dataGrid2D:Selected.Index="{Binding Index}" />
 
         <Grid>
             <Grid.RowDefinitions>
@@ -32,6 +25,7 @@
 
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -61,6 +55,16 @@
                         Grid.Column="0"
                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionLoseFocusButton}"
                         Content="Lose focus" />
+                <!--<StackPanel Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2">
+                    <CheckBox AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellIsReadonly}"
+                              Content="IsReadOnly"
+                              IsChecked="{Binding CurrentCell.IsReadOnly, ElementName=DataGrid}" />
+                    <CheckBox AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellIsSelected}"
+                              Content="IsSelected"
+                              IsChecked="{Binding CurrentCell.IsSelected, ElementName=DataGrid}" />
+                </StackPanel>-->
             </Grid>
 
             <UniformGrid Grid.Row="1">

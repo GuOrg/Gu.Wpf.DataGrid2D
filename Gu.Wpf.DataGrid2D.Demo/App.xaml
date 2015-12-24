@@ -1,6 +1,7 @@
 ﻿<Application x:Class="Gu.Wpf.DataGrid2D.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="{x:Type DataGrid}">

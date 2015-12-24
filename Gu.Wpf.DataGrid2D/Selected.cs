@@ -43,6 +43,12 @@
             typeof(Selected),
             new PropertyMetadata(BooleanBoxes.False));
 
+        private static readonly DependencyProperty PropertyDescriptorProperty = DependencyProperty.RegisterAttached(
+            "PropertyDescriptor",
+            typeof(PropertyDescriptor),
+            typeof(Selected),
+            new PropertyMetadata(null));
+
         private static readonly RoutedEventHandler SelectedCellsChangedHandler = OnSelectedCellsChanged;
 
         public static void SetCellItem(this DataGrid element, object value)
@@ -114,7 +120,24 @@
                     return;
                 }
 
-                throw new NotImplementedException();
+                for (var r = 0; r < dataGrid.Items.Count; r++)
+                {
+                    for (var c = 0; c < dataGrid.Columns.Count; c++)
+                    {
+                        var column = dataGrid.Columns[c];
+                        var cellItem = GetCellItem(column, dataGrid.Items[r]);
+                        if (Equals(cellItem, e.NewValue))
+                        {
+                            var index = new RowColumnIndex(r, c);
+                            dataGrid.SetIndex(index);
+                            var cell = dataGrid.GetCell(index);
+                            cell.IsSelected = true;
+                            return;
+                        }
+                    }
+                }
+
+                dataGrid.SetIndex(null);
             }
             finally
             {
@@ -199,17 +222,6 @@
             return new RowColumnIndex(rowIndex, dataGrid.CurrentColumn.DisplayIndex);
         }
 
-        private static DataGridCell GetCell(this DataGridCellInfo info)
-        {
-            if (!info.IsValid)
-            {
-                return null;
-            }
-
-            var cellContent = info.Column.GetCellContent(info.Item);
-            return cellContent?.Ancestors().OfType<DataGridCell>().FirstOrDefault();
-        }
-
         private static DataGridCell GetCell(this DataGrid dataGrid, RowColumnIndex index)
         {
             if (index.Column < 0 || index.Column >= dataGrid.Columns.Count)
@@ -235,34 +247,44 @@
         private static void UpdateSelectedCellItemFromView(DataGrid dataGrid)
         {
             var index = dataGrid.GetIndex();
-            if (index == null)
+            if (index == null || index.Value.Column < 0 || index.Value.Column >= dataGrid.Columns.Count)
             {
                 dataGrid.SetValue(CellItemProperty, null);
                 return;
             }
 
-            var boundColumn = dataGrid.Columns.FirstOrDefault(x => x.DisplayIndex == index.Value.Column) as DataGridBoundColumn;
-            var item = (dataGrid.ItemContainerGenerator.ContainerFromIndex(index.Value.Row) as DataGridRow)?.DataContext;
-            if (boundColumn == null || item == null)
+            var column = dataGrid.Columns.ElementAtOrDefault<DataGridColumn>(index.Value.Column);
+            var item = dataGrid.Items.ElementAtOrDefault(index.Value.Row);
+
+            var cellItem = GetCellItem(column, item);
+            dataGrid.SetValue(CellItemProperty, cellItem);
+        }
+
+        private static object GetCellItem(this DataGridColumn column, object item)
+        {
+            if (column == null || item == null)
             {
-                dataGrid.SetValue(CellItemProperty, null);
-                return;
+                return null;
             }
 
-            var binding = boundColumn.Binding as Binding;
-            var propertyDescriptor = TypeDescriptor.GetProperties(item)
-                                                   .OfType<PropertyDescriptor>()
-                                                   .SingleOrDefault(x => x.Name == binding?.Path.Path);
+            var descriptor = (PropertyDescriptor)column.GetValue(PropertyDescriptorProperty);
+            if (descriptor != null)
+            {
+                return descriptor.GetValue(item);
+            }
 
-            if (propertyDescriptor == null)
+            var binding = (column as DataGridBoundColumn)?.Binding as Binding;
+            if (binding == null)
             {
-                dataGrid.SetValue(CellItemProperty, null);
+                return null;
             }
-            else
-            {
-                var value = propertyDescriptor.GetValue(item);
-                dataGrid.SetValue(CellItemProperty, value);
-            }
+
+            descriptor = TypeDescriptor.GetProperties(item)
+                                       .OfType<PropertyDescriptor>()
+                                       .SingleOrDefault(x => x.Name == binding.Path.Path);
+            column.SetValue(PropertyDescriptorProperty, descriptor);
+
+            return descriptor?.GetValue(item);
         }
     }
 }
