@@ -31,6 +31,17 @@
             <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedObservableCollection}" dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" />
         </GroupBox>
 
+        <GroupBox Header="explicit columns">
+            <DataGrid AutoGenerateColumns="False" 
+                      dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Property" />
+                    <DataGridTextColumn Binding="{Binding C0}" Header="Value 1" />
+                    <DataGridTextColumn Binding="{Binding C1}" Header="Value 2" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
         <GroupBox Header="Source data">
             <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.ReferenceDataGrid}"
                       CanUserAddRows="True"
