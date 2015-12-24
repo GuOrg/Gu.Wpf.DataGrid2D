@@ -7,14 +7,14 @@
         public static readonly RoutedEvent ColumnsChanged = EventManager.RegisterRoutedEvent(
             "ColumnsChanged",
             RoutingStrategy.Direct,
-            typeof (RoutedEventHandler),
-            typeof (ItemsSource));
+            typeof(RoutedEventHandler),
+            typeof(ItemsSource));
 
         public static readonly RoutedEvent RowsChanged = EventManager.RegisterRoutedEvent(
             "RowsChanged",
             RoutingStrategy.Direct,
-            typeof (RoutedEventHandler),
-            typeof (ItemsSource));
+            typeof(RoutedEventHandler),
+            typeof(ItemsSource));
 
         public static void AddColumnsChangedHandler(this UIElement o, RoutedEventHandler handler)
         {

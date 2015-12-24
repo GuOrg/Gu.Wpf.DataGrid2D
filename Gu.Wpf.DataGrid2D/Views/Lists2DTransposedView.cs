@@ -22,13 +22,13 @@ namespace Gu.Wpf.DataGrid2D
             this.ResetRows();
         }
 
+        public override bool IsTransposed => true;
+
         internal IReadOnlyList<Type> ColumnElementTypes { get; }
 
         internal IReadOnlyList<bool> ColumnIsReadOnlies { get; }
 
         internal int MaxColumnCount { get; }
-
-        public override bool IsTransposed => true;
 
         public override bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
@@ -92,6 +92,7 @@ namespace Gu.Wpf.DataGrid2D
                         {
                             this.Rows[i].RaiseColumnsChanged(col, 1);
                         }
+
                         break;
                     case NotifyCollectionChangedAction.Replace:
                         this.Rows[ccea.NewStartingIndex].RaiseColumnsChanged(col, 1);
@@ -111,7 +112,18 @@ namespace Gu.Wpf.DataGrid2D
                         throw new ArgumentOutOfRangeException();
                 }
             }
+
             return true;
+        }
+
+        protected override ListRowView CreateRow(int index)
+        {
+            PropertyDescriptorCollection propertyDescriptors = null;
+            propertyDescriptors = this.Rows.Count == 0
+                                      ? ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ColumnElementTypes, this.ColumnIsReadOnlies, this.MaxColumnCount)
+                                      : this.Rows[0].GetProperties();
+
+            return new ListRowView(this, index, propertyDescriptors);
         }
 
         private bool IsColumnsChange(object sender, NotifyCollectionChangedEventArgs e)
@@ -175,21 +187,6 @@ namespace Gu.Wpf.DataGrid2D
             this.OnPropertyChanged(CountPropertyChangedEventArgs);
             this.OnPropertyChanged(IndexerPropertyChangedEventArgs);
             this.OnCollectionChanged(NotifyCollectionResetEventArgs);
-        }
-
-        protected override ListRowView CreateRow(int index)
-        {
-            PropertyDescriptorCollection propertyDescriptors = null;
-            if (this.Rows.Count == 0)
-            {
-                propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ColumnElementTypes, this.ColumnIsReadOnlies, this.MaxColumnCount);
-            }
-            else
-            {
-                propertyDescriptors = this.Rows[0].GetProperties();
-            }
-
-            return new ListRowView(this, index, propertyDescriptors);
         }
     }
 }

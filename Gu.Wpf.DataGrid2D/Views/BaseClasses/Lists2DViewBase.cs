@@ -78,7 +78,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public virtual bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
-            var ccea = (NotifyCollectionChangedEventArgs) e;
+            var ccea = (NotifyCollectionChangedEventArgs)e;
             if (ReferenceEquals(sender, this.Source))
             {
                 var oldItems = ccea.OldItems;

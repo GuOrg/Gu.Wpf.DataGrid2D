@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.DataGrid2D
+﻿#pragma warning disable SA1202
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Windows;

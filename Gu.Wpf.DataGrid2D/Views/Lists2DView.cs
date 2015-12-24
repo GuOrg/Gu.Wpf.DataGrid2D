@@ -20,13 +20,13 @@ namespace Gu.Wpf.DataGrid2D
             this.ResetRows();
         }
 
+        public override bool IsTransposed => false;
+
         internal IReadOnlyList<Type> ColumnElementTypes { get; }
 
         internal IReadOnlyList<bool> ColumnIsReadOnlies { get; }
 
         internal int MaxColumnCount { get; }
-
-        public override bool IsTransposed => false;
 
         public override bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
@@ -98,6 +98,15 @@ namespace Gu.Wpf.DataGrid2D
             return true;
         }
 
+        protected override ListRowView CreateRow(int index)
+        {
+            var propertyDescriptors = this.Rows.Count > 0
+                                          ? this.Rows[0].GetProperties()
+                                          : ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ColumnElementTypes, this.ColumnIsReadOnlies, this.MaxColumnCount);
+
+            return new ListRowView(this, index, propertyDescriptors);
+        }
+
         private bool IsColumnsChange(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -163,15 +172,6 @@ namespace Gu.Wpf.DataGrid2D
             this.OnPropertyChanged(CountPropertyChangedEventArgs);
             this.OnPropertyChanged(IndexerPropertyChangedEventArgs);
             this.OnCollectionChanged(NotifyCollectionResetEventArgs);
-        }
-
-        protected override ListRowView CreateRow(int index)
-        {
-            var propertyDescriptors = this.Rows.Count > 0
-                                          ? this.Rows[0].GetProperties()
-                                          : ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ColumnElementTypes, this.ColumnIsReadOnlies, this.MaxColumnCount);
-
-            return new ListRowView(this, index, propertyDescriptors);
         }
     }
 }

@@ -42,12 +42,8 @@
                 return;
             }
 
-            throw new NotSupportedException();
-            var type = source.GetType();
-            var propertyInfos = type.GetProperties();
-            var indexerPropertyInfo = propertyInfos.Single(x => x.GetIndexParameters()
-                                                          .Length == 1);
-            indexerPropertyInfo.SetValue(source, value, new object[] { index });
+            var message = $"Only sources implementing {typeof(IList)} are supported for editing.";
+            throw new NotSupportedException(message);
         }
 
         internal static int IndexOf(this IEnumerable source, object item)

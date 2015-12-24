@@ -14,11 +14,11 @@ namespace Gu.Wpf.DataGrid2D
             this.properties = properties;
         }
 
-        internal TSource Source { get; }
-
         public int Index { get; }
 
         public int Count => this.properties.Count;
+
+        internal TSource Source { get; }
 
         public override string GetClassName() => this.GetType().FullName;
 

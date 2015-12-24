@@ -15,7 +15,7 @@
         public ColumnHeaderListener(DataGrid dataGrid)
         {
             this.dataGrid = dataGrid;
-            dataGrid.Columns.CollectionChanged += OnCollectionChanged;
+            dataGrid.Columns.CollectionChanged += this.OnCollectionChanged;
             var headers = dataGrid.GetColumnHeadersSource() as INotifyCollectionChanged;
             if (headers != null)
             {
@@ -31,11 +31,11 @@
             }
 
             this.disposed = true;
-            this.dataGrid.Columns.CollectionChanged -= OnCollectionChanged;
+            this.dataGrid.Columns.CollectionChanged -= this.OnCollectionChanged;
             var headers = this.dataGrid.GetColumnHeadersSource() as INotifyCollectionChanged;
             if (headers != null)
             {
-                headers.CollectionChanged += this.OnCollectionChanged;
+                headers.CollectionChanged -= this.OnCollectionChanged;
             }
         }
 

@@ -56,7 +56,7 @@
 
         bool ICollection.IsSynchronized => ((ICollection)this.rows).IsSynchronized;
 
-        IEnumerable IView2D.Source => Source;
+        IEnumerable IView2D.Source => this.Source;
 
         public bool IsTransposed => true;
 

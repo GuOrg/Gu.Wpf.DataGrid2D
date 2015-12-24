@@ -43,7 +43,7 @@ namespace Gu.Wpf.DataGrid2D
 
         bool ICollection.IsSynchronized => ((Array)this.source.Target)?.IsSynchronized == true;
 
-        public IEnumerable Source => (IEnumerable) this.source.Target;
+        public IEnumerable Source => (IEnumerable)this.source.Target;
 
         public bool IsTransposed { get; }
 

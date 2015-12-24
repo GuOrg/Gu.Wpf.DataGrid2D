@@ -31,7 +31,6 @@
                 return lists2DTransposedView.Source
                   .ElementAtOrDefault<IEnumerable>(this.Index)
                   .ElementAtOrDefault(listRowView.Index);
-
             }
 
             throw new ArgumentOutOfRangeException($"Could not get value from {component.GetType()}");

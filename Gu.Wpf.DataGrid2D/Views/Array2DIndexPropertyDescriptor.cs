@@ -14,16 +14,6 @@
         {
         }
 
-        internal static PropertyDescriptorCollection GetRowPropertyDescriptorCollection(Array2DView source)
-        {
-            return RowDescriptorCache.GetValue((Array)source.Source, CreateRowPropertyDescriptorCollection);
-        }
-
-        internal static PropertyDescriptorCollection GetColumnPropertyDescriptorCollection(Array2DView source)
-        {
-            return ColumnDescriptorCache.GetValue((Array)source.Source, CreateColumnPropertyDescriptorCollection);
-        }
-
         public override object GetValue(object component)
         {
             var rowView = (Array2DRowView)component;
@@ -48,6 +38,16 @@
             {
                 ((Array)source.Source)?.SetValue(value, rowView.Index, this.Index);
             }
+        }
+
+        internal static PropertyDescriptorCollection GetRowPropertyDescriptorCollection(Array2DView source)
+        {
+            return RowDescriptorCache.GetValue((Array)source.Source, CreateRowPropertyDescriptorCollection);
+        }
+
+        internal static PropertyDescriptorCollection GetColumnPropertyDescriptorCollection(Array2DView source)
+        {
+            return ColumnDescriptorCache.GetValue((Array)source.Source, CreateColumnPropertyDescriptorCollection);
         }
 
         private static PropertyDescriptorCollection CreateRowPropertyDescriptorCollection(Array source)
