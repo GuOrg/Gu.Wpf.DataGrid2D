@@ -153,6 +153,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             ints[0].RemoveAt(0);
             Assert.AreEqual(1, count);
 
+            view = new Lists2DView(view.Source);
             ints[1].RemoveAt(1);
             Assert.AreEqual(1, count);
 
@@ -161,9 +162,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
 
             ints[1].Add(8);
             Assert.AreEqual(2, count);
+            view = new Lists2DView(view.Source);
 
             ints[1][0] = 10;
             Assert.AreEqual(2, count);
+
+            ints.Add(new ObservableCollection<int>(new []{9}));
+            Assert.AreEqual(3, count);
         }
 
         [Test]
