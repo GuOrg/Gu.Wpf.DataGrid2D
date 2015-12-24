@@ -62,14 +62,14 @@
     <Compile Include="JaggedVm.cs">
       <DependentUpon>JaggedView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListOfListsView.xaml.cs">
-      <DependentUpon>ListOfListsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ListOfListsVm.cs">
-      <DependentUpon>ListOfListsView.xaml</DependentUpon>
+    <Compile Include="ObservableView.xaml.cs">
+      <DependentUpon>ObservableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AutomationIds.cs" />
     <Compile Include="Misc\RelayCommand.cs" />
+    <Compile Include="ObservableVm.cs">
+      <DependentUpon>ObservableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
     </Compile>
@@ -113,7 +113,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListOfListsView.xaml">
+    <Page Include="ObservableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

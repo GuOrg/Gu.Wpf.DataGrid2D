@@ -14,39 +14,39 @@
         {
         }
 
-        internal static PropertyDescriptorCollection GetRowPropertyDescriptorCollection(Array source)
+        internal static PropertyDescriptorCollection GetRowPropertyDescriptorCollection(Array2DView source)
         {
-            return RowDescriptorCache.GetValue(source, CreateRowPropertyDescriptorCollection);
+            return RowDescriptorCache.GetValue((Array)source.Source, CreateRowPropertyDescriptorCollection);
         }
 
-        internal static PropertyDescriptorCollection GetColumnPropertyDescriptorCollection(Array source)
+        internal static PropertyDescriptorCollection GetColumnPropertyDescriptorCollection(Array2DView source)
         {
-            return ColumnDescriptorCache.GetValue(source, CreateColumnPropertyDescriptorCollection);
+            return ColumnDescriptorCache.GetValue((Array)source.Source, CreateColumnPropertyDescriptorCollection);
         }
 
         public override object GetValue(object component)
         {
             var rowView = (Array2DRowView)component;
             var source = rowView.Source;
-            if (rowView.IsTransposed)
+            if (source.IsTransposed)
             {
-                return source?.GetValue(this.Index, rowView.Index);
+                return ((Array)source.Source)?.GetValue(this.Index, rowView.Index);
             }
 
-            return source?.GetValue(rowView.Index, this.Index);
+            return ((Array)source.Source)?.GetValue(rowView.Index, this.Index);
         }
 
         public override void SetValue(object component, object value)
         {
             var rowView = (Array2DRowView)component;
-            var source = (Array)rowView.Source;
-            if (rowView.IsTransposed)
+            var source = rowView.Source;
+            if (source.IsTransposed)
             {
-                source?.SetValue(value, this.Index, rowView.Index);
+                ((Array)source.Source)?.SetValue(value, this.Index, rowView.Index);
             }
             else
             {
-                source?.SetValue(value, rowView.Index, this.Index);
+                ((Array)source.Source)?.SetValue(value, rowView.Index, this.Index);
             }
         }
 

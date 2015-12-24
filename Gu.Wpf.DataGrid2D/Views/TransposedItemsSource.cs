@@ -9,7 +9,7 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    public class TransposedItemsSource : IList, IDisposable, IWeakEventListener, IView2D
+    public class TransposedItemsSource : IList, IDisposable, IWeakEventListener, IView2D, IColumnsChanged
     {
         private readonly WeakReference source;
         private readonly IReadOnlyList<TransposedRow> rows;
@@ -58,7 +58,9 @@
 
         IEnumerable IView2D.Source => Source;
 
-        DataGrid IView2D.DataGrid { get; set; }
+        public bool IsTransposed => true;
+
+        DataGrid IColumnsChanged.DataGrid { get; set; }
 
         public IEnumerable<object> Source => (IEnumerable<object>)this.source.Target;
 

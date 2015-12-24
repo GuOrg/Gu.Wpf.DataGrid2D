@@ -19,8 +19,8 @@
             <demo:JaggedView />
         </TabItem>
 
-        <TabItem Header="List&lt;List&lt;T&gt;&gt;">
-            <demo:ListOfListsView />
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.ObservableTab}" Header="OC&lt;OC&lt;T&gt;&gt;">
+            <demo:ObservableView />
         </TabItem>
 
         <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.TransposedTab}" Header="Transposed">

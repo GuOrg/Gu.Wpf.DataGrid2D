@@ -50,7 +50,8 @@
     <Compile Include="RowColumnIndexConverterTests.cs" />
     <Compile Include="RowColumnIndexTests.cs" />
     <Compile Include="Todo.cs" />
-    <Compile Include="Views\Lists2DViewTests.Arrays.cs" />
+    <Compile Include="Views\Lists2DTransposedViewTests.cs" />
+    <Compile Include="Views\Lists2DViewTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Array2DViewTests.cs" />
     <Compile Include="ItemsSourceTests.cs" />

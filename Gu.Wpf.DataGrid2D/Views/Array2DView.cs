@@ -4,21 +4,23 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows.Controls;
 
-    public class Array2DView : IList
+    public class Array2DView : IList, IView2D
     {
         private readonly WeakReference source = new WeakReference(null);
         private readonly Array2DRowView[] rows;
 
-        private Array2DView(Array source, bool transposed)
+        private Array2DView(Array source, bool isTransposed)
         {
+            this.IsTransposed = isTransposed;
             this.source.Target = source;
-            if (transposed)
+            if (isTransposed)
             {
                 this.rows = new Array2DRowView[source.GetLength(1)];
                 for (int i = 0; i < source.GetLength(1); i++)
                 {
-                    this.rows[i] = Array2DRowView.CreateForColumn(source, i);
+                    this.rows[i] = Array2DRowView.CreateForColumn(this, i);
                 }
             }
             else
@@ -26,7 +28,7 @@ namespace Gu.Wpf.DataGrid2D
                 this.rows = new Array2DRowView[source.GetLength(0)];
                 for (int i = 0; i < source.GetLength(0); i++)
                 {
-                    this.rows[i] = Array2DRowView.CreateForRow(source, i);
+                    this.rows[i] = Array2DRowView.CreateForRow(this, i);
                 }
             }
         }
@@ -40,6 +42,10 @@ namespace Gu.Wpf.DataGrid2D
         object ICollection.SyncRoot => ((Array)this.source.Target)?.SyncRoot;
 
         bool ICollection.IsSynchronized => ((Array)this.source.Target)?.IsSynchronized == true;
+
+        public IEnumerable Source => (IEnumerable) this.source.Target;
+
+        public bool IsTransposed { get; }
 
         public Array2DRowView this[int index] => this.rows[index];
 

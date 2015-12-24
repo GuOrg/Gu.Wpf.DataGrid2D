@@ -1,25 +1,20 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using JetBrains.Annotations;
 
-    public class ListRowView : RowView<IEnumerable<IEnumerable>>, INotifyPropertyChanged
+    public class ListRowView : RowView<IView2D>, INotifyPropertyChanged
     {
         private static readonly EventDescriptorCollection Events = TypeDescriptor.GetEvents(typeof(ListRowView));
 
-        internal ListRowView(IEnumerable<IEnumerable> source, int index, Type elementType, PropertyDescriptorCollection properties, bool isTransposed)
-            : base(source, index, properties, isTransposed)
+        internal ListRowView(IView2D source, int index, PropertyDescriptorCollection properties)
+            : base(source, index, properties)
         {
-            this.ElementType = elementType;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        internal Type ElementType { get; }
 
         public override EventDescriptorCollection GetEvents() => Events;
 

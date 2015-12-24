@@ -18,14 +18,14 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void OnItemsSourceProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var oldView = e.OldValue as IView2D;
+            var oldView = e.OldValue as IColumnsChanged;
             if (oldView != null)
             {
                 oldView.Dispose();
                 oldView.ColumnsChanged -= OnViewColumnsChanged;
             }
 
-            var newView = e.NewValue as IView2D;
+            var newView = e.NewValue as IColumnsChanged;
             if (newView != null)
             {
                 newView.ColumnsChanged += OnViewColumnsChanged;
@@ -35,7 +35,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void OnViewColumnsChanged(object sender, EventArgs e)
         {
-            var view = (IView2D)sender;
+            var view = (IColumnsChanged)sender;
             UpdateItemsSource(view.DataGrid);
         }
 
@@ -45,13 +45,13 @@ namespace Gu.Wpf.DataGrid2D
             var rowsSource = (IEnumerable<IEnumerable>)dataGrid.GetRowsSource();
             if (rowsSource != null)
             {
-                view = Lists2DView.Create(rowsSource);
+                view = new Lists2DView(rowsSource);
             }
 
             var colsSource = (IEnumerable<IEnumerable>)dataGrid.GetColumnsSource();
             if (colsSource != null)
             {
-                view = Lists2DView.CreateTransposed(colsSource);
+                view = new Lists2DTransposedView(colsSource);
             }
 
             var transposedSource = dataGrid.GetTransposedSource();

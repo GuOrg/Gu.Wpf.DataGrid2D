@@ -30,9 +30,7 @@
                     </GroupBox>
 
                     <GroupBox Header="Auto columns">
-                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumnsDifferentLengths}"
-                                  IsReadOnly="True"
-                                  dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumnsDifferentLengths}" dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
                     </GroupBox>
 
                     <GroupBox Header="Readonly">
@@ -68,9 +66,7 @@
                     </GroupBox>
 
                     <GroupBox Header="Auto columns">
-                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.DifferentLengthsTransposed}"
-                                  IsReadOnly="True"
-                                  dataGrid2D:ItemsSource.ColumnsSource="{Binding DifferentLengths}" />
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.DifferentLengthsTransposed}" dataGrid2D:ItemsSource.ColumnsSource="{Binding DifferentLengths}" />
                     </GroupBox>
 
                     <GroupBox Header="Explicit columns">

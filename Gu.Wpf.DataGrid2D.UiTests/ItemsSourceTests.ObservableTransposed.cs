@@ -9,9 +9,9 @@
 
     public partial class ItemsSourceTests
     {
-        public class Jagged
+        public class ObservableTransposed
         {
-            private static readonly string TabId = AutomationIds.JaggedTab;
+            private static readonly string TabId = AutomationIds.ObservableTab;
 
             [Test]
             public void AutoColumns()
@@ -21,57 +21,10 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumns);
+                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
 
-                    Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(3, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("C0", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("C1", c1);
-
-                    Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("3", dataGrid.Cell(c0, 1).Text);
-                    Assert.AreEqual("5", dataGrid.Cell(c0, 2).Text);
-
-                    Assert.AreEqual("2", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c1, 2).Text);
-                }
-            }
-
-            [Test]
-            public void DifferentLengths()
-            {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
-                {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsDifferentLengths);
-
-                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(3, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("C0", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("C1", c1);
-                    var c2 = dataGrid.Header.Columns[2].Text;
-                    Assert.AreEqual("C2", c2);
-
-                    Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("2", dataGrid.Cell(c0, 1).Text);
-                    Assert.AreEqual("4", dataGrid.Cell(c0, 2).Text);
-
-                    Assert.AreEqual("", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("3", dataGrid.Cell(c1, 1).Text);
-                    Assert.AreEqual("5", dataGrid.Cell(c1, 2).Text);
-
-                    Assert.AreEqual("", dataGrid.Cell(c2, 0).Text);
-                    Assert.AreEqual("", dataGrid.Cell(c2, 1).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c2, 2).Text);
+                    int[,] expected = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+                    AssertDataGrid.AreEqual(expected, dataGrid);
                 }
             }
 
@@ -83,7 +36,7 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.ExplicitColumns);
+                    var dataGrid = page.Get<ListView>(AutomationIds.ExplicitColumnsTransposed);
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -111,7 +64,7 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.WithHeaders);
+                    var dataGrid = page.Get<ListView>(AutomationIds.WithHeadersTransposed);
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -143,23 +96,27 @@
                     var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumns);
-                    var update = page.Get<Button>(AutomationIds.UpdateDataButton);
-                    var data = page.Get<Label>(AutomationIds.DataTextBox);
+                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
+                    var readOnly = page.Get<ListView>(AutomationIds.AutoColumnsTransposedReadOnly);
+                    int[,] expected = { { 1, 3, 5 }, { 2, 4, 6 } };
+                    AssertDataGrid.AreEqual(expected, dataGrid);
 
                     var cell = dataGrid.Rows[0].Cells[0];
                     cell.Click();
                     cell.Enter("10");
+                    dataGrid.Select(1);
+                    expected[0, 0] = 10;
+                    AssertDataGrid.AreEqual(expected, dataGrid);
 
-                    update.Click();
-                    Assert.AreEqual("{{10, 2}, {3, 4}, {5, 6}}", data.Text);
+                    AssertDataGrid.AreEqual(expected, readOnly);
 
-                    cell = dataGrid.Rows[2].Cells[1];
+                    cell = dataGrid.Rows[1].Cells[2];
                     cell.Click();
                     cell.Enter("11");
-
-                    update.Click();
-                    Assert.AreEqual("{{10, 2}, {3, 4}, {5, 11}}", data.Text);
+                    dataGrid.Select(1);
+                    expected[1, 2] = 11;
+                    AssertDataGrid.AreEqual(expected, dataGrid);
+                    AssertDataGrid.AreEqual(expected, readOnly);
                 }
             }
         }

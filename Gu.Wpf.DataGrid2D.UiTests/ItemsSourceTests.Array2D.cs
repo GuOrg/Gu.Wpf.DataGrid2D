@@ -23,6 +23,8 @@
                     page.Select();
                     var dataGrid = page.Get<ListView>(AutomationIds.AutoColumns);
 
+                    int[,] expected = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+                    AssertDataGrid.AreEqual(expected, dataGrid);
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
 

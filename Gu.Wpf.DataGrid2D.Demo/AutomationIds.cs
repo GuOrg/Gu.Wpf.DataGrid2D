@@ -6,9 +6,11 @@
     {
         public static readonly string MainWindow = Create();
         public static readonly string AutoColumns = Create();
+        public static readonly string AutoColumnsReadOnly = Create();
         public static readonly string ExplicitColumns = Create();
         public static readonly string WithHeaders = Create();
         public static readonly string AutoColumnsTransposed = Create();
+        public static readonly string AutoColumnsTransposedReadOnly = Create();
         public static readonly string ExplicitColumnsTransposed = Create();
         public static readonly string WithHeadersTransposed = Create();
         public static readonly string DifferentLengthsTransposed = Create();
@@ -34,6 +36,7 @@
 
         public static readonly string UpdateDataButton = Create();
         public static readonly string DataTextBox = Create();
+        public static string ObservableTab = Create();
 
 
         private static string Create([CallerMemberName] string name = null)

@@ -67,7 +67,10 @@
     <Compile Include="Views\Array2DView.cs" />
     <Compile Include="Views\Array2DIndexPropertyDescriptor.cs" />
     <Compile Include="Views\BaseClasses\IndexPropertyDescriptor.cs" />
+    <Compile Include="Views\IColumnsChanged.cs" />
     <Compile Include="Views\IView2D.cs" />
+    <Compile Include="Views\BaseClasses\Lists2DViewBase.cs" />
+    <Compile Include="Views\Lists2DTransposedView.cs" />
     <Compile Include="Views\NamePropertyDescriptor.cs" />
     <Compile Include="Views\ListIndexPropertyDescriptor.cs" />
     <Compile Include="Views\ListRowView.cs" />

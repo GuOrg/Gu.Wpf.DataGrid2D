@@ -86,7 +86,7 @@
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.ColumnsSourceProperty, ints);
             dataGrid.Initialize();
-            Assert.IsInstanceOf<Lists2DView>(dataGrid.ItemsSource);
+            Assert.IsInstanceOf<Lists2DTransposedView>(dataGrid.ItemsSource);
 
             Assert.AreEqual(1, dataGrid.GetCellValue(0, 0));
             Assert.AreEqual(3, dataGrid.GetCellValue(0, 1));

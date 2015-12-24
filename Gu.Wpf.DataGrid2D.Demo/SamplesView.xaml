@@ -15,7 +15,7 @@
         </GroupBox>
 
         <GroupBox Header="ListOfLists">
-            <demo:ListOfListsView />
+            <demo:ObservableView />
         </GroupBox>
 
         <GroupBox Header="int[,]">

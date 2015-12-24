@@ -4,259 +4,117 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.ComponentModel;
     using System.Linq;
-    using System.Runtime.CompilerServices;
-    using System.Windows;
-    using System.Windows.Controls;
-    using JetBrains.Annotations;
 
-    public class Lists2DView : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable, IView2D
+    public class Lists2DView : Lists2DViewBase
     {
-        private static readonly NotifyCollectionChangedEventArgs NotifyCollectionResetEventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
-        private static readonly PropertyChangedEventArgs CountPropertyChangedEventArgs = new PropertyChangedEventArgs(nameof(Count));
-        private static readonly PropertyChangedEventArgs IndexerPropertyChangedEventArgs = new PropertyChangedEventArgs("Item[]");
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private readonly WeakReference source = new WeakReference(null);
-        private readonly List<ListRowView> rows = new List<ListRowView>();
-
-        private Lists2DView(IEnumerable<IEnumerable> source, bool isTransposed)
+        public Lists2DView(IEnumerable<IEnumerable> source)
+            : base(source)
         {
-            this.IsTransposed = isTransposed;
-            this.source.Target = source;
-            if (isTransposed)
-            {
-                this.MaxColumnCount = source.Count();
-                var allElementTypes = this.Source.Select(x => x.GetElementType())
-                                          .Distinct()
-                                          .ToList();
-                this.ElementType = allElementTypes.Count > 1
-                                      ? typeof(object)
-                                      : allElementTypes[0];
-            }
-            else
-            {
-                this.MaxColumnCount = source.Max(x => x.Count());
-                this.ElementType = source.ElementAtOrDefault<IEnumerable>(0).GetElementType();
-            }
-
+            this.MaxColumnCount = source.Max(x => x.Count());
+            this.ColumnElementTypes = Enumerable.Repeat(source.ElementAt(0).GetElementType(), this.MaxColumnCount).ToList();
+            var min = source.Min(x => x.Count());
+            this.ColumnIsReadOnlies = Enumerable.Repeat(false, min)
+                                           .Concat(Enumerable.Repeat(true, this.MaxColumnCount - min))
+                                           .ToList();
             this.ResetRows();
-
-            var incc = source as INotifyCollectionChanged;
-            if (incc != null)
-            {
-                CollectionChangedEventManager.AddListener(incc, this);
-            }
-
-            foreach (var row in source.OfType<INotifyCollectionChanged>())
-            {
-                CollectionChangedEventManager.AddListener(row, this);
-            }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        internal IReadOnlyList<Type> ColumnElementTypes { get; }
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-
-        /// <summary>
-        /// Not sure how to best handle the situation when the number of columns changes.
-        /// Testing to raise this event and refresh the ItemsSource binding in the DataGrid.
-        /// Just adding a column would not play nice with explicit columns.
-        /// This way will not be ideal for performance if it changes frequently
-        /// </summary>
-        public event EventHandler ColumnsChanged;
-
-        public bool IsTransposed { get; }
-
-        public int Count => this.rows.Count;
-
-        bool IList.IsReadOnly => this.Source.IsReadOnly();
-
-        bool IList.IsFixedSize => true;
-
-        object ICollection.SyncRoot => (this.source.Target as ICollection)?.SyncRoot;
-
-        bool ICollection.IsSynchronized => (this.source.Target as ICollection)?.IsSynchronized == true;
-
-        IEnumerable IView2D.Source => Source;
-
-        DataGrid IView2D.DataGrid { get; set; }
-
-        internal Type ElementType { get; }
+        internal IReadOnlyList<bool> ColumnIsReadOnlies { get; }
 
         internal int MaxColumnCount { get; }
 
-        internal IEnumerable<IEnumerable> Source => (IEnumerable<IEnumerable>)this.source.Target;
+        public override bool IsTransposed => false;
 
-        public ListRowView this[int index] => this.rows[index];
-
-        object IList.this[int index]
-        {
-            get { return this[index]; }
-            set { ThrowNotSupported(); }
-        }
-
-        public static Lists2DView Create(IEnumerable<IEnumerable> source)
-        {
-            return new Lists2DView(source, false);
-        }
-
-        public static Lists2DView CreateTransposed(IEnumerable<IEnumerable> source)
-        {
-            return new Lists2DView(source, true);
-        }
-
-        public void Dispose()
-        {
-            var incc = this.Source as INotifyCollectionChanged;
-
-            if (incc != null)
-            {
-                CollectionChangedEventManager.RemoveListener(incc, this);
-            }
-
-            foreach (var row in this.Source.OfType<INotifyCollectionChanged>())
-            {
-                CollectionChangedEventManager.RemoveListener(row, this);
-            }
-        }
-
-        bool IWeakEventListener.ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
+        public override bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
             if (managerType != typeof(CollectionChangedEventManager))
             {
                 return false;
             }
 
+            base.ReceiveWeakEvent(managerType, sender, e);
             var ccea = (NotifyCollectionChangedEventArgs)e;
             if (ReferenceEquals(sender, this.Source))
             {
-                var oldItems = ccea.OldItems;
-                if (oldItems != null)
+                switch (ccea.Action)
                 {
-                    foreach (var incc in oldItems.OfType<INotifyCollectionChanged>())
-                    {
-                        CollectionChangedEventManager.RemoveListener(incc, this);
-                    }
-                }
-
-                var newItems = ccea.NewItems;
-                if (newItems != null)
-                {
-                    foreach (var incc in newItems.OfType<INotifyCollectionChanged>())
-                    {
-                        CollectionChangedEventManager.AddListener(incc, this);
-                    }
-                }
-
-                if (this.IsTransposed)
-                {
-                    this.OnColumnsChanged();
-                }
-                else
-                {
-                    switch (ccea.Action)
-                    {
-                        case NotifyCollectionChangedAction.Add:
-                            this.AddRows(ccea.NewStartingIndex, ccea.NewItems.Count);
-                            break;
-                        case NotifyCollectionChangedAction.Remove:
-                            this.RemoveRows(ccea.OldStartingIndex, ccea.OldItems.Count);
-                            break;
-                        case NotifyCollectionChangedAction.Replace:
-                            this.rows[ccea.NewStartingIndex].RaiseAllChanged();
-                            break;
-                        case NotifyCollectionChangedAction.Move:
-                            this.rows[ccea.OldStartingIndex].RaiseAllChanged();
-                            this.rows[ccea.NewStartingIndex].RaiseAllChanged();
-                            break;
-                        case NotifyCollectionChangedAction.Reset:
-                            this.ResetRows();
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                    case NotifyCollectionChangedAction.Add:
+                        this.AddRows(ccea.NewStartingIndex, ccea.NewItems.Count);
+                        break;
+                    case NotifyCollectionChangedAction.Remove:
+                        this.RemoveRows(ccea.OldStartingIndex, ccea.OldItems.Count);
+                        break;
+                    case NotifyCollectionChangedAction.Replace:
+                        this.Rows[ccea.NewStartingIndex].RaiseAllChanged();
+                        break;
+                    case NotifyCollectionChangedAction.Move:
+                        this.Rows[ccea.OldStartingIndex].RaiseAllChanged();
+                        this.Rows[ccea.NewStartingIndex].RaiseAllChanged();
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        this.ResetRows();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
             else
             {
-                if (this.IsTransposed)
+                var changed = (IEnumerable)sender;
+
+                var row = this.Source.IndexOf(changed);
+                switch (ccea.Action)
                 {
-                    switch (ccea.Action)
-                    {
-                        case NotifyCollectionChangedAction.Add:
-                            throw new NotImplementedException();
-                            break;
-                        case NotifyCollectionChangedAction.Remove:
-                            throw new NotImplementedException();
-                            break;
-                        case NotifyCollectionChangedAction.Replace:
-                            foreach (var listRowView in this.rows)
+                    case NotifyCollectionChangedAction.Add:
+                        {
+                            var count = changed.Count();
+                            if (changed.Count() > this.MaxColumnCount)
                             {
-                                this.rows[ccea.NewStartingIndex].RaiseColumnsChanged(ccea.NewStartingIndex, ccea.NewItems.Count);
+                                this.OnColumnsChanged();
+                                return true;
                             }
 
+                            this.Rows[row].RaiseColumnsChanged(count - ccea.NewItems.Count, ccea.NewItems.Count);
                             break;
-                        case NotifyCollectionChangedAction.Move:
-                            foreach (var listRowView in this.rows)
+                        }
+
+                    case NotifyCollectionChangedAction.Remove:
+                        {
+                            var count = changed.Count();
+                            if (this.ColumnIsReadOnlies[count - 1] == false)
                             {
-                                this.rows[ccea.NewStartingIndex].RaiseColumnsChanged(ccea.OldStartingIndex, ccea.OldItems.Count);
-                                this.rows[ccea.NewStartingIndex].RaiseColumnsChanged(ccea.NewStartingIndex, ccea.NewItems.Count);
+                                this.OnColumnsChanged();
+                                return true;
                             }
 
+                            this.Rows[row].RaiseColumnsChanged(count - ccea.OldItems.Count, ccea.OldItems.Count);
                             break;
-                        case NotifyCollectionChangedAction.Reset:
-                            throw new NotImplementedException();
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                    //this.UpdateRows(ccea);
-                }
-                else
-                {
-                    throw new NotSupportedException($"{nameof(Lists2DView)} does not support changing number of columns dynamically yet.");
+                        }
+                    case NotifyCollectionChangedAction.Replace:
+                        this.Rows[row].RaiseColumnsChanged(ccea.NewStartingIndex, 1);
+                        break;
+                    case NotifyCollectionChangedAction.Move:
+                        this.Rows[row].RaiseColumnsChanged(ccea.OldStartingIndex, 1);
+                        this.Rows[row].RaiseColumnsChanged(ccea.NewStartingIndex, 1);
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        this.Rows[row].RaiseColumnsChanged(0, this.MaxColumnCount);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
             return true;
         }
 
-        public IEnumerator<ListRowView> GetEnumerator() => this.rows.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
-
-        void ICollection.CopyTo(Array array, int index) => ((IList)this.rows).CopyTo(array, index);
-
-        int IList.Add(object value) => ThrowNotSupported<int>();
-
-        bool IList.Contains(object value) => this.rows.Contains(value);
-
-        void IList.Clear() => ThrowNotSupported();
-
-        int IList.IndexOf(object value) => this.rows.IndexOf((ListRowView)value);
-
-        void IList.Insert(int index, object value) => ThrowNotSupported();
-
-        void IList.Remove(object value) => ThrowNotSupported();
-
-        void IList.RemoveAt(int index) => ThrowNotSupported();
-
-        private static void ThrowNotSupported()
-        {
-            throw new NotSupportedException();
-        }
-
-        private static T ThrowNotSupported<T>()
-        {
-            throw new NotSupportedException();
-        }
-
         private void ResetRows()
         {
             var source = this.Source;
-            this.rows.Clear();
+            this.Rows.Clear();
 
             if (source == null || !source.Any())
             {
@@ -264,22 +122,10 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
-            if (this.IsTransposed)
+            for (var index = 0; index < source.Count(); index++)
             {
-                var rowCount = source.Max(x => x.Count());
-                for (int i = 0; i < rowCount; i++)
-                {
-                    var listRowView = this.CreateRow(i);
-                    this.rows.Add(listRowView);
-                }
-            }
-            else
-            {
-                for (int index = 0; index < source.Count(); index++)
-                {
-                    var listRowView = this.CreateRow(index);
-                    this.rows.Add(listRowView);
-                }
+                var listRowView = this.CreateRow(index);
+                this.Rows.Add(listRowView);
             }
 
             this.OnPropertyChanged(CountPropertyChangedEventArgs);
@@ -287,81 +133,13 @@ namespace Gu.Wpf.DataGrid2D
             this.OnCollectionChanged(NotifyCollectionResetEventArgs);
         }
 
-        private void AddRows(int newStartingIndex, int count)
+        protected override ListRowView CreateRow(int index)
         {
-            var newItems = new List<ListRowView>();
-            for (int index = newStartingIndex; index < newStartingIndex + count; index++)
-            {
-                var listRowView = this.CreateRow(index);
-                this.rows.Add(listRowView);
-                newItems.Add(listRowView);
-            }
+            var propertyDescriptors = this.Rows.Count > 0
+                                          ? this.Rows[0].GetProperties()
+                                          : ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ColumnElementTypes, this.ColumnIsReadOnlies, this.MaxColumnCount);
 
-            this.OnPropertyChanged(CountPropertyChangedEventArgs);
-            this.OnPropertyChanged(IndexerPropertyChangedEventArgs);
-            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newItems, newStartingIndex));
-        }
-
-        private void RemoveRows(int oldStartingIndex, int count)
-        {
-            var oldItems = new List<ListRowView>();
-            for (int i = oldStartingIndex; i < oldStartingIndex + count; i++)
-            {
-                oldItems.Add(this.rows[i]);
-                this.rows.RemoveAt(i);
-            }
-
-            this.OnPropertyChanged(CountPropertyChangedEventArgs);
-            this.OnPropertyChanged(IndexerPropertyChangedEventArgs);
-            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, oldItems, oldStartingIndex));
-        }
-
-        private ListRowView CreateRow(int index)
-        {
-            if (this.IsTransposed)
-            {
-                PropertyDescriptorCollection propertyDescriptors = null;
-                if (this.rows.Count == 0)
-                {
-                    propertyDescriptors = ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(this.ElementType, this.MaxColumnCount);
-                }
-                else
-                {
-                    propertyDescriptors = this.rows[0].GetProperties();
-                }
-
-                return new ListRowView(this.Source, index, this.ElementType, propertyDescriptors, true);
-            }
-            else
-            {
-                var elementType = this.Source.ElementAtOrDefault<IEnumerable>(index).GetElementType();
-                var propertyDescriptors = this.rows.FirstOrDefault(x => x.ElementType == elementType)
-                                              ?.GetProperties() ??
-                                          ListIndexPropertyDescriptor.GetRowPropertyDescriptorCollection(elementType, this.MaxColumnCount);
-
-                return new ListRowView(this.Source, index, elementType, propertyDescriptors, false);
-            }
-        }
-
-        private void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            this.CollectionChanged?.Invoke(this, e);
-        }
-
-        private void OnPropertyChanged(PropertyChangedEventArgs e)
-        {
-            this.PropertyChanged?.Invoke(this, e);
-        }
-
-        [NotifyPropertyChangedInvocator]
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void OnColumnsChanged()
-        {
-            this.ColumnsChanged?.Invoke(this, EventArgs.Empty);
+            return new ListRowView(this, index, propertyDescriptors);
         }
     }
 }
