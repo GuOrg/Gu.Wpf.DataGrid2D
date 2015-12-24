@@ -2,6 +2,8 @@
 
 [![Join the chat at https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[nuget package](https://www.nuget.org/packages/Gu.Wpf.DataGrid2D/)
+
 Extension methods for WPF DataGrid enabling binidng to sources of different types.
 
 ## ItemsSource.Array2D & Array2DTransposed
