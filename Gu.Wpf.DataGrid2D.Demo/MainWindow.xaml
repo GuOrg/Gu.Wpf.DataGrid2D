@@ -12,7 +12,7 @@
         mc:Ignorable="d">
     <TabControl>
         <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
-            <demo:Source2DView />
+            <demo:Array2DView />
         </TabItem>
 
         <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.JaggedTab}" Header="int[][]">

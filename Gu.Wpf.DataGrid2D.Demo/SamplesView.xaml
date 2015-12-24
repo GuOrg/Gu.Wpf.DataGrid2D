@@ -19,7 +19,7 @@
         </GroupBox>
 
         <GroupBox Header="int[,]">
-            <demo:Source2DView />
+            <demo:Array2DView />
         </GroupBox>
 
 

@@ -49,6 +49,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Array2DVm.cs">
+      <DependentUpon>Array2DView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DebugView.xaml.cs">
       <DependentUpon>DebugView.xaml</DependentUpon>
     </Compile>
@@ -86,11 +89,8 @@
     <Compile Include="SelectedVm.cs">
       <DependentUpon>SelectedView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source2DView.xaml.cs">
-      <DependentUpon>Source2DView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Source2DVm.cs">
-      <DependentUpon>Source2DView.xaml</DependentUpon>
+    <Compile Include="Array2DView.xaml.cs">
+      <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
     <Compile Include="StyledView.xaml.cs">
       <DependentUpon>StyledView.xaml</DependentUpon>
@@ -141,7 +141,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Source2DView.xaml">
+    <Page Include="Array2DView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

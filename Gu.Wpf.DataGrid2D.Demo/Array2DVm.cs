@@ -7,11 +7,11 @@
     using System.Windows.Input;
     using JetBrains.Annotations;
 
-    public class Source2DVm : INotifyPropertyChanged
+    public class Array2DVm : INotifyPropertyChanged
     {
         private string data;
 
-        public Source2DVm()
+        public Array2DVm()
         {
             this.Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
             this.RowHeaders = new[] { "1", "2", "3" };

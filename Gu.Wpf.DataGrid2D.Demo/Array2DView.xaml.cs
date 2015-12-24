@@ -3,11 +3,11 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for Source2DView.xaml
+    /// Interaction logic for Array2DView.xaml
     /// </summary>
-    public partial class Source2DView : UserControl
+    public partial class Array2DView : UserControl
     {
-        public Source2DView()
+        public Array2DView()
         {
             this.InitializeComponent();
         }
