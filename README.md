@@ -5,14 +5,14 @@
 Extension methods for WPF DataGrid enabling binidng to T[,]
 
 ## ItemsSource.Array2D & Array2DTransposed
-#### Simple
+##### Array2D
     <DataGrid HeadersVisibility="None"
               dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
 
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/00325df.png)
 
-#### Explicit columns
+##### Explicit columns
 Columns are referred to by `C<zero_based_index>`
 <DataGrid AutoGenerateColumns="False"
           dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
@@ -26,7 +26,7 @@ Columns are referred to by `C<zero_based_index>`
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/IHvEI0c.png)
 
-#### With headers:
+##### With headers:
 ```
 <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
           dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
@@ -35,7 +35,7 @@ Renders:
 Renders:
 ![With headers screenie](http://i.imgur.com/GtEOW5G.png)
 
-#### Transposed
+##### Array2DTransposed
 ```
 <DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
 ```
@@ -43,6 +43,10 @@ Renders:
 ![ItemsSource2D render](http://i.imgur.com/N6BJqIR.png)
 
 ## ItemsSource.RowsSource & ColumnsSource
+Lets you bind to datasources of type `IEnumerable<IEnumerable>>`.
+Tracks collection changes.
+
+##### RowsSource
 ```
 <DataGrid HeadersVisibility="None"
           dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfInts}" />
@@ -51,7 +55,7 @@ Renders:
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/00325df.png)
 
-## Transposed
+##### ColumnsSource
 ```
 <DataGrid HeadersVisibility="None"
           dataGrid2D:ItemsSource.ColumnsSource="{Binding ListOfListsOfInts}" />
@@ -59,7 +63,7 @@ Renders:
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/N6BJqIR.png)
 
-#### Different lengths
+##### Different lengths
 Limited support for different lengths. Columns with blanks are default readonly.
 
 ```
@@ -70,7 +74,7 @@ Renders:
 ![ItemsSource2D render](http://i.imgur.com/PPlT750.png)
 
 ## Selected.CellItem & Index
-Lets you bind the item of the currently selected cell or index (row, col).
+Lets you two-way bind the item of the currently selected cell or index (row, col).
 This assumes that you have `SelectionUnit="Cell"` 
 ```
 <DataGrid SelectionUnit="Cell"
@@ -79,15 +83,18 @@ This assumes that you have `SelectionUnit="Cell"`
           dataGrid2D:Selected.Index="{Binding Index}" />
 ``` 
 
-## ItemsSource.TransposedSource
+## ItemsSource.TransposedSource & PropertySource
 Support for transposing an itemssource, perhaps useful for property grid scenarios. Supports binding to single item or (Observable)Collection
+
+##### PropertySource
+Same as TransposedSource but for a saingle item.
 
 <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
 
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/sn8VNKG.png)
 
-#### Explicit columns
+##### TransposedSource with explicit columns
 The property name column is named `Name` and the following columns are named `C<zero_based_index>`
 ```
 <DataGrid AutoGenerateColumns="False" 
