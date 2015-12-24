@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{70700050-2381-499E-AD41-69BFE55B22EE}"
 	ProjectSection(SolutionItems) = preProject
 		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+		.paket\Readme.paket.md = .paket\Readme.paket.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.DataGrid2D.Demo", "Gu.Wpf.DataGrid2D.Demo\Gu.Wpf.DataGrid2D.Demo.csproj", "{AD21B5EF-1BF4-4089-838B-47A58C1EC8FE}"

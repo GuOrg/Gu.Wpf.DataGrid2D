@@ -91,6 +91,7 @@
   -->
   <ItemGroup>
     <None Include="Gu.Wpf.DataGrid2D.ruleset" />
+    <None Include="paket.template" />
     <None Include="stylecop.json" />
   </ItemGroup>
   <Choose>
