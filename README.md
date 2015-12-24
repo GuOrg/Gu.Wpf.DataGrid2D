@@ -5,6 +5,8 @@
 Extension methods for WPF DataGrid enabling binidng to sources of different types.
 
 ## ItemsSource.Array2D & Array2DTransposed
+For binding to sources of type T[,]
+
 ##### Array2D
     <DataGrid HeadersVisibility="None"
               dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
