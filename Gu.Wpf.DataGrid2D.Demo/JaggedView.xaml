@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.JaggedView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dataGrid2D="http://gu.se/DataGrid2D"
+             xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:JaggedVm />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="For UI tests">
+            <StackPanel>
+                <Button AutomationProperties.AutomationId="{x:Static local:AutomationIds.UpdateDataButton}"
+                        Command="{Binding UpdateDataCommand}"
+                        Content="UpdateData" />
+                <TextBlock AutomationProperties.AutomationId="{x:Static local:AutomationIds.DataTextBox}" Text="{Binding Data}" />
+            </StackPanel>
+        </GroupBox>
+        <UniformGrid Grid.Column="1" Columns="1">
+            <GroupBox Header="Vanilla">
+                <UniformGrid Rows="1">
+                    <GroupBox Header="Auto columns">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
+                    </GroupBox>
+
+                    <GroupBox Header="Auto columns">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumnsDifferentLengths}" dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
+                    </GroupBox>
+
+                    <GroupBox Header="Readonly">
+                        <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
+                    </GroupBox>
+
+                    <GroupBox Header="Explicit columns">
+                        <DataGrid AutoGenerateColumns="False"
+                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumns}"
+                                  dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+                                <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <GroupBox Header="With headers">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.WithHeaders}"
+                                  ColumnWidth="SizeToHeader"
+                                  SelectionUnit="Cell"
+                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
+                                  dataGrid2D:ItemsSource.RowsSource="{Binding SameLengths}" />
+                    </GroupBox>
+                </UniformGrid>
+            </GroupBox>
+
+            <GroupBox Header="Transposed">
+                <UniformGrid Rows="1">
+                    <GroupBox Header="Auto columns">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumnsTransposed}" dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}" />
+                    </GroupBox>
+
+                    <GroupBox Header="Auto columns">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.DifferentLengthsTransposed}" dataGrid2D:ItemsSource.ColumnsSource="{Binding DifferentLengths}" />
+                    </GroupBox>
+
+                    <GroupBox Header="Explicit columns">
+                        <DataGrid AutoGenerateColumns="False"
+                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumnsTransposed}"
+                                  dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
+                                <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                                <DataGridTextColumn Binding="{Binding C2}" Header="Col 3" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <GroupBox Header="With headers">
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.WithHeadersTransposed}"
+                                  ColumnWidth="SizeToHeader"
+                                  SelectionUnit="Cell"
+                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                                  dataGrid2D:ItemsSource.ColumnsSource="{Binding SameLengths}"
+                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
+                    </GroupBox>
+                </UniformGrid>
+            </GroupBox>
+        </UniformGrid>
+    </Grid>
+</UserControl>

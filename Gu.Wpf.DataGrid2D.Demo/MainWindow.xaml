@@ -2,23 +2,37 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:dataGrid2D="http://gu.se/DataGrid2D"
         xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="MainWindow"
         Width="525"
         Height="350"
+        AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MainWindow}"
         d:DataContext="{d:DesignInstance demo:Vm}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="Samples">
-            <demo:SamplesView />
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
+            <demo:Array2DView />
         </TabItem>
 
-        <TabItem Header="Debug">
-            <demo:DebugView />
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.JaggedTab}" Header="int[][]">
+            <demo:JaggedView />
+        </TabItem>
+
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.ObservableTab}" Header="OC&lt;OC&lt;T&gt;&gt;">
+            <demo:ObservableView />
+        </TabItem>
+
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.TransposedTab}" Header="Transposed">
+            <demo:TransposedView />
+        </TabItem>
+
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.SelectionTab}" Header="SelectedCellItem">
+            <demo:SelectedView />
+        </TabItem>
+
+        <TabItem Header="RowNumbers">
+            <demo:RowNumbersView />
         </TabItem>
     </TabControl>
-
 </Window>

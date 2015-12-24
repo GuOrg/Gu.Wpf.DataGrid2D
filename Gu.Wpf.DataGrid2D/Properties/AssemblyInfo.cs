@@ -39,3 +39,4 @@ using System.Resources;
 [assembly: XmlnsDefinition("http://gu.se/DataGrid2D", "Gu.Wpf.DataGrid2D")]
 [assembly: XmlnsPrefix("http://gu.se/DataGrid2D", "dataGrid2D")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: InternalsVisibleTo("Gu.Wpf.DataGrid2D.Tests", AllInternalsVisible = true)]

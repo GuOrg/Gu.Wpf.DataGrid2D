@@ -1,70 +1,90 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
 
     public static class Index
     {
-        private static readonly DependencyPropertyKey OfPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
-            "Of",
+        private static readonly DependencyPropertyKey OfRowPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
+            "OfRow",
             typeof(int),
             typeof(Index),
-            new PropertyMetadata(-1));
+            new PropertyMetadata(-1, null));
 
-        public static readonly DependencyProperty OfProperty = OfPropertyKey.DependencyProperty;
-
-        public static readonly DependencyProperty InProperty = DependencyProperty.RegisterAttached(
-            "In",
-            typeof(DataGrid),
-            typeof(Index),
-            new PropertyMetadata(default(DataGrid), OnInChanged));
+        public static readonly DependencyProperty OfRowProperty = OfRowPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty StartAtProperty = DependencyProperty.RegisterAttached(
             "StartAt",
-            typeof (int),
-            typeof (Index),
-            new PropertyMetadata(default(int)));
+            typeof(int?),
+            typeof(Index),
+            new PropertyMetadata(null, OnStartAtChanged));
 
-        public static void SetOf(this DataGridRow element, int value)
+        private static readonly DependencyProperty RowsListenerProperty = DependencyProperty.RegisterAttached(
+            "RowsListener",
+            typeof(RowsListener),
+            typeof(Index),
+            new PropertyMetadata(default(RowsListener)));
+
+        private static readonly RoutedEventHandler OnRowsChangedHandler = OnRowsChanged;
+
+        public static void SetOfRow(this DataGridRow element, int value)
         {
-            element.SetValue(OfPropertyKey, value);
+            element.SetValue(OfRowPropertyKey, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
-        public static int GetOf(this DataGridRow element)
+        public static int GetOfRow(this DataGridRow element)
         {
-            return (int)element.GetValue(OfProperty);
+            return (int)element.GetValue(OfRowProperty);
         }
 
-        public static void SetIn(this DataGridRow element, DataGrid value)
-        {
-            element.SetValue(InProperty, value);
-        }
-
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
-        public static DataGrid GetIn(this DataGridRow element)
-        {
-            return (DataGrid)element.GetValue(InProperty);
-        }
-
-        public static void SetStartAt(this DataGridRow element, int value)
+        public static void SetStartAt(this Control element, int value)
         {
             element.SetValue(StartAtProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
-        public static int GetStartAt(this DataGridRow element)
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
+        public static int GetStartAt(this Control element)
         {
             return (int)element.GetValue(StartAtProperty);
         }
 
-        private static void OnInChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnStartAtChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var row = (DataGridRow)d;
-            row.SetOf(row.GetIndex() + row.GetStartAt());
+            var dataGrid = (DataGrid)d;
+            (dataGrid.GetValue(RowsListenerProperty) as IDisposable)?.Dispose();
+            dataGrid.ClearValue(RowsListenerProperty);
+
+            if (e.NewValue == null)
+            {
+                foreach (DataGridRow row in dataGrid.Items)
+                {
+                    BindingOperations.ClearBinding(row, DataGridRow.HeaderProperty);
+                }
+
+                dataGrid.RemoveHandler(Events.RowsChanged, OnRowsChangedHandler);
+                return;
+            }
+
+            dataGrid.SetValue(RowsListenerProperty, new RowsListener(dataGrid));
+            dataGrid.UpdateHandler(Events.RowsChanged, OnRowsChangedHandler);
+            OnRowsChanged(dataGrid, null);
+        }
+
+        private static void OnRowsChanged(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var dataGrid = (DataGrid)sender;
+            var startAt = dataGrid.GetStartAt();
+            for (int index = 0; index < dataGrid.ItemContainerGenerator.Items.Count; index++)
+            {
+                var row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(index);
+                row?.SetOfRow(index + startAt);
+            }
         }
     }
 }

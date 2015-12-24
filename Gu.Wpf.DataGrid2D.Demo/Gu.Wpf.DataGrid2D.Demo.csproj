@@ -49,17 +49,55 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DebugView.xaml.cs">
-      <DependentUpon>DebugView.xaml</DependentUpon>
+    <Compile Include="Array2DVm.cs">
+      <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemVm.cs" />
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="RowVm.cs" />
-    <Compile Include="SamplesView.xaml.cs">
-      <DependentUpon>SamplesView.xaml</DependentUpon>
+    <Compile Include="Misc\ItemVm.cs" />
+    <Compile Include="JaggedView.xaml.cs">
+      <DependentUpon>JaggedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JaggedVm.cs">
+      <DependentUpon>JaggedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObservableView.xaml.cs">
+      <DependentUpon>ObservableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AutomationIds.cs" />
+    <Compile Include="Misc\RelayCommand.cs" />
+    <Compile Include="ObservableVm.cs">
+      <DependentUpon>ObservableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
+      <DependentUpon>RowNumbersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RowNumbersView.xaml.cs">
+      <DependentUpon>RowNumbersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\RowVm.cs" />
+    <Compile Include="RowNumbersVm.cs">
+      <DependentUpon>RowNumbersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectedView.xaml.cs">
+      <DependentUpon>SelectedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectedVm.cs">
+      <DependentUpon>SelectedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Array2DView.xaml.cs">
+      <DependentUpon>Array2DView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransposedView.xaml.cs">
+      <DependentUpon>TransposedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransposedVm.cs">
+      <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vm.cs" />
-    <Page Include="DebugView.xaml">
+    <Page Include="JaggedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObservableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,7 +113,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SamplesView.xaml">
+    <Page Include="RowNumbersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Array2DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransposedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +157,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gu.Wpf.DataGrid2D\Gu.Wpf.DataGrid2D.csproj">
+      <Project>{53af7fff-bcad-43a5-8367-48429b2878be}</Project>
+      <Name>Gu.Wpf.DataGrid2D</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -115,4 +171,15 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1')">
+      <ItemGroup>
+        <Reference Include="JetBrains.Annotations">
+          <HintPath>..\packages\JetBrains.Annotations\lib\net20\JetBrains.Annotations.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
 </Project>
