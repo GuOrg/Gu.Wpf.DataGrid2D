@@ -5,8 +5,8 @@
         xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
-        Width="525"
-        Height="350"
+        Width="1200"
+        Height="800"
         AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MainWindow}"
         d:DataContext="{d:DesignInstance demo:Vm}"
         mc:Ignorable="d">

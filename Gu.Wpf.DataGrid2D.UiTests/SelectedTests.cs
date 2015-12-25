@@ -1,8 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using System;
-    using System.Linq;
-    using System.Windows.Automation;
     using Gu.Wpf.DataGrid2D.Demo;
     using NUnit.Framework;
     using TestStack.White;
@@ -10,7 +8,6 @@
     using TestStack.White.UIItems;
     using TestStack.White.UIItems.ListBoxItems;
     using TestStack.White.UIItems.TabItems;
-    using TestStack.White.UIItems.TableItems;
     using ListView = TestStack.White.UIItems.ListView;
     using TextBox = TestStack.White.UIItems.TextBox;
 

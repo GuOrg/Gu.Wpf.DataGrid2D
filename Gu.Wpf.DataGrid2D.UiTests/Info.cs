@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
     using System.Reflection;
@@ -11,9 +12,9 @@
         {
             get
             {
-                var fileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly()
-                                                                          .Location),
-                                            $"{typeof(MainWindow).Assembly.GetName().Name}.exe");
+                var assembly = typeof(MainWindow).Assembly;
+                var uri = new Uri(assembly.CodeBase, UriKind.Absolute);
+                var fileName = uri.AbsolutePath;
                 var processStartInfo = new ProcessStartInfo
                                        {
                                            FileName = fileName,

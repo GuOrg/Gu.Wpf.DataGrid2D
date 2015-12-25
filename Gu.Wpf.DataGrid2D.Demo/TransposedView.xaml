@@ -32,8 +32,7 @@
         </GroupBox>
 
         <GroupBox Header="explicit columns">
-            <DataGrid AutoGenerateColumns="False" 
-                      dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}">
+            <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Property" />
                     <DataGridTextColumn Binding="{Binding C0}" Header="Value 1" />
