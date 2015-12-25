@@ -86,6 +86,12 @@
     <Compile Include="Array2DView.xaml.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TemplateColumnSelectorView.xaml.cs">
+      <DependentUpon>TemplateColumnSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateColumnSelectorVm.cs">
+      <DependentUpon>TemplateColumnSelectorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TransposedView.xaml.cs">
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
@@ -122,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Array2DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TemplateColumnSelectorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

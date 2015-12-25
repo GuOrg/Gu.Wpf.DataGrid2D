@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.ComponentModel;
-    using System.IO;
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;

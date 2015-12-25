@@ -11,7 +11,7 @@
         d:DataContext="{d:DesignInstance demo:Vm}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
+        <!--<TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
             <demo:Array2DView />
         </TabItem>
 
@@ -33,6 +33,10 @@
 
         <TabItem Header="RowNumbers">
             <demo:RowNumbersView />
+        </TabItem>-->
+
+        <TabItem Header="TemplateColumnSelector">
+            <demo:TemplateColumnSelectorView />
         </TabItem>
     </TabControl>
 </Window>
