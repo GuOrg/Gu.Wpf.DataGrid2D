@@ -81,7 +81,9 @@ Renders:
 
 ## Selected.CellItem & Index
 Lets you two-way bind the item of the currently selected cell or index (row, col).
-This assumes that you have `SelectionUnit="Cell"` 
+For this to work these conditions must be satisfied:
+- `SelectionUnit="Cell"` 
+- Columns must be of type `DataGridBoundColumn`. Don't think there is a way to dig out the bound property of a `DataGridTemplateColumn`
 ```
 <DataGrid SelectionUnit="Cell"
           dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
