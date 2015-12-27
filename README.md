@@ -18,6 +18,8 @@ Renders:
 
 ##### Explicit columns
 Columns are referred to by `C<zero_based_index>`
+
+```
 <DataGrid AutoGenerateColumns="False"
           dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
     <DataGrid.Columns>
@@ -26,7 +28,7 @@ Columns are referred to by `C<zero_based_index>`
         <DataGridTextColumn Binding="{Binding C2}" Header="Col 3" />
     </DataGrid.Columns>
 </DataGrid>
-
+```
 Renders:
 ![ItemsSource2D render](http://i.imgur.com/IHvEI0c.png)
 
