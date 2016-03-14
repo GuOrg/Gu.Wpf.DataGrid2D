@@ -1,8 +1,6 @@
 # Gu.Wpf.DataGrid2D
 
-[![Join the chat at https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[nuget package](https://www.nuget.org/packages/Gu.Wpf.DataGrid2D/)
+[![https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.DataGrid2D.svg)](https://www.nuget.org/packages/Gu.Wpf.DataGrid2D/)
 
 Extension methods for WPF DataGrid enabling binidng to sources of different types.
 
@@ -13,7 +11,7 @@ For binding to sources of type T[,]
     <DataGrid HeadersVisibility="None"
               dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
 
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/00325df.png)
 
 ##### Explicit columns
@@ -29,7 +27,7 @@ Columns are referred to by `C<zero_based_index>`
     </DataGrid.Columns>
 </DataGrid>
 ```
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/IHvEI0c.png)
 
 ##### With headers:
@@ -38,14 +36,14 @@ Renders:
           dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
           dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
 ```
-Renders:
+Renders:  
 ![With headers screenie](http://i.imgur.com/GtEOW5G.png)
 
 ##### Array2DTransposed
 ```
 <DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
 ```
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/N6BJqIR.png)
 
 ## ItemsSource.RowsSource & ColumnsSource
@@ -58,7 +56,7 @@ Tracks collection changes.
           dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfInts}" />
 ```
 
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/00325df.png)
 
 ##### ColumnsSource
@@ -66,7 +64,7 @@ Renders:
 <DataGrid HeadersVisibility="None"
           dataGrid2D:ItemsSource.ColumnsSource="{Binding ListOfListsOfInts}" />
 ```
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/N6BJqIR.png)
 
 ##### Different lengths
@@ -76,7 +74,7 @@ Limited support for different lengths. Columns with blanks are default readonly.
 <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
 ```
 
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/PPlT750.png)
 
 ## Selected.CellItem & Index
@@ -95,11 +93,11 @@ For this to work these conditions must be satisfied:
 Support for transposing an itemssource, perhaps useful for property grid scenarios. Supports binding to single item or (Observable)Collection
 
 ##### PropertySource
-Same as TransposedSource but for a saingle item.
+Same as TransposedSource but for a single item.
 
 <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
 
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/sn8VNKG.png)
 
 ##### TransposedSource with explicit columns
@@ -115,7 +113,7 @@ The property name column is named `Name` and the following columns are named `C<
 </DataGrid>
 ```
 
-Renders:
+Renders:  
 ![ItemsSource2D render](http://i.imgur.com/ftkeyDu.png)
 
 ## Rownumbers
@@ -130,5 +128,5 @@ Specify the number to start fom using `StartAt`
     </DataGrid.RowHeaderStyle>
 </DataGrid>
 ```
-Renders:
+Renders:  
 ![Rownumbers render](http://i.imgur.com/VkDap9E.png)
