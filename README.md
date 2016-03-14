@@ -1,6 +1,6 @@
 # Gu.Wpf.DataGrid2D
 
-[![https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.DataGrid2D.svg)](https://www.nuget.org/packages/Gu.Wpf.DataGrid2D/)
+[![Gitter Chat Room](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.DataGrid2D.svg)](https://www.nuget.org/packages/Gu.Wpf.DataGrid2D/)
 
 Extension methods for WPF DataGrid enabling binidng to sources of different types.
 
