@@ -19,18 +19,22 @@
                 <Button AutomationProperties.AutomationId="{x:Static local:AutomationIds.UpdateDataButton}"
                         Command="{Binding UpdateDataCommand}"
                         Content="UpdateData" />
-                <TextBlock AutomationProperties.AutomationId="{x:Static local:AutomationIds.DataTextBox}" Text="{Binding Data}" />
+                <TextBlock AutomationProperties.AutomationId="{x:Static local:AutomationIds.DataTextBox}"
+                           Text="{Binding Data}" />
             </StackPanel>
         </GroupBox>
-        <UniformGrid Grid.Column="1" Columns="1">
+        <UniformGrid Grid.Column="1"
+                     Columns="1">
             <GroupBox Header="Vanilla">
                 <UniformGrid Rows="1">
                     <GroupBox Header="Auto columns">
-                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                     </GroupBox>
 
                     <GroupBox Header="Readonly">
-                        <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+                        <DataGrid IsReadOnly="True"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                     </GroupBox>
 
                     <GroupBox Header="Explicit columns">
@@ -38,8 +42,10 @@
                                   AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumns}"
                                   dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
-                                <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
+                                <DataGridTextColumn Binding="{Binding C0}"
+                                                    Header="Col 1" />
+                                <DataGridTextColumn Binding="{Binding C1}"
+                                                    Header="Col 2" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
@@ -58,11 +64,13 @@
             <GroupBox Header="Transposed">
                 <UniformGrid Rows="1">
                     <GroupBox Header="Auto columns">
-                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumnsTransposed}" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumnsTransposed}"
+                                  dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
                     </GroupBox>
 
                     <GroupBox Header="Readonly">
-                        <DataGrid IsReadOnly="True" dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
+                        <DataGrid IsReadOnly="True"
+                                  dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
                     </GroupBox>
 
                     <GroupBox Header="Explicit columns">
@@ -70,9 +78,12 @@
                                   AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumnsTransposed}"
                                   dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding C0}" Header="Col 1" />
-                                <DataGridTextColumn Binding="{Binding C1}" Header="Col 2" />
-                                <DataGridTextColumn Binding="{Binding C2}" Header="Col 3" />
+                                <DataGridTextColumn Binding="{Binding C0}"
+                                                    Header="Col 1" />
+                                <DataGridTextColumn Binding="{Binding C1}"
+                                                    Header="Col 2" />
+                                <DataGridTextColumn Binding="{Binding C2}"
+                                                    Header="Col 3" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>

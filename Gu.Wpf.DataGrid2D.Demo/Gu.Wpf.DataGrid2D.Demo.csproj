@@ -70,6 +70,12 @@
     <Compile Include="Person.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PropertyChangedView.xaml.cs">
+      <DependentUpon>PropertyChangedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyChangedViewModel.cs">
+      <DependentUpon>PropertyChangedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RowNumbersView.xaml.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
     </Compile>
@@ -113,6 +119,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PropertyChangedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RowNumbersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
