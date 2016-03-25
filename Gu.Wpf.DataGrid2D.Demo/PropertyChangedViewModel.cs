@@ -1,8 +1,11 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
+    using System;
     using System.ComponentModel;
+    using System.IO;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
+    using System.Windows.Threading;
 
     using JetBrains.Annotations;
 

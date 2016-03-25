@@ -1,7 +1,6 @@
 source http://www.nuget.org/api/v2/
-framework >= net45
 
 nuget NUnit 2.6.4
-nuget StyleCop.Analyzers -prerelease
+nuget StyleCop.Analyzers
 nuget JetBrains.Annotations
 nuget TestStack.White
