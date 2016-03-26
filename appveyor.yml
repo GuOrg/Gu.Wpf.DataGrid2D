@@ -1,3 +1,5 @@
+install:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-desktop.ps1'))
 version: 1.0.{build}
 configuration: Release
 platform: Any CPU
