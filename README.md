@@ -5,6 +5,22 @@
 
 Extension methods for WPF DataGrid enabling binidng to sources of different types.
 
+## Contents
+  - [ItemsSource.Array2D & Array2DTransposed](#itemssourcearray2d-&-array2dtransposed)
+        - [Array2D](#array2d)
+        - [Explicit columns](#explicit-columns)
+        - [With headers:](#with-headers)
+        - [Array2DTransposed](#array2dtransposed)
+  - [ItemsSource.RowsSource & ColumnsSource](#itemssourcerowssource-&-columnssource)
+        - [RowsSource](#rowssource)
+        - [ColumnsSource](#columnssource)
+        - [Different lengths](#different-lengths)
+  - [Selected.CellItem & Index](#selectedcellitem-&-index)
+  - [ItemsSource.TransposedSource & PropertySource](#itemssourcetransposedsource-&-propertysource)
+        - [PropertySource](#propertysource)
+        - [TransposedSource with explicit columns](#transposedsource-with-explicit-columns)
+  - [Rownumbers](#rownumbers)
+
 ## ItemsSource.Array2D & Array2DTransposed
 For binding to sources of type T[,]
 
