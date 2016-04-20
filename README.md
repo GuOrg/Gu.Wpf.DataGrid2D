@@ -7,17 +7,17 @@ Attached properties for WPF DataGrid enabling binding to sources of different ty
 
 ## Contents
 
-  - [ItemsSource.Array2D & Array2DTransposed](#itemssourcearray2d-&-array2dtransposed)
+  - [ItemsSource.Array2D & Array2DTransposed](#itemssourcearray2d--array2dtransposed)
     - [Array2D](#array2d)
     - [Explicit columns](#explicit-columns)
     - [With headers:](#with-headers)
     - [Array2DTransposed](#array2dtransposed)
-  - [ItemsSource.RowsSource & ColumnsSource](#itemssourcerowssource-&-columnssource)
+  - [ItemsSource.RowsSource & ColumnsSource](#itemssourcerowssource--columnssource)
     - [RowsSource](#rowssource)
     - [ColumnsSource](#columnssource)
     - [Different lengths](#different-lengths)
-  - [Selected.CellItem & Index](#selectedcellitem-&-index)
-  - [ItemsSource.TransposedSource & PropertySource](#itemssourcetransposedsource-&-propertysource)
+  - [Selected.CellItem & Index](#selectedcellitem--index)
+  - [ItemsSource.TransposedSource & PropertySource](#itemssourcetransposedsource--propertysource)
     - [PropertySource](#propertysource)
     - [TransposedSource with explicit columns](#transposedsource-with-explicit-columns)
   - [Rownumbers](#rownumbers)
