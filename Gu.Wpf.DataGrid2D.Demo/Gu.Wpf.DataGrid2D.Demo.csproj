@@ -65,8 +65,12 @@
     <Compile Include="ObservableVm.cs">
       <DependentUpon>ObservableView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BigDataGridView.xaml.cs">
+    <Compile Include="Perf\BigDataGridView.xaml.cs">
       <DependentUpon>BigDataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Perf\BigDataGridViewModel.cs" />
+    <Compile Include="Perf\PerfWindow.xaml.cs">
+      <DependentUpon>PerfWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>RowNumbersView.xaml</DependentUpon>
@@ -120,7 +124,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="BigDataGridView.xaml">
+    <Page Include="Perf\BigDataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Perf\PerfWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

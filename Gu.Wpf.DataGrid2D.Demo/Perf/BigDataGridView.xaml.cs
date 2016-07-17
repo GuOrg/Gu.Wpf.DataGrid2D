@@ -9,9 +9,4 @@
             this.InitializeComponent();
         }
     }
-
-    public class BigDataGridViewModel
-    {
-        public static readonly BigDataGridViewModel Default = new BigDataGridViewModel();
-    }
 }
