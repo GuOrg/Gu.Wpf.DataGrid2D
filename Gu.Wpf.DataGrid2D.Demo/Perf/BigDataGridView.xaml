@@ -29,7 +29,8 @@
                        Text="Rows" />
             <TextBox Grid.Row="0"
                      Grid.Column="1"
-                     MaxWidth="70"
+                     Width="50"
+                     HorizontalAlignment="Left"
                      Text="{Binding Rows}" />
 
             <TextBlock Grid.Row="1"
@@ -38,7 +39,8 @@
 
             <TextBox Grid.Row="1"
                      Grid.Column="1"
-                     MaxWidth="70"
+                     Width="50"
+                     HorizontalAlignment="Left"
                      Text="{Binding Columns}" />
 
             <Button Grid.Row="2"
@@ -47,7 +49,8 @@
                     Content="Update" />
             <TextBlock Grid.Row="2"
                        Grid.Column="1"
-                       HorizontalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
                        Text="{Binding UpdateTime,
                                       StringFormat='Update took: {0}'}" />
         </Grid>
