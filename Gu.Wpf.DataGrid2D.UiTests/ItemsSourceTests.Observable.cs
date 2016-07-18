@@ -105,6 +105,7 @@
                     cell.Click();
                     cell.Enter("10");
                     dataGrid.Select(1);
+                    window.WaitWhileBusy();
                     expected[0, 0] = 10;
                     AssertDataGrid.AreEqual(expected, dataGrid);
              

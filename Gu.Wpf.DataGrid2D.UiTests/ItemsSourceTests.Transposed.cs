@@ -108,6 +108,7 @@
                     cell.Click();
                     cell.Enter("New Value");
                     dataGrid.Select(1); // lose focus
+                    window.WaitWhileBusy();
 
                     var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
                     Assert.AreEqual("New Value", reference.Rows[0].Cells[0].Text);
