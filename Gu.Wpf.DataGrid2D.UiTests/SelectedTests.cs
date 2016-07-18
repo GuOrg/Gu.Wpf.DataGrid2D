@@ -1,6 +1,8 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using System;
+    using System.Threading;
+
     using Gu.Wpf.DataGrid2D.Demo;
     using NUnit.Framework;
     using TestStack.White;
@@ -11,7 +13,7 @@
     using ListView = TestStack.White.UIItems.ListView;
     using TextBox = TestStack.White.UIItems.TextBox;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class SelectedTests
     {
         private static readonly string TabId = AutomationIds.SelectionTab;

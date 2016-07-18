@@ -1,9 +1,14 @@
 NUGET
   remote: http://www.nuget.org/api/v2
-  specs:
     Castle.Core (3.3.3)
-    JetBrains.Annotations (10.0.0)
-    NUnit (2.6.4)
-    StyleCop.Analyzers (1.0.0)
+    JetBrains.Annotations (10.1.5)
+      System.Runtime (>= 4.0) - framework: dnxcore50
+    Microsoft.NETCore.Platforms (1.0.1) - framework: dnxcore50
+    Microsoft.NETCore.Targets (1.0.1) - framework: dnxcore50
+    NUnit (3.4.1)
+    StyleCop.Analyzers (1.0)
+    System.Runtime (4.1) - framework: dnxcore50
+      Microsoft.NETCore.Platforms (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard12, netstandard13, >= netstandard15
+      Microsoft.NETCore.Targets (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard12, netstandard13, >= netstandard15
     TestStack.White (0.13.3)
-      Castle.Core (>= 3.3.0)
+      Castle.Core (>= 3.3)

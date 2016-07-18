@@ -1,6 +1,6 @@
 source http://www.nuget.org/api/v2/
 
-nuget NUnit 2.6.4
+nuget NUnit
 nuget StyleCop.Analyzers
 nuget JetBrains.Annotations
 nuget TestStack.White

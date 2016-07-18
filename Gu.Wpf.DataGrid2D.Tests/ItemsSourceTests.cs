@@ -1,11 +1,12 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Tests
 {
     using System.Collections.ObjectModel;
+    using System.Threading;
     using System.Windows.Controls;
     using Gu.Wpf.DataGrid2D.Tests.Views.Stubs;
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class ItemsSourceTests
     {
         [Test]
