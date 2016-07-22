@@ -48,6 +48,7 @@
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\BooleanBoxes.cs" />
     <Compile Include="Internals\ColumnHeaderListener.cs" />
+    <Compile Include="Internals\CustomDataGridTemplateColumn.cs" />
     <Compile Include="Internals\EnumerableExt.cs" />
     <Compile Include="Internals\Helpers.cs" />
     <Compile Include="Internals\RoutedEventHelper.cs" />
@@ -55,6 +56,8 @@
     <Compile Include="Internals\RowsListener.cs" />
     <Compile Include="Internals\TypeExt.cs" />
     <Compile Include="ItemsSource.Array2DTransposed.cs" />
+    <Compile Include="ItemsSource.CellEditingTemplate.cs" />
+    <Compile Include="ItemsSource.CellTemplate.cs" />
     <Compile Include="ItemsSource.RowHeadersSource.cs" />
     <Compile Include="ItemsSource.ColumnsSource.cs" />
     <Compile Include="ItemsSource.Shared.cs" />
