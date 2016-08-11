@@ -30,6 +30,7 @@
         private static void OnArray2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
+            dataGrid.AutoGeneratingColumn -= DataGrid_AutoGeneratingColumn;
             var array = (Array)e.NewValue;
             if (array == null)
             {
