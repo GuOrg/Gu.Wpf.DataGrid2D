@@ -28,7 +28,11 @@
 
         private static void OnCellEditingTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            // TODO
+            var dataGrid = (DataGrid)d;
+            var celltemplate = (DataTemplate)e.NewValue;
+
+            dataGrid.SetCellEditingTemplate(celltemplate);
+            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
         }
 
         private static bool OnValidateCellEditingTemplate(object value)
