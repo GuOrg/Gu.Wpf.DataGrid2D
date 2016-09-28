@@ -70,9 +70,15 @@
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA1118" Action="None" />
     <Rule Id="SA1600" Action="None" />
+    <Rule Id="SA1601" Action="None" />
     <Rule Id="SA1611" Action="None" />
     <Rule Id="SA1615" Action="None" />
     <Rule Id="SA1633" Action="None" />
-    <Rule Id="SA1601" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="WpfAnalyzers.Analyzers" RuleNamespace="WpfAnalyzers.Analyzers">
+    <Rule Id="WA1200" Action="Error" />
+    <Rule Id="WA1201" Action="Error" />
+    <Rule Id="WA1202" Action="Error" />
+    <Rule Id="WA1210" Action="Error" />
   </Rules>
 </RuleSet>

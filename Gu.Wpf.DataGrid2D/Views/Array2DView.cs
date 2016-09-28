@@ -39,19 +39,22 @@ namespace Gu.Wpf.DataGrid2D
 
         public bool IsFixedSize => true;
 
-        object ICollection.SyncRoot => ((Array)this.source.Target)?.SyncRoot;
+        object ICollection.SyncRoot => this.Array.SyncRoot;
 
-        bool ICollection.IsSynchronized => ((Array)this.source.Target)?.IsSynchronized == true;
+        bool ICollection.IsSynchronized => this.Array.IsSynchronized;
 
-        public IEnumerable Source => (IEnumerable)this.source.Target;
+        public IEnumerable Source => this.Array;
 
         public bool IsTransposed { get; }
+
+        private Array Array => (Array)this.source.Target;
 
         public Array2DRowView this[int index] => this.rows[index];
 
         object IList.this[int index]
         {
             get { return this[index]; }
+            //// ReSharper disable once ValueParameterNotUsed
             set { ThrowNotSupported(); }
         }
 

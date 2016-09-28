@@ -54,9 +54,9 @@ namespace Gu.Wpf.DataGrid2D
 
         bool IList.IsFixedSize => true;
 
-        object ICollection.SyncRoot => (this.source.Target as ICollection)?.SyncRoot;
+        object ICollection.SyncRoot => (this.Source as ICollection)?.SyncRoot ?? new object();
 
-        bool ICollection.IsSynchronized => (this.source.Target as ICollection)?.IsSynchronized == true;
+        bool ICollection.IsSynchronized => (this.Source as ICollection)?.IsSynchronized == true;
 
         IEnumerable IView2D.Source => this.Source;
 
@@ -73,6 +73,7 @@ namespace Gu.Wpf.DataGrid2D
         object IList.this[int index]
         {
             get { return this[index]; }
+            //// ReSharper disable once ValueParameterNotUsed
             set { ThrowNotSupported(); }
         }
 

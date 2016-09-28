@@ -107,6 +107,7 @@ namespace Gu.Wpf.DataGrid2D
             return new ListRowView(this, index, propertyDescriptors);
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private bool IsColumnsChange(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)

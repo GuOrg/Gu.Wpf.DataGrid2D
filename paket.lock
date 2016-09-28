@@ -1,14 +1,18 @@
+
+
+GROUP Analyzers
+FRAMEWORK: >= NET45
+NUGET
+  remote: http://www.nuget.org/api/v2
+    JetBrains.Annotations (10.1.5)
+    StyleCop.Analyzers (1.0)
+    WpfAnalyzers (0.1.6.3-dev)
+
+GROUP Test
+FRAMEWORK: >= NET45
 NUGET
   remote: http://www.nuget.org/api/v2
     Castle.Core (3.3.3)
-    JetBrains.Annotations (10.1.5)
-      System.Runtime (>= 4.0) - framework: dnxcore50
-    Microsoft.NETCore.Platforms (1.0.1) - framework: dnxcore50
-    Microsoft.NETCore.Targets (1.0.1) - framework: dnxcore50
     NUnit (3.4.1)
-    StyleCop.Analyzers (1.0)
-    System.Runtime (4.1) - framework: dnxcore50
-      Microsoft.NETCore.Platforms (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard12, netstandard13, >= netstandard15
-      Microsoft.NETCore.Targets (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard12, netstandard13, >= netstandard15
     TestStack.White (0.13.3)
       Castle.Core (>= 3.3)
