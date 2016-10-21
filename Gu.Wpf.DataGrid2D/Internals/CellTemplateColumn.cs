@@ -5,7 +5,7 @@
     using System.Windows.Controls;
     using System.Windows.Data;
 
-    internal class CustomDataGridTemplateColumn : DataGridTemplateColumn
+    internal class CellTemplateColumn : DataGridTemplateColumn
     {
         private BindingBase binding;
 
@@ -20,7 +20,7 @@
             {
                 if (this.binding != value)
                 {
-                    BindingBase oldBinding = this.binding;
+                    var oldBinding = this.binding;
                     this.binding = value;
                     this.CoerceValue(DataGridColumn.SortMemberPathProperty);
                     this.OnBindingChanged(oldBinding, this.binding);
@@ -34,13 +34,23 @@
             set { base.ClipboardContentBinding = value; }
         }
 
+        protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
+        {
+            return this.LoadTemplateContent(true, dataItem, cell);
+        }
+
+        protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
+        {
+            return this.LoadTemplateContent(false, dataItem, cell);
+        }
+
         [SuppressMessage("ReSharper", "UnusedParameter.Global")]
-        protected virtual void OnBindingChanged(BindingBase oldBinding, BindingBase newBinding)
+        private void OnBindingChanged(BindingBase oldBinding, BindingBase newBinding)
         {
             this.NotifyPropertyChanged("Binding");
         }
 
-        protected virtual DataTemplate ChooseCellTemplate(bool isEditing)
+        private DataTemplate ChooseCellTemplate(bool isEditing)
         {
             DataTemplate template = null;
             if (isEditing)
@@ -56,7 +66,7 @@
             return template;
         }
 
-        protected virtual DataTemplateSelector ChooseCellTemplateSelector(bool isEditing)
+        private DataTemplateSelector ChooseCellTemplateSelector(bool isEditing)
         {
             DataTemplateSelector templateSelector = null;
             if (isEditing)
@@ -72,41 +82,18 @@
             return templateSelector;
         }
 
-        protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
-        {
-            return this.LoadTemplateContent(true, dataItem, cell);
-        }
-
-        protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
-        {
-            return this.LoadTemplateContent(false, dataItem, cell);
-        }
-
-        private void ApplyBinding(DependencyObject target, DependencyProperty property)
-        {
-            BindingBase binding = this.Binding;
-            if (binding != null)
-            {
-                BindingOperations.SetBinding(target, property, binding);
-            }
-            else
-            {
-                BindingOperations.SetBinding(target, property, new Binding());
-            }
-        }
-
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         private FrameworkElement LoadTemplateContent(bool isEditing, object dataItem, DataGridCell cell)
         {
-            DataTemplate template = this.ChooseCellTemplate(isEditing);
-            DataTemplateSelector templateSelector = this.ChooseCellTemplateSelector(isEditing);
+            var template = this.ChooseCellTemplate(isEditing);
+            var templateSelector = this.ChooseCellTemplateSelector(isEditing);
             if ((template == null) && (templateSelector == null))
             {
                 return null;
             }
 
-            ContentPresenter contentPresenter = new ContentPresenter();
-            this.ApplyBinding(contentPresenter, ContentPresenter.ContentProperty);
+            var contentPresenter = new ContentPresenter();
+            BindingOperations.SetBinding(contentPresenter, ContentPresenter.ContentProperty, this.binding);
             contentPresenter.ContentTemplate = template;
             contentPresenter.ContentTemplateSelector = templateSelector;
             return contentPresenter;

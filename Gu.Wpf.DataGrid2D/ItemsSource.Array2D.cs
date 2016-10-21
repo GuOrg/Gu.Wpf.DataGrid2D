@@ -31,7 +31,6 @@
         private static void OnArray2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            dataGrid.AutoGeneratingColumn -= OnDataGridAutoGeneratingColumn;
             var array = (Array)e.NewValue;
             if (array == null)
             {
@@ -42,24 +41,7 @@
             var array2DView = Array2DView.Create(array);
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(array2DView);
-            dataGrid.AutoGeneratingColumn += OnDataGridAutoGeneratingColumn;
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
-        }
-
-        private static void OnDataGridAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            CustomDataGridTemplateColumn col = new CustomDataGridTemplateColumn();
-            col.CellTemplate = ((DataGrid)sender).GetTemplate();
-            col.CellEditingTemplate = ((DataGrid)sender).GetEditingTemplate();
-            if (col.CellTemplate != null)
-            {
-                DataGridTextColumn tc = e.Column as DataGridTextColumn;
-                if (tc?.Binding != null)
-                {
-                    col.Binding = tc.Binding;
-                    e.Column = col;
-                }
-            }
         }
 
         private static bool Array2DValidateValue(object value)
