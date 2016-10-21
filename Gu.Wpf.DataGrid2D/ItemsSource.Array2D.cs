@@ -51,7 +51,7 @@
             CustomDataGridTemplateColumn col = new CustomDataGridTemplateColumn();
             col.CellTemplate = ((DataGrid)sender).GetCellTemplate();
             col.CellEditingTemplate = ((DataGrid)sender).GetCellEditingTemplate();
-            if (col.CellTemplate != null && col.CellEditingTemplate != null)
+            if (col.CellTemplate != null)
             {
                 DataGridTextColumn tc = e.Column as DataGridTextColumn;
                 if (tc?.Binding != null)
