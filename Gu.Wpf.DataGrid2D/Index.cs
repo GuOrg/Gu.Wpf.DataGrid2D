@@ -42,6 +42,7 @@ namespace Gu.Wpf.DataGrid2D
             return (int)element.GetValue(OfRowProperty);
         }
 
+#pragma warning disable WPF0013 // CLR accessor for attached property must match registered type.
         public static void SetStartAt(this Control element, int value)
         {
             element.SetValue(StartAtProperty, value);
@@ -52,8 +53,9 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static int GetStartAt(this Control element)
         {
-            return (int)element.GetValue(StartAtProperty);
+            return (int)(element.GetValue(StartAtProperty) ?? 0);
         }
+#pragma warning restore WPF0013 // CLR accessor for attached property must match registered type.
 
         private static void OnStartAtChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
