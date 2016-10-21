@@ -1,9 +1,7 @@
 namespace Gu.Wpf.DataGrid2D.Tests.Views
 {
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
+
     using NUnit.Framework;
 
     public partial class Lists2DTransposedViewTests
@@ -34,9 +32,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                            {
-                               new ObservableCollection<int>(new[] {1, 2}),
-                               new ObservableCollection<int>(new[] {3, 4}),
-                               new ObservableCollection<int>(new[] {5, 6})
+                               new ObservableCollection<int>(new[] { 1, 2 }),
+                               new ObservableCollection<int>(new[] { 3, 4 }),
+                               new ObservableCollection<int>(new[] { 5, 6 })
                            };
             var view = new Lists2DTransposedView(ints);
 

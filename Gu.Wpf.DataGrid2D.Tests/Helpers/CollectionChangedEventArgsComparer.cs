@@ -44,7 +44,7 @@
 
         int IComparer.Compare(object x, object y)
         {
-            return Compare((NotifyCollectionChangedEventArgs)x, (NotifyCollectionChangedEventArgs)y);
+            return this.Compare((NotifyCollectionChangedEventArgs)x, (NotifyCollectionChangedEventArgs)y);
         }
     }
 }

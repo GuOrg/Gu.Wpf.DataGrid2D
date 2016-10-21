@@ -15,10 +15,12 @@
                       AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedExplicitColumns}"
                       dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
                 <DataGrid.Columns>
+                    <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
                     <DataGridTextColumn Binding="{Binding Name}"
                                         Header="Name"
                                         IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding C0}" Header="Value" />
+                    <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
@@ -34,9 +36,11 @@
         <GroupBox Header="explicit columns">
             <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}">
                 <DataGrid.Columns>
+                    <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
                     <DataGridTextColumn Binding="{Binding Name}" Header="Property" />
                     <DataGridTextColumn Binding="{Binding C0}" Header="Value 1" />
                     <DataGridTextColumn Binding="{Binding C1}" Header="Value 2" />
+                    <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

@@ -20,10 +20,18 @@
 
         public bool IsSelected
         {
-            get { return this.isSelected; }
+            get
+            {
+                return this.isSelected;
+            }
+
             set
             {
-                if (value == this.isSelected) return;
+                if (value == this.isSelected)
+                {
+                    return;
+                }
+
                 this.isSelected = value;
                 this.OnPropertyChanged();
             }
@@ -35,12 +43,14 @@
             {
                 return this.name;
             }
+
             set
             {
                 if (value == this.name)
                 {
                     return;
                 }
+
                 this.name = value;
                 this.OnPropertyChanged();
             }
@@ -52,12 +62,14 @@
             {
                 return this.value;
             }
+
             set
             {
                 if (value == this.value)
                 {
                     return;
                 }
+
                 this.value = value;
                 this.OnPropertyChanged();
                 this.Name = "Item: " + value;

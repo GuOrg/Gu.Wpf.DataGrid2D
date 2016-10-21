@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.ComponentModel;
-    using System.IO;
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
@@ -43,24 +42,32 @@
 
         public string Data
         {
-            get { return this.data; }
+            get
+            {
+                return this.data;
+            }
+
             private set
             {
-                if (value == this.data) return;
+                if (value == this.data)
+                {
+                    return;
+                }
+
                 this.data = value;
                 this.OnPropertyChanged();
             }
-        }
-
-        private void UpdateData()
-        {
-            this.Data=$"{{{string.Join(", ", this.SameLengths.Select(x => $"{{{string.Join(", ", x)}}}"))}}}";
         }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void UpdateData()
+        {
+            this.Data = $"{{{string.Join(", ", this.SameLengths.Select(x => $"{{{string.Join(", ", x)}}}"))}}}";
         }
     }
 }

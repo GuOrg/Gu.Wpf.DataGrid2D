@@ -32,10 +32,18 @@
 
         public string Data
         {
-            get { return this.data; }
+            get
+            {
+                return this.data;
+            }
+
             private set
             {
-                if (value == this.data) return;
+                if (value == this.data)
+                {
+                    return;
+                }
+
                 this.data = value;
                 this.OnPropertyChanged();
             }
@@ -59,11 +67,11 @@
                 var row = new List<T>();
                 for (int c = 0; c < source.GetLength(1); c++)
                 {
-                    row.Add(source[r,c]);
+                    row.Add(source[r, c]);
                 }
 
                 yield return row;
             }
-        } 
+        }
     }
 }

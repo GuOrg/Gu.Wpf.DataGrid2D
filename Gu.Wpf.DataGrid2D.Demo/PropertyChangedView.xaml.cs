@@ -9,7 +9,7 @@
     {
         public PropertyChangedView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

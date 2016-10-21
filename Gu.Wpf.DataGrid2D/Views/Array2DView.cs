@@ -4,7 +4,6 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows.Controls;
 
     public class Array2DView : IList, IView2D
     {
@@ -80,6 +79,7 @@ namespace Gu.Wpf.DataGrid2D
 
         void IList.Clear() => ThrowNotSupported();
 
+        // ReSharper disable once CoVariantArrayConversion
         int IList.IndexOf(object value) => Array.IndexOf(this.rows, value);
 
         void IList.Insert(int index, object value) => ThrowNotSupported();

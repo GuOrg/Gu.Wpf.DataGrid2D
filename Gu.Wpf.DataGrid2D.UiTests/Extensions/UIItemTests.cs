@@ -1,8 +1,11 @@
-﻿namespace Gu.Wpf.DataGrid2D.UiTests.Extensions
+﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using System;
+
     using Gu.Wpf.DataGrid2D.Demo;
+
     using NUnit.Framework;
+
     using TestStack.White;
     using TestStack.White.Factory;
     using TestStack.White.UIItems;

@@ -31,10 +31,18 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public int Rows
         {
-            get { return this.rows; }
+            get
+            {
+                return this.rows;
+            }
+
             set
             {
-                if (value == this.rows) return;
+                if (value == this.rows)
+                {
+                    return;
+                }
+
                 this.rows = value;
                 this.OnPropertyChanged();
             }
@@ -42,10 +50,18 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public int Columns
         {
-            get { return this.columns; }
+            get
+            {
+                return this.columns;
+            }
+
             set
             {
-                if (value == this.columns) return;
+                if (value == this.columns)
+                {
+                    return;
+                }
+
                 this.columns = value;
                 this.OnPropertyChanged();
             }
@@ -53,10 +69,18 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public TimeSpan UpdateTime
         {
-            get { return this.updateTime; }
+            get
+            {
+                return this.updateTime;
+            }
+
             set
             {
-                if (value.Equals(this.updateTime)) return;
+                if (value.Equals(this.updateTime))
+                {
+                    return;
+                }
+
                 this.updateTime = value;
                 this.OnPropertyChanged();
             }

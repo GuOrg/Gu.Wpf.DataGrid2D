@@ -1,9 +1,7 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
 
     public static partial class ItemsSource
     {
@@ -12,7 +10,7 @@
             typeof(DataTemplate),
             typeof(ItemsSource),
             new PropertyMetadata(null, OnCellEditingTemplateChanged),
-            OnValidateCellEditingTemplate);
+            CellEditingTemplateValidateValue);
 
         public static void SetCellEditingTemplate(this DataGrid element, DataTemplate value)
         {
@@ -35,7 +33,7 @@
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
         }
 
-        private static bool OnValidateCellEditingTemplate(object value)
+        private static bool CellEditingTemplateValidateValue(object value)
         {
             return true;
         }

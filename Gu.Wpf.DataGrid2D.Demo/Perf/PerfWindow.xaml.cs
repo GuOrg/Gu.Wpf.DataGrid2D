@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo.Perf
+﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.Windows;
 
@@ -9,7 +9,7 @@
     {
         public PerfWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

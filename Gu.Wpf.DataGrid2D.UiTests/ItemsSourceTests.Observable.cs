@@ -108,7 +108,7 @@
                     window.WaitWhileBusy();
                     expected[0, 0] = 10;
                     AssertDataGrid.AreEqual(expected, dataGrid);
-             
+
                     AssertDataGrid.AreEqual(expected, readOnly);
 
                     cell = dataGrid.Rows[2].Cells[1];

@@ -71,6 +71,7 @@
         object IList.this[int index]
         {
             get { return this.rows[index]; }
+            //// ReSharper disable once ValueParameterNotUsed
             set { ThrowNotSupported(); }
         }
 

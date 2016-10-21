@@ -201,7 +201,7 @@
                     Assert.AreEqual("Svensson", dataGrid.Cell(c2, 1).Text);
 
                     Assert.AreEqual("New", dataGrid.Cell(c3, 0).Text);
-                    Assert.AreEqual("", dataGrid.Cell(c3, 1).Text);
+                    Assert.AreEqual(string.Empty, dataGrid.Cell(c3, 1).Text);
                 }
             }
 

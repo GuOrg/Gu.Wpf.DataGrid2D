@@ -60,6 +60,7 @@
                 descriptors[i] = new Array2DIndexPropertyDescriptor(elementType, i);
             }
 
+            // ReSharper disable once CoVariantArrayConversion
             return new PropertyDescriptorCollection(descriptors);
         }
 
@@ -73,6 +74,7 @@
                 descriptors[i] = new Array2DIndexPropertyDescriptor(elementType, i);
             }
 
+            // ReSharper disable once CoVariantArrayConversion
             return new PropertyDescriptorCollection(descriptors);
         }
     }

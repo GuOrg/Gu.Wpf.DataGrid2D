@@ -109,7 +109,6 @@
                 }
             }
 
-
             [Test]
             public void ViewUpdatesSource()
             {

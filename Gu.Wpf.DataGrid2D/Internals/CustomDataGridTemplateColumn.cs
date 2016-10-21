@@ -1,78 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-
-namespace Gu.Wpf.DataGrid2D.Internals
+﻿namespace Gu.Wpf.DataGrid2D
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+
     internal class CustomDataGridTemplateColumn : DataGridTemplateColumn
     {
-        private BindingBase _binding;
-
-        protected virtual void OnBindingChanged(BindingBase oldBinding, BindingBase newBinding)
-        {
-            base.NotifyPropertyChanged("Binding");
-        }
+        private BindingBase binding;
 
         public virtual BindingBase Binding
         {
             get
             {
-                return this._binding;
+                return this.binding;
             }
+
             set
             {
-                if (this._binding != value)
+                if (this.binding != value)
                 {
-                    BindingBase oldBinding = this._binding;
-                    this._binding = value;
-                    base.CoerceValue(DataGridColumn.SortMemberPathProperty);
-                    this.OnBindingChanged(oldBinding, this._binding);
+                    BindingBase oldBinding = this.binding;
+                    this.binding = value;
+                    this.CoerceValue(DataGridColumn.SortMemberPathProperty);
+                    this.OnBindingChanged(oldBinding, this.binding);
                 }
             }
         }
 
         public override BindingBase ClipboardContentBinding
         {
-            get
-            {
-                return (base.ClipboardContentBinding ?? this.Binding);
-            }
-            set
-            {
-                base.ClipboardContentBinding = value;
-            }
+            get { return base.ClipboardContentBinding ?? this.Binding; }
+            set { base.ClipboardContentBinding = value; }
         }
 
-        private DataTemplate ChooseCellTemplate(bool isEditing)
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        protected virtual void OnBindingChanged(BindingBase oldBinding, BindingBase newBinding)
+        {
+            this.NotifyPropertyChanged("Binding");
+        }
+
+        protected virtual DataTemplate ChooseCellTemplate(bool isEditing)
         {
             DataTemplate template = null;
             if (isEditing)
             {
                 template = this.CellEditingTemplate;
             }
+
             if (template == null)
             {
                 template = this.CellTemplate;
             }
+
             return template;
         }
 
-        private DataTemplateSelector ChooseCellTemplateSelector(bool isEditing)
+        protected virtual DataTemplateSelector ChooseCellTemplateSelector(bool isEditing)
         {
             DataTemplateSelector templateSelector = null;
             if (isEditing)
             {
                 templateSelector = this.CellEditingTemplateSelector;
             }
+
             if (templateSelector == null)
             {
                 templateSelector = this.CellTemplateSelector;
             }
+
             return templateSelector;
         }
 
@@ -99,6 +95,7 @@ namespace Gu.Wpf.DataGrid2D.Internals
             }
         }
 
+        [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         private FrameworkElement LoadTemplateContent(bool isEditing, object dataItem, DataGridCell cell)
         {
             DataTemplate template = this.ChooseCellTemplate(isEditing);
@@ -107,6 +104,7 @@ namespace Gu.Wpf.DataGrid2D.Internals
             {
                 return null;
             }
+
             ContentPresenter contentPresenter = new ContentPresenter();
             this.ApplyBinding(contentPresenter, ContentPresenter.ContentProperty);
             contentPresenter.ContentTemplate = template;

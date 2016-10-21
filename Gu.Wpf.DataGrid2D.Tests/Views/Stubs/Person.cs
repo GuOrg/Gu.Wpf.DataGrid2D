@@ -8,14 +8,23 @@
     {
         private string firstName;
         private string lastName;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string FirstName
         {
-            get { return this.firstName; }
+            get
+            {
+                return this.firstName;
+            }
+
             set
             {
-                if (value == this.firstName) return;
+                if (value == this.firstName)
+                {
+                    return;
+                }
+
                 this.firstName = value;
                 this.OnPropertyChanged();
             }
@@ -23,10 +32,18 @@
 
         public string LastName
         {
-            get { return this.lastName; }
+            get
+            {
+                return this.lastName;
+            }
+
             set
             {
-                if (value == this.lastName) return;
+                if (value == this.lastName)
+                {
+                    return;
+                }
+
                 this.lastName = value;
                 this.OnPropertyChanged();
             }

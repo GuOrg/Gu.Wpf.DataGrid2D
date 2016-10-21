@@ -17,7 +17,7 @@ namespace Gu.Wpf.DataGrid2D
                 null,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnCellItemChanged,
-                OnCellItemIndexCoerce));
+                CoerceCellItem));
 
         public static readonly DependencyProperty IndexProperty = DependencyProperty.RegisterAttached(
             "Index",
@@ -27,7 +27,7 @@ namespace Gu.Wpf.DataGrid2D
                 null,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnIndexChanged,
-                OnSelectedIndexCoerce));
+                CoerceIndex));
 
         private static readonly DependencyProperty IsSubscribingChangesProperty = DependencyProperty.RegisterAttached(
             "IsSubscribingChanges",
@@ -81,22 +81,22 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
-            dataGrid.SetValue(IsUpdatingProperty, BooleanBoxes.True);
+            dataGrid.SetCurrentValue(IsUpdatingProperty, BooleanBoxes.True);
             try
             {
                 if (dataGrid.SelectedCells.Count != 1)
                 {
-                    dataGrid.SetValue(IndexProperty, null);
+                    dataGrid.SetCurrentValue(IndexProperty, null);
                     return;
                 }
 
                 var index = dataGrid.SelectedRowColumnIndex();
-                dataGrid.SetValue(IndexProperty, index);
+                dataGrid.SetCurrentValue(IndexProperty, index);
                 UpdateSelectedCellItemFromView(dataGrid);
             }
             finally
             {
-                dataGrid.SetValue(IsUpdatingProperty, BooleanBoxes.False);
+                dataGrid.SetCurrentValue(IsUpdatingProperty, BooleanBoxes.False);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
-            d.SetValue(IsUpdatingProperty, BooleanBoxes.True);
+            d.SetCurrentValue(IsUpdatingProperty, BooleanBoxes.True);
             try
             {
                 var dataGrid = (DataGrid)d;
@@ -129,7 +129,7 @@ namespace Gu.Wpf.DataGrid2D
                             var index = new RowColumnIndex(r, c);
                             dataGrid.SetIndex(index);
                             var cell = dataGrid.GetCell(index);
-                            cell.IsSelected = true;
+                            cell.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
                             return;
                         }
                     }
@@ -139,11 +139,11 @@ namespace Gu.Wpf.DataGrid2D
             }
             finally
             {
-                d.SetValue(IsUpdatingProperty, BooleanBoxes.False);
+                d.SetCurrentValue(IsUpdatingProperty, BooleanBoxes.False);
             }
         }
 
-        private static object OnCellItemIndexCoerce(DependencyObject d, object basevalue)
+        private static object CoerceCellItem(DependencyObject d, object basevalue)
         {
             if (Equals(d.GetValue(IsSubscribingChangesProperty), BooleanBoxes.False))
             {
@@ -160,7 +160,7 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
-            d.SetValue(IsUpdatingProperty, BooleanBoxes.True);
+            d.SetCurrentValue(IsUpdatingProperty, BooleanBoxes.True);
             try
             {
                 var dataGrid = (DataGrid)d;
@@ -172,20 +172,17 @@ namespace Gu.Wpf.DataGrid2D
                 }
 
                 var cell = dataGrid.GetCell(rowColumnIndex.Value);
-                if (cell != null)
-                {
-                    cell.IsSelected = true;
-                }
+                cell?.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
 
                 UpdateSelectedCellItemFromView(dataGrid);
             }
             finally
             {
-                d.SetValue(IsUpdatingProperty, BooleanBoxes.False);
+                d.SetCurrentValue(IsUpdatingProperty, BooleanBoxes.False);
             }
         }
 
-        private static object OnSelectedIndexCoerce(DependencyObject d, object basevalue)
+        private static object CoerceIndex(DependencyObject d, object basevalue)
         {
             if (Equals(d.GetValue(IsSubscribingChangesProperty), BooleanBoxes.False))
             {
@@ -199,7 +196,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             dataGrid.UpdateHandler(DataGridCell.SelectedEvent, SelectedCellsChangedHandler, true);
             dataGrid.UpdateHandler(DataGridCell.UnselectedEvent, SelectedCellsChangedHandler, true);
-            dataGrid.SetValue(IsSubscribingChangesProperty, BooleanBoxes.True);
+            dataGrid.SetCurrentValue(IsSubscribingChangesProperty, BooleanBoxes.True);
         }
 
         private static RowColumnIndex? SelectedRowColumnIndex(this DataGrid dataGrid)
@@ -247,7 +244,7 @@ namespace Gu.Wpf.DataGrid2D
             var index = dataGrid.GetIndex();
             if (index == null || index.Value.Column < 0 || index.Value.Column >= dataGrid.Columns.Count)
             {
-                dataGrid.SetValue(CellItemProperty, null);
+                dataGrid.SetCurrentValue(CellItemProperty, null);
                 return;
             }
 
@@ -255,7 +252,7 @@ namespace Gu.Wpf.DataGrid2D
             var item = dataGrid.Items.ElementAtOrDefault(index.Value.Row);
 
             var cellItem = GetCellItem(column, item);
-            dataGrid.SetValue(CellItemProperty, cellItem);
+            dataGrid.SetCurrentValue(CellItemProperty, cellItem);
         }
 
         private static object GetCellItem(this DataGridColumn column, object item)
@@ -280,7 +277,7 @@ namespace Gu.Wpf.DataGrid2D
             descriptor = TypeDescriptor.GetProperties(item)
                                        .OfType<PropertyDescriptor>()
                                        .SingleOrDefault(x => x.Name == binding.Path.Path);
-            column.SetValue(PropertyDescriptorProperty, descriptor);
+            column.SetCurrentValue(PropertyDescriptorProperty, descriptor);
 
             return descriptor?.GetValue(item);
         }

@@ -5,8 +5,8 @@
 
     public class RowNumbersVm
     {
-        private static string[] FirstNames = { "Johan", "Erik", "Lynn" };
-        private static string[] LastNames = { "Larsson", "Svensson" };
+        private static readonly string[] FirstNames = { "Johan", "Erik", "Lynn" };
+        private static readonly string[] LastNames = { "Larsson", "Svensson" };
 
         public ObservableCollection<Person> Persons { get; } = CreatePersons(100);
 

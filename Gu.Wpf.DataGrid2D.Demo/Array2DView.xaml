@@ -42,10 +42,12 @@
                                   AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumns}"
                                   dataGrid2D:ItemsSource.Array2D="{Binding Data2D}">
                             <DataGrid.Columns>
+                                <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
                                 <DataGridTextColumn Binding="{Binding C0}"
                                                     Header="Col 1" />
                                 <DataGridTextColumn Binding="{Binding C1}"
                                                     Header="Col 2" />
+                                <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
@@ -78,12 +80,14 @@
                                   AutomationProperties.AutomationId="{x:Static local:AutomationIds.ExplicitColumnsTransposed}"
                                   dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
                             <DataGrid.Columns>
+                                <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
                                 <DataGridTextColumn Binding="{Binding C0}"
                                                     Header="Col 1" />
                                 <DataGridTextColumn Binding="{Binding C1}"
                                                     Header="Col 2" />
                                 <DataGridTextColumn Binding="{Binding C2}"
                                                     Header="Col 3" />
+                                <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>

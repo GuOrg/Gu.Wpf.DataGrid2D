@@ -74,7 +74,7 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
-            dataGrid.SetValue(RowsListenerProperty, new RowsListener(dataGrid));
+            dataGrid.SetCurrentValue(RowsListenerProperty, new RowsListener(dataGrid));
             dataGrid.UpdateHandler(Events.RowsChanged, OnRowsChangedHandler);
             OnRowsChanged(dataGrid, null);
         }

@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     internal static class EnumerableExt
@@ -23,6 +24,7 @@
             return typeof(object);
         }
 
+        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
         internal static bool IsReadOnly(this IEnumerable<IEnumerable> source)
         {
             if (source.All(x => x is IList))

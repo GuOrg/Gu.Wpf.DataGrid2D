@@ -20,7 +20,6 @@
         public static readonly string JaggedTab = Create();
         public static readonly string AutoColumnsDifferentLengths = Create();
 
-
         public static readonly string TransposedTab = Create();
         public static readonly string TransposedExplicitColumns = Create();
         public static readonly string TransposedSingleton = Create();
@@ -36,8 +35,7 @@
 
         public static readonly string UpdateDataButton = Create();
         public static readonly string DataTextBox = Create();
-        public static string ObservableTab = Create();
-
+        public static readonly string ObservableTab = Create();
 
         private static string Create([CallerMemberName] string name = null)
         {

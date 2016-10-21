@@ -12,8 +12,10 @@
             "RowHeadersSource",
             typeof(IEnumerable),
             typeof(ItemsSource),
-            new PropertyMetadata(null, OnRowHeadersChanged),
-            OnValidateHeaders);
+            new PropertyMetadata(null, OnRowHeadersSourceChanged),
+#pragma warning disable WPF0007 // Name of ValidateValueCallback should match registered name.
+            HeadersSourceValidateValue);
+#pragma warning restore WPF0007 // Name of ValidateValueCallback should match registered name.
 
         private static readonly RoutedEventHandler OnRowsChangedHandler = OnRowsChanged;
 
@@ -35,7 +37,7 @@
             return (IEnumerable)element.GetValue(RowHeadersSourceProperty);
         }
 
-        private static void OnRowHeadersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnRowHeadersSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
             var headers = (IEnumerable)e.NewValue;
@@ -53,7 +55,7 @@
                 return;
             }
 
-            dataGrid.SetValue(RowHeaderListenerProperty, new RowHeaderListener(dataGrid));
+            dataGrid.SetCurrentValue(RowHeaderListenerProperty, new RowHeaderListener(dataGrid));
             dataGrid.UpdateHandler(Events.RowsChanged, OnRowsChangedHandler);
             OnRowsChanged(dataGrid, null);
         }

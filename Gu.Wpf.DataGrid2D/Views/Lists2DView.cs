@@ -1,3 +1,4 @@
+// ReSharper disable PossibleMultipleEnumeration
 namespace Gu.Wpf.DataGrid2D
 {
     using System;

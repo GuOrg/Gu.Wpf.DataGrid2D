@@ -74,7 +74,7 @@
                 // Not sure how we want to handle out of bounds
                 indexBox.Text = "R10 C10";
                 loseFocusButton.Click();
-                Assert.AreEqual("", itemBox.Text);
+                Assert.AreEqual(string.Empty, itemBox.Text);
             }
         }
 

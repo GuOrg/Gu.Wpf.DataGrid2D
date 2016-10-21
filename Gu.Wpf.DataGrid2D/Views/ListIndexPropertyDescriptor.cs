@@ -64,6 +64,7 @@
             var descriptors = Enumerable.Range(0, maxColumnCount)
                                         .Select(x => new ListIndexPropertyDescriptor(elementTypes[x], x, readOnlies[x]))
                                         .ToArray();
+            //// ReSharper disable once CoVariantArrayConversion
             return new PropertyDescriptorCollection(descriptors);
         }
     }

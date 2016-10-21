@@ -4,7 +4,8 @@
 
     public class Todo
     {
-        [Test, Explicit]
+        [Test]
+        [Explicit]
         public void Reminders()
         {
         }

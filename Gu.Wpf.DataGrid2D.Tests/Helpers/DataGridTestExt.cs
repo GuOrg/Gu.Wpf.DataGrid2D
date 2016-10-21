@@ -6,13 +6,16 @@
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    using NUnit.Framework;
+
     public static class DataGridTestExt
     {
         public static object GetCellValue(this DataGrid dataGrid, int row, int col)
         {
             var item = dataGrid.Items[row];
             var column = (DataGridTextColumn)dataGrid.Columns[col];
-            var dataContext = column.GetCellContent(item).DataContext;
+            var dataContext = column.GetCellContent(item)?.DataContext;
+            Assert.NotNull(dataContext);
             var propName = ((Binding)column.Binding).Path.Path;
             var propertyInfo = TypeDescriptor.GetProperties(dataContext).OfType<PropertyDescriptor>().Single(x => x.Name == propName);
             return propertyInfo.GetValue(dataContext);

@@ -2,8 +2,7 @@
 {
     using System;
     using System.Diagnostics;
-    using System.IO;
-    using System.Reflection;
+
     using Gu.Wpf.DataGrid2D.Demo;
 
     public static class Info

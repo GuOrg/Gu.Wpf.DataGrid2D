@@ -13,7 +13,7 @@
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-       
+
         public string[] RowHeaders { get; private set; }
 
         [NotifyPropertyChangedInvocator]

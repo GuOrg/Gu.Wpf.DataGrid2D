@@ -15,7 +15,7 @@
         }
 
         public RowVm(string name, IEnumerable<ItemVm> items)
-            :base(items)
+            : base(items)
         {
             this.name = name;
         }
@@ -24,10 +24,18 @@
 
         public string Name
         {
-            get { return this.name; }
+            get
+            {
+                return this.name;
+            }
+
             set
             {
-                if (value == this.name) return;
+                if (value == this.name)
+                {
+                    return;
+                }
+
                 this.name = value;
                 this.OnPropertyChanged();
             }

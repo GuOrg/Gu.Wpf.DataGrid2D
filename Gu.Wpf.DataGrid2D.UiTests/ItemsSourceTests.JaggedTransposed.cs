@@ -65,12 +65,12 @@
                     Assert.AreEqual("C2", c2);
 
                     Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("", dataGrid.Cell(c0, 1).Text);
-                    Assert.AreEqual("", dataGrid.Cell(c0, 2).Text);
+                    Assert.AreEqual(string.Empty, dataGrid.Cell(c0, 1).Text);
+                    Assert.AreEqual(string.Empty, dataGrid.Cell(c0, 2).Text);
 
                     Assert.AreEqual("2", dataGrid.Cell(c1, 0).Text);
                     Assert.AreEqual("3", dataGrid.Cell(c1, 1).Text);
-                    Assert.AreEqual("", dataGrid.Cell(c1, 2).Text);
+                    Assert.AreEqual(string.Empty, dataGrid.Cell(c1, 2).Text);
 
                     Assert.AreEqual("4", dataGrid.Cell(c2, 0).Text);
                     Assert.AreEqual("5", dataGrid.Cell(c2, 1).Text);

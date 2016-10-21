@@ -15,7 +15,7 @@
             new PropertyMetadata(
                 default(IEnumerable),
                 OnTransposedSourceChanged,
-                OnCoerceTransposedSource));
+                CoerceTransposedSource));
 
         public static readonly DependencyProperty PropertySourceProperty = DependencyProperty.RegisterAttached(
             "PropertySource",
@@ -65,7 +65,7 @@
             UpdateItemsSource(dataGrid);
         }
 
-        private static object OnCoerceTransposedSource(DependencyObject dependencyObject, object baseValue)
+        private static object CoerceTransposedSource(DependencyObject dependencyObject, object baseValue)
         {
             if (baseValue == null)
             {
@@ -85,12 +85,12 @@
         {
             if (e.NewValue == null)
             {
-                d.SetValue(TransposedSourceProperty, null);
+                d.SetCurrentValue(TransposedSourceProperty, null);
             }
             else
             {
                 var source = CreateSingletonEnumerable(e.NewValue);
-                d.SetValue(TransposedSourceProperty, source);
+                d.SetCurrentValue(TransposedSourceProperty, source);
             }
         }
 

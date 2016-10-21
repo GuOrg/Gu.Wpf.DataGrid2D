@@ -1,3 +1,4 @@
+// ReSharper disable PossibleMultipleEnumeration
 namespace Gu.Wpf.DataGrid2D
 {
     using System;
@@ -149,7 +150,7 @@ namespace Gu.Wpf.DataGrid2D
             foreach (var row in this.Source)
             {
                 var count = row.Count();
-                if (count == this.Rows.Count && this.ColumnIsReadOnlies[index] == true)
+                if (count == this.Rows.Count && this.ColumnIsReadOnlies[index])
                 {
                     return true;
                 }

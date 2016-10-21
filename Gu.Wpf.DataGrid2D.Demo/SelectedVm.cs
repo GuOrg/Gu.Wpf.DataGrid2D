@@ -41,13 +41,18 @@
 
         public ItemVm SelectedItem
         {
-            get { return this.selectedItem; }
+            get
+            {
+                return this.selectedItem;
+            }
+
             set
             {
                 if (Equals(value, this.selectedItem))
                 {
                     return;
                 }
+
                 this.selectedItem = value;
                 this.OnPropertyChanged();
             }
@@ -55,7 +60,11 @@
 
         public RowColumnIndex? Index
         {
-            get { return this.index; }
+            get
+            {
+                return this.index;
+            }
+
             set
             {
                 if (value.Equals(this.index))

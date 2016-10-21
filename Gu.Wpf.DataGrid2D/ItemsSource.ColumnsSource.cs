@@ -13,7 +13,7 @@
             typeof(IEnumerable),
             typeof(ItemsSource),
             new PropertyMetadata(default(IEnumerable), OnColumnsSourceChanged),
-            OnValidateRowsSource);
+            ColumnsSourceValidateValue);
 
         public static void SetColumnsSource(this DataGrid element, IEnumerable value)
         {
@@ -41,6 +41,11 @@
             dataGrid.Bind(ItemsSourceProxyProperty)
                     .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
             UpdateItemsSource(dataGrid);
+        }
+
+        private static bool ColumnsSourceValidateValue(object value)
+        {
+            return RowsSourceValidateValue(value);
         }
     }
 }
