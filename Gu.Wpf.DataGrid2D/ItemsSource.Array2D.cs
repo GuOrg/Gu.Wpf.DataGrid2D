@@ -39,9 +39,9 @@
             }
 
             var array2DView = Array2DView.Create(array);
-            dataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(array2DView);
+            dataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
         }
 
