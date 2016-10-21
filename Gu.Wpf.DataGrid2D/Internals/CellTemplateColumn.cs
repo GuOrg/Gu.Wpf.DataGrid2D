@@ -9,7 +9,7 @@
     {
         private BindingBase binding;
 
-        public virtual BindingBase Binding
+        public BindingBase Binding
         {
             get
             {
@@ -20,10 +20,9 @@
             {
                 if (this.binding != value)
                 {
-                    var oldBinding = this.binding;
                     this.binding = value;
                     this.CoerceValue(DataGridColumn.SortMemberPathProperty);
-                    this.OnBindingChanged(oldBinding, this.binding);
+                    this.NotifyPropertyChanged(nameof(this.Binding));
                 }
             }
         }
@@ -42,12 +41,6 @@
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
             return this.LoadTemplateContent(false, dataItem, cell);
-        }
-
-        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
-        private void OnBindingChanged(BindingBase oldBinding, BindingBase newBinding)
-        {
-            this.NotifyPropertyChanged("Binding");
         }
 
         private DataTemplate ChooseCellTemplate(bool isEditing)
