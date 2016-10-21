@@ -3,35 +3,62 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    public static partial class ItemsSource
+    public static partial class Cell
     {
-        public static readonly DependencyProperty CellTemplateProperty = DependencyProperty.RegisterAttached(
-            "CellTemplate",
+        public static readonly DependencyProperty TemplateProperty = DependencyProperty.RegisterAttached(
+            "Template",
             typeof(DataTemplate),
-            typeof(ItemsSource),
-            new PropertyMetadata(null, OnCellTemplateChanged));
+            typeof(Cell),
+            new PropertyMetadata(null, OnTemplateChanged));
 
-        public static void SetCellTemplate(this DataGrid element, DataTemplate value)
+        public static readonly DependencyProperty EditingTemplateProperty = DependencyProperty.RegisterAttached(
+            "EditingTemplate",
+            typeof(DataTemplate),
+            typeof(Cell),
+            new PropertyMetadata(null, OnEditingTemplateChanged));
+
+        public static void SetTemplate(this DataGrid element, DataTemplate value)
         {
-            element.SetValue(CellTemplateProperty, value);
+            element.SetValue(TemplateProperty, value);
         }
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplate GetCellTemplate(this DataGrid element)
+        public static DataTemplate GetTemplate(this DataGrid element)
         {
-            return (DataTemplate)element.GetValue(CellTemplateProperty);
+            return (DataTemplate)element.GetValue(TemplateProperty);
         }
 
-        private static void OnCellTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static void SetEditingTemplate(this DataGrid element, DataTemplate value)
+        {
+            element.SetValue(EditingTemplateProperty, value);
+        }
+
+        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
+        public static DataTemplate GetEditingTemplate(this DataGrid element)
+        {
+            return (DataTemplate)element.GetValue(EditingTemplateProperty);
+        }
+
+        private static void OnTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
             var celltemplate = (DataTemplate)e.NewValue;
 
             var a = dataGrid.GetArray2D();
             dataGrid.SetArray2D(null);
-            dataGrid.SetCellTemplate(celltemplate);
+            dataGrid.SetTemplate(celltemplate);
             dataGrid.SetArray2D(a);
+        }
+
+        private static void OnEditingTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var dataGrid = (DataGrid)d;
+            var celltemplate = (DataTemplate)e.NewValue;
+
+            dataGrid.SetEditingTemplate(celltemplate);
+            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
         }
     }
 }

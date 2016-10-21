@@ -61,14 +61,14 @@
                     <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 1: binds Value1 of DemoClass">
-                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                              dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate1}"
-                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate1}" />
+                    <DataGrid dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate1}"
+                              dataGrid2D:Cell.Template="{StaticResource CellTemplate1}"
+                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 2: binds Value2 of DemoClass">
-                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                              dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate2}"
-                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate2}" />
+                    <DataGrid dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate2}"
+                              dataGrid2D:Cell.Template="{StaticResource CellTemplate2}"
+                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>
@@ -78,14 +78,14 @@
                 <GroupBox Header="CellTemplate 3: binds Value1 and Value2 to sliders, Background to background">
                     <DataGrid HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
+                              dataGrid2D:Cell.Template="{StaticResource CellTemplate3}"
                               dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate3}"
                               ColumnWidth="*" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 4: binds Background to textbox and background">
-                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                              dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate4}"
-                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate4}" />
+                    <DataGrid dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate4}"
+                              dataGrid2D:Cell.Template="{StaticResource CellTemplate4}"
+                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>

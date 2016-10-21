@@ -56,7 +56,6 @@
     <Compile Include="Internals\RowsListener.cs" />
     <Compile Include="Internals\TypeExt.cs" />
     <Compile Include="ItemsSource.Array2DTransposed.cs" />
-    <Compile Include="ItemsSource.CellEditingTemplate.cs" />
     <Compile Include="ItemsSource.CellTemplate.cs" />
     <Compile Include="ItemsSource.RowHeadersSource.cs" />
     <Compile Include="ItemsSource.ColumnsSource.cs" />

@@ -49,8 +49,8 @@
         private static void OnDataGridAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             CustomDataGridTemplateColumn col = new CustomDataGridTemplateColumn();
-            col.CellTemplate = ((DataGrid)sender).GetCellTemplate();
-            col.CellEditingTemplate = ((DataGrid)sender).GetCellEditingTemplate();
+            col.CellTemplate = ((DataGrid)sender).GetTemplate();
+            col.CellEditingTemplate = ((DataGrid)sender).GetEditingTemplate();
             if (col.CellTemplate != null)
             {
                 DataGridTextColumn tc = e.Column as DataGridTextColumn;
