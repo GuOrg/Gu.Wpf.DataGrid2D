@@ -11,36 +11,32 @@
             "Template",
             typeof(DataTemplate),
             typeof(Cell),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.NotDataBindable,
                 OnTemplateChanged));
 
         public static readonly DependencyProperty TemplateSelectorProperty = DependencyProperty.RegisterAttached(
             "TemplateSelector",
             typeof(DataTemplateSelector),
             typeof(Cell),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.NotDataBindable,
                 OnTemplateSelectorChanged));
 
         public static readonly DependencyProperty EditingTemplateProperty = DependencyProperty.RegisterAttached(
             "EditingTemplate",
             typeof(DataTemplate),
             typeof(Cell),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.NotDataBindable,
                 OnEditingTemplateChanged));
 
         public static readonly DependencyProperty EditingTemplateSelectorProperty = DependencyProperty.RegisterAttached(
-            "EditingTemplateSelector", 
+            "EditingTemplateSelector",
             typeof(DataTemplateSelector),
             typeof(Cell),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.NotDataBindable,
                 OnEditingTemplateSelectorChanged));
 
         private static readonly DependencyProperty ListenerProperty = DependencyProperty.RegisterAttached(
