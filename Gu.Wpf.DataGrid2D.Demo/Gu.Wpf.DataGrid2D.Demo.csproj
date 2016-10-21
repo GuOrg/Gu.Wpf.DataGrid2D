@@ -52,6 +52,10 @@
     <Compile Include="Array2DVm.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CellTemplateView.xaml.cs">
+      <DependentUpon>CellTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellTemplateVM.cs" />
     <Compile Include="Misc\ItemVm.cs" />
     <Compile Include="JaggedView.xaml.cs">
       <DependentUpon>JaggedView.xaml</DependentUpon>
@@ -106,6 +110,10 @@
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vm.cs" />
+    <Page Include="CellTemplateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="JaggedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
