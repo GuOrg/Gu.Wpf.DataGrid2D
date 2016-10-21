@@ -10,7 +10,7 @@
             typeof(DataTemplate),
             typeof(ItemsSource),
             new PropertyMetadata(null, OnCellTemplateChanged),
-            CellTemplateValidateValue);
+            null);
 
         public static void SetCellTemplate(this DataGrid element, DataTemplate value)
         {
@@ -29,13 +29,10 @@
             var dataGrid = (DataGrid)d;
             var celltemplate = (DataTemplate)e.NewValue;
 
+            var a = dataGrid.GetArray2D();
+            dataGrid.SetArray2D(null);
             dataGrid.SetCellTemplate(celltemplate);
-            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
-        }
-
-        private static bool CellTemplateValidateValue(object value)
-        {
-            return true;
+            dataGrid.SetArray2D(a);
         }
     }
 }

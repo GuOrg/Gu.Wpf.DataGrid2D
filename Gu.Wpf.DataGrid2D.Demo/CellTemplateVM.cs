@@ -1,16 +1,11 @@
 ﻿namespace Gu.Wpf.DataGrid2D.Demo
 {
-    using JetBrains.Annotations;
+    using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
-
-    public class DemoClass
-    {
-        public string Value1 { get; set; }
-
-        public string Value2 { get; set; }
-    }
+    using System.Windows.Media;
+    using JetBrains.Annotations;
 
     public class CellTemplateVm : INotifyPropertyChanged
     {
@@ -21,19 +16,29 @@
             this.RowHeaders = new[] { "1", "2", "3" };
             this.ColumnHeaders = new[] { "A", "B", "C" };
 
-            this.Data2D = new DemoClass[3, 3];
+            this.Data2D = new CellTemplateDemoClass[3, 3];
+            Random r = new Random();
             for (int i = 0; i < 3; ++i)
             {
                 for (int j = 0; j < 3; ++j)
                 {
-                    DemoClass cl = new DemoClass();
-                    cl.Value1 = i.ToString() + j.ToString();
-                    cl.Value2 = j.ToString() + i.ToString();
+                    CellTemplateDemoClass cl = new CellTemplateDemoClass();
+                    cl.Value1 = i + j;
+                    cl.Value2 = 9 - j - i;
+
+                    cl.Background = new SolidColorBrush(new Color()
+                    {
+                        A = (byte)r.Next(255),
+                        R = (byte)r.Next(255),
+                        G = (byte)r.Next(255),
+                        B = (byte)r.Next(255)
+                    });
                     this.Data2D[i, j] = cl;
                 }
             }
 
             this.UpdateDataCommand = new RelayCommand(this.UpdateData);
+
             this.UpdateData();
         }
 
@@ -45,7 +50,7 @@
 
         public ICommand UpdateDataCommand { get; }
 
-        public DemoClass[,] Data2D { get; }
+        public CellTemplateDemoClass[,] Data2D { get; }
 
         public string Data
         {
@@ -74,7 +79,7 @@
 
         private void UpdateData()
         {
-
+            // ? todo
         }
     }
 }
