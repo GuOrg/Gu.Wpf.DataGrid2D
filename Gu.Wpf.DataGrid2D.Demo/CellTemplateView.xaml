@@ -1,12 +1,13 @@
 ﻿<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.CellTemplateView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dataGrid2D="http://gu.se/DataGrid2D"
              xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
     <UserControl.DataContext>
         <local:CellTemplateVm />
     </UserControl.DataContext>
@@ -32,18 +33,17 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="CellTemplate3">
-            <StackPanel Orientation="Vertical" Background="{Binding Path=Background}">
+            <StackPanel Background="{Binding Path=Background}" Orientation="Vertical">
                 <Slider Value="{Binding Path=Value1}" />
                 <Slider Value="{Binding Path=Value2}" />
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="CellEditingTemplate3">
-            <Grid>
-            </Grid>
+            <Grid />
         </DataTemplate>
         <DataTemplate x:Key="CellTemplate4">
             <Grid>
-                <TextBlock Text="{Binding Path=Background}" Background="{Binding Path=Background}" />
+                <TextBlock Background="{Binding Path=Background}" Text="{Binding Path=Background}" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="CellEditingTemplate4">
@@ -63,47 +63,44 @@
                 <Button AutomationProperties.AutomationId="{x:Static local:AutomationIds.UpdateDataButton}"
                         Command="{Binding UpdateDataCommand}"
                         Content="UpdateData" />
-                <TextBlock AutomationProperties.AutomationId="{x:Static local:AutomationIds.DataTextBox}"
-                           Text="{Binding Data}" />
+                <TextBlock AutomationProperties.AutomationId="{x:Static local:AutomationIds.DataTextBox}" Text="{Binding Data}" />
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Binding a member via DataTemplate" Grid.Column="1">
-            <UniformGrid Rows="3" >
+        <GroupBox Grid.Column="1" Header="Binding a member via DataTemplate">
+            <UniformGrid Rows="3">
                 <GroupBox Header="No CellTemplate">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
-                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 1: binds Value1 of DemoClass">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
-                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" 
-                          dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate1}"
-                          dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate1}"/>
+                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                              dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate1}"
+                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate1}"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 2: binds Value2 of DemoClass">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
-                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" 
-                          dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate2}"
-                          dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate2}"/>
+                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                              dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate2}"
+                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate2}"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>
-        <GroupBox Header="Binding members in different ways" Grid.Column="2">
-            <UniformGrid Rows="3" >
+        <GroupBox Grid.Column="2" Header="Binding members in different ways">
+            <UniformGrid Rows="3">
                 <Grid />
                 <GroupBox Header="CellTemplate 3: binds Value1 and Value2 to sliders, Background to background">
-                        <DataGrid
-                            HorizontalAlignment="Stretch"
-                            HorizontalContentAlignment="Stretch"
-                            ColumnWidth="*"
-                            AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
-                            dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" 
-                            dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate3}"/>
+                    <DataGrid HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate3}"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
+                              ColumnWidth="*" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 4: binds Background to textbox and background">
-                    <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
-                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" 
-                          dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate4}"
-                          dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate4}"/>
+                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                              dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate4}"
+                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate4}"
+                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>

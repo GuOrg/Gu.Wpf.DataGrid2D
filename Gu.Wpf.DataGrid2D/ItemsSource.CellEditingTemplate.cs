@@ -9,8 +9,9 @@
             "CellEditingTemplate",
             typeof(DataTemplate),
             typeof(ItemsSource),
-            new PropertyMetadata(null, OnCellEditingTemplateChanged),
-            CellEditingTemplateValidateValue);
+            new PropertyMetadata(
+                null, 
+                OnCellEditingTemplateChanged));
 
         public static void SetCellEditingTemplate(this DataGrid element, DataTemplate value)
         {
@@ -31,11 +32,6 @@
 
             dataGrid.SetCellEditingTemplate(celltemplate);
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
-        }
-
-        private static bool CellEditingTemplateValidateValue(object value)
-        {
-            return true;
         }
     }
 }

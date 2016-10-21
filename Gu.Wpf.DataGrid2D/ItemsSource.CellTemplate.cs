@@ -9,8 +9,7 @@
             "CellTemplate",
             typeof(DataTemplate),
             typeof(ItemsSource),
-            new PropertyMetadata(null, OnCellTemplateChanged),
-            null);
+            new PropertyMetadata(null, OnCellTemplateChanged));
 
         public static void SetCellTemplate(this DataGrid element, DataTemplate value)
         {
