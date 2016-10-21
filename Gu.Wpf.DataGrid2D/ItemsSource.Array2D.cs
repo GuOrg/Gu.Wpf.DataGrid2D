@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D
 {
+    using Internals;
     using System;
     using System.Windows;
     using System.Windows.Controls;
@@ -29,6 +30,7 @@
         private static void OnArray2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
+            dataGrid.AutoGeneratingColumn -= DataGrid_AutoGeneratingColumn;
             var array = (Array)e.NewValue;
             if (array == null)
             {
@@ -37,9 +39,27 @@
             }
 
             var array2DView = Array2DView.Create(array);
+            dataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(array2DView);
+            dataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
+        }
+
+        private static void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            CustomDataGridTemplateColumn col = new CustomDataGridTemplateColumn();
+            col.CellTemplate = (DataTemplate)((DataGrid)sender).GetCellTemplate();
+            col.CellEditingTemplate = (DataTemplate)((DataGrid)sender).GetCellEditingTemplate();
+            if (col.CellTemplate != null && col.CellEditingTemplate != null)
+            {
+                DataGridTextColumn tc = e.Column as DataGridTextColumn;
+                if (tc != null && tc.Binding != null)
+                {
+                    col.Binding = tc.Binding;
+                    e.Column = col;
+                }
+            }
         }
 
         private static bool OnValidateArray2D(object value)

@@ -29,6 +29,7 @@
         private static void OnArray2DTransposedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
+            dataGrid.AutoGeneratingColumn -= DataGrid_AutoGeneratingColumn;
             var array = (Array)e.NewValue;
             if (array == null)
             {
@@ -37,6 +38,7 @@
             }
 
             var array2DView = Array2DView.CreateTransposed(array);
+            dataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(array2DView);
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
