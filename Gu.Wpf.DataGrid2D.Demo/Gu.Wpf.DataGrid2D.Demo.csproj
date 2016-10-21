@@ -52,11 +52,15 @@
     <Compile Include="Array2DVm.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CellTemplateDemoClass.cs" />
+    <Compile Include="CellTemplateDemoClass.cs">
+      <DependentUpon>CellTemplateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CellTemplateView.xaml.cs">
       <DependentUpon>CellTemplateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CellTemplateVM.cs" />
+    <Compile Include="CellTemplateVM.cs">
+      <DependentUpon>CellTemplateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Misc\ItemVm.cs" />
     <Compile Include="JaggedView.xaml.cs">
       <DependentUpon>JaggedView.xaml</DependentUpon>
