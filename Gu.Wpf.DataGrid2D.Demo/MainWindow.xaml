@@ -42,5 +42,9 @@
         <TabItem Header="RowNumbers">
             <demo:RowNumbersView />
         </TabItem>
+
+        <TabItem Header="CellTemplate">
+            <demo:CellTemplateView />
+        </TabItem>
     </TabControl>
 </Window>
