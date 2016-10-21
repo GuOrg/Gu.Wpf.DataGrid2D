@@ -5,51 +5,40 @@
              xmlns:dataGrid2D="http://gu.se/DataGrid2D"
              xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <local:CellTemplateVm />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <DataTemplate x:Key="CellTemplate1">
-            <Grid>
-                <TextBlock Text="{Binding Path=Value1}" />
-            </Grid>
+        <DataTemplate x:Key="CellTemplate1" DataType="{x:Type local:CellTemplateDemoClass}">
+            <TextBlock Text="{Binding Path=Value1}" />
         </DataTemplate>
-        <DataTemplate x:Key="CellEditingTemplate1">
-            <Grid>
-                <TextBox Text="{Binding Path=Value1}" />
-            </Grid>
+
+        <DataTemplate x:Key="CellEditingTemplate1" DataType="{x:Type local:CellTemplateDemoClass}">
+            <TextBox Text="{Binding Path=Value1}" />
         </DataTemplate>
-        <DataTemplate x:Key="CellTemplate2">
-            <Grid>
-                <TextBlock Text="{Binding Path=Value2}" />
-            </Grid>
+
+        <DataTemplate x:Key="CellTemplate2" DataType="{x:Type local:CellTemplateDemoClass}">
+            <TextBlock Text="{Binding Path=Value2}" />
         </DataTemplate>
-        <DataTemplate x:Key="CellEditingTemplate2">
-            <Grid>
-                <TextBox Text="{Binding Path=Value2}" />
-            </Grid>
+
+        <DataTemplate x:Key="CellEditingTemplate2" DataType="{x:Type local:CellTemplateDemoClass}">
+            <TextBox Text="{Binding Path=Value2}" />
         </DataTemplate>
-        <DataTemplate x:Key="CellTemplate3">
+
+        <DataTemplate x:Key="CellTemplate3" DataType="{x:Type local:CellTemplateDemoClass}">
             <StackPanel Background="{Binding Path=Background}" Orientation="Vertical">
                 <Slider Value="{Binding Path=Value1}" />
                 <Slider Value="{Binding Path=Value2}" />
             </StackPanel>
         </DataTemplate>
-        <DataTemplate x:Key="CellEditingTemplate3">
-            <Grid />
+
+        <DataTemplate x:Key="CellTemplate4" DataType="{x:Type local:CellTemplateDemoClass}">
+            <TextBlock Background="{Binding Path=Background}" Text="{Binding Path=Background}" />
         </DataTemplate>
-        <DataTemplate x:Key="CellTemplate4">
-            <Grid>
-                <TextBlock Background="{Binding Path=Background}" Text="{Binding Path=Background}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="CellEditingTemplate4">
-            <Grid>
-                <TextBox Text="{Binding Path=Background}" />
-            </Grid>
+
+        <DataTemplate x:Key="CellEditingTemplate4" DataType="{x:Type local:CellTemplateDemoClass}">
+            <TextBox Text="{Binding Path=Background}" />
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -69,19 +58,17 @@
         <GroupBox Grid.Column="1" Header="Binding a member via DataTemplate">
             <UniformGrid Rows="3">
                 <GroupBox Header="No CellTemplate">
-                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
+                    <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 1: binds Value1 of DemoClass">
                     <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                               dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate1}"
-                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate1}"
-                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
+                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate1}" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 2: binds Value2 of DemoClass">
                     <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                               dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate2}"
-                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate2}"
-                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
+                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate2}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>
@@ -93,14 +80,12 @@
                               HorizontalContentAlignment="Stretch"
                               dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                               dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate3}"
-                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
                               ColumnWidth="*" />
                 </GroupBox>
                 <GroupBox Header="CellTemplate 4: binds Background to textbox and background">
                     <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                               dataGrid2D:ItemsSource.CellEditingTemplate="{StaticResource CellEditingTemplate4}"
-                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate4}"
-                              AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}" />
+                              dataGrid2D:ItemsSource.CellTemplate="{StaticResource CellTemplate4}" />
                 </GroupBox>
             </UniformGrid>
         </GroupBox>
