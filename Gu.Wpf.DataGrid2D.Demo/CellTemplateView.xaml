@@ -74,7 +74,20 @@
         </GroupBox>
         <GroupBox Grid.Column="2" Header="Binding members in different ways">
             <UniformGrid Rows="3">
-                <Grid />
+                <GroupBox Header="Dynamic CellTemplate">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" 
+                          dataGrid2D:Cell.Template="{Binding Path=MyCellTemplate,UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="{Binding Path=BoundTemplate}" Grid.Row="1" />
+                        <Button Content="Change DataTemplate" Grid.Row="2" Command="{Binding ChangeCellTemplateCommand}" />
+                    </Grid>
+                </GroupBox>
                 <GroupBox Header="CellTemplate 3: binds Value1 and Value2 to sliders, Background to background">
                     <DataGrid HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
