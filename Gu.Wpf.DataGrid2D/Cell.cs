@@ -93,9 +93,33 @@
         private static void OnTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            foreach (var column in dataGrid.Columns.OfType<CellTemplateColumn>())
+            if (e.OldValue != null && e.NewValue == null)
             {
-                column.SetCurrentValue(DataGridTemplateColumn.CellTemplateProperty, (DataTemplate)e.NewValue);
+                for (int i = 0; i < dataGrid.Columns.Count; ++i)
+                {
+                    CellTemplateColumn col = dataGrid.Columns[i] as CellTemplateColumn;
+                    DataGridTextColumn tcol = new DataGridTextColumn();
+                    tcol.Binding = col.Binding;
+                    dataGrid.Columns[i] = tcol;
+                }
+            }
+            else if (e.OldValue == null && e.NewValue != null)
+            {
+                for (int i = 0; i < dataGrid.Columns.Count; ++i)
+                {
+                    DataGridTextColumn tcol = dataGrid.Columns[i] as DataGridTextColumn;
+                    CellTemplateColumn col = new CellTemplateColumn();
+                    col.Binding = tcol.Binding;
+                    col.CellTemplate = (DataTemplate)e.NewValue;
+                    dataGrid.Columns[i] = col;
+                }
+            }
+            else
+            {
+                foreach (var column in dataGrid.Columns.OfType<CellTemplateColumn>())
+                {
+                    column.SetCurrentValue(DataGridTemplateColumn.CellTemplateProperty, (DataTemplate)e.NewValue);
+                }
             }
 
             ListenToColumnAutoGeneration(dataGrid);
