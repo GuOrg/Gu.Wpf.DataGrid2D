@@ -21,23 +21,10 @@
             this.RowHeaders = new[] { "1", "2", "3" };
             this.ColumnHeaders = new[] { "A", "B", "C" };
 
-            this.dt1 = new DataTemplate();
-            FrameworkElementFactory stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
-            FrameworkElementFactory title = new FrameworkElementFactory(typeof(TextBlock));
-            title.SetBinding(TextBlock.TextProperty, new Binding("Value1"));
-            stackPanelFactory.AppendChild(title);
-            this.dt1.VisualTree = stackPanelFactory;
+            this.dt1 = this.CreateDataTemplate("Value1");
+            this.dt2 = this.CreateDataTemplate("Value1");
 
-            this.dt2 = new DataTemplate();
-            stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
-            title = new FrameworkElementFactory(typeof(TextBlock));
-            title.SetBinding(TextBlock.TextProperty, new Binding("Value2"));
-            stackPanelFactory.AppendChild(title);
-            this.dt2.VisualTree = stackPanelFactory;
-
-            this.MyCellTemplate = dt1;
+            this.MyCellTemplate = this.dt1;
 
             this.Data2D = new CellTemplateDemoClass[3, 3];
             Random r = new Random();
@@ -141,6 +128,18 @@
 
             this.OnPropertyChanged("MyCellTemplate");
             this.OnPropertyChanged("BoundTemplate");
+        }
+
+        private DataTemplate CreateDataTemplate(string property)
+        {
+            var dt = new DataTemplate();
+            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
+            var title = new FrameworkElementFactory(typeof(TextBlock));
+            title.SetBinding(TextBlock.TextProperty, new Binding(property));
+            stackPanelFactory.AppendChild(title);
+            dt.VisualTree = stackPanelFactory;
+            return dt;
         }
 
         private void UpdateData()

@@ -97,21 +97,27 @@
             {
                 for (int i = 0; i < dataGrid.Columns.Count; ++i)
                 {
-                    CellTemplateColumn col = dataGrid.Columns[i] as CellTemplateColumn;
-                    DataGridTextColumn tcol = new DataGridTextColumn();
-                    tcol.Binding = col.Binding;
-                    dataGrid.Columns[i] = tcol;
+                    var col = dataGrid.Columns[i] as CellTemplateColumn;
+                    if (col != null)
+                    {
+                        var tcol = new DataGridTextColumn();
+                        tcol.Binding = col.Binding;
+                        dataGrid.Columns[i] = tcol;
+                    }
                 }
             }
             else if (e.OldValue == null && e.NewValue != null)
             {
                 for (int i = 0; i < dataGrid.Columns.Count; ++i)
                 {
-                    DataGridTextColumn tcol = dataGrid.Columns[i] as DataGridTextColumn;
-                    CellTemplateColumn col = new CellTemplateColumn();
-                    col.Binding = tcol.Binding;
-                    col.CellTemplate = (DataTemplate)e.NewValue;
-                    dataGrid.Columns[i] = col;
+                    var tcol = dataGrid.Columns[i] as DataGridTextColumn;
+                    if (tcol != null)
+                    {
+                        var col = new CellTemplateColumn();
+                        col.Binding = tcol.Binding;
+                        col.CellTemplate = (DataTemplate)e.NewValue;
+                        dataGrid.Columns[i] = col;
+                    }
                 }
             }
             else
