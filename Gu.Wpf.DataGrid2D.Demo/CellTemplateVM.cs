@@ -13,18 +13,23 @@
     public class CellTemplateVm : INotifyPropertyChanged
     {
         private string data;
-        private DataTemplate dt1;
-        private DataTemplate dt2;
+        private DataTemplate celltemplate1;
+        private DataTemplate celltemplate2;
+        private DataTemplate celleditingtemplate1;
+        private DataTemplate celleditingtemplate2;
 
         public CellTemplateVm()
         {
             this.RowHeaders = new[] { "1", "2", "3" };
             this.ColumnHeaders = new[] { "A", "B", "C" };
 
-            this.dt1 = this.CreateDataTemplate("Value1");
-            this.dt2 = this.CreateDataTemplate("Value1");
+            this.celltemplate1 = this.CreateCellTemplate("Value1");
+            this.celltemplate2 = this.CreateCellTemplate("Value2");
+            this.celleditingtemplate1 = this.CreateCellEditingTemplate("Value1");
+            this.celleditingtemplate2 = this.CreateCellEditingTemplate("Value2");
 
-            this.MyCellTemplate = this.dt1;
+            this.MyCellTemplate = this.celltemplate1;
+            this.MyCellEditingTemplate = this.celleditingtemplate1;
 
             this.Data2D = new CellTemplateDemoClass[3, 3];
             Random r = new Random();
@@ -65,23 +70,33 @@
 
         public DataTemplate MyCellTemplate { get; set; }
 
+        public DataTemplate MyCellEditingTemplate { get; set; }
+
         public CellTemplateDemoClass[,] Data2D { get; }
 
         public string BoundTemplate
         {
             get
             {
-                if (this.MyCellTemplate == this.dt1)
+                if (this.MyCellTemplate == this.celltemplate1 && this.MyCellEditingTemplate == this.celleditingtemplate1)
                 {
-                    return "CellTemplate with binding to Value1";
+                    return "CellTemplate and CellEditingTemplate with binding to Value1";
                 }
-                else if (this.MyCellTemplate == this.dt2)
+                else if (this.MyCellTemplate == this.celltemplate2 && this.MyCellEditingTemplate == this.celleditingtemplate2)
                 {
-                    return "CellTemplate with binding to Value2";
+                    return "CellTemplate and CellEditingTemplate with binding to Value2";
+                }
+                else if (this.MyCellTemplate == this.celltemplate1 && this.MyCellEditingTemplate == null)
+                {
+                    return "CellTemplate with binding to Value1, CellEditingTemplate set to null";
+                }
+                else if (this.MyCellTemplate == null && this.MyCellEditingTemplate == this.celleditingtemplate1)
+                {
+                    return "CellTemplate set to null, CellEditingTemplate with binding to Value1";
                 }
                 else
                 {
-                    return "CellTemplate set to null";
+                    return "CellTemplate and CellEditingTemplate both set to null";
                 }
             }
         }
@@ -113,30 +128,56 @@
 
         private void ChangeCellTemplate()
         {
-            if (this.MyCellTemplate == this.dt1)
+            if (this.MyCellTemplate == this.celltemplate1 && this.MyCellEditingTemplate == this.celleditingtemplate1)
             {
-                this.MyCellTemplate = this.dt2;
+                this.MyCellTemplate = this.celltemplate2;
+                this.MyCellEditingTemplate = this.celleditingtemplate2;
             }
-            else if (this.MyCellTemplate == this.dt2)
+            else if (this.MyCellTemplate == this.celltemplate2 && this.MyCellEditingTemplate == this.celleditingtemplate2)
+            {
+                this.MyCellTemplate = this.celltemplate1;
+                this.MyCellEditingTemplate = null;
+            }
+            else if (this.MyCellTemplate == this.celltemplate1 && this.MyCellEditingTemplate == null)
             {
                 this.MyCellTemplate = null;
+                this.MyCellEditingTemplate = this.celleditingtemplate1;
+            }
+            else if (this.MyCellTemplate == null && this.MyCellEditingTemplate == this.celleditingtemplate1)
+            {
+                this.MyCellTemplate = null;
+                this.MyCellEditingTemplate = null;
             }
             else
             {
-                this.MyCellTemplate = this.dt1;
+                this.MyCellTemplate = this.celltemplate1;
+                this.MyCellEditingTemplate = this.celleditingtemplate1;
             }
 
             this.OnPropertyChanged("MyCellTemplate");
+            this.OnPropertyChanged("MyCellEditingTemplate");
             this.OnPropertyChanged("BoundTemplate");
         }
 
-        private DataTemplate CreateDataTemplate(string property)
+        private DataTemplate CreateCellTemplate(string property)
         {
             var dt = new DataTemplate();
             var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
             stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
             var title = new FrameworkElementFactory(typeof(TextBlock));
             title.SetBinding(TextBlock.TextProperty, new Binding(property));
+            stackPanelFactory.AppendChild(title);
+            dt.VisualTree = stackPanelFactory;
+            return dt;
+        }
+
+        private DataTemplate CreateCellEditingTemplate(string property)
+        {
+            var dt = new DataTemplate();
+            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
+            var title = new FrameworkElementFactory(typeof(TextBox));
+            title.SetBinding(TextBox.TextProperty, new Binding(property));
             stackPanelFactory.AppendChild(title);
             dt.VisualTree = stackPanelFactory;
             return dt;

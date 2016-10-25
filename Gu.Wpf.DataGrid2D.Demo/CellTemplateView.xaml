@@ -83,7 +83,8 @@
                         </Grid.RowDefinitions>
                         <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
                                   dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" 
-                          dataGrid2D:Cell.Template="{Binding Path=MyCellTemplate,UpdateSourceTrigger=PropertyChanged}" />
+                                  dataGrid2D:Cell.Template="{Binding Path=MyCellTemplate,UpdateSourceTrigger=PropertyChanged}"
+                                  dataGrid2D:Cell.EditingTemplate="{Binding Path=MyCellEditingTemplate,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Text="{Binding Path=BoundTemplate}" Grid.Row="1" />
                         <Button Content="Change DataTemplate" Grid.Row="2" Command="{Binding ChangeCellTemplateCommand}" />
                     </Grid>
