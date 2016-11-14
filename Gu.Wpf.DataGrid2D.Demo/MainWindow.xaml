@@ -43,7 +43,7 @@
             <demo:RowNumbersView />
         </TabItem>
 
-        <TabItem Header="CellTemplate">
+        <TabItem Header="CellTemplate" AutomationProperties.AutomationId="{x:Static demo:AutomationIds.CellTemplateTab}">
             <demo:CellTemplateView />
         </TabItem>
     </TabControl>

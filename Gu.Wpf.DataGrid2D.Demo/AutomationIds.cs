@@ -37,6 +37,14 @@
         public static readonly string DataTextBox = Create();
         public static readonly string ObservableTab = Create();
 
+        public static readonly string CellTemplateTab = Create();
+        public static readonly string CellTemplate1Grid = Create();
+        public static readonly string CellTemplate1GridRO = Create();
+        public static readonly string CellTemplate2Grid = Create();
+        public static readonly string CellTemplate2GridRO = Create();
+        public static readonly string CellTemplateChangingGrid = Create();
+        public static readonly string CellTemplateChangeButton = Create();
+
         private static string Create([CallerMemberName] string name = null)
         {
             return name;
