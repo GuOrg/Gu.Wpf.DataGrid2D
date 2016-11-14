@@ -3,12 +3,12 @@
     using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
     using System.Windows.Input;
     using System.Windows.Media;
     using JetBrains.Annotations;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
 
     public class CellTemplateVm : INotifyPropertyChanged
     {
@@ -21,7 +21,7 @@
         public CellTemplateVm()
         {
             this.RowHeaders = new[] { "1", "2", "3" };
-            this.ColumnHeaders = new[] { "C1", "C2", "C3" };
+            this.ColumnHeaders = new[] { "A", "B", "C" };
 
             this.celltemplate1 = this.CreateCellTemplate("Value1");
             this.celltemplate2 = this.CreateCellTemplate("Value2");
@@ -52,7 +52,10 @@
                 }
             }
 
+            this.UpdateDataCommand = new RelayCommand(this.UpdateData);
             this.ChangeCellTemplateCommand = new RelayCommand(this.ChangeCellTemplate);
+
+            this.UpdateData();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -178,6 +181,11 @@
             stackPanelFactory.AppendChild(title);
             dt.VisualTree = stackPanelFactory;
             return dt;
+        }
+
+        private void UpdateData()
+        {
+            // ? todo
         }
     }
 }
