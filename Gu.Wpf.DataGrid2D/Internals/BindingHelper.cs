@@ -135,7 +135,17 @@ namespace Gu.Wpf.DataGrid2D
                     UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
                 };
 
-                return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
+                BindingExpression bx = null;
+                try
+                {
+                    bx = (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
+                }
+                catch
+                {
+
+                }
+
+                return bx;
             }
         }
     }

@@ -45,6 +45,8 @@
         public static readonly string CellTemplateChangingGrid = Create();
         public static readonly string CellTemplateChangeButton = Create();
 
+        public static readonly string CellTemplateSelectorTab = Create();
+
         private static string Create([CallerMemberName] string name = null)
         {
             return name;

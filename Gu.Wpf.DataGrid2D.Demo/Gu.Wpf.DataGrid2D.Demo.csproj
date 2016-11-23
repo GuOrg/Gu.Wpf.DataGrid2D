@@ -52,9 +52,11 @@
     <Compile Include="Array2DVm.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CellEditingTemplateSelectorExample.cs" />
     <Compile Include="CellTemplateDemoClass.cs">
       <DependentUpon>CellTemplateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CellTemplateSelectorExample.cs" />
     <Compile Include="CellTemplateView.xaml.cs">
       <DependentUpon>CellTemplateView.xaml</DependentUpon>
     </Compile>

@@ -12,7 +12,6 @@
 
     public class CellTemplateVm : INotifyPropertyChanged
     {
-        private string data;
         private DataTemplate celltemplate1;
         private DataTemplate celltemplate2;
         private DataTemplate celleditingtemplate1;
@@ -95,25 +94,6 @@
                 {
                     return "CellTemplate and CellEditingTemplate both set to null";
                 }
-            }
-        }
-
-        public string Data
-        {
-            get
-            {
-                return this.data;
-            }
-
-            private set
-            {
-                if (value == this.data)
-                {
-                    return;
-                }
-
-                this.data = value;
-                this.OnPropertyChanged();
             }
         }
 
