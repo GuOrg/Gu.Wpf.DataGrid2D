@@ -14,7 +14,7 @@
             if (item is CellTemplateDemoClass)
             {
                 CellTemplateDemoClass democlass = item as CellTemplateDemoClass;
-                if ((democlass.Value1 + democlass.Value2) > 5)
+                if (democlass.Value1 > 2)
                 {
                     return this.FirstTemplate;
                 }
