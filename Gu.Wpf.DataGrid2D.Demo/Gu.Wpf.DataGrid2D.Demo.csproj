@@ -111,6 +111,13 @@
     <Compile Include="Array2DView.xaml.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThreeStateSortItem.cs">
+      <DependentUpon>ThreeStateSortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThreeStateSortView.xaml.cs">
+      <DependentUpon>ThreeStateSortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThreeStateSortViewModel.cs" />
     <Compile Include="TransposedView.xaml.cs">
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Array2DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThreeStateSortView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
