@@ -63,7 +63,7 @@
 
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplateSelector GetTemplateSelector(DataGrid element)
+        public static DataTemplateSelector GetTemplateSelector(this DataGrid element)
         {
             return (DataTemplateSelector)element.GetValue(TemplateSelectorProperty);
         }
@@ -85,7 +85,7 @@
             element.SetValue(EditingTemplateSelectorProperty, value);
         }
 
-        public static DataTemplateSelector GetEditingTemplateSelector(DependencyObject element)
+        public static DataTemplateSelector GetEditingTemplateSelector(this DependencyObject element)
         {
             return (DataTemplateSelector)element.GetValue(EditingTemplateSelectorProperty);
         }
@@ -222,7 +222,9 @@
                 var col = new CellTemplateColumn
                 {
                     CellTemplate = ((DataGrid)sender).GetTemplate(),
-                    CellEditingTemplate = ((DataGrid)sender).GetEditingTemplate()
+                    CellEditingTemplate = ((DataGrid)sender).GetEditingTemplate(),
+                    CellTemplateSelector = ((DataGrid)sender).GetTemplateSelector(),
+                    CellEditingTemplateSelector = ((DataGrid)sender).GetEditingTemplateSelector()
                 };
 
                 DataGridTextColumn tc = e.Column as DataGridTextColumn;
