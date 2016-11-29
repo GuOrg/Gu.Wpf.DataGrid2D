@@ -5,33 +5,28 @@
         xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
+        d:DataContext="{d:DesignInstance demo:Vm}"
         AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MainWindow}"
         WindowState="Maximized"
-        d:DataContext="{d:DesignInstance demo:Vm}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}"
-                 Header="int[,]">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
             <demo:Array2DView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.JaggedTab}"
-                 Header="int[][]">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.JaggedTab}" Header="int[][]">
             <demo:JaggedView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.ObservableTab}"
-                 Header="OC&lt;OC&lt;T&gt;&gt;">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.ObservableTab}" Header="OC&lt;OC&lt;T&gt;&gt;">
             <demo:ObservableView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.TransposedTab}"
-                 Header="Transposed">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.TransposedTab}" Header="Transposed">
             <demo:TransposedView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.SelectionTab}"
-                 Header="SelectedCellItem">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.SelectionTab}" Header="SelectedCellItem">
             <demo:SelectedView />
         </TabItem>
 
@@ -43,7 +38,7 @@
             <demo:RowNumbersView />
         </TabItem>
 
-        <TabItem Header="CellTemplate" AutomationProperties.AutomationId="{x:Static demo:AutomationIds.CellTemplateTab}">
+        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.CellTemplateTab}" Header="CellTemplate">
             <demo:CellTemplateView />
         </TabItem>
     </TabControl>

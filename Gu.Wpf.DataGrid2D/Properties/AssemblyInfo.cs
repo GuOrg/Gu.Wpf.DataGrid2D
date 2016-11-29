@@ -24,18 +24,8 @@ using System.Windows.Markup;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("f04cba4d-f4f6-4dfd-99bb-de7679060281")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.2.0.1")]
-[assembly: AssemblyFileVersion("0.2.0.1")]
+[assembly: AssemblyVersion("0.2.1.0")]
+[assembly: AssemblyFileVersion("0.2.1.0")]
 [assembly: XmlnsDefinition("http://gu.se/DataGrid2D", "Gu.Wpf.DataGrid2D")]
 [assembly: XmlnsPrefix("http://gu.se/DataGrid2D", "dataGrid2D")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
