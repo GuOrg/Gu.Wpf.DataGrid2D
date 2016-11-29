@@ -142,7 +142,7 @@ namespace Gu.Wpf.DataGrid2D
                 }
                 catch
                 {
-
+                    // nasty here yes.
                 }
 
                 return bx;
