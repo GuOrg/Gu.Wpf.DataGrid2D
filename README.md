@@ -3,7 +3,7 @@
 [![Gitter Chat Room](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/JohanLarsson/Gu.Wpf.DataGrid2D?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.DataGrid2D.svg)](https://www.nuget.org/packages/Gu.Wpf.DataGrid2D/)
 [![Build status](https://ci.appveyor.com/api/projects/status/a92oxrywc9nv7f21?svg=true)](https://ci.appveyor.com/project/JohanLarsson/gu-wpf-datagrid2d)
 
-Attached properties for WPF DataGrid enabling binding to sources of different types.
+Attached properties for WPF DataGrid enabling binding to sources of different types. For using `DataGrid2D` you need to add `xmlns:dataGrid2D="http://gu.se/DataGrid2D"` in XAML
 
 ## Contents
 
@@ -26,16 +26,17 @@ Attached properties for WPF DataGrid enabling binding to sources of different ty
 For binding to sources of type T[,]
 
 ### Array2D
-    <DataGrid HeadersVisibility="None"
-              dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
-
+```xml
+<DataGrid HeadersVisibility="None"
+          dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+```
 Renders:  
 ![ItemsSource2D render](http://i.imgur.com/00325df.png)
 
 ### Explicit columns
 Columns are referred to by `C<zero_based_index>`
 
-```
+```xml
 <DataGrid AutoGenerateColumns="False"
           dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}">
     <DataGrid.Columns>
@@ -49,7 +50,7 @@ Renders:
 ![ItemsSource2D render](http://i.imgur.com/IHvEI0c.png)
 
 ### With headers:
-```
+```xml
 <DataGrid dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
           dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
           dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
@@ -58,7 +59,7 @@ Renders:
 ![With headers screenie](http://i.imgur.com/GtEOW5G.png)
 
 ### Array2DTransposed
-```
+```xml
 <DataGrid dataGrid2D:ItemsSource.Array2DTransposed="{Binding Data2D}" />
 ```
 Renders:  
@@ -69,7 +70,7 @@ Lets you bind to datasources of type `IEnumerable<IEnumerable>>`.
 Tracks collection changes.
 
 ### RowsSource
-```
+```xml
 <DataGrid HeadersVisibility="None"
           dataGrid2D:ItemsSource.RowsSource="{Binding ListOfListsOfInts}" />
 ```
@@ -78,7 +79,7 @@ Renders:
 ![ItemsSource2D render](http://i.imgur.com/00325df.png)
 
 ### ColumnsSource
-```
+```xml
 <DataGrid HeadersVisibility="None"
           dataGrid2D:ItemsSource.ColumnsSource="{Binding ListOfListsOfInts}" />
 ```
@@ -88,7 +89,7 @@ Renders:
 ### Different lengths
 Limited support for different lengths. Columns with blanks are default readonly.
 
-```
+```xml
 <DataGrid dataGrid2D:ItemsSource.RowsSource="{Binding DifferentLengths}" />
 ```
 
@@ -100,7 +101,7 @@ Lets you two-way bind the item of the currently selected cell or index (row, col
 For this to work these conditions must be satisfied:
 - `SelectionUnit="Cell"` 
 - Columns must be of type `DataGridBoundColumn`. Don't think there is a way to dig out the bound property of a `DataGridTemplateColumn`
-```
+```xml
 <DataGrid SelectionUnit="Cell"
           dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
           dataGrid2D:Selected.CellItem="{Binding SelectedItem}"
@@ -120,7 +121,7 @@ Renders:
 
 ### TransposedSource with explicit columns
 The property name column is named `Name` and the following columns are named `C<zero_based_index>`
-```
+```xml
 <DataGrid AutoGenerateColumns="False" 
           dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}">
     <DataGrid.Columns>
@@ -137,7 +138,7 @@ Renders:
 ## Rownumbers
 Conveninence attached property if you want to display rownumbers.
 Specify the number to start fom using `StartAt` 
-```
+```xml
 <DataGrid ItemsSource="{Binding Persons}" dataGrid2D:Index.StartAt="1">
     <DataGrid.RowHeaderStyle>
         <Style TargetType="{x:Type DataGridRowHeader}">
