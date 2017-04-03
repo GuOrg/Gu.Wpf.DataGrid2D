@@ -4,9 +4,9 @@ GROUP Analyzers
 FRAMEWORK: >= NET45
 NUGET
   remote: http://www.nuget.org/api/v2
-    JetBrains.Annotations (10.2.1)
+    JetBrains.Annotations (10.4)
     StyleCop.Analyzers (1.0)
-    WpfAnalyzers (0.2.4-dev)
+    WpfAnalyzers (0.2.7.8)
 
 GROUP Test
 FRAMEWORK: >= NET45
