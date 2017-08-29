@@ -2,7 +2,6 @@
 {
     using System;
     using System.Windows.Controls;
-    using JetBrains.Annotations;
 
     public class AutoSelectTextBox : TextBox
     {
