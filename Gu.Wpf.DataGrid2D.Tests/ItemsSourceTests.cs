@@ -73,6 +73,15 @@
 
             Assert.AreEqual(5, dataGrid.GetCellValue(2, 0));
             Assert.AreEqual(6, dataGrid.GetCellValue(2, 1));
+            
+            ints.RemoveAt(2);
+            ints.Add(new ObservableCollection<int>(new[] { 7, 8 }));
+            Assert.AreNotSame(ints, dataGrid.ItemsSource);
+            Assert.AreEqual(2, dataGrid.Columns.Count);
+            Assert.AreEqual(3, dataGrid.Items.Count);
+
+            // Assert.AreEqual(7, dataGrid.GetCellValue(2, 0));
+            // Assert.AreEqual(8, dataGrid.GetCellValue(2, 1));            
         }
 
         [Test]
