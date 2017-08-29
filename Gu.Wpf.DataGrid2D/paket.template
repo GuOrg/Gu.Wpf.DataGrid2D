@@ -8,3 +8,4 @@ excludeddependencies
   JetBrains.Annotations
   StyleCop.Analyzers
   WpfAnalyzers
+  SourceLink.Create.CommandLine

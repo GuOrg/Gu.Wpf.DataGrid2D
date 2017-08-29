@@ -1,15 +1,21 @@
 
 
 GROUP Analyzers
-FRAMEWORK: >= NET45
+RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
     JetBrains.Annotations (10.4)
     StyleCop.Analyzers (1.0)
     WpfAnalyzers (0.2.7.9)
 
+GROUP Build
+RESTRICTION: >= net45
+NUGET
+  remote: http://www.nuget.org/api/v2
+    SourceLink.Create.CommandLine (2.2)
+
 GROUP Test
-FRAMEWORK: >= NET45
+RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
     Castle.Core (3.3.3)

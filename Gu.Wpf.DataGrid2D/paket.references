@@ -1,3 +1,6 @@
+group Build
+  SourceLink.Create.CommandLine
+
 group Analyzers
   StyleCop.Analyzers
   WpfAnalyzers

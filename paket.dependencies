@@ -1,5 +1,10 @@
 source http://www.nuget.org/api/v2/
 
+group Build
+  source http://www.nuget.org/api/v2/
+  framework: >= net45
+  nuget SourceLink.Create.CommandLine
+
 group Analyzers
   source http://www.nuget.org/api/v2/
   framework: >= net45
