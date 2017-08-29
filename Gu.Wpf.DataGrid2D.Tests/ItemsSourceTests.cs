@@ -52,7 +52,7 @@
         }
 
         [Test]
-        public void RowsSource()
+        public void RowsSourceRemove()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -73,15 +73,59 @@
 
             Assert.AreEqual(5, dataGrid.GetCellValue(2, 0));
             Assert.AreEqual(6, dataGrid.GetCellValue(2, 1));
-            
+
             ints.RemoveAt(2);
-            ints.Add(new ObservableCollection<int>(new[] { 7, 8 }));
             Assert.AreNotSame(ints, dataGrid.ItemsSource);
             Assert.AreEqual(2, dataGrid.Columns.Count);
-            Assert.AreEqual(3, dataGrid.Items.Count);
+            Assert.AreEqual(2, dataGrid.Items.Count);
 
-            // Assert.AreEqual(7, dataGrid.GetCellValue(2, 0));
-            // Assert.AreEqual(8, dataGrid.GetCellValue(2, 1));            
+            Assert.AreEqual(1, dataGrid.GetCellValue(0, 0));
+            Assert.AreEqual(2, dataGrid.GetCellValue(0, 1));
+
+            Assert.AreEqual(3, dataGrid.GetCellValue(1, 0));
+            Assert.AreEqual(4, dataGrid.GetCellValue(1, 1));
+        }
+
+        [Test]
+        public void RowsSourceAddRow()
+        {
+            var ints = new ObservableCollection<ObservableCollection<int>>
+                       {
+                           new ObservableCollection<int>(new[] { 1, 2 }),
+                           new ObservableCollection<int>(new[] { 3, 4 }),
+                           new ObservableCollection<int>(new[] { 5, 6 })
+                       };
+            var dataGrid = new DataGrid();
+            dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
+            dataGrid.Initialize();
+            Assert.IsInstanceOf<Lists2DView>(dataGrid.ItemsSource);
+
+            Assert.AreEqual(1, dataGrid.GetCellValue(0, 0));
+            Assert.AreEqual(2, dataGrid.GetCellValue(0, 1));
+
+            Assert.AreEqual(3, dataGrid.GetCellValue(1, 0));
+            Assert.AreEqual(4, dataGrid.GetCellValue(1, 1));
+
+            Assert.AreEqual(5, dataGrid.GetCellValue(2, 0));
+            Assert.AreEqual(6, dataGrid.GetCellValue(2, 1));
+
+            ints.Add(new ObservableCollection<int> { 7, 8 });
+            Assert.AreNotSame(ints, dataGrid.ItemsSource);
+            Assert.AreEqual(2, dataGrid.Columns.Count);
+            Assert.AreEqual(4, dataGrid.Items.Count);
+
+            Assert.AreEqual(1, dataGrid.GetCellValue(0, 0));
+            Assert.AreEqual(2, dataGrid.GetCellValue(0, 1));
+
+            Assert.AreEqual(3, dataGrid.GetCellValue(1, 0));
+            Assert.AreEqual(4, dataGrid.GetCellValue(1, 1));
+
+            Assert.AreEqual(5, dataGrid.GetCellValue(2, 0));
+            Assert.AreEqual(6, dataGrid.GetCellValue(2, 1));
+
+            // Need to force an update to test below.
+            ////Assert.AreEqual(7, dataGrid.GetCellValue(3, 0));
+            ////Assert.AreEqual(8, dataGrid.GetCellValue(3, 1));
         }
 
         [Test]
