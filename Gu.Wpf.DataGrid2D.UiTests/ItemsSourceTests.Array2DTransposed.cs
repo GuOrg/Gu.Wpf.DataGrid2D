@@ -1,137 +1,104 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
-    using Gu.Wpf.DataGrid2D.Demo;
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
-    using TestStack.White;
-    using TestStack.White.Factory;
-    using TestStack.White.UIItems;
-    using TestStack.White.UIItems.TabItems;
 
     public partial class ItemsSourceTests
     {
         public class Array2DTransposed
         {
-            private static readonly string TabId = AutomationIds.MultiDimensionalTab;
-
             [Test]
             public void AutoColumns()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
+                    var window = app.MainWindow();
+                    var dataGrid = window.FindDataGrid("AutoColumnsTransposed");
+                    Assert.AreEqual(2, dataGrid.RowCount);
+                    Assert.AreEqual(3, dataGrid.ColumnCount);
 
-                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(2, dataGrid.Rows.Count);
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(3, columnHeaders.Count);
+                    Assert.AreEqual("C0", columnHeaders[0].Text);
+                    Assert.AreEqual("C1", columnHeaders[1].Text);
+                    Assert.AreEqual("C2", columnHeaders[2].Text);
 
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("C0", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("C1", c1);
-                    var c2 = dataGrid.Header.Columns[2].Text;
-                    Assert.AreEqual("C2", c2);
-
-                    Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("2", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("3", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-
-                    Assert.AreEqual("5", dataGrid.Cell(c2, 0).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c2, 1).Text);
+                    Assert.AreEqual("1", dataGrid[0, 0].Value);
+                    Assert.AreEqual("3", dataGrid[0, 1].Value);
+                    Assert.AreEqual("5", dataGrid[0, 2].Value);
+                    Assert.AreEqual("2", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("6", dataGrid[1, 2].Value);
                 }
             }
 
             [Test]
             public void ExplicitColumns()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.ExplicitColumnsTransposed);
+                    var window = app.MainWindow();
+                    var dataGrid = window.FindDataGrid("ExplicitColumnsTransposed");
+                    Assert.AreEqual(2, dataGrid.RowCount);
+                    Assert.AreEqual(3, dataGrid.ColumnCount);
 
-                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(2, dataGrid.Rows.Count);
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(3, columnHeaders.Count);
+                    Assert.AreEqual("Col 1", columnHeaders[0].Text);
+                    Assert.AreEqual("Col 2", columnHeaders[1].Text);
+                    Assert.AreEqual("Col 3", columnHeaders[2].Text);
 
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("Col 1", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("Col 2", c1);
-                    var c2 = dataGrid.Header.Columns[2].Text;
-                    Assert.AreEqual("Col 3", c2);
-
-                    Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("2", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("3", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-
-                    Assert.AreEqual("5", dataGrid.Cell(c2, 0).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c2, 1).Text);
+                    Assert.AreEqual("1", dataGrid[0, 0].Value);
+                    Assert.AreEqual("3", dataGrid[0, 1].Value);
+                    Assert.AreEqual("5", dataGrid[0, 2].Value);
+                    Assert.AreEqual("2", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("6", dataGrid[1, 2].Value);
                 }
             }
 
             [Test]
             public void WithHeaders()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.WithHeadersTransposed);
+                    var window = app.MainWindow();
+                    var dataGrid = window.FindDataGrid("WithHeadersTransposed");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(3, columnHeaders.Count);
+                    Assert.AreEqual("A", columnHeaders[0].Text);
+                    Assert.AreEqual("B", columnHeaders[1].Text);
+                    Assert.AreEqual("C", columnHeaders[2].Text);
 
-                    Assert.AreEqual(4, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(2, dataGrid.Rows.Count);
+                    var rowHeaders = dataGrid.RowHeaders;
+                    Assert.AreEqual(2, rowHeaders.Count);
+                    Assert.AreEqual("1", rowHeaders[0].Text);
+                    Assert.AreEqual("2", rowHeaders[1].Text);
 
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("A", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("B", c1);
-                    var c2 = dataGrid.Header.Columns[2].Text;
-                    Assert.AreEqual("C", c2);
-
-                    Assert.AreEqual("1", dataGrid.Rows[0].Cells[0].Text);
-                    Assert.AreEqual("2", dataGrid.Rows[1].Cells[0].Text);
-
-                    Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("2", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("3", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-
-                    Assert.AreEqual("5", dataGrid.Cell(c2, 0).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c2, 1).Text);
+                    Assert.AreEqual("1", dataGrid[0, 0].Value);
+                    Assert.AreEqual("3", dataGrid[0, 1].Value);
+                    Assert.AreEqual("5", dataGrid[0, 2].Value);
+                    Assert.AreEqual("2", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("6", dataGrid[1, 2].Value);
                 }
             }
 
             [Test]
             public void ViewUpdatesSource()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
-                    var update = page.Get<Button>(AutomationIds.UpdateDataButton);
-                    var data = page.Get<Label>(AutomationIds.DataTextBox);
+                    var window = app.MainWindow();
+                    var dataGrid = window.FindDataGrid("AutoColumnsTransposed");
+                    var update = window.FindButton("UpdateDataButton");
+                    var data = window.FindTextBlock("DataTextBox");
 
-                    var cell = dataGrid.Rows[0].Cells[0];
-                    cell.Click();
-                    cell.Enter("10");
-
+                    dataGrid[0, 0].Value = "10";
                     update.Click();
                     Assert.AreEqual("{{10, 2}, {3, 4}, {5, 6}}", data.Text);
 
-                    cell = dataGrid.Rows[1].Cells[2];
-                    cell.Click();
-                    cell.Enter("11");
-
+                    dataGrid[1, 2].Value = "11";
                     update.Click();
                     Assert.AreEqual("{{10, 2}, {3, 4}, {5, 11}}", data.Text);
                 }

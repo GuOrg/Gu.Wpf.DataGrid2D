@@ -104,7 +104,7 @@
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v5.0')">
       <ItemGroup>
         <Reference Include="JetBrains.Annotations">
-          <HintPath>..\packages\analyzers\JetBrains.Annotations\lib\net\JetBrains.Annotations.dll</HintPath>
+          <HintPath>..\packages\analyzers\JetBrains.Annotations\lib\net20\JetBrains.Annotations.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -112,9 +112,6 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\Newtonsoft.Json.dll">
-      <Paket>True</Paket>
-    </Analyzer>
     <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>

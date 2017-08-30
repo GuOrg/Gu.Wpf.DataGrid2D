@@ -35,7 +35,7 @@
             [Test]
             public void ExplicitColumns()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
                     var window = app.MainWindow();
                     var dataGrid = window.FindDataGrid("ExplicitColumns");
@@ -59,7 +59,7 @@
             [Test]
             public void WithHeaders()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
                     var window = app.MainWindow();
                     var dataGrid = window.FindDataGrid("WithHeaders");
@@ -89,7 +89,7 @@
             [Test]
             public void ViewUpdatesSource()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
                     var window = app.MainWindow();
                     var dataGrid = window.FindDataGrid("AutoColumns");

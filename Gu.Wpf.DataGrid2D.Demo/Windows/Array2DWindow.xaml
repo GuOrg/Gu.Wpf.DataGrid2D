@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Array2DWindow"
-    Width="600"
+    Width="700"
     Height="400"
     mc:Ignorable="d">
     <demo:Array2DView />
