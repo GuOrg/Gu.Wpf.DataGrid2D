@@ -7,16 +7,15 @@
 
     public static class Info
     {
+        public static string ExeFileName { get; } = new Uri(typeof(MainWindow).Assembly.CodeBase, UriKind.Absolute).LocalPath;
+
         public static ProcessStartInfo ProcessStartInfo
         {
             get
             {
-                var assembly = typeof(MainWindow).Assembly;
-                var uri = new Uri(assembly.CodeBase, UriKind.Absolute);
-                var fileName = uri.AbsolutePath;
                 var processStartInfo = new ProcessStartInfo
                                        {
-                                           FileName = fileName,
+                                           FileName = ExeFileName,
                                            UseShellExecute = false,
                                            CreateNoWindow = true,
                                            RedirectStandardOutput = true,
