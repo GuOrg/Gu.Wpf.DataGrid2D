@@ -1,56 +1,60 @@
-﻿<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.TransposedView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:dataGrid2D="http://gu.se/DataGrid2D"
-             xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d">
+﻿<UserControl
+    x:Class="Gu.Wpf.DataGrid2D.Demo.TransposedView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dataGrid2D="http://gu.se/DataGrid2D"
+    xmlns:local="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
     <UserControl.DataContext>
         <local:TransposedVm />
     </UserControl.DataContext>
     <UniformGrid Rows="1">
         <GroupBox Header="Explicit columns">
-            <DataGrid AutoGenerateColumns="False"
-                      AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedExplicitColumns}"
-                      dataGrid2D:ItemsSource.PropertySource="{Binding Person}">
+            <DataGrid
+                dataGrid2D:ItemsSource.PropertySource="{Binding Person}"
+                AutoGenerateColumns="False"
+                AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedExplicitColumns}">
                 <DataGrid.Columns>
-                    <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
-                    <DataGridTextColumn Binding="{Binding Name}"
-                                        Header="Name"
-                                        IsReadOnly="True" />
+                    <!--  ReSharper disable Xaml.BindingWithContextNotResolved  -->
+                    <DataGridTextColumn
+                        Binding="{Binding Name}"
+                        Header="Name"
+                        IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding C0}" Header="Value" />
-                    <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
+                    <!--  ReSharper restore Xaml.BindingWithContextNotResolved  -->
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
 
         <GroupBox Header="Singleton">
-            <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedSingleton}" dataGrid2D:ItemsSource.PropertySource="{Binding Person}" />
+            <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}" AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedSingleton}" />
         </GroupBox>
 
         <GroupBox Header="ObservableCollection&lt;Person&gt;">
-            <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedObservableCollection}" dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" />
+            <DataGrid dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedObservableCollection}" />
         </GroupBox>
 
         <GroupBox Header="explicit columns">
-            <DataGrid AutoGenerateColumns="False" dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}">
+            <DataGrid dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+                    <!--  ReSharper disable Xaml.BindingWithContextNotResolved  -->
                     <DataGridTextColumn Binding="{Binding Name}" Header="Property" />
                     <DataGridTextColumn Binding="{Binding C0}" Header="Value 1" />
                     <DataGridTextColumn Binding="{Binding C1}" Header="Value 2" />
-                    <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
+                    <!--  ReSharper restore Xaml.BindingWithContextNotResolved  -->
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
 
         <GroupBox Header="Source data">
-            <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.ReferenceDataGrid}"
-                      CanUserAddRows="True"
-                      CanUserDeleteRows="True"
-                      ItemsSource="{Binding Persons}"
-                      SelectionUnit="FullRow" />
+            <DataGrid
+                AutomationProperties.AutomationId="{x:Static local:AutomationIds.ReferenceDataGrid}"
+                CanUserAddRows="True"
+                CanUserDeleteRows="True"
+                ItemsSource="{Binding Persons}"
+                SelectionUnit="FullRow" />
         </GroupBox>
     </UniformGrid>
 </UserControl>

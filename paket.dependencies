@@ -17,3 +17,4 @@ group Test
   framework: >= net45
   nuget NUnit
   nuget TestStack.White
+  nuget Gu.Wpf.UiAutomation
