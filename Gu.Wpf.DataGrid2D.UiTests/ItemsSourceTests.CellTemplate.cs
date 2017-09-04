@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
+    using Gu.Wpf.UiAutomation.WindowsAPI;
     using NUnit.Framework;
 
     public partial class ItemsSourceTests
@@ -63,17 +64,17 @@
                     var dataGrid = window.FindDataGrid(name);
                     var readOnlydataGrid = window.FindDataGrid(name + "RO");
                     dataGrid[0, 0].Click();
-                    dataGrid[0, 0].Click();
                     dataGrid[0, 0].Enter("10");
-                    dataGrid.Select(1);
+                    Keyboard.Type(VirtualKeyShort.ENTER);
+                    Keyboard.Type(VirtualKeyShort.DOWN);
                     window.WaitUntilResponsive();
                     Assert.AreEqual("10", dataGrid[0, 0].FindTextBlock().Text);
                     Assert.AreEqual("10", readOnlydataGrid[0, 0].FindTextBlock().Text);
 
                     dataGrid[0, 0].Click();
-                    dataGrid[0, 0].Click();
                     dataGrid[0, 0].Enter("11");
-                    dataGrid.Select(1);
+                    Keyboard.Type(VirtualKeyShort.ENTER);
+                    Keyboard.Type(VirtualKeyShort.DOWN);
                     window.WaitUntilResponsive();
                     Assert.AreEqual("11", dataGrid[0, 0].FindTextBlock().Text);
                     Assert.AreEqual("11", readOnlydataGrid[0, 0].FindTextBlock().Text);
@@ -106,8 +107,6 @@
 
                     // Click the button to change the CellTemplate during runtime
                     button.Click();
-                    dataGrid.Select(1);
-                    window.WaitUntilResponsive();
 
                     // Check the values again: Value2 of the test class should be displayed now
                     for (var r = 0; r < 3; ++r)
@@ -119,8 +118,6 @@
                     }
 
                     button.Click();
-                    dataGrid.Select(1);
-                    window.WaitUntilResponsive();
 
                     // Check the values again: Value1 of the test class should be displayed now readonly
                     for (var r = 0; r < 3; ++r)
@@ -136,8 +133,6 @@
 
                     // below causes a crash: argumentoutofrangeexception
                     button.Click();
-                    dataGrid.Select(1);
-                    window.WaitUntilResponsive();
                 }
             }
         }
