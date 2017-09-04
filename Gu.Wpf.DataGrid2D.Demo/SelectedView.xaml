@@ -65,20 +65,18 @@
                               IsChecked="{Binding CurrentCell.IsSelected, ElementName=DataGrid}" />
                 </StackPanel>-->
             </Grid>
-
-            <UniformGrid Grid.Row="1">
-                <ListBox HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
-                         ItemsSource="{Binding AllRowsItems}"
-                         SelectedItem="{Binding SelectedItem}">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="2" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
-            </UniformGrid>
         </Grid>
+
+        <ListBox HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
+                 ItemsSource="{Binding AllRowsItems}"
+                 SelectedItem="{Binding SelectedItem}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
     </UniformGrid>
 </UserControl>

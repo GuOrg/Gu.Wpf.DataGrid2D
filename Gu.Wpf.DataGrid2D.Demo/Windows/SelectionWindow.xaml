@@ -2,7 +2,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Width="1000"
+        Width="500"
         Height="200"
         mc:Ignorable="d">
     <demo:SelectedView />
