@@ -1,12 +1,8 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
-    using Gu.Wpf.DataGrid2D.Demo;
+    using Gu.Wpf.UiAutomation;
+    using Gu.Wpf.UiAutomation.WindowsAPI;
     using NUnit.Framework;
-    using TestStack.White;
-    using TestStack.White.Factory;
-    using TestStack.White.UIItems;
-    using TestStack.White.UIItems.TabItems;
-    using TestStack.White.WindowsAPI;
 
     public partial class ItemsSourceTests
     {
@@ -15,200 +11,201 @@
             [Test]
             public void ExplicitColumns()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>("TransposedTab");
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("TransposedExplicitColumns");
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("TransposedExplicitColumns");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(2, columnHeaders.Count);
+                    Assert.AreEqual("Name", columnHeaders[0].Text);
+                    Assert.AreEqual("Value", columnHeaders[1].Text);
 
-                    Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("Name", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("Value", c1);
-
-                    Assert.AreEqual("FirstName", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("LastName", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("Johan", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("Larsson", dataGrid.Cell(c1, 1).Text);
+                    Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
+                    Assert.AreEqual("LastName", dataGrid[1, 0].Value);
+                    Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
                 }
             }
 
             [Test]
             public void Singleton()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>("TransposedTab");
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("TransposedSingleton");
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("TransposedSingleton");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(2, columnHeaders.Count);
+                    Assert.AreEqual("Name", columnHeaders[0].Text);
+                    Assert.AreEqual("C0", columnHeaders[1].Text);
 
-                    Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("Name", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("C0", c1);
-
-                    Assert.AreEqual("FirstName", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("LastName", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("Johan", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("Larsson", dataGrid.Cell(c1, 1).Text);
+                    Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
+                    Assert.AreEqual("LastName", dataGrid[1, 0].Value);
+                    Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
                 }
             }
 
             [Test]
             public void ObservableCollection()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>("TransposedTab");
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
 
-                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(3, columnHeaders.Count);
+                    Assert.AreEqual("Name", columnHeaders[0].Text);
+                    Assert.AreEqual("C0", columnHeaders[1].Text);
+                    Assert.AreEqual("C1", columnHeaders[2].Text);
+
                     Assert.AreEqual(2, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("Name", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("C0", c1);
-                    var c2 = dataGrid.Header.Columns[2].Text;
-                    Assert.AreEqual("C1", c2);
-
-                    Assert.AreEqual("FirstName", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("LastName", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("Johan", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("Larsson", dataGrid.Cell(c1, 1).Text);
-
-                    Assert.AreEqual("Erik", dataGrid.Cell(c2, 0).Text);
-                    Assert.AreEqual("Svensson", dataGrid.Cell(c2, 1).Text);
+                    Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
+                    Assert.AreEqual("Erik", dataGrid[0, 2].Value);
+                    Assert.AreEqual("LastName", dataGrid[1, 0].Value);
+                    Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
+                    Assert.AreEqual("Svensson", dataGrid[1, 2].Value);
                 }
             }
 
             [Test]
             public void ObservableCollectionEditCellInViewUpdatesDataContext()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>("TransposedTab");
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
-                    var cell = dataGrid.Rows[0].Cells[1];
-                    cell.Click();
-                    cell.Enter("New Value");
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    dataGrid[0, 1].Value = "New Value";
                     dataGrid.Select(1); // lose focus
-                    window.WaitWhileBusy();
+                    window.WaitUntilResponsive();
 
-                    var reference = page.Get<ListView>("ReferenceDataGrid");
-                    Assert.AreEqual("New Value", reference.Rows[0].Cells[0].Text);
+                    var reference = window.FindDataGrid("ReferenceDataGrid");
+                    Assert.AreEqual("New Value", reference[0, 0].Value);
                 }
             }
 
             [Test]
             public void ObservableCollectionEditDataContextUpdatesView()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>("TransposedTab");
-                    page.Select();
-                    var reference = page.Get<ListView>("ReferenceDataGrid");
+                    var window = app.MainWindow;
+                    var reference = window.FindDataGrid("ReferenceDataGrid");
 
-                    var cell = reference.Rows[0].Cells[0];
-                    cell.Click();
-                    cell.Enter("New Value");
+                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
 
-                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
-                    Assert.AreEqual("Johan", dataGrid.Rows[0].Cells[1].Text);
+                    reference[0, 0].Value = "New Value";
                     reference.Select(1);
-                    Assert.AreEqual("New Value", dataGrid.Rows[0].Cells[1].Text);
+                    Assert.AreEqual("New Value", dataGrid[0, 1].Value);
                 }
             }
 
             [Test]
             public void RemoveRowInDataContext()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>("TransposedTab");
-                    page.Select();
+                    var window = app.MainWindow;
+                    var reference = window.FindDataGrid("ReferenceDataGrid");
 
-                    var reference = page.Get<ListView>("ReferenceDataGrid");
+                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(3, columnHeaders.Count);
+                    Assert.AreEqual("Name", columnHeaders[0].Text);
+                    Assert.AreEqual("C0", columnHeaders[1].Text);
+                    Assert.AreEqual("C1", columnHeaders[2].Text);
+
+                    Assert.AreEqual(2, dataGrid.RowCount);
+                    Assert.AreEqual(3, dataGrid.ColumnCount);
+                    Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
+                    Assert.AreEqual("Erik", dataGrid[0, 2].Value);
+                    Assert.AreEqual("LastName", dataGrid[1, 0].Value);
+                    Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
+                    Assert.AreEqual("Svensson", dataGrid[1, 2].Value);
+
                     reference.Select(1);
-                    reference.KeyIn(KeyboardInput.SpecialKeys.DELETE);
+                    using (Keyboard.Pressing(VirtualKeyShort.DELETE))
+                    {
+                    }
 
-                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
-
-                    Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(2, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("Name", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("C0", c1);
-
-                    Assert.AreEqual("FirstName", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("LastName", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("Johan", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("Larsson", dataGrid.Cell(c1, 1).Text);
+                    Assert.AreEqual(2, dataGrid.RowCount);
+                    Assert.AreEqual(2, dataGrid.ColumnCount);
+                    Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
+                    Assert.AreEqual("LastName", dataGrid[1, 0].Value);
+                    Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
                 }
             }
 
             [Test]
             public void AddRowInDataContext()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>("TransposedTab");
-                    page.Select();
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(3, columnHeaders.Count);
+                    Assert.AreEqual("Name", columnHeaders[0].Text);
+                    Assert.AreEqual("C0", columnHeaders[1].Text);
+                    Assert.AreEqual(2, dataGrid.RowCount);
+                    Assert.AreEqual(3, dataGrid.ColumnCount);
+                    Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
+                    Assert.AreEqual("Erik", dataGrid[0, 2].Value);
+                    Assert.AreEqual("LastName", dataGrid[1, 0].Value);
+                    Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
+                    Assert.AreEqual("Svensson", dataGrid[1, 2].Value);
 
-                    var reference = page.Get<ListView>("ReferenceDataGrid");
-                    var cell = reference.Rows[2].Cells[0];
+                    var reference = window.FindDataGrid("ReferenceDataGrid");
+                    var cell = reference[2, 0];
                     cell.Click();
                     cell.Enter("New");
                     reference.Select(0);
-                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
-
-                    Assert.AreEqual(4, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(2, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    var c2 = dataGrid.Header.Columns[2].Text;
-                    var c3 = dataGrid.Header.Columns[3].Text;
-
-                    Assert.AreEqual("FirstName", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("LastName", dataGrid.Cell(c0, 1).Text);
-
-                    Assert.AreEqual("Johan", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("Larsson", dataGrid.Cell(c1, 1).Text);
-
-                    Assert.AreEqual("Erik", dataGrid.Cell(c2, 0).Text);
-                    Assert.AreEqual("Svensson", dataGrid.Cell(c2, 1).Text);
-
-                    Assert.AreEqual("New", dataGrid.Cell(c3, 0).Text);
-                    Assert.AreEqual(string.Empty, dataGrid.Cell(c3, 1).Text);
+                    window.WaitUntilResponsive();
+                    columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(4, columnHeaders.Count);
+                    Assert.AreEqual("Name", columnHeaders[0].Text);
+                    Assert.AreEqual("C0", columnHeaders[1].Text);
+                    Assert.AreEqual("C1", columnHeaders[2].Text);
+                    Assert.AreEqual("C2", columnHeaders[3].Text);
+                    Assert.AreEqual(2, dataGrid.RowCount);
+                    Assert.AreEqual(4, dataGrid.ColumnCount);
+                    Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
+                    Assert.AreEqual("Johan", dataGrid[0, 1].Value);
+                    Assert.AreEqual("Erik", dataGrid[0, 2].Value);
+                    Assert.AreEqual("New", dataGrid[0, 3].Value);
+                    Assert.AreEqual("LastName", dataGrid[1, 0].Value);
+                    Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
+                    Assert.AreEqual("Svensson", dataGrid[1, 2].Value);
+                    Assert.AreEqual(string.Empty, dataGrid[1, 3].Value);
                 }
             }
 
             [Test]
-            public void Reminder()
+            public void NammeColumnIsReadOnly()
             {
-                Assert.Inconclusive("Check that name column is readonly");
+                using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
+                {
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("TransposedExplicitColumns");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(2, columnHeaders.Count);
+                    Assert.AreEqual("Name", columnHeaders[0].Text);
+                    Assert.AreEqual("Value", columnHeaders[1].Text);
+
+                    Assert.AreEqual(2, dataGrid.Rows.Count);
+                    Assert.AreEqual(true, dataGrid[0, 0].IsReadOnly);
+                    Assert.AreEqual(false, dataGrid[0, 1].IsReadOnly);
+                    Assert.AreEqual(true, dataGrid[1, 0].IsReadOnly);
+                    Assert.AreEqual(false, dataGrid[1, 1].IsReadOnly);
+                }
             }
         }
     }

@@ -1,15 +1,14 @@
-﻿<Window
-    x:Class="Gu.Wpf.DataGrid2D.Demo.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
-    d:DataContext="{d:DesignInstance demo:Vm}"
-    AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MainWindow}"
-    WindowState="Maximized"
-    mc:Ignorable="d">
+﻿<Window x:Class="Gu.Wpf.DataGrid2D.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="MainWindow"
+        d:DataContext="{d:DesignInstance demo:Vm}"
+        AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MainWindow}"
+        WindowState="Maximized"
+        mc:Ignorable="d">
     <TabControl>
         <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
             <demo:Array2DView />
