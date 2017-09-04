@@ -1,132 +1,143 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
-    using Gu.Wpf.DataGrid2D.Demo;
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
-    using TestStack.White;
-    using TestStack.White.Factory;
-    using TestStack.White.UIItems;
-    using TestStack.White.UIItems.TabItems;
 
     public partial class ItemsSourceTests
     {
         public class CellTemplate
         {
-            private static readonly string TabId = AutomationIds.CellTemplateTab;
-
-            [Test]
-            public void CellTemplateTest()
+            [TestCase("CellTemplate1Grid")]
+            [TestCase("CellTemplate1GridRO")]
+            [TestCase("CellTemplate2Grid")]
+            [TestCase("CellTemplate2GridRO")]
+            public void Headers(string name)
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid(name);
+                    Assert.AreEqual(3, dataGrid.ColumnHeaders.Count);
+                    Assert.AreEqual("C1", dataGrid.ColumnHeaders[0].Text);
+                    Assert.AreEqual("C2", dataGrid.ColumnHeaders[1].Text);
+                    Assert.AreEqual("C3", dataGrid.ColumnHeaders[2].Text);
 
-                    var dataGrid1 = page.Get<ListView>(AutomationIds.CellTemplate1Grid);
-                    var dataGrid1ro = page.Get<ListView>(AutomationIds.CellTemplate1GridRO);
-                    var dataGrid2 = page.Get<ListView>(AutomationIds.CellTemplate2Grid);
-                    var dataGrid2ro = page.Get<ListView>(AutomationIds.CellTemplate2GridRO);
+                    Assert.AreEqual(3, dataGrid.RowHeaders.Count);
+                    Assert.AreEqual("R1", dataGrid.RowHeaders[0].Text);
+                    Assert.AreEqual("R2", dataGrid.RowHeaders[1].Text);
+                    Assert.AreEqual("R3", dataGrid.RowHeaders[2].Text);
+                }
+            }
 
-                    for (int i = 0; i < 3; ++i)
+            [TestCase("CellTemplate1Grid")]
+            [TestCase("CellTemplate1GridRO")]
+            [TestCase("CellTemplate2Grid")]
+            [TestCase("CellTemplate2GridRO")]
+            public void CellTemplateTest(string name)
+            {
+                using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
+                {
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid(name);
+
+                    for (var r = 0; r < 3; ++r)
                     {
-                        var c0 = dataGrid1.Header.Columns[i].Text;
-                        Assert.AreEqual($"C{i + 1}", c0);
-                        c0 = dataGrid1ro.Header.Columns[i].Text;
-                        Assert.AreEqual($"C{i + 1}", c0);
-                        c0 = dataGrid2.Header.Columns[i].Text;
-                        Assert.AreEqual($"C{i + 1}", c0);
-                        c0 = dataGrid2ro.Header.Columns[i].Text;
-                        Assert.AreEqual($"C{i + 1}", c0);
-                    }
-
-                    for (int i = 0; i < 3; ++i)
-                    {
-                        for (int j = 0; j < 3; ++j)
+                        for (var c = 0; c < 3; ++c)
                         {
-                            Assert.AreEqual($"{i + j}", dataGrid1.Cell($"C{i + 1}", j).Text);
-                            Assert.AreEqual($"{i + j}", dataGrid1ro.Cell($"C{i + 1}", j).Text);
-                            Assert.AreEqual($"{9 - (i + j)}", dataGrid2.Cell($"C{i + 1}", j).Text);
-                            Assert.AreEqual($"{9 - (i + j)}", dataGrid2ro.Cell($"C{i + 1}", j).Text);
+                            var expected = name.Contains("2")
+                                               ? $"{9 - (r + c)}"
+                                               : $"{r + c}";
+                            Assert.AreEqual(expected, dataGrid[r, c].FindTextBlock().Text);
                         }
                     }
+                }
+            }
 
-                    var cell = dataGrid1.Cell("C1", 0);
-                    cell.DoubleClick();
-                    cell.Enter("10");
-                    dataGrid1.Select(1);
-                    window.WaitWhileBusy();
-                    Assert.AreEqual("10", dataGrid1ro.Cell("C1", 0).Text);
+            [TestCase("CellTemplate1Grid")]
+            [TestCase("CellTemplate2Grid")]
+            public void Edit(string name)
+            {
+                using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
+                {
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid(name);
+                    var readOnlydataGrid = window.FindDataGrid(name + "RO");
+                    dataGrid[0, 0].Click();
+                    dataGrid[0, 0].Click();
+                    dataGrid[0, 0].Enter("10");
+                    dataGrid.Select(1);
+                    window.WaitUntilResponsive();
+                    Assert.AreEqual("10", dataGrid[0, 0].FindTextBlock().Text);
+                    Assert.AreEqual("10", readOnlydataGrid[0, 0].FindTextBlock().Text);
 
-                    cell = dataGrid2.Cell("C1", 0);
-                    cell.DoubleClick();
-                    cell.Enter("11");
-                    dataGrid2.Select(1);
-                    window.WaitWhileBusy();
-                    Assert.AreEqual("11", dataGrid2ro.Cell("C1", 0).Text);
+                    dataGrid[0, 0].Click();
+                    dataGrid[0, 0].Click();
+                    dataGrid[0, 0].Enter("11");
+                    dataGrid.Select(1);
+                    window.WaitUntilResponsive();
+                    Assert.AreEqual("11", dataGrid[0, 0].FindTextBlock().Text);
+                    Assert.AreEqual("11", readOnlydataGrid[0, 0].FindTextBlock().Text);
                 }
             }
 
             [Test]
             public void ChangeCellTemplateTest()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("CellTemplateChangingGrid");
+                    var button = window.FindButton("CellTemplateChangeButton");
 
-                    var dataGrid = page.Get<ListView>(AutomationIds.CellTemplateChangingGrid);
-                    var button = page.Get<Button>(AutomationIds.CellTemplateChangeButton);
-
-                    for (int i = 0; i < 3; ++i)
+                    for (var i = 0; i < 3; ++i)
                     {
-                        var c0 = dataGrid.Header.Columns[i].Text;
+                        var c0 = dataGrid.ColumnHeaders[i].Text;
                         Assert.AreEqual($"C{i + 1}", c0);
                     }
 
                     // Check the values are ok: Value1 of the test class should be displayed on startup
-                    for (int i = 0; i < 3; ++i)
+                    for (var r = 0; r < 3; ++r)
                     {
-                        for (int j = 0; j < 3; ++j)
+                        for (var c = 0; c < 3; ++c)
                         {
-                            Assert.AreEqual($"{i + j}", dataGrid.Cell($"C{i + 1}", j).Text);
+                            Assert.AreEqual($"{r + c}", dataGrid[r, c].FindTextBlock().Text);
                         }
                     }
 
                     // Click the button to change the CellTemplate during runtime
                     button.Click();
                     dataGrid.Select(1);
-                    window.WaitWhileBusy();
+                    window.WaitUntilResponsive();
 
                     // Check the values again: Value2 of the test class should be displayed now
-                    for (int i = 0; i < 3; ++i)
+                    for (var r = 0; r < 3; ++r)
                     {
-                        for (int j = 0; j < 3; ++j)
+                        for (var c = 0; c < 3; ++c)
                         {
-                            Assert.AreEqual($"{9 - (i + j)}", dataGrid.Cell($"C{i + 1}", j).Text);
+                            Assert.AreEqual($"{9 - (r + c)}", dataGrid[r, c].FindTextBlock().Text);
                         }
                     }
 
                     button.Click();
                     dataGrid.Select(1);
-                    window.WaitWhileBusy();
+                    window.WaitUntilResponsive();
 
                     // Check the values again: Value1 of the test class should be displayed now readonly
-                    for (int i = 0; i < 3; ++i)
+                    for (var r = 0; r < 3; ++r)
                     {
-                        for (int j = 0; j < 3; ++j)
+                        for (var c = 0; c < 3; ++c)
                         {
-                            var cell = dataGrid.Cell($"C{i + 1}", j);
+                            var cell = dataGrid[r, c];
                             cell.DoubleClick();
                             cell.Enter("11");
-                            Assert.AreNotEqual("11", dataGrid.Cell($"C{i + 1}", j).Text);
+                            Assert.AreNotEqual("11", dataGrid[r, c].FindTextBlock().Text);
                         }
                     }
 
                     // below causes a crash: argumentoutofrangeexception
                     button.Click();
                     dataGrid.Select(1);
-                    window.WaitWhileBusy();
+                    window.WaitUntilResponsive();
                 }
             }
         }

@@ -12,7 +12,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("AutoColumnsTransposed");
                     Assert.AreEqual(2, dataGrid.RowCount);
                     Assert.AreEqual(3, dataGrid.ColumnCount);
@@ -37,7 +37,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("ExplicitColumnsTransposed");
                     Assert.AreEqual(2, dataGrid.RowCount);
                     Assert.AreEqual(3, dataGrid.ColumnCount);
@@ -62,7 +62,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("WithHeadersTransposed");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(3, columnHeaders.Count);
@@ -89,7 +89,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("AutoColumnsTransposed");
                     var update = window.FindButton("UpdateDataButton");
                     var data = window.FindTextBlock("DataTextBox");

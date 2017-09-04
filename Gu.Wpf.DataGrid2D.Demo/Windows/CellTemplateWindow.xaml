@@ -2,9 +2,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:demo="clr-namespace:Gu.Wpf.DataGrid2D.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Width="700"
-        Height="400"
+        Width="800"
+        Height="600"
         mc:Ignorable="d">
-    <demo:Array2DView />
+    <demo:CellTemplateView />
 </Window>
 

@@ -12,7 +12,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("AutoColumns");
 
                     Assert.AreEqual(3, dataGrid.RowCount);
@@ -37,7 +37,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("ExplicitColumns");
                     Assert.AreEqual(3, dataGrid.RowCount);
                     Assert.AreEqual(2, dataGrid.ColumnCount);
@@ -61,7 +61,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("WithHeaders");
                     Assert.AreEqual(3, dataGrid.RowCount);
                     Assert.AreEqual(2, dataGrid.ColumnCount);
@@ -91,7 +91,7 @@
             {
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
-                    var window = app.MainWindow();
+                    var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("AutoColumns");
                     var update = window.FindButton("UpdateDataButton");
                     var data = window.FindTextBlock("DataTextBox");

@@ -19,7 +19,7 @@
 
         public CellTemplateVm()
         {
-            this.RowHeaders = new[] { "1", "2", "3" };
+            this.RowHeaders = new[] { "R1", "R2", "R3" };
             this.ColumnHeaders = new[] { "C1", "C2", "C3" };
 
             this.celltemplate1 = this.CreateCellTemplate("Value1");
