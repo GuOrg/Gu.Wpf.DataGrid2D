@@ -1,123 +1,141 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
-    using Gu.Wpf.DataGrid2D.Demo;
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
-    using TestStack.White;
-    using TestStack.White.Factory;
-    using TestStack.White.UIItems;
-    using TestStack.White.UIItems.TabItems;
 
     public partial class ItemsSourceTests
     {
         public class Observable
         {
-            private static readonly string TabId = "ObservableTab";
-
             [Test]
             public void AutoColumns()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("AutoColumns");
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("AutoColumns");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(2, columnHeaders.Count);
+                    Assert.AreEqual("C0", columnHeaders[0].Text);
+                    Assert.AreEqual("C1", columnHeaders[1].Text);
 
-                    int[,] expected = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-                    AssertDataGrid.AreEqual(expected, dataGrid);
+                    Assert.AreEqual("1", dataGrid[0, 0].Value);
+                    Assert.AreEqual("2", dataGrid[0, 1].Value);
+                    Assert.AreEqual("3", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("5", dataGrid[2, 0].Value);
+                    Assert.AreEqual("6", dataGrid[2, 1].Value);
                 }
             }
 
             [Test]
             public void ExplicitColumns()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("ExplicitColumns");
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("ExplicitColumns");
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(2, columnHeaders.Count);
+                    Assert.AreEqual("Col 1", columnHeaders[0].Text);
+                    Assert.AreEqual("Col 2", columnHeaders[1].Text);
 
-                    Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(3, dataGrid.Rows.Count);
-
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("Col 1", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("Col 2", c1);
-
-                    Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("3", dataGrid.Cell(c0, 1).Text);
-                    Assert.AreEqual("5", dataGrid.Cell(c0, 2).Text);
-
-                    Assert.AreEqual("2", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c1, 2).Text);
+                    Assert.AreEqual("1", dataGrid[0, 0].Value);
+                    Assert.AreEqual("2", dataGrid[0, 1].Value);
+                    Assert.AreEqual("3", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("5", dataGrid[2, 0].Value);
+                    Assert.AreEqual("6", dataGrid[2, 1].Value);
                 }
             }
 
             [Test]
             public void WithHeaders()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("WithHeaders");
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("WithHeaders");
 
-                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(3, dataGrid.Rows.Count);
+                    var columnHeaders = dataGrid.ColumnHeaders;
+                    Assert.AreEqual(2, columnHeaders.Count);
+                    Assert.AreEqual("A", columnHeaders[0].Text);
+                    Assert.AreEqual("B", columnHeaders[1].Text);
 
-                    var c0 = dataGrid.Header.Columns[0].Text;
-                    Assert.AreEqual("A", c0);
-                    var c1 = dataGrid.Header.Columns[1].Text;
-                    Assert.AreEqual("B", c1);
+                    var rowHeaders = dataGrid.RowHeaders;
+                    Assert.AreEqual(3, rowHeaders.Count);
+                    Assert.AreEqual("1", rowHeaders[0].Text);
+                    Assert.AreEqual("2", rowHeaders[1].Text);
+                    Assert.AreEqual("3", rowHeaders[2].Text);
 
-                    Assert.AreEqual("1", dataGrid.Rows[0].Cells[0].Text);
-                    Assert.AreEqual("2", dataGrid.Rows[1].Cells[0].Text);
-                    Assert.AreEqual("3", dataGrid.Rows[2].Cells[0].Text);
-
-                    Assert.AreEqual("1", dataGrid.Cell(c0, 0).Text);
-                    Assert.AreEqual("3", dataGrid.Cell(c0, 1).Text);
-                    Assert.AreEqual("5", dataGrid.Cell(c0, 2).Text);
-
-                    Assert.AreEqual("2", dataGrid.Cell(c1, 0).Text);
-                    Assert.AreEqual("4", dataGrid.Cell(c1, 1).Text);
-                    Assert.AreEqual("6", dataGrid.Cell(c1, 2).Text);
+                    Assert.AreEqual(3, dataGrid.RowCount);
+                    Assert.AreEqual("1", dataGrid[0, 0].Value);
+                    Assert.AreEqual("2", dataGrid[0, 1].Value);
+                    Assert.AreEqual("3", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("5", dataGrid[2, 0].Value);
+                    Assert.AreEqual("6", dataGrid[2, 1].Value);
                 }
             }
 
             [Test]
             public void ViewUpdatesSource()
             {
-                using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+                using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
-                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(TabId);
-                    page.Select();
-                    var dataGrid = page.Get<ListView>("AutoColumns");
-                    var readOnly = page.Get<ListView>("AutoColumnsReadOnly");
-                    int[,] expected = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-                    AssertDataGrid.AreEqual(expected, dataGrid);
+                    var window = app.MainWindow;
+                    var dataGrid = window.FindDataGrid("AutoColumns");
+                    var readOnly = window.FindDataGrid("AutoColumnsReadOnly");
+                    Assert.AreEqual("1", dataGrid[0, 0].Value);
+                    Assert.AreEqual("2", dataGrid[0, 1].Value);
+                    Assert.AreEqual("3", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("5", dataGrid[2, 0].Value);
+                    Assert.AreEqual("6", dataGrid[2, 1].Value);
+                    Assert.AreEqual("1", readOnly[0, 0].Value);
+                    Assert.AreEqual("2", readOnly[0, 1].Value);
+                    Assert.AreEqual("3", readOnly[1, 0].Value);
+                    Assert.AreEqual("4", readOnly[1, 1].Value);
+                    Assert.AreEqual("5", readOnly[2, 0].Value);
+                    Assert.AreEqual("6", readOnly[2, 1].Value);
 
                     var cell = dataGrid.Rows[0].Cells[0];
                     cell.Click();
                     cell.Enter("10");
                     dataGrid.Select(1);
-                    window.WaitWhileBusy();
-                    expected[0, 0] = 10;
-                    AssertDataGrid.AreEqual(expected, dataGrid);
+                    window.WaitUntilResponsive();
+                    Assert.AreEqual("10", dataGrid[0, 0].Value);
+                    Assert.AreEqual("2", dataGrid[0, 1].Value);
+                    Assert.AreEqual("3", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("5", dataGrid[2, 0].Value);
+                    Assert.AreEqual("6", dataGrid[2, 1].Value);
 
-                    AssertDataGrid.AreEqual(expected, readOnly);
+                    Assert.AreEqual("10", readOnly[0, 0].Value);
+                    Assert.AreEqual("2", readOnly[0, 1].Value);
+                    Assert.AreEqual("3", readOnly[1, 0].Value);
+                    Assert.AreEqual("4", readOnly[1, 1].Value);
+                    Assert.AreEqual("5", readOnly[2, 0].Value);
+                    Assert.AreEqual("6", readOnly[2, 1].Value);
 
                     cell = dataGrid.Rows[2].Cells[1];
                     cell.Click();
                     cell.Enter("11");
                     dataGrid.Select(1);
-                    expected[2, 1] = 11;
-                    AssertDataGrid.AreEqual(expected, dataGrid);
-                    AssertDataGrid.AreEqual(expected, readOnly);
+                    window.WaitUntilResponsive();
+                    Assert.AreEqual("10", dataGrid[0, 0].Value);
+                    Assert.AreEqual("2", dataGrid[0, 1].Value);
+                    Assert.AreEqual("3", dataGrid[1, 0].Value);
+                    Assert.AreEqual("4", dataGrid[1, 1].Value);
+                    Assert.AreEqual("5", dataGrid[2, 0].Value);
+                    Assert.AreEqual("11", dataGrid[2, 1].Value);
+
+                    Assert.AreEqual("10", readOnly[0, 0].Value);
+                    Assert.AreEqual("2", readOnly[0, 1].Value);
+                    Assert.AreEqual("3", readOnly[1, 0].Value);
+                    Assert.AreEqual("4", readOnly[1, 1].Value);
+                    Assert.AreEqual("5", readOnly[2, 0].Value);
+                    Assert.AreEqual("11", readOnly[2, 1].Value);
                 }
             }
         }

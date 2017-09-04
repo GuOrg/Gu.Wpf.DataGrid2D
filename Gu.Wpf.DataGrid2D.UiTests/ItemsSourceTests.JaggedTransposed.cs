@@ -15,15 +15,13 @@
                     var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("AutoColumnsTransposed");
 
-                    Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
-                    Assert.AreEqual(2, dataGrid.Rows.Count);
-
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(3, columnHeaders.Count);
                     Assert.AreEqual("C0", columnHeaders[0].Text);
                     Assert.AreEqual("C1", columnHeaders[1].Text);
                     Assert.AreEqual("C2", columnHeaders[2].Text);
 
+                    Assert.AreEqual(2, dataGrid.Rows.Count);
                     Assert.AreEqual("1", dataGrid[0, 0].Value);
                     Assert.AreEqual("3", dataGrid[0, 1].Value);
                     Assert.AreEqual("5", dataGrid[0, 2].Value);

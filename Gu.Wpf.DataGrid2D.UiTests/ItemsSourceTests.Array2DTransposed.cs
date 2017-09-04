@@ -39,15 +39,15 @@
                 {
                     var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("ExplicitColumnsTransposed");
-                    Assert.AreEqual(2, dataGrid.RowCount);
-                    Assert.AreEqual(3, dataGrid.ColumnCount);
 
+                    Assert.AreEqual(3, dataGrid.ColumnCount);
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(3, columnHeaders.Count);
                     Assert.AreEqual("Col 1", columnHeaders[0].Text);
                     Assert.AreEqual("Col 2", columnHeaders[1].Text);
                     Assert.AreEqual("Col 3", columnHeaders[2].Text);
 
+                    Assert.AreEqual(2, dataGrid.RowCount);
                     Assert.AreEqual("1", dataGrid[0, 0].Value);
                     Assert.AreEqual("3", dataGrid[0, 1].Value);
                     Assert.AreEqual("5", dataGrid[0, 2].Value);

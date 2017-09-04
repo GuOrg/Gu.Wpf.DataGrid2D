@@ -63,8 +63,6 @@
                 {
                     var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("WithHeaders");
-                    Assert.AreEqual(3, dataGrid.RowCount);
-                    Assert.AreEqual(2, dataGrid.ColumnCount);
 
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(2, columnHeaders.Count);
@@ -77,6 +75,7 @@
                     Assert.AreEqual("2", rowHeaders[1].Text);
                     Assert.AreEqual("3", rowHeaders[2].Text);
 
+                    Assert.AreEqual(3, dataGrid.RowCount);
                     Assert.AreEqual("1", dataGrid[0, 0].Value);
                     Assert.AreEqual("2", dataGrid[0, 1].Value);
                     Assert.AreEqual("3", dataGrid[1, 0].Value);
