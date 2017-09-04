@@ -19,10 +19,10 @@
         {
             using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
             {
-                var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                var page = window.Get<TabPage>(AutomationIds.SelectionTab);
+                var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                var page = window.Get<TabPage>("SelectionTab");
                 page.Select();
-                var dataGrid = page.Get<ListView>(AutomationIds.SelectionGrid);
+                var dataGrid = page.Get<ListView>("SelectionGrid");
                 Console.WriteLine(dataGrid.GetType());
                 dataGrid.DumpSupportedPatterns();
                 dataGrid.DumpSupportedProperties();

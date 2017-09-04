@@ -11,17 +11,17 @@
     {
         public class ObservableTransposed
         {
-            private static readonly string TabId = AutomationIds.ObservableTab;
+            private static readonly string TabId = "ObservableTab";
 
             [Test]
             public void AutoColumns()
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
+                    var dataGrid = page.Get<ListView>("AutoColumnsTransposed");
 
                     int[,] expected = { { 1, 3, 5 }, { 2, 4, 6 } };
                     AssertDataGrid.AreEqual(expected, dataGrid);
@@ -33,10 +33,10 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.ExplicitColumnsTransposed);
+                    var dataGrid = page.Get<ListView>("ExplicitColumnsTransposed");
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -64,10 +64,10 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.WithHeadersTransposed);
+                    var dataGrid = page.Get<ListView>("WithHeadersTransposed");
 
                     Assert.AreEqual(4, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -98,11 +98,11 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumnsTransposed);
-                    var readOnly = page.Get<ListView>(AutomationIds.AutoColumnsTransposedReadOnly);
+                    var dataGrid = page.Get<ListView>("AutoColumnsTransposed");
+                    var readOnly = page.Get<ListView>("AutoColumnsTransposedReadOnly");
                     int[,] expected = { { 1, 3, 5 }, { 2, 4, 6 } };
                     AssertDataGrid.AreEqual(expected, dataGrid);
 

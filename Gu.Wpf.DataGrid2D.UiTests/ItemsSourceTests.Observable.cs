@@ -11,17 +11,17 @@
     {
         public class Observable
         {
-            private static readonly string TabId = AutomationIds.ObservableTab;
+            private static readonly string TabId = "ObservableTab";
 
             [Test]
             public void AutoColumns()
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumns);
+                    var dataGrid = page.Get<ListView>("AutoColumns");
 
                     int[,] expected = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
                     AssertDataGrid.AreEqual(expected, dataGrid);
@@ -33,10 +33,10 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.ExplicitColumns);
+                    var dataGrid = page.Get<ListView>("ExplicitColumns");
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -61,10 +61,10 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.WithHeaders);
+                    var dataGrid = page.Get<ListView>("WithHeaders");
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -93,11 +93,11 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
                     var page = window.Get<TabPage>(TabId);
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.AutoColumns);
-                    var readOnly = page.Get<ListView>(AutomationIds.AutoColumnsReadOnly);
+                    var dataGrid = page.Get<ListView>("AutoColumns");
+                    var readOnly = page.Get<ListView>("AutoColumnsReadOnly");
                     int[,] expected = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
                     AssertDataGrid.AreEqual(expected, dataGrid);
 

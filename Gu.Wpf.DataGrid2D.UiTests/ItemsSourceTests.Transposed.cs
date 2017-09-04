@@ -17,10 +17,10 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                    var page = window.Get<TabPage>("TransposedTab");
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedExplicitColumns);
+                    var dataGrid = page.Get<ListView>("TransposedExplicitColumns");
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -43,10 +43,10 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                    var page = window.Get<TabPage>("TransposedTab");
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedSingleton);
+                    var dataGrid = page.Get<ListView>("TransposedSingleton");
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -69,10 +69,10 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                    var page = window.Get<TabPage>("TransposedTab");
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -100,17 +100,17 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                    var page = window.Get<TabPage>("TransposedTab");
                     page.Select();
-                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
                     var cell = dataGrid.Rows[0].Cells[1];
                     cell.Click();
                     cell.Enter("New Value");
                     dataGrid.Select(1); // lose focus
                     window.WaitWhileBusy();
 
-                    var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
+                    var reference = page.Get<ListView>("ReferenceDataGrid");
                     Assert.AreEqual("New Value", reference.Rows[0].Cells[0].Text);
                 }
             }
@@ -120,16 +120,16 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                    var page = window.Get<TabPage>("TransposedTab");
                     page.Select();
-                    var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
+                    var reference = page.Get<ListView>("ReferenceDataGrid");
 
                     var cell = reference.Rows[0].Cells[0];
                     cell.Click();
                     cell.Enter("New Value");
 
-                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
                     Assert.AreEqual("Johan", dataGrid.Rows[0].Cells[1].Text);
                     reference.Select(1);
                     Assert.AreEqual("New Value", dataGrid.Rows[0].Cells[1].Text);
@@ -141,15 +141,15 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                    var page = window.Get<TabPage>("TransposedTab");
                     page.Select();
 
-                    var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
+                    var reference = page.Get<ListView>("ReferenceDataGrid");
                     reference.Select(1);
                     reference.KeyIn(KeyboardInput.SpecialKeys.DELETE);
 
-                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
 
                     Assert.AreEqual(2, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
@@ -172,16 +172,16 @@
             {
                 using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
                 {
-                    var window = app.GetWindow(AutomationIds.MainWindow, InitializeOption.NoCache);
-                    var page = window.Get<TabPage>(AutomationIds.TransposedTab);
+                    var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
+                    var page = window.Get<TabPage>("TransposedTab");
                     page.Select();
 
-                    var reference = page.Get<ListView>(AutomationIds.ReferenceDataGrid);
+                    var reference = page.Get<ListView>("ReferenceDataGrid");
                     var cell = reference.Rows[2].Cells[0];
                     cell.Click();
                     cell.Enter("New");
                     reference.Select(0);
-                    var dataGrid = page.Get<ListView>(AutomationIds.TransposedObservableCollection);
+                    var dataGrid = page.Get<ListView>("TransposedObservableCollection");
 
                     Assert.AreEqual(4, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(2, dataGrid.Rows.Count);
