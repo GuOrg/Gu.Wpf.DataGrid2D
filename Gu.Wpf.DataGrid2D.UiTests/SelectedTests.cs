@@ -1,44 +1,37 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
-    using System;
-    using System.Threading;
-
-    using Gu.Wpf.DataGrid2D.Demo;
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
-    using TestStack.White;
-    using TestStack.White.Factory;
-    using TestStack.White.UIItems;
-    using TestStack.White.UIItems.ListBoxItems;
-    using TestStack.White.UIItems.TabItems;
-    using ListView = TestStack.White.UIItems.ListView;
-    using TextBox = TestStack.White.UIItems.TextBox;
 
-    [Apartment(ApartmentState.STA)]
     public class SelectedTests
     {
-        private static readonly string TabId = "SelectionTab";
-
         [Test]
         public void SelectingInViewUpdatesIndexAndCellItem()
         {
-            using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+            using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
-                var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                var page = window.Get<TabPage>(TabId);
-                page.Select();
-                var dataGrid = page.Get<ListView>("SelectionGrid");
-                var indexBox = page.Get<TextBox>("SelectedIndex");
-                var itemBox = page.Get<Label>("SelectedItem");
-                var c0 = dataGrid.Header.Columns[0].Text;
-                Assert.AreEqual("C0", c0);
-                var c1 = dataGrid.Header.Columns[1].Text;
-                Assert.AreEqual("C1", c1);
+                var window = app.MainWindow;
+                var dataGrid = window.FindDataGrid("SelectionGrid");
+                var indexBox = window.FindTextBox("SelectedIndex");
+                var itemBox = window.FindTextBlock("SelectedItem");
 
-                dataGrid.Cell(c0, 0).Click();
+                dataGrid[0, 0].Click();
                 Assert.AreEqual("R0 C0", indexBox.Text);
                 Assert.AreEqual("Item: 1", itemBox.Text);
 
-                dataGrid.Cell(c1, 2).Click();
+                dataGrid[0, 1].Click();
+                Assert.AreEqual("R0 C1", indexBox.Text);
+                Assert.AreEqual("Item: 2", itemBox.Text);
+
+                dataGrid[1, 1].Click();
+                Assert.AreEqual("R1 C1", indexBox.Text);
+                Assert.AreEqual("Item: 4", itemBox.Text);
+
+                dataGrid[2, 0].Click();
+                Assert.AreEqual("R2 C0", indexBox.Text);
+                Assert.AreEqual("Item: 5", itemBox.Text);
+
+                dataGrid[2, 1].Click();
                 Assert.AreEqual("R2 C1", indexBox.Text);
                 Assert.AreEqual("Item: 6", itemBox.Text);
             }
@@ -47,21 +40,12 @@
         [Test]
         public void SettingIndexInViewModelUpdatesSelectionAndCellItem()
         {
-            using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+            using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
-                var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                var page = window.Get<TabPage>(TabId);
-                page.Select();
-                var dataGrid = page.Get<ListView>("SelectionGrid");
-                Console.WriteLine($"DataGrid.HelpText: {dataGrid.HelpText}");
-                Console.WriteLine($"DataGrid.ItemStatus: {dataGrid.ItemStatus()}");
-                var indexBox = page.Get<TextBox>("SelectedIndex");
-                var itemBox = page.Get<Label>("SelectedItem");
-                var loseFocusButton = page.Get<Button>("SelectionLoseFocusButton");
-                var c0 = dataGrid.Header.Columns[0].Text;
-                Assert.AreEqual("C0", c0);
-                var c1 = dataGrid.Header.Columns[1].Text;
-                Assert.AreEqual("C1", c1);
+                var window = app.MainWindow;
+                var indexBox = window.FindTextBox("SelectedIndex");
+                var itemBox = window.FindTextBlock("SelectedItem");
+                var loseFocusButton = window.FindButton("SelectionLoseFocusButton");
 
                 indexBox.Text = "R1 C1";
                 loseFocusButton.Click();
@@ -81,19 +65,11 @@
         [Test]
         public void SettingCellItemInViewModelUpdatesSelectionAndIndex()
         {
-            using (var app = Application.AttachOrLaunch(Info.ProcessStartInfo))
+            using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
-                var window = app.GetWindow("MainWindow", InitializeOption.NoCache);
-                var page = window.Get<TabPage>(TabId);
-                page.Select();
-                var dataGrid = page.Get<ListView>("SelectionGrid");
-                var indexBox = page.Get<TextBox>("SelectedIndex");
-                var itemBox = page.Get<ListBox>("SelectionList");
-                var c0 = dataGrid.Header.Columns[0].Text;
-                Assert.AreEqual("C0", c0);
-                var c1 = dataGrid.Header.Columns[1].Text;
-                Assert.AreEqual("C1", c1);
-
+                var window = app.MainWindow;
+                var indexBox = window.FindTextBox("SelectedIndex");
+                var itemBox = window.FindListBox("SelectionList");
                 itemBox.Select(3);
                 Assert.AreEqual("R1 C1", indexBox.Text);
 

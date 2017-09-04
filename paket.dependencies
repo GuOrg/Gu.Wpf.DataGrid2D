@@ -16,5 +16,4 @@ group Test
   source http://www.nuget.org/api/v2/
   framework: >= net45
   nuget NUnit
-  nuget TestStack.White
   nuget Gu.Wpf.UiAutomation

@@ -11,11 +11,11 @@
     </UserControl.DataContext>
     <UniformGrid Rows="1">
         <DataGrid x:Name="DataGrid"
-                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionGrid}"
-                  SelectionUnit="Cell"
                   dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
                   dataGrid2D:Selected.CellItem="{Binding SelectedItem}"
-                  dataGrid2D:Selected.Index="{Binding Index}" />
+                  dataGrid2D:Selected.Index="{Binding Index}"
+                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionGrid}"
+                  SelectionUnit="Cell" />
 
         <Grid>
             <Grid.RowDefinitions>
@@ -42,8 +42,7 @@
                          MinWidth="50"
                          HorizontalAlignment="Left"
                          AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedIndex}"
-                         Text="{Binding Index,
-                                        TargetNullValue=''}" />
+                         Text="{Binding Index, TargetNullValue=''}" />
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            Text="Item: " />
