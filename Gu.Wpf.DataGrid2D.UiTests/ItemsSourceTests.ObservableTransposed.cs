@@ -1,14 +1,13 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
+    using Gu.Wpf.UiAutomation.WindowsAPI;
     using NUnit.Framework;
 
     public partial class ItemsSourceTests
     {
         public class ObservableTransposed
         {
-            private static readonly string TabId = "ObservableTab";
-
             [Test]
             public void AutoColumns()
             {
@@ -107,11 +106,8 @@
                     Assert.AreEqual("4", readOnly[1, 1].Value);
                     Assert.AreEqual("6", readOnly[1, 2].Value);
 
-                    var cell = dataGrid.Rows[0].Cells[0];
-                    cell.Click();
-                    cell.Enter("10");
-                    dataGrid.Select(1);
-                    window.WaitUntilResponsive();
+                    dataGrid[0, 0].Value = "10";
+                    Keyboard.Type(VirtualKeyShort.DOWN);
                     Assert.AreEqual("10", dataGrid[0, 0].Value);
                     Assert.AreEqual("3", dataGrid[0, 1].Value);
                     Assert.AreEqual("5", dataGrid[0, 2].Value);
@@ -125,11 +121,8 @@
                     Assert.AreEqual("4", readOnly[1, 1].Value);
                     Assert.AreEqual("6", readOnly[1, 2].Value);
 
-                    cell = dataGrid.Rows[1].Cells[2];
-                    cell.Click();
-                    cell.Enter("11");
-                    dataGrid.Select(0);
-                    window.WaitUntilResponsive();
+                    dataGrid[1, 2].Value = "11";
+                    Keyboard.Type(VirtualKeyShort.UP);
                     Assert.AreEqual("10", dataGrid[0, 0].Value);
                     Assert.AreEqual("3", dataGrid[0, 1].Value);
                     Assert.AreEqual("5", dataGrid[0, 2].Value);

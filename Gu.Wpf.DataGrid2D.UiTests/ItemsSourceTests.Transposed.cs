@@ -80,7 +80,7 @@
                     var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("TransposedObservableCollection");
                     dataGrid[0, 1].Value = "New Value";
-                    dataGrid.Select(1); // lose focus
+                    Keyboard.Type(VirtualKeyShort.DOWN);
                     window.WaitUntilResponsive();
 
                     var reference = window.FindDataGrid("ReferenceDataGrid");
@@ -100,7 +100,7 @@
                     Assert.AreEqual("Johan", dataGrid[0, 1].Value);
 
                     reference[0, 0].Value = "New Value";
-                    reference.Select(1);
+                    Keyboard.Type(VirtualKeyShort.DOWN);
                     Assert.AreEqual("New Value", dataGrid[0, 1].Value);
                 }
             }
@@ -129,11 +129,9 @@
                     Assert.AreEqual("Larsson", dataGrid[1, 1].Value);
                     Assert.AreEqual("Svensson", dataGrid[1, 2].Value);
 
-                    reference.Select(1);
-                    using (Keyboard.Pressing(VirtualKeyShort.DELETE))
-                    {
-                    }
-
+                    reference[1, 0].Click();
+                    Keyboard.Type(VirtualKeyShort.DELETE);
+                    Keyboard.Type(VirtualKeyShort.UP);
                     Assert.AreEqual(2, dataGrid.RowCount);
                     Assert.AreEqual(2, dataGrid.ColumnCount);
                     Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
@@ -164,10 +162,8 @@
                     Assert.AreEqual("Svensson", dataGrid[1, 2].Value);
 
                     var reference = window.FindDataGrid("ReferenceDataGrid");
-                    var cell = reference[2, 0];
-                    cell.Click();
-                    cell.Enter("New");
-                    reference.Select(0);
+                    reference[2, 0].Value = "New";
+                    Keyboard.Type(VirtualKeyShort.UP);
                     window.WaitUntilResponsive();
                     columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(4, columnHeaders.Count);

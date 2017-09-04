@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
+    using Gu.Wpf.UiAutomation.WindowsAPI;
     using NUnit.Framework;
 
     public partial class ItemsSourceTests
@@ -99,11 +100,8 @@
                     Assert.AreEqual("5", readOnly[2, 0].Value);
                     Assert.AreEqual("6", readOnly[2, 1].Value);
 
-                    var cell = dataGrid.Rows[0].Cells[0];
-                    cell.Click();
-                    cell.Enter("10");
-                    dataGrid.Select(1);
-                    window.WaitUntilResponsive();
+                    dataGrid[0, 0].Value = "10";
+                    Keyboard.Type(VirtualKeyShort.DOWN);
                     Assert.AreEqual("10", dataGrid[0, 0].Value);
                     Assert.AreEqual("2", dataGrid[0, 1].Value);
                     Assert.AreEqual("3", dataGrid[1, 0].Value);
@@ -118,11 +116,8 @@
                     Assert.AreEqual("5", readOnly[2, 0].Value);
                     Assert.AreEqual("6", readOnly[2, 1].Value);
 
-                    cell = dataGrid.Rows[2].Cells[1];
-                    cell.Click();
-                    cell.Enter("11");
-                    dataGrid.Select(1);
-                    window.WaitUntilResponsive();
+                    dataGrid[2, 1].Value = "11";
+                    Keyboard.Type(VirtualKeyShort.UP);
                     Assert.AreEqual("10", dataGrid[0, 0].Value);
                     Assert.AreEqual("2", dataGrid[0, 1].Value);
                     Assert.AreEqual("3", dataGrid[1, 0].Value);
