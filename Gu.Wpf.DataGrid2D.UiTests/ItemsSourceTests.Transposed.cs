@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
-    using Gu.Wpf.UiAutomation.WindowsAPI;
     using NUnit.Framework;
 
     public partial class ItemsSourceTests
@@ -80,7 +79,7 @@
                     var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid("TransposedObservableCollection");
                     dataGrid[0, 1].Value = "New Value";
-                    Keyboard.Type(VirtualKeyShort.DOWN);
+                    Keyboard.Type(Key.DOWN);
                     window.WaitUntilResponsive();
 
                     var reference = window.FindDataGrid("ReferenceDataGrid");
@@ -100,7 +99,7 @@
                     Assert.AreEqual("Johan", dataGrid[0, 1].Value);
 
                     reference[0, 0].Value = "New Value";
-                    Keyboard.Type(VirtualKeyShort.DOWN);
+                    Keyboard.Type(Key.DOWN);
                     Assert.AreEqual("New Value", dataGrid[0, 1].Value);
                 }
             }
@@ -130,8 +129,8 @@
                     Assert.AreEqual("Svensson", dataGrid[1, 2].Value);
 
                     reference[1, 0].Click();
-                    Keyboard.Type(VirtualKeyShort.DELETE);
-                    Keyboard.Type(VirtualKeyShort.UP);
+                    Keyboard.Type(Key.DELETE);
+                    Keyboard.Type(Key.UP);
                     Assert.AreEqual(2, dataGrid.RowCount);
                     Assert.AreEqual(2, dataGrid.ColumnCount);
                     Assert.AreEqual("FirstName", dataGrid[0, 0].Value);
@@ -163,7 +162,7 @@
 
                     var reference = window.FindDataGrid("ReferenceDataGrid");
                     reference[2, 0].Value = "New";
-                    Keyboard.Type(VirtualKeyShort.UP);
+                    Keyboard.Type(Key.UP);
                     window.WaitUntilResponsive();
                     columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(4, columnHeaders.Count);

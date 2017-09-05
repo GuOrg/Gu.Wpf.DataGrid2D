@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
-    using Gu.Wpf.UiAutomation.WindowsAPI;
     using NUnit.Framework;
 
     public partial class ItemsSourceTests
@@ -65,16 +64,16 @@
                     var readOnlydataGrid = window.FindDataGrid(name + "RO");
                     dataGrid[0, 0].Click();
                     dataGrid[0, 0].Enter("10");
-                    Keyboard.Type(VirtualKeyShort.ENTER);
-                    Keyboard.Type(VirtualKeyShort.DOWN);
+                    Keyboard.Type(Key.ENTER);
+                    Keyboard.Type(Key.DOWN);
                     window.WaitUntilResponsive();
                     Assert.AreEqual("10", dataGrid[0, 0].FindTextBlock().Text);
                     Assert.AreEqual("10", readOnlydataGrid[0, 0].FindTextBlock().Text);
 
                     dataGrid[0, 0].Click();
                     dataGrid[0, 0].Enter("11");
-                    Keyboard.Type(VirtualKeyShort.ENTER);
-                    Keyboard.Type(VirtualKeyShort.DOWN);
+                    Keyboard.Type(Key.ENTER);
+                    Keyboard.Type(Key.DOWN);
                     window.WaitUntilResponsive();
                     Assert.AreEqual("11", dataGrid[0, 0].FindTextBlock().Text);
                     Assert.AreEqual("11", readOnlydataGrid[0, 0].FindTextBlock().Text);
