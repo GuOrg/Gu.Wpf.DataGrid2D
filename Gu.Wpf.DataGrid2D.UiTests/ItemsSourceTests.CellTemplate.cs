@@ -62,20 +62,21 @@
                     var window = app.MainWindow;
                     var dataGrid = window.FindDataGrid(name);
                     var readOnlydataGrid = window.FindDataGrid(name + "RO");
-                    dataGrid[0, 0].Click();
-                    dataGrid[0, 0].Enter("10");
+                    var cell = dataGrid[0, 0];
+                    cell.Click();
+                    cell.Click();
+                    cell.Enter("10");
                     Keyboard.Type(Key.ENTER);
-                    Keyboard.Type(Key.DOWN);
                     window.WaitUntilResponsive();
-                    Assert.AreEqual("10", dataGrid[0, 0].FindTextBlock().Text);
+                    Assert.AreEqual("10", cell.FindTextBlock().Text);
                     Assert.AreEqual("10", readOnlydataGrid[0, 0].FindTextBlock().Text);
 
-                    dataGrid[0, 0].Click();
-                    dataGrid[0, 0].Enter("11");
+                    cell.Click();
+                    cell.Click();
+                    cell.Enter("11");
                     Keyboard.Type(Key.ENTER);
-                    Keyboard.Type(Key.DOWN);
                     window.WaitUntilResponsive();
-                    Assert.AreEqual("11", dataGrid[0, 0].FindTextBlock().Text);
+                    Assert.AreEqual("11", cell.FindTextBlock().Text);
                     Assert.AreEqual("11", readOnlydataGrid[0, 0].FindTextBlock().Text);
                 }
             }
