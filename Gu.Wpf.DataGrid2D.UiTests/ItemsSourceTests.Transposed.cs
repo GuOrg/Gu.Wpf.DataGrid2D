@@ -13,6 +13,7 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
+                    window.WaitUntilResponsive();
                     var dataGrid = window.FindDataGrid("TransposedExplicitColumns");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(2, columnHeaders.Count);
