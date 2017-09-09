@@ -13,7 +13,6 @@
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
                     var window = app.MainWindow;
-                    window.WaitUntilResponsive();
                     var dataGrid = window.FindDataGrid("AutoColumns");
 
                     var columnHeaders = dataGrid.ColumnHeaders;

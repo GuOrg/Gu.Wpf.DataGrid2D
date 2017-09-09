@@ -13,7 +13,6 @@
                 using (var app = Application.Launch(Info.ExeFileName, "Array2DWindow"))
                 {
                     var window = app.MainWindow;
-                    window.WaitUntilResponsive();
                     var dataGrid = window.FindDataGrid("AutoColumns");
 
                     Assert.AreEqual(3, dataGrid.RowCount);

@@ -13,7 +13,6 @@
                 using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
                     var window = app.MainWindow;
-                    window.WaitUntilResponsive();
                     var dataGrid = window.FindDataGrid("AutoColumns");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(2, columnHeaders.Count);
