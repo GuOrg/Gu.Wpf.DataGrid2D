@@ -8,14 +8,15 @@
         [Test]
         public void ClickAllTabs()
         {
+            // Just a smoke test so that we do not explode.
             using (var app = Application.Launch(Info.ExeFileName))
             {
                 var window = app.MainWindow;
-                var tabControl = window.FindTabControl();
-                foreach (var item in tabControl.Items)
+                Assert.AreEqual("MainWindow", window.Title);
+                var tab = window.FindTabControl();
+                foreach (var tabItem in tab.Items)
                 {
-                    item.Click();
-                    window.WaitUntilResponsive();
+                    tabItem.Click();
                 }
             }
         }
