@@ -18,5 +18,5 @@ GROUP Test
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    Gu.Wpf.UiAutomation (0.1.9-dev)
+    Gu.Wpf.UiAutomation (0.1.10-dev)
     NUnit (3.8.1)
