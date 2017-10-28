@@ -6,7 +6,7 @@ NUGET
   remote: http://www.nuget.org/api/v2
     JetBrains.Annotations (11.0)
     StyleCop.Analyzers (1.0.2)
-    WpfAnalyzers (0.2.7.10)
+    WpfAnalyzers (0.3.0)
 
 GROUP Build
 RESTRICTION: >= net45
