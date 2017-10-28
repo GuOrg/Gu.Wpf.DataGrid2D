@@ -4,27 +4,19 @@ GROUP Analyzers
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    JetBrains.Annotations (11.0)
+    JetBrains.Annotations (11.1)
     StyleCop.Analyzers (1.0.2)
-    WpfAnalyzers (0.3.0)
+    WpfAnalyzers (0.3)
 
 GROUP Build
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    SourceLink.Create.CommandLine (2.4)
+    SourceLink.Create.CommandLine (2.5)
 
 GROUP Test
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    Gu.Wpf.UiAutomation (0.1.16)
-    Microsoft.NETCore.Platforms (2.0) - restriction: || (&& (>= monoandroid) (>= net45) (< netstandard1.0)) (&& (>= monoandroid) (>= net45) (>= netstandard1.2) (< netstandard1.3)) (&& (>= monoandroid) (>= net45) (< netstandard1.3) (>= netstandard1.4)) (&& (>= monoandroid) (>= net45) (< netstandard1.3) (>= netstandard1.5)) (&& (>= monoandroid) (>= net45) (< netstandard1.3) (>= wpa81)) (&& (>= monoandroid) (>= net45) (< portable-net45+win8+wpa81)) (&& (>= monoandroid) (>= net45) (< portable-net451+win81+wpa81)) (&& (>= monoandroid) (>= net451) (< netstandard1.3)) (&& (>= monoandroid) (>= net46) (< netstandard1.3)) (&& (>= monoandroid) (>= net461) (< netstandard1.3)) (&& (< net20) (>= net45) (< netstandard1.0) (>= netstandard1.3)) (&& (< net20) (>= net45) (>= netstandard1.3) (< netstandard1.4)) (&& (< net20) (>= net45) (>= netstandard1.3) (< portable-net45+win8+wpa81)) (&& (< net20) (>= net45) (>= netstandard1.3) (< portable-net451+win81+wpa81)) (&& (< net20) (>= net45) (>= netstandard1.4) (< netstandard1.5)) (&& (< net20) (>= net45) (>= netstandard1.5)) (&& (< net20) (>= net46) (< netstandard1.4)) (&& (< net20) (>= net461)) (&& (>= net45) (>= netstandard1.6)) (&& (>= net45) (>= uap10.0)) (&& (>= net451) (< netstandard1.3) (>= netstandard1.6)) (&& (>= net451) (< netstandard1.3) (>= uap10.0)) (&& (>= net46) (< netstandard1.4) (>= netstandard1.6)) (&& (>= net46) (< netstandard1.4) (>= uap10.0)) (&& (>= net461) (>= netstandard1.6)) (&& (>= net461) (>= uap10.0))
-    NETStandard.Library (2.0) - restriction: || (&& (>= monoandroid) (>= net45) (< netstandard1.3)) (&& (< net20) (>= net45) (>= netstandard1.3)) (&& (>= net45) (>= netstandard1.6)) (&& (>= net45) (>= uap10.0))
-      Microsoft.NETCore.Platforms (>= 1.1)
+    Gu.Wpf.UiAutomation (0.1.17)
     NUnit (3.8.1)
-      NETStandard.Library (>= 1.6) - restriction: || (&& (>= monoandroid) (>= net45) (< netstandard1.3)) (&& (< net20) (>= net45) (>= netstandard1.3)) (&& (>= net45) (>= netstandard1.6)) (&& (>= net45) (>= uap10.0))
-      System.Runtime.Loader (>= 4.3) - restriction: && (>= net45) (>= netstandard1.6)
-      System.Threading.Thread (>= 4.3) - restriction: && (>= net45) (>= netstandard1.6)
-    System.Runtime.Loader (4.3) - restriction: && (>= net45) (>= netstandard1.6)
-    System.Threading.Thread (4.3) - restriction: && (>= net45) (>= netstandard1.6)
