@@ -7,6 +7,7 @@
 
     public static class Cell
     {
+        /// <summary>Identifies the <see cref="Template"/> dependency property.</summary>
         public static readonly DependencyProperty TemplateProperty = DependencyProperty.RegisterAttached(
             "Template",
             typeof(DataTemplate),
@@ -15,6 +16,7 @@
                 null,
                 OnTemplateChanged));
 
+        /// <summary>Identifies the <see cref="TemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty TemplateSelectorProperty = DependencyProperty.RegisterAttached(
             "TemplateSelector",
             typeof(DataTemplateSelector),
@@ -23,6 +25,7 @@
                 null,
                 OnTemplateSelectorChanged));
 
+        /// <summary>Identifies the <see cref="EditingTemplate"/> dependency property.</summary>
         public static readonly DependencyProperty EditingTemplateProperty = DependencyProperty.RegisterAttached(
             "EditingTemplate",
             typeof(DataTemplate),
@@ -31,6 +34,7 @@
                 null,
                 OnEditingTemplateChanged));
 
+        /// <summary>Identifies the <see cref="EditingTemplateSelector"/> dependency property.</summary>
         public static readonly DependencyProperty EditingTemplateSelectorProperty = DependencyProperty.RegisterAttached(
             "EditingTemplateSelector",
             typeof(DataTemplateSelector),
@@ -102,7 +106,7 @@
             var dataGrid = (DataGrid)d;
             foreach (var column in dataGrid.Columns.OfType<CellTemplateColumn>())
             {
-                column.SetCurrentValue(DataGridTemplateColumn.CellTemplateSelectorProperty, (DataTemplateSelector)e.NewValue);
+                column.SetCurrentValue(DataGridTemplateColumn.CellTemplateSelectorProperty, e.NewValue);
             }
 
             ListenToColumnAutoGeneration(dataGrid);
@@ -120,7 +124,7 @@
             var dataGrid = (DataGrid)d;
             foreach (var column in dataGrid.Columns.OfType<CellTemplateColumn>())
             {
-                column.SetCurrentValue(DataGridTemplateColumn.CellEditingTemplateSelectorProperty, (DataTemplateSelector)e.NewValue);
+                column.SetCurrentValue(DataGridTemplateColumn.CellEditingTemplateSelectorProperty, e.NewValue);
             }
 
             ListenToColumnAutoGeneration(dataGrid);
@@ -140,16 +144,14 @@
             {
                 for (int i = 0; i < dataGrid.Columns.Count; ++i)
                 {
-                    var col = dataGrid.Columns[i] as CellTemplateColumn;
-                    if (col != null)
+                    if (dataGrid.Columns[i] is CellTemplateColumn col)
                     {
                         var temp = editingtemplate ?
                                    col.GetValue(DataGridTemplateColumn.CellTemplateProperty) :
                                    col.GetValue(DataGridTemplateColumn.CellEditingTemplateProperty);
                         if (temp == null)
                         {
-                            var tcol = new DataGridTextColumn();
-                            tcol.Binding = col.Binding;
+                            var tcol = new DataGridTextColumn { Binding = col.Binding };
                             dataGrid.Columns[i] = tcol;
                         }
                         else
@@ -163,11 +165,9 @@
             {
                 for (int i = 0; i < dataGrid.Columns.Count; ++i)
                 {
-                    var tcol = dataGrid.Columns[i] as DataGridTextColumn;
-                    if (tcol != null)
+                    if (dataGrid.Columns[i] is DataGridTextColumn tcol)
                     {
-                        var col = new CellTemplateColumn();
-                        col.Binding = tcol.Binding;
+                        var col = new CellTemplateColumn { Binding = tcol.Binding };
                         if (!editingtemplate)
                         {
                             col.CellTemplate = (DataTemplate)e.NewValue;
