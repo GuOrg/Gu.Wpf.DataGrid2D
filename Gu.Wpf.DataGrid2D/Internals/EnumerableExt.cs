@@ -117,5 +117,10 @@
 
             return null;
         }
+
+        internal static bool IsEmpty(this IEnumerable source)
+        {
+            return !source.GetEnumerator().MoveNext();
+        }
     }
 }
