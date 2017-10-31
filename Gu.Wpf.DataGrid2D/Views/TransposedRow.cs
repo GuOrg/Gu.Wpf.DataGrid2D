@@ -24,7 +24,7 @@
                 propertyDescriptors[i + 1] = new TransposedPropertyDescriptor(i, property);
             }
 
-            this.properties = new PropertyDescriptorCollection(propertyDescriptors, true);
+            this.properties = new PropertyDescriptorCollection(propertyDescriptors, readOnly: true);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

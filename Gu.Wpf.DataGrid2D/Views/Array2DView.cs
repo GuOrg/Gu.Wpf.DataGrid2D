@@ -59,12 +59,12 @@ namespace Gu.Wpf.DataGrid2D
 
         public static Array2DView Create(Array source)
         {
-            return new Array2DView(source, false);
+            return new Array2DView(source, isTransposed: false);
         }
 
         public static Array2DView CreateTransposed(Array source)
         {
-            return new Array2DView(source, true);
+            return new Array2DView(source, isTransposed: true);
         }
 
         public IEnumerator<Array2DRowView> GetEnumerator() => ((IList<Array2DRowView>)this.rows).GetEnumerator();

@@ -11,6 +11,9 @@ namespace Gu.Wpf.DataGrid2D.Demo
     public sealed class BigDataGridViewModel : INotifyPropertyChanged
     {
         public static readonly BigDataGridViewModel Default = new BigDataGridViewModel();
+        private string[] rowHeaders;
+        private string[] columnHeaders;
+        private int[,] data2D;
         private int rows = 10; // small grid as default
         private int columns = 10;
         private TimeSpan updateTime;
@@ -23,19 +26,54 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string[] RowHeaders { get; private set; }
+        public string[] RowHeaders
+        {
+            get => this.rowHeaders;
+            private set
+            {
+                if (ReferenceEquals(value, this.rowHeaders))
+                {
+                    return;
+                }
 
-        public string[] ColumnHeaders { get; private set; }
+                this.rowHeaders = value;
+                this.OnPropertyChanged();
+            }
+        }
 
-        public int[,] Data2D { get; private set; }
+        public string[] ColumnHeaders
+        {
+            get => this.columnHeaders;
+            private set
+            {
+                if (ReferenceEquals(value, this.columnHeaders))
+                {
+                    return;
+                }
+
+                this.columnHeaders = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public int[,] Data2D
+        {
+            get => this.data2D;
+            private set
+            {
+                if (ReferenceEquals(value, this.data2D))
+                {
+                    return;
+                }
+
+                this.data2D = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         public int Rows
         {
-            get
-            {
-                return this.rows;
-            }
-
+            get => this.rows;
             set
             {
                 if (value == this.rows)
@@ -50,11 +88,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public int Columns
         {
-            get
-            {
-                return this.columns;
-            }
-
+            get => this.columns;
             set
             {
                 if (value == this.columns)
@@ -69,11 +103,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public TimeSpan UpdateTime
         {
-            get
-            {
-                return this.updateTime;
-            }
-
+            get => this.updateTime;
             set
             {
                 if (value.Equals(this.updateTime))

@@ -16,6 +16,8 @@
         private DataTemplate celltemplate2;
         private DataTemplate celleditingtemplate1;
         private DataTemplate celleditingtemplate2;
+        private DataTemplate myCellTemplate;
+        private DataTemplate myCellEditingTemplate;
 
         public CellTemplateVm()
         {
@@ -36,17 +38,19 @@
             {
                 for (int j = 0; j < 3; ++j)
                 {
-                    CellTemplateDemoClass cl = new CellTemplateDemoClass();
-                    cl.Value1 = i + j;
-                    cl.Value2 = 9 - j - i;
-
-                    cl.Background = new SolidColorBrush(new Color()
+                    CellTemplateDemoClass cl = new CellTemplateDemoClass
                     {
-                        A = (byte)r.Next(255),
-                        R = (byte)r.Next(255),
-                        G = (byte)r.Next(255),
-                        B = (byte)r.Next(255)
-                    });
+                        Value1 = i + j,
+                        Value2 = 9 - j - i,
+                        Background = new SolidColorBrush(new Color
+                        {
+                            A = (byte)r.Next(255),
+                            R = (byte)r.Next(255),
+                            G = (byte)r.Next(255),
+                            B = (byte)r.Next(255)
+                        })
+                    };
+
                     this.Data2D[i, j] = cl;
                 }
             }
@@ -63,10 +67,6 @@
         public ICommand UpdateDataCommand { get; }
 
         public ICommand ChangeCellTemplateCommand { get; }
-
-        public DataTemplate MyCellTemplate { get; set; }
-
-        public DataTemplate MyCellEditingTemplate { get; set; }
 
         public CellTemplateDemoClass[,] Data2D { get; }
 
@@ -94,6 +94,38 @@
                 {
                     return "CellTemplate and CellEditingTemplate both set to null";
                 }
+            }
+        }
+
+        public DataTemplate MyCellTemplate
+        {
+            get => this.myCellTemplate;
+            set
+            {
+                if (ReferenceEquals(value, this.myCellTemplate))
+                {
+                    return;
+                }
+
+                this.myCellTemplate = value;
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.BoundTemplate));
+            }
+        }
+
+        public DataTemplate MyCellEditingTemplate
+        {
+            get => this.myCellEditingTemplate;
+            set
+            {
+                if (ReferenceEquals(value, this.myCellEditingTemplate))
+                {
+                    return;
+                }
+
+                this.myCellEditingTemplate = value;
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.BoundTemplate));
             }
         }
 
@@ -131,9 +163,9 @@
                 this.MyCellEditingTemplate = this.celleditingtemplate1;
             }
 
-            this.OnPropertyChanged("MyCellTemplate");
-            this.OnPropertyChanged("MyCellEditingTemplate");
-            this.OnPropertyChanged("BoundTemplate");
+            this.OnPropertyChanged(nameof(this.MyCellTemplate));
+            this.OnPropertyChanged(nameof(this.MyCellEditingTemplate));
+            this.OnPropertyChanged(nameof(this.BoundTemplate));
         }
 
         private DataTemplate CreateCellTemplate(string property)

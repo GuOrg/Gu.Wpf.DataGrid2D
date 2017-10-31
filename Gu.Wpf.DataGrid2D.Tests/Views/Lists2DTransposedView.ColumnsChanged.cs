@@ -15,12 +15,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 1, 2 }),
                                new ObservableCollection<int>(new[] { 3, 4 })
                            };
-
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints.Add(new ObservableCollection<int>(new[] { 5, 6 }));
-                Assert.AreEqual(1, count);
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints.Add(new ObservableCollection<int>(new[] { 5, 6 }));
+                    Assert.AreEqual(1, count);
+                }
             }
 
             [Test]
@@ -32,12 +33,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 3 }),
                                new ObservableCollection<int>(new[] { 5, 6 })
                            };
-
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints.RemoveAt(0);
-                Assert.AreEqual(1, count);
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints.RemoveAt(0);
+                    Assert.AreEqual(1, count);
+                }
             }
 
             [Test]
@@ -49,12 +51,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 3, 4 }),
                                new ObservableCollection<int>(new[] { 5, 6 })
                            };
-
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints[0].RemoveAt(0);
-                Assert.AreEqual(1, count);
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints[0].RemoveAt(0);
+                    Assert.AreEqual(1, count);
+                }
             }
 
             [Test]
@@ -66,12 +69,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 3, 4 }),
                                new ObservableCollection<int>(new[] { 5, 6 })
                            };
-
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints[0].Add(1);
-                Assert.AreEqual(1, count);
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints[0].Add(1);
+                    Assert.AreEqual(1, count);
+                }
             }
 
             [Test]
@@ -83,12 +87,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 3, 4 }),
                                new ObservableCollection<int>(new[] { 5, 6 })
                            };
-
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints[0].Add(9);
-                Assert.AreEqual(1, count);
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints[0].Add(9);
+                    Assert.AreEqual(1, count);
+                }
             }
 
             [Test]
@@ -100,12 +105,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 3 }),
                                new ObservableCollection<int>(new[] { 5, 6 })
                            };
-
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints.RemoveAt(2);
-                Assert.AreEqual(1, count);
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints.RemoveAt(2);
+                    Assert.AreEqual(1, count);
+                }
             }
 
             [Test]
@@ -116,12 +122,13 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 1, 2 }),
                                new ObservableCollection<int>(new[] { 3, 4, 5 }),
                            };
-
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints[0].RemoveAt(0);
-                Assert.AreEqual(0, count);
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints[0].RemoveAt(0);
+                    Assert.AreEqual(0, count);
+                }
             }
 
             [Test]
@@ -133,18 +140,19 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                                new ObservableCollection<int>(new[] { 3, 4 }),
                                new ObservableCollection<int>(new[] { 5, 6 })
                            };
+                using (var view = new Lists2DTransposedView(ints))
+                {
+                    var count = 0;
+                    view.ColumnsChanged += (_, __) => count++;
+                    ints[0][0]++;
+                    Assert.AreEqual(0, count);
 
-                var view = new Lists2DTransposedView(ints);
-                int count = 0;
-                view.ColumnsChanged += (_, __) => count++;
-                ints[0][0]++;
-                Assert.AreEqual(0, count);
+                    ints[1][0]++;
+                    Assert.AreEqual(0, count);
 
-                ints[1][0]++;
-                Assert.AreEqual(0, count);
-
-                ints[2][1]++;
-                Assert.AreEqual(0, count);
+                    ints[2][1]++;
+                    Assert.AreEqual(0, count);
+                }
             }
         }
     }

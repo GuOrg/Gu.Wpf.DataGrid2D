@@ -14,7 +14,7 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string[] RowHeaders { get; private set; }
+        public string[] RowHeaders { get; }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

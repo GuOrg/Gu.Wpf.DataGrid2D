@@ -194,8 +194,8 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void SubscribeSelectionChanges(DataGrid dataGrid)
         {
-            dataGrid.UpdateHandler(DataGridCell.SelectedEvent, SelectedCellsChangedHandler, true);
-            dataGrid.UpdateHandler(DataGridCell.UnselectedEvent, SelectedCellsChangedHandler, true);
+            dataGrid.UpdateHandler(DataGridCell.SelectedEvent, SelectedCellsChangedHandler, handledEventsToo: true);
+            dataGrid.UpdateHandler(DataGridCell.UnselectedEvent, SelectedCellsChangedHandler, handledEventsToo: true);
             dataGrid.SetCurrentValue(IsSubscribingChangesProperty, BooleanBoxes.True);
         }
 

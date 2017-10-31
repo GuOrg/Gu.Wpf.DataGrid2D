@@ -10,7 +10,7 @@
         private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> ColumnDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
 
         private Array2DIndexPropertyDescriptor(Type elementType, int index)
-            : base(elementType, index, false)
+            : base(elementType, index, isReadOnly: false)
         {
         }
 

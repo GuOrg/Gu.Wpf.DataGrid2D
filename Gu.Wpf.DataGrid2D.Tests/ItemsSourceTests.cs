@@ -205,7 +205,6 @@
 
             Assert.AreEqual(1, dataGrid.GetCellValue(1, 0));
             Assert.AreEqual(2, dataGrid.GetCellValue(1, 1));
-
         }
 
         [Test]

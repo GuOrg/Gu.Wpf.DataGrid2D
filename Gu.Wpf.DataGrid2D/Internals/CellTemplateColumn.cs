@@ -35,12 +35,12 @@
 
         protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
         {
-            return this.LoadTemplateContent(true, dataItem, cell);
+            return this.LoadTemplateContent(isEditing: true, dataItem: dataItem, cell: cell);
         }
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
-            return this.LoadTemplateContent(false, dataItem, cell);
+            return this.LoadTemplateContent(isEditing: false, dataItem: dataItem, cell: cell);
         }
 
         private DataTemplate ChooseCellTemplate(bool isEditing)
