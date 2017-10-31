@@ -4,6 +4,6 @@
 
     public static class Info
     {
-        public static string ExeFileName { get; } = Application.FindExe("Gu.Wpf.DataGrid2D.Tests.exe");
+        public static string ExeFileName { get; } = Application.FindExe("Gu.Wpf.DataGrid2D.Demo.exe");
     }
 }
