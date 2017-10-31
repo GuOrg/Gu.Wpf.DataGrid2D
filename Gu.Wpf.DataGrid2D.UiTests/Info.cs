@@ -1,10 +1,9 @@
 ﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
-    using System;
-    using Gu.Wpf.DataGrid2D.Demo;
+    using Gu.Wpf.UiAutomation;
 
     public static class Info
     {
-        public static string ExeFileName { get; } = new Uri(typeof(MainWindow).Assembly.CodeBase, UriKind.Absolute).LocalPath;
+        public static string ExeFileName { get; } = Application.FindExe("Gu.Wpf.DataGrid2D.Tests.exe");
     }
 }
