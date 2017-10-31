@@ -2,6 +2,9 @@ group Build
   SourceLink.Create.CommandLine
 
 group Analyzers
+  AsyncUsageAnalyzers
+  IDisposableAnalyzers
+  Gu.Analyzers
   StyleCop.Analyzers
   WpfAnalyzers
   JetBrains.Annotations

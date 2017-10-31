@@ -4,8 +4,6 @@ tags xaml wpf datagrid attachedproperty
 projectUrl https://github.com/JohanLarsson/Gu.Wpf.DataGrid2D
 licenseUrl http://opensource.org/licenses/MIT
 
-excludeddependencies
-  JetBrains.Annotations
-  StyleCop.Analyzers
-  WpfAnalyzers
-  SourceLink.Create.CommandLine
+excludedgroups
+  Analyzers
+  Build

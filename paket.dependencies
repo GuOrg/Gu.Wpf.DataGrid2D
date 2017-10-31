@@ -6,8 +6,11 @@ group Build
   nuget SourceLink.Create.CommandLine
 
 group Analyzers
-  source http://www.nuget.org/api/v2/
-  framework: >= net45
+  source http://nuget.org/api/v2
+  nuget AsyncUsageAnalyzers
+  nuget IDisposableAnalyzers
+  nuget Gu.Analyzers
+  nuget PropertyChangedAnalyzers
   nuget StyleCop.Analyzers
   nuget WpfAnalyzers
   nuget JetBrains.Annotations
