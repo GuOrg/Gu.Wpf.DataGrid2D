@@ -185,5 +185,51 @@
             Assert.AreEqual("Svensson", dataGrid.GetCellValue(1, 2));
             */
         }
+
+        [Test]
+        public void EmptyRowsSource()
+        {
+            var ints = new ObservableCollection<ObservableCollection<int>>();
+
+            var dataGrid = new DataGrid();
+            dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
+            dataGrid.Initialize();
+
+            ints.Add(new ObservableCollection<int> { 0, 0, 0 });
+            ints.Add(new ObservableCollection<int> { 1, 2, 3 });
+
+            dataGrid.UpdateLayout();
+
+            Assert.AreEqual(0, dataGrid.GetCellValue(0, 0));
+            Assert.AreEqual(0, dataGrid.GetCellValue(0, 2));
+
+            Assert.AreEqual(1, dataGrid.GetCellValue(1, 0));
+            Assert.AreEqual(2, dataGrid.GetCellValue(1, 1));
+
+        }
+
+        [Test]
+        public void EmptyColumnsSource()
+        {
+            var ints = new ObservableCollection<ObservableCollection<int>>();
+
+            var dataGrid = new DataGrid();
+            dataGrid.SetValue(ItemsSource.ColumnsSourceProperty, ints);
+            dataGrid.Initialize();
+
+            ints.Add(new ObservableCollection<int>());
+            ints.Add(new ObservableCollection<int> { 1, 2, 3 });
+            ints.Clear();
+            ints.Add(new ObservableCollection<int> { 4, 5, 6 });
+            ints.Add(new ObservableCollection<int> { 7, 8, 9 });
+
+            dataGrid.UpdateLayout();
+
+            Assert.AreEqual(4, dataGrid.GetCellValue(0, 0));
+            Assert.AreEqual(5, dataGrid.GetCellValue(1, 0));
+
+            Assert.AreEqual(6, dataGrid.GetCellValue(2, 0));
+            Assert.AreEqual(9, dataGrid.GetCellValue(2, 1));
+        }
     }
 }

@@ -12,9 +12,11 @@ namespace Gu.Wpf.DataGrid2D
         public Lists2DView(IEnumerable<IEnumerable> source)
             : base(source)
         {
-            this.MaxColumnCount = source.Max(x => x.Count());
-            this.ColumnElementTypes = Enumerable.Repeat(source.ElementAt(0).GetElementType(), this.MaxColumnCount).ToList();
-            var min = this.Source.Min(x => x.Count());
+            bool isEmpty = source.IsEmpty();
+            this.MaxColumnCount = isEmpty ? 0 : source.Max(x => x.Count());
+            var itemType = source.GetElementType().GetEnumerableItemType();
+            this.ColumnElementTypes = Enumerable.Repeat(itemType, this.MaxColumnCount).ToList();
+            var min = isEmpty ? 0 : this.Source.Min(x => x.Count());
             this.ColumnIsReadOnlies = Enumerable.Repeat(false, min)
                                                 .Concat(Enumerable.Repeat(true, this.MaxColumnCount - min))
                                                 .ToList();
