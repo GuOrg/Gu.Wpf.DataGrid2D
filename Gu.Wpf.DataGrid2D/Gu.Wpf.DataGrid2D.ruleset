@@ -82,5 +82,17 @@
     <Rule Id="WA1202" Action="Error" />
     <Rule Id="WA1210" Action="Error" />
     <Rule Id="WPF0060" Action="Warning" />
+    <Rule Id="WPF0061" Action="Warning" />
+    <Rule Id="WPF0051" Action="Warning" />
+    <Rule Id="WPF0052" Action="Warning" />
+    <Rule Id="WPF0050" Action="Warning" />
+    <Rule Id="WPF0017" Action="Warning" />
+    <Rule Id="WPF0010" Action="Warning" />
+    <Rule Id="WPF0013" Action="Warning" />
+    <Rule Id="WPF0014" Action="Warning" />
+    <Rule Id="WPF0015" Action="Warning" />
+    <Rule Id="WPF0031" Action="Warning" />
+    <Rule Id="WPF0032" Action="Warning" />
+    <Rule Id="WPF0040" Action="Warning" />
   </Rules>
 </RuleSet>

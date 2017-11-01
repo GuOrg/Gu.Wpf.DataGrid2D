@@ -3,7 +3,6 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Windows.Media;
-    using JetBrains.Annotations;
 
     public class CellTemplateDemoClass : INotifyPropertyChanged
     {
@@ -15,10 +14,7 @@
 
         public int Value1
         {
-            get
-            {
-                return this.value1;
-            }
+            get => this.value1;
 
             set
             {
@@ -34,10 +30,7 @@
 
         public int Value2
         {
-            get
-            {
-                return this.value2;
-            }
+            get => this.value2;
 
             set
             {
@@ -53,10 +46,7 @@
 
         public SolidColorBrush Background
         {
-            get
-            {
-                return this.background;
-            }
+            get => this.background;
 
             set
             {
@@ -70,7 +60,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -32,16 +32,20 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
+        /// <inheritdoc />
         public int Count => this.rows.Length;
 
+        /// <inheritdoc />
         public bool IsReadOnly => false;
 
+        /// <inheritdoc />
         public bool IsFixedSize => true;
 
         object ICollection.SyncRoot => this.Array.SyncRoot;
 
         bool ICollection.IsSynchronized => this.Array.IsSynchronized;
 
+        /// <inheritdoc />
         public IEnumerable Source => this.Array;
 
         public bool IsTransposed { get; }

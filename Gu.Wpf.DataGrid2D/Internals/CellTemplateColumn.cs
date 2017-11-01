@@ -21,7 +21,7 @@
                 if (this.binding != value)
                 {
                     this.binding = value;
-                    this.CoerceValue(DataGridColumn.SortMemberPathProperty);
+                    this.CoerceValue(SortMemberPathProperty);
                     this.NotifyPropertyChanged(nameof(this.Binding));
                 }
             }

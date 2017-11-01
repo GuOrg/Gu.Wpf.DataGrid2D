@@ -8,14 +8,13 @@
     using System.Windows.Data;
     using System.Windows.Input;
     using System.Windows.Media;
-    using JetBrains.Annotations;
 
     public class CellTemplateVm : INotifyPropertyChanged
     {
-        private DataTemplate celltemplate1;
-        private DataTemplate celltemplate2;
-        private DataTemplate celleditingtemplate1;
-        private DataTemplate celleditingtemplate2;
+        private readonly DataTemplate celltemplate1;
+        private readonly DataTemplate celltemplate2;
+        private readonly DataTemplate celleditingtemplate1;
+        private readonly DataTemplate celleditingtemplate2;
         private DataTemplate myCellTemplate;
         private DataTemplate myCellEditingTemplate;
 
@@ -129,7 +128,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

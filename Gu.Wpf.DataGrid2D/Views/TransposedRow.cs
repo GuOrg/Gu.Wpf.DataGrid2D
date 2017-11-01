@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using JetBrains.Annotations;
 
     public class TransposedRow : CustomTypeDescriptor, INotifyPropertyChanged
     {
@@ -52,7 +51,6 @@
             this.OnPropertyChanged(this.properties[indexOf + 1].Name);
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -6,7 +6,6 @@ namespace Gu.Wpf.DataGrid2D.Demo
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
-    using JetBrains.Annotations;
 
     public sealed class BigDataGridViewModel : INotifyPropertyChanged
     {
@@ -145,7 +144,6 @@ namespace Gu.Wpf.DataGrid2D.Demo
             Mouse.OverrideCursor = null;
         }
 
-        [NotifyPropertyChangedInvocator]
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

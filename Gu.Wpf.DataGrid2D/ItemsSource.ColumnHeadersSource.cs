@@ -26,11 +26,21 @@
             typeof(ItemsSource),
             new PropertyMetadata(default(ColumnHeaderListener)));
 
+        /// <summary>
+        /// Helper for setting ColumnHeadersSource property on a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to set ColumnHeadersSource property on.</param>
+        /// <param name="value">ColumnHeadersSource property value.</param>
         public static void SetColumnHeadersSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(ColumnHeadersSourceProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading ColumnHeadersSource property from a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to read ColumnHeadersSource property from.</param>
+        /// <returns>ColumnHeadersSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static IEnumerable GetColumnHeadersSource(this DataGrid element)
@@ -76,19 +86,9 @@
 
         private static bool HeadersSourceValidateValue(object value)
         {
-            if (value == null)
-            {
-                return true;
-            }
-
-            var list = value as IList;
-            if (list != null)
-            {
-                return true;
-            }
-
-            var rol = value as IReadOnlyList<object>;
-            if (rol != null)
+            if (value == null ||
+                value is IList ||
+                value is IReadOnlyList<object>)
             {
                 return true;
             }

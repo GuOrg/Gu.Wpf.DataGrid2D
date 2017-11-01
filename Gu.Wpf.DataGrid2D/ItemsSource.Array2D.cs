@@ -5,8 +5,14 @@
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    /// <summary>
+    /// Attached properties for setting ItemsSource to 2D collections of different shapes.
+    /// </summary>
     public static partial class ItemsSource
     {
+        /// <summary>
+        /// For setting the <see cref="ItemsControl.ItemsSourceProperty"/> to a two-dimensional array.
+        /// </summary>
         public static readonly DependencyProperty Array2DProperty = DependencyProperty.RegisterAttached(
             "Array2D",
             typeof(Array),
@@ -16,11 +22,21 @@
                 OnArray2DChanged),
             Array2DValidateValue);
 
+        /// <summary>
+        /// Helper for setting Array2D property on a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to set Array2D property on.</param>
+        /// <param name="value">Array2D property value.</param>
         public static void SetArray2D(this DataGrid element, Array value)
         {
             element.SetValue(Array2DProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading Array2D property from a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to read Array2D property from.</param>
+        /// <returns>Array2D property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static Array GetArray2D(this DataGrid element)
@@ -46,8 +62,7 @@
 
         private static bool Array2DValidateValue(object value)
         {
-            var array = value as Array;
-            if (array != null)
+            if (value is Array array)
             {
                 return array.Rank == 2;
             }

@@ -9,7 +9,6 @@ namespace Gu.Wpf.DataGrid2D
     using System.Runtime.CompilerServices;
     using System.Windows;
     using System.Windows.Controls;
-    using JetBrains.Annotations;
 
     public abstract class Lists2DViewBase : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable, IView2D, IColumnsChanged
     {
@@ -23,9 +22,7 @@ namespace Gu.Wpf.DataGrid2D
         protected Lists2DViewBase(IEnumerable<IEnumerable> source)
         {
             this.source.Target = source;
-
-            var incc = source as INotifyCollectionChanged;
-            if (incc != null)
+            if (source is INotifyCollectionChanged incc)
             {
                 CollectionChangedEventManager.AddListener(incc, this);
             }
@@ -44,10 +41,13 @@ namespace Gu.Wpf.DataGrid2D
         /// </summary>
         public event EventHandler ColumnsChanged;
 
+        /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <inheritdoc />
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
+        /// <inheritdoc />
         public int Count => this.Rows.Count;
 
         bool IList.IsReadOnly => this.Source.IsReadOnly();
@@ -106,9 +106,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public void Dispose()
         {
-            var incc = this.Source as INotifyCollectionChanged;
-
-            if (incc != null)
+            if (this.Source is INotifyCollectionChanged incc)
             {
                 CollectionChangedEventManager.RemoveListener(incc, this);
             }
@@ -149,7 +147,6 @@ namespace Gu.Wpf.DataGrid2D
             this.PropertyChanged?.Invoke(this, e);
         }
 
-        [NotifyPropertyChangedInvocator]
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

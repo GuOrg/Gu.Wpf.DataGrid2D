@@ -25,11 +25,21 @@
                 default(object),
                 OnPropertySourceChanged));
 
+        /// <summary>
+        /// Helper for setting TransposedSource property on a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to set TransposedSource property on.</param>
+        /// <param name="value">TransposedSource property value.</param>
         public static void SetTransposedSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(TransposedSourceProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading TransposedSource property from a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to read TransposedSource property from.</param>
+        /// <returns>TransposedSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static IEnumerable GetTransposedSource(this DataGrid element)
@@ -37,11 +47,21 @@
             return (IEnumerable)element.GetValue(TransposedSourceProperty);
         }
 
+        /// <summary>
+        /// Helper for setting PropertySource property on a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to set PropertySource property on.</param>
+        /// <param name="value">PropertySource property value.</param>
         public static void SetPropertySource(DependencyObject element, object value)
         {
             element.SetValue(PropertySourceProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading PropertySource property from a DependencyObject.
+        /// </summary>
+        /// <param name="element">DependencyObject to read PropertySource property from.</param>
+        /// <returns>PropertySource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static object GetPropertySource(DependencyObject element)
@@ -72,8 +92,7 @@
                 return null;
             }
 
-            var enumerable = baseValue as IEnumerable;
-            if (enumerable != null)
+            if (baseValue is IEnumerable)
             {
                 return baseValue;
             }

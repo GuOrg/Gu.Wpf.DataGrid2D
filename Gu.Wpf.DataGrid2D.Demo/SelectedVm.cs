@@ -4,7 +4,6 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using JetBrains.Annotations;
 
     public class SelectedVm : INotifyPropertyChanged
     {
@@ -41,10 +40,7 @@
 
         public ItemVm SelectedItem
         {
-            get
-            {
-                return this.selectedItem;
-            }
+            get => this.selectedItem;
 
             set
             {
@@ -60,10 +56,7 @@
 
         public RowColumnIndex? Index
         {
-            get
-            {
-                return this.index;
-            }
+            get => this.index;
 
             set
             {
@@ -77,7 +70,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

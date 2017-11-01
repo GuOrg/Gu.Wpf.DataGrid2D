@@ -4,8 +4,6 @@
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
 
-    using JetBrains.Annotations;
-
     public class PropertyChangedViewModel : INotifyPropertyChanged
     {
         private string[,] strings = { { "1", "2" }, { "3", "4" }, { "5", "6" } };
@@ -20,10 +18,7 @@
 
         public string[,] Strings
         {
-            get
-            {
-                return this.strings;
-            }
+            get => this.strings;
 
             set
             {
@@ -39,7 +34,6 @@
 
         public ICommand UpdateDataCommand { get; }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

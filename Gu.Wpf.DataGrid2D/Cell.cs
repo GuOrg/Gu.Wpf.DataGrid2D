@@ -5,6 +5,9 @@
     using System.Windows;
     using System.Windows.Controls;
 
+    /// <summary>
+    /// Exposes attached properties for <see cref="DataGrid"/> cells.
+    /// </summary>
     public static class Cell
     {
         /// <summary>

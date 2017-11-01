@@ -2,7 +2,6 @@
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using JetBrains.Annotations;
 
     public class ItemVm : INotifyPropertyChanged
     {
@@ -20,10 +19,7 @@
 
         public bool IsSelected
         {
-            get
-            {
-                return this.isSelected;
-            }
+            get => this.isSelected;
 
             set
             {
@@ -39,10 +35,7 @@
 
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
+            get => this.name;
 
             set
             {
@@ -58,10 +51,7 @@
 
         public int Value
         {
-            get
-            {
-                return this.value;
-            }
+            get => this.value;
 
             set
             {
@@ -81,7 +71,6 @@
             return this.Name;
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
-    using JetBrains.Annotations;
 
     public class JaggedVm : INotifyPropertyChanged
     {
@@ -42,10 +41,7 @@
 
         public string Data
         {
-            get
-            {
-                return this.data;
-            }
+            get => this.data;
 
             private set
             {
@@ -59,7 +55,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

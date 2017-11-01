@@ -25,11 +25,21 @@
             typeof(ItemsSource),
             new PropertyMetadata(default(RowHeaderListener)));
 
+        /// <summary>
+        /// Helper for setting RowHeadersSource property on a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to set RowHeadersSource property on.</param>
+        /// <param name="value">RowHeadersSource property value.</param>
         public static void SetRowHeadersSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(RowHeadersSourceProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading RowHeadersSource property from a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to read RowHeadersSource property from.</param>
+        /// <returns>RowHeadersSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static IEnumerable GetRowHeadersSource(this DataGrid element)

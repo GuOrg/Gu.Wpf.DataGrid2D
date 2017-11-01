@@ -15,11 +15,21 @@
             new PropertyMetadata(default(IEnumerable), OnColumnsSourceChanged),
             ColumnsSourceValidateValue);
 
+        /// <summary>
+        /// Helper for setting ColumnsSource property on a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to set ColumnsSource property on.</param>
+        /// <param name="value">ColumnsSource property value.</param>
         public static void SetColumnsSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(ColumnsSourceProperty, value);
         }
 
+        /// <summary>
+        /// Helper for reading ColumnsSource property from a DataGrid.
+        /// </summary>
+        /// <param name="element">DataGrid to read ColumnsSource property from.</param>
+        /// <returns>ColumnsSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static IEnumerable GetColumnsSource(this DataGrid element)

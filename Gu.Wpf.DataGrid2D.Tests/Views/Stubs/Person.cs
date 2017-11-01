@@ -2,7 +2,6 @@
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using JetBrains.Annotations;
 
     public class Person : INotifyPropertyChanged
     {
@@ -13,10 +12,7 @@
 
         public string FirstName
         {
-            get
-            {
-                return this.firstName;
-            }
+            get => this.firstName;
 
             set
             {
@@ -32,10 +28,7 @@
 
         public string LastName
         {
-            get
-            {
-                return this.lastName;
-            }
+            get => this.lastName;
 
             set
             {
@@ -49,7 +42,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
