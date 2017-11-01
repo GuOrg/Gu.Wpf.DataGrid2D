@@ -70,9 +70,9 @@
 
         object IList.this[int index]
         {
-            get { return this.rows[index]; }
+            get => this.rows[index];
             //// ReSharper disable once ValueParameterNotUsed
-            set { ThrowNotSupported(); }
+            set => ThrowNotSupported();
         }
 
         bool IWeakEventListener.ReceiveWeakEvent(Type managerType, object sender, EventArgs e)

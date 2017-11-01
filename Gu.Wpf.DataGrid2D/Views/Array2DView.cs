@@ -56,9 +56,9 @@ namespace Gu.Wpf.DataGrid2D
 
         object IList.this[int index]
         {
-            get { return this[index]; }
+            get => this[index];
             //// ReSharper disable once ValueParameterNotUsed
-            set { ThrowNotSupported(); }
+            set => ThrowNotSupported();
         }
 
         public static Array2DView Create(Array source)

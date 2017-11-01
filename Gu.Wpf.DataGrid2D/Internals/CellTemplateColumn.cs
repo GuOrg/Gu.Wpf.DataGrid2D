@@ -11,10 +11,7 @@
 
         public BindingBase Binding
         {
-            get
-            {
-                return this.binding;
-            }
+            get => this.binding;
 
             set
             {
@@ -29,8 +26,8 @@
 
         public override BindingBase ClipboardContentBinding
         {
-            get { return base.ClipboardContentBinding ?? this.Binding; }
-            set { base.ClipboardContentBinding = value; }
+            get => base.ClipboardContentBinding ?? this.Binding;
+            set => base.ClipboardContentBinding = value;
         }
 
         protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
