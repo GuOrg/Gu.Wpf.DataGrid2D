@@ -111,6 +111,15 @@
     <Compile Include="Array2DView.xaml.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SingleClickEditItem.cs">
+      <DependentUpon>SingleClickEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleClickEditView.xaml.cs">
+      <DependentUpon>SingleClickEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleClickEditViewModel.cs">
+      <DependentUpon>SingleClickEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TransposedView.xaml.cs">
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Array2DView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleClickEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
