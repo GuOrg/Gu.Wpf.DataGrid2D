@@ -41,5 +41,9 @@
         <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.CellTemplateTab}" Header="CellTemplate">
             <demo:CellTemplateView />
         </TabItem>
+
+        <TabItem Header="sort">
+            <demo:ThreeStateSortView />
+        </TabItem>
     </TabControl>
 </Window>

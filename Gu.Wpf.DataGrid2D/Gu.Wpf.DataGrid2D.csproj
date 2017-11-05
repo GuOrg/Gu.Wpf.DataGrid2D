@@ -67,6 +67,7 @@
     <Compile Include="ItemsSource.Array2D.cs" />
     <Compile Include="RowColumnIndex.cs" />
     <Compile Include="RowColumnIndexConverter.cs" />
+    <Compile Include="Sort.cs" />
     <Compile Include="Views\Array2DRowView.cs" />
     <Compile Include="Views\Array2DView.cs" />
     <Compile Include="Views\Array2DIndexPropertyDescriptor.cs" />
