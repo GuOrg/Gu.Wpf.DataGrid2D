@@ -49,6 +49,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddRemoveView.xaml.cs">
+      <DependentUpon>AddRemoveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddRemoveViewModel.cs">
+      <DependentUpon>AddRemoveView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Array2DVm.cs">
       <DependentUpon>Array2DView.xaml</DependentUpon>
     </Compile>
@@ -118,6 +124,10 @@
       <DependentUpon>TransposedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vm.cs" />
+    <Page Include="AddRemoveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CellTemplateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -341,5 +351,11 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Windows\AddRemoveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

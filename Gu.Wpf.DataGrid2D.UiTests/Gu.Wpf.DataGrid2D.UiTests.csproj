@@ -53,6 +53,7 @@
     </When>
   </Choose>
   <ItemGroup>
+    <Compile Include="AddRemoveTest.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="ItemsSourceTests.Array2D.cs" />
     <Compile Include="ItemsSourceTests.CellTemplate.cs" />

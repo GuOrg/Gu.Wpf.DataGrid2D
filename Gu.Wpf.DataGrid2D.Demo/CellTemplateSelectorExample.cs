@@ -11,9 +11,8 @@
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is CellTemplateDemoClass)
+            if (item is CellTemplateDemoClass democlass)
             {
-                CellTemplateDemoClass democlass = item as CellTemplateDemoClass;
                 if (democlass.Value1 > 2)
                 {
                     return this.FirstTemplate;
