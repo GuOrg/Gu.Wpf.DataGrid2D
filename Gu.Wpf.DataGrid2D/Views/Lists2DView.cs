@@ -81,7 +81,11 @@ namespace Gu.Wpf.DataGrid2D
                         this.Rows[row].RaiseColumnsChanged(changed.Count() - ccea.NewItems.Count, ccea.NewItems.Count);
                         break;
                     case NotifyCollectionChangedAction.Remove:
-                        this.Rows[row].RaiseColumnsChanged(changed.Count() - ccea.OldItems.Count, ccea.OldItems.Count);
+                        if (!changed.IsEmpty())
+                        {
+                            this.Rows[row].RaiseColumnsChanged(changed.Count() - ccea.OldItems.Count, ccea.OldItems.Count);
+                        }
+
                         break;
                     case NotifyCollectionChangedAction.Replace:
                         this.Rows[row].RaiseColumnsChanged(ccea.NewStartingIndex, 1);
