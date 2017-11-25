@@ -232,6 +232,12 @@
   -->
   <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
+    <Page Include="Windows\AddRemoveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Analyzer Include="..\packages\analyzers\AsyncUsageAnalyzers\analyzers\dotnet\AsyncUsageAnalyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
@@ -351,11 +357,5 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Windows\AddRemoveWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
 </Project>

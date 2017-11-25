@@ -45,12 +45,6 @@
         public static readonly string CellTemplateChangingGrid = Create();
         public static readonly string CellTemplateChangeButton = Create();
 
-        public static readonly string RemoveLastRowButton = Create();
-        public static readonly string RemoveLastColumnButton = Create();
-        public static readonly string AddRowButton = Create();
-        public static readonly string AddColumnButton = Create();
-        public static readonly string DataGridData = Create();
-
         private static string Create([CallerMemberName] string name = null)
         {
             return name;

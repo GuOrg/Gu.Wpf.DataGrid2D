@@ -5,27 +5,27 @@ NUGET
   remote: http://www.nuget.org/api/v2
     AsyncUsageAnalyzers (1.0.0-alpha003)
     Gu.Analyzers (1.1.0-dev)
-    IDisposableAnalyzers (0.1.2-dev)
+    IDisposableAnalyzers (0.1.3.1-dev)
     JetBrains.Annotations (11.1)
       System.Runtime (>= 4.1) - restriction: && (< net10) (>= netstandard1.0)
-    Microsoft.NETCore.Platforms (2.0) - restriction: || (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< monotouch) (< net10) (>= netstandard1.5) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
+    Microsoft.NETCore.Platforms (2.0.1) - restriction: || (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< monotouch) (< net10) (>= netstandard1.5) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
     Microsoft.NETCore.Targets (2.0) - restriction: || (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< monotouch) (< net10) (>= netstandard1.5) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
-    PropertyChangedAnalyzers (2.2.1)
+    PropertyChangedAnalyzers (2.5.1)
     StyleCop.Analyzers (1.0.2)
     System.Runtime (4.3) - restriction: && (< net10) (>= netstandard1.0)
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: || (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< monotouch) (< net45) (>= netstandard1.5) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (< portable-net45+win8+wp8+wpa81)
       Microsoft.NETCore.Targets (>= 1.1) - restriction: || (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< monotouch) (< net45) (>= netstandard1.5) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (< portable-net45+win8+wp8+wpa81)
-    WpfAnalyzers (0.3.1)
+    WpfAnalyzers (0.3.3)
 
 GROUP Build
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    SourceLink.Create.CommandLine (2.5)
+    SourceLink.Create.CommandLine (2.6)
 
 GROUP Test
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
     Gu.Wpf.UiAutomation (0.1.17)
-    NUnit (3.8.1)
+    NUnit (3.9)
