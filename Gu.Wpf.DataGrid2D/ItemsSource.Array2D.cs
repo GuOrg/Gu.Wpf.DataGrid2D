@@ -57,7 +57,7 @@
             var array2DView = Array2DView.Create(array);
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(array2DView);
-            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
+            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
 
         private static bool Array2DValidateValue(object value)

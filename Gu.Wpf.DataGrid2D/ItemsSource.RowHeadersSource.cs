@@ -61,12 +61,12 @@
                     BindingOperations.ClearBinding(row, DataGridRow.HeaderProperty);
                 }
 
-                dataGrid.RemoveHandler(Events.RowsChanged, OnRowsChangedHandler);
+                dataGrid.RemoveHandler(Events.RowsChangedEvent, OnRowsChangedHandler);
                 return;
             }
 
             dataGrid.SetCurrentValue(RowHeaderListenerProperty, new RowHeaderListener(dataGrid));
-            dataGrid.UpdateHandler(Events.RowsChanged, OnRowsChangedHandler);
+            dataGrid.UpdateHandler(Events.RowsChangedEvent, OnRowsChangedHandler);
             OnRowsChanged(dataGrid, null);
         }
 

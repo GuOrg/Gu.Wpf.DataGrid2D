@@ -62,7 +62,7 @@ namespace Gu.Wpf.DataGrid2D
 
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
                     .OneWayTo(view);
-            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChanged));
+            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
     }
 }

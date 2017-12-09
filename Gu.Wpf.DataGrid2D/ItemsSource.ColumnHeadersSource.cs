@@ -62,12 +62,12 @@
                     BindingOperations.ClearBinding(column, DataGridColumn.HeaderProperty);
                 }
 
-                dataGrid.RemoveHandler(Events.ColumnsChanged, OnColumnsChangedHandler);
+                dataGrid.RemoveHandler(Events.ColumnsChangedEvent, OnColumnsChangedHandler);
                 return;
             }
 
             dataGrid.SetCurrentValue(ColumnHeaderListenerProperty, new ColumnHeaderListener(dataGrid));
-            dataGrid.UpdateHandler(Events.ColumnsChanged, OnColumnsChangedHandler);
+            dataGrid.UpdateHandler(Events.ColumnsChangedEvent, OnColumnsChangedHandler);
             OnColumnsChanged(dataGrid, null);
         }
 

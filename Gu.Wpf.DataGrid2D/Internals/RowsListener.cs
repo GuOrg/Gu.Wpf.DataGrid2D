@@ -7,7 +7,7 @@ namespace Gu.Wpf.DataGrid2D
 
     internal class RowsListener : IDisposable
     {
-        private static readonly RoutedEventArgs RowsChangedEventArgs = new RoutedEventArgs(Events.RowsChanged);
+        private static readonly RoutedEventArgs RowsChangedEventArgs = new RoutedEventArgs(Events.RowsChangedEvent);
 
         private readonly DataGrid dataGrid;
         private bool disposed;

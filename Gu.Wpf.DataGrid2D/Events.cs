@@ -4,36 +4,36 @@
 
     internal static class Events
     {
-        internal static readonly RoutedEvent ColumnsChanged = EventManager.RegisterRoutedEvent(
+        internal static readonly RoutedEvent ColumnsChangedEvent = EventManager.RegisterRoutedEvent(
             "ColumnsChanged",
             RoutingStrategy.Direct,
             typeof(RoutedEventHandler),
-            typeof(ItemsSource));
+            typeof(Events));
 
-        internal static readonly RoutedEvent RowsChanged = EventManager.RegisterRoutedEvent(
+        internal static readonly RoutedEvent RowsChangedEvent = EventManager.RegisterRoutedEvent(
             "RowsChanged",
             RoutingStrategy.Direct,
             typeof(RoutedEventHandler),
-            typeof(ItemsSource));
+            typeof(Events));
 
         internal static void AddColumnsChangedHandler(this UIElement o, RoutedEventHandler handler)
         {
-            o.AddHandler(ColumnsChanged, handler);
+            o.AddHandler(ColumnsChangedEvent, handler);
         }
 
         internal static void RemoveColumnsChangedHandler(this UIElement o, RoutedEventHandler handler)
         {
-            o.RemoveHandler(ColumnsChanged, handler);
+            o.RemoveHandler(ColumnsChangedEvent, handler);
         }
 
         internal static void AddRowsChangedHandler(this UIElement o, RoutedEventHandler handler)
         {
-            o.AddHandler(RowsChanged, handler);
+            o.AddHandler(RowsChangedEvent, handler);
         }
 
         internal static void RemoveRowsChangedHandler(this UIElement o, RoutedEventHandler handler)
         {
-            o.RemoveHandler(RowsChanged, handler);
+            o.RemoveHandler(RowsChangedEvent, handler);
         }
     }
 }
