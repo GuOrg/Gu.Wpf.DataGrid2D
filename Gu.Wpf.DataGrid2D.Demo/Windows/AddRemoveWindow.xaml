@@ -5,5 +5,5 @@
         Width="400"
         Height="400"
         mc:Ignorable="d">
-  <demo:AddRemoveView />
+    <demo:AddRemoveView />
 </Window>

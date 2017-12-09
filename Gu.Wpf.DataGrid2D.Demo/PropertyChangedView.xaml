@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.PropertyChangedView"
+﻿<!--  ReSharper disable UnusedMember.Global  -->
+<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.PropertyChangedView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,10 +17,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Command="{Binding UpdateDataCommand}"
-                Content="Update" />
-        <DataGrid Grid.Row="1"
-                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.AutoColumns}"
+        <Button Command="{Binding UpdateDataCommand}" Content="Update" />
+        <DataGrid x:Name="AutoColumns"
+                  Grid.Row="1"
                   dataGrid2D:ItemsSource.Array2D="{Binding Strings}" />
     </Grid>
 </UserControl>

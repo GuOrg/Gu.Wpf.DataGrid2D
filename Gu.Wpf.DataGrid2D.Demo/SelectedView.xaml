@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.SelectedView"
+﻿<!--  ReSharper disable UnusedMember.Global  -->
+<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.SelectedView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,7 +15,6 @@
                   dataGrid2D:ItemsSource.RowsSource="{Binding RowVms}"
                   dataGrid2D:Selected.CellItem="{Binding SelectedItem}"
                   dataGrid2D:Selected.Index="{Binding Index}"
-                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionGrid}"
                   SelectionUnit="Cell" />
 
         <Grid>
@@ -37,39 +37,39 @@
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Text="Index: " />
-                <TextBox Grid.Row="0"
+                <TextBox x:Name="SelectedIndex"
+                         Grid.Row="0"
                          Grid.Column="1"
                          MinWidth="50"
                          HorizontalAlignment="Left"
-                         AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedIndex}"
                          Text="{Binding Index, TargetNullValue=''}" />
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            Text="Item: " />
-                <TextBlock Grid.Row="1"
+                <TextBlock x:Name="SelectedItem"
+                           Grid.Row="1"
                            Grid.Column="1"
-                           AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectedItem}"
                            Text="{Binding SelectedItem.Name}" />
-                <Button Grid.Row="2"
+                <Button x:Name="SelectionLoseFocusButton"
+                        Grid.Row="2"
                         Grid.Column="0"
-                        AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionLoseFocusButton}"
                         Content="Lose focus" />
                 <!--<StackPanel Grid.Row="3"
                             Grid.Column="0"
                             Grid.ColumnSpan="2">
-                    <CheckBox AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellIsReadonly}"
+                    <CheckBox x:Name="CellIsReadonly"
                               Content="IsReadOnly"
                               IsChecked="{Binding CurrentCell.IsReadOnly, ElementName=DataGrid}" />
-                    <CheckBox AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellIsSelected}"
+                    <CheckBox x:Name="CellIsSelected"
                               Content="IsSelected"
                               IsChecked="{Binding CurrentCell.IsSelected, ElementName=DataGrid}" />
                 </StackPanel>-->
             </Grid>
         </Grid>
 
-        <ListBox HorizontalAlignment="Center"
+        <ListBox x:Name="SelectionList"
+                 HorizontalAlignment="Center"
                  VerticalAlignment="Center"
-                 AutomationProperties.AutomationId="{x:Static local:AutomationIds.SelectionList}"
                  ItemsSource="{Binding AllRowsItems}"
                  SelectedItem="{Binding SelectedItem}">
             <ListBox.ItemsPanel>

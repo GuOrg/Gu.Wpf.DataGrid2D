@@ -6,27 +6,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         d:DataContext="{d:DesignInstance demo:Vm}"
-        AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MainWindow}"
         WindowState="Maximized"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.MultiDimensionalTab}" Header="int[,]">
+        <TabItem Header="int[,]">
             <demo:Array2DView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.JaggedTab}" Header="int[][]">
+        <TabItem Header="int[][]">
             <demo:JaggedView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.ObservableTab}" Header="OC&lt;OC&lt;T&gt;&gt;">
+        <TabItem Header="OC&lt;OC&lt;T&gt;&gt;">
             <demo:ObservableView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.TransposedTab}" Header="Transposed">
+        <TabItem Header="Transposed">
             <demo:TransposedView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.SelectionTab}" Header="SelectedCellItem">
+        <TabItem Header="SelectedCellItem">
             <demo:SelectedView />
         </TabItem>
 
@@ -38,7 +37,7 @@
             <demo:RowNumbersView />
         </TabItem>
 
-        <TabItem AutomationProperties.AutomationId="{x:Static demo:AutomationIds.CellTemplateTab}" Header="CellTemplate">
+        <TabItem Header="CellTemplate">
             <demo:CellTemplateView />
         </TabItem>
 

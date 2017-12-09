@@ -93,39 +93,39 @@
                 </GroupBox>
                 <GroupBox Header="CellTemplate 1: binds Value1 of DemoClass">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <DataGrid Margin="2"
+                        <DataGrid x:Name="CellTemplate1Grid"
+                                  Margin="2"
+                                  dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate1}"
+                                  dataGrid2D:Cell.Template="{StaticResource CellTemplate1}"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
+                        <DataGrid x:Name="CellTemplate1GridRO"
+                                  Margin="2"
                                   dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate1}"
                                   dataGrid2D:Cell.Template="{StaticResource CellTemplate1}"
                                   dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                                   dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
                                   dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
-                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellTemplate1Grid}" />
-                        <DataGrid Margin="2"
-                                  dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate1}"
-                                  dataGrid2D:Cell.Template="{StaticResource CellTemplate1}"
-                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
-                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellTemplate1GridRO}"
                                   IsReadOnly="True" />
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="CellTemplate 2: binds Value2 of DemoClass">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <DataGrid Margin="2"
+                        <DataGrid x:Name="CellTemplate2Grid"
+                                  Margin="2"
+                                  dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate2}"
+                                  dataGrid2D:Cell.Template="{StaticResource CellTemplate2}"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
+                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
+                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
+                        <DataGrid x:Name="CellTemplate2GridRO"
+                                  Margin="2"
                                   dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate2}"
                                   dataGrid2D:Cell.Template="{StaticResource CellTemplate2}"
                                   dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                                   dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
                                   dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
-                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellTemplate2Grid}" />
-                        <DataGrid Margin="2"
-                                  dataGrid2D:Cell.EditingTemplate="{StaticResource CellEditingTemplate2}"
-                                  dataGrid2D:Cell.Template="{StaticResource CellTemplate2}"
-                                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
-                                  dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
-                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellTemplate2GridRO}"
                                   IsReadOnly="True" />
                     </StackPanel>
                 </GroupBox>
@@ -140,15 +140,15 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <DataGrid dataGrid2D:Cell.EditingTemplate="{Binding Path=MyCellEditingTemplate, UpdateSourceTrigger=PropertyChanged}"
+                        <DataGrid x:Name="CellTemplateChangingGrid"
+                                  dataGrid2D:Cell.EditingTemplate="{Binding Path=MyCellEditingTemplate, UpdateSourceTrigger=PropertyChanged}"
                                   dataGrid2D:Cell.Template="{Binding Path=MyCellTemplate, UpdateSourceTrigger=PropertyChanged}"
                                   dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"
                                   dataGrid2D:ItemsSource.ColumnHeadersSource="{Binding ColumnHeaders}"
-                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}"
-                                  AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellTemplateChangingGrid}" />
+                                  dataGrid2D:ItemsSource.RowHeadersSource="{Binding RowHeaders}" />
                         <TextBlock Grid.Row="1" Text="{Binding Path=BoundTemplate}" />
-                        <Button Grid.Row="2"
-                                AutomationProperties.AutomationId="{x:Static local:AutomationIds.CellTemplateChangeButton}"
+                        <Button x:Name="CellTemplateChangeButton"
+                                Grid.Row="2"
                                 Command="{Binding ChangeCellTemplateCommand}"
                                 Content="Change DataTemplate" />
                     </Grid>
@@ -163,10 +163,8 @@
                 <GroupBox Header="CellTemplateSelector">
                     <StackPanel Orientation="Vertical">
                         <TextBlock>
-                            The selector uses a different template based on the value
-                            <LineBreak />
-                            member Value1 (&gt; 2) of the coupled class
-                        </TextBlock>
+                            The selector uses a different template based on the value<LineBreak />
+                            member Value1 (&gt; 2) of the coupled class</TextBlock>
                         <DataGrid dataGrid2D:Cell.EditingTemplateSelector="{StaticResource CellEditingTemplateSelector}"
                                   dataGrid2D:Cell.TemplateSelector="{StaticResource CellTemplateSelector}"
                                   dataGrid2D:ItemsSource.Array2D="{Binding Data2D}"

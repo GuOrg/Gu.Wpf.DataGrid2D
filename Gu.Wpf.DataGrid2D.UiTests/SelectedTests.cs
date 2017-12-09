@@ -11,7 +11,7 @@
             using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
                 var window = app.MainWindow;
-                var dataGrid = window.FindDataGrid("SelectionGrid");
+                var dataGrid = window.FindDataGrid("DataGrid");
                 var indexBox = window.FindTextBox("SelectedIndex");
                 var itemBox = window.FindTextBlock("SelectedItem");
 

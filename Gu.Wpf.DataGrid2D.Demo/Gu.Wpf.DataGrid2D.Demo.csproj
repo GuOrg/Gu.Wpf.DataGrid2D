@@ -80,7 +80,6 @@
     <Compile Include="ObservableView.xaml.cs">
       <DependentUpon>ObservableView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AutomationIds.cs" />
     <Compile Include="Misc\RelayCommand.cs" />
     <Compile Include="ObservableVm.cs">
       <DependentUpon>ObservableView.xaml</DependentUpon>

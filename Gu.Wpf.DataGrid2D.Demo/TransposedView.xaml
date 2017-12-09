@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.TransposedView"
+﻿<!--  ReSharper disable UnusedMember.Global  -->
+<UserControl x:Class="Gu.Wpf.DataGrid2D.Demo.TransposedView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,9 +12,9 @@
     </UserControl.DataContext>
     <UniformGrid Rows="2">
         <GroupBox Header="Explicit columns">
-            <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}"
-                      AutoGenerateColumns="False"
-                      AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedExplicitColumns}">
+            <DataGrid x:Name="TransposedExplicitColumns"
+                      dataGrid2D:ItemsSource.PropertySource="{Binding Person}"
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <!--  ReSharper disable Xaml.BindingWithContextNotResolved  -->
                     <DataGridTextColumn Binding="{Binding Name}"
@@ -26,11 +27,11 @@
         </GroupBox>
 
         <GroupBox Header="Singleton">
-            <DataGrid dataGrid2D:ItemsSource.PropertySource="{Binding Person}" AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedSingleton}" />
+            <DataGrid x:Name="TransposedSingleton" dataGrid2D:ItemsSource.PropertySource="{Binding Person}" />
         </GroupBox>
 
         <GroupBox Header="ObservableCollection&lt;Person&gt;">
-            <DataGrid dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" AutomationProperties.AutomationId="{x:Static local:AutomationIds.TransposedObservableCollection}" />
+            <DataGrid x:Name="TransposedObservableCollection" dataGrid2D:ItemsSource.TransposedSource="{Binding Persons}" />
         </GroupBox>
 
         <GroupBox Header="explicit columns">
@@ -46,7 +47,7 @@
         </GroupBox>
 
         <GroupBox Header="Source data">
-            <DataGrid AutomationProperties.AutomationId="{x:Static local:AutomationIds.ReferenceDataGrid}"
+            <DataGrid x:Name="ReferenceDataGrid"
                       CanUserAddRows="True"
                       CanUserDeleteRows="True"
                       ItemsSource="{Binding Persons}"
