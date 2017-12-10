@@ -18,15 +18,13 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void OnItemsSourceProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var oldView = e.OldValue as IColumnsChanged;
-            if (oldView != null)
+            if (e.OldValue is IColumnsChanged oldView)
             {
                 oldView.Dispose();
                 oldView.ColumnsChanged -= OnViewColumnsChanged;
             }
 
-            var newView = e.NewValue as IColumnsChanged;
-            if (newView != null)
+            if (e.NewValue is IColumnsChanged newView)
             {
                 newView.ColumnsChanged += OnViewColumnsChanged;
                 newView.DataGrid = (DataGrid)d;
