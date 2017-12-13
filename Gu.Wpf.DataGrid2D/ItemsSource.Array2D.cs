@@ -20,7 +20,7 @@
             new PropertyMetadata(
                 default(Array),
                 OnArray2DChanged),
-            Array2DValidateValue);
+            ValidateArray2D);
 
         /// <summary>
         /// Helper for setting Array2D property on a DataGrid.
@@ -60,7 +60,7 @@
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
 
-        private static bool Array2DValidateValue(object value)
+        private static bool ValidateArray2D(object value)
         {
             if (value is Array array)
             {

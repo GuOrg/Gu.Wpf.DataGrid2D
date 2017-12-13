@@ -15,7 +15,7 @@
             new PropertyMetadata(
                 default(IEnumerable),
                 OnRowsSourceChanged),
-            RowsSourceValidateValue);
+            ValidateRowsSource);
 
         /// <summary>
         /// Helper for setting RowsSource property on a DataGrid.
@@ -55,7 +55,7 @@
             UpdateItemsSource(dataGrid);
         }
 
-        private static bool RowsSourceValidateValue(object value)
+        private static bool ValidateRowsSource(object value)
         {
             if (value == null)
             {

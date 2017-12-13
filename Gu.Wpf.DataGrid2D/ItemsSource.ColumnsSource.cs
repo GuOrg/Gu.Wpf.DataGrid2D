@@ -13,7 +13,7 @@
             typeof(IEnumerable),
             typeof(ItemsSource),
             new PropertyMetadata(default(IEnumerable), OnColumnsSourceChanged),
-            ColumnsSourceValidateValue);
+            ValidateColumnsSource);
 
         /// <summary>
         /// Helper for setting ColumnsSource property on a DataGrid.
@@ -53,9 +53,9 @@
             UpdateItemsSource(dataGrid);
         }
 
-        private static bool ColumnsSourceValidateValue(object value)
+        private static bool ValidateColumnsSource(object value)
         {
-            return RowsSourceValidateValue(value);
+            return ValidateRowsSource(value);
         }
     }
 }

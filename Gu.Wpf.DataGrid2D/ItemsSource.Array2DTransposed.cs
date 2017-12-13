@@ -15,7 +15,7 @@
                 default(Array),
                 OnArray2DTransposedChanged),
 #pragma warning disable WPF0007 // Name of ValidateValueCallback should match registered name.
-            Array2DValidateValue);
+            ValidateArray2D);
 #pragma warning restore WPF0007 // Name of ValidateValueCallback should match registered name.
 
         /// <summary>

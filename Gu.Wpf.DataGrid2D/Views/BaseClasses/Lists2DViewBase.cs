@@ -160,7 +160,7 @@ namespace Gu.Wpf.DataGrid2D
         protected void AddRows(int newStartingIndex, int count)
         {
             var newItems = new List<ListRowView>();
-            for (int index = newStartingIndex; index < newStartingIndex + count; index++)
+            for (var index = newStartingIndex; index < newStartingIndex + count; index++)
             {
                 var listRowView = this.CreateRow(index);
                 this.Rows.Add(listRowView);
@@ -177,7 +177,7 @@ namespace Gu.Wpf.DataGrid2D
         protected void RemoveRows(int oldStartingIndex, int count)
         {
             var oldItems = new List<ListRowView>();
-            for (int i = oldStartingIndex; i < oldStartingIndex + count; i++)
+            for (var i = oldStartingIndex; i < oldStartingIndex + count; i++)
             {
                 oldItems.Add(this.Rows[i]);
                 this.Rows.RemoveAt(i);
