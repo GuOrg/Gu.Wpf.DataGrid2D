@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -40,8 +40,7 @@
         private static void OnColumnsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            var source = (IEnumerable<IEnumerable>)e.NewValue;
-            if (source == null)
+            if (!(e.NewValue is IEnumerable<IEnumerable>))
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
                 BindingOperations.ClearBinding(dataGrid, ItemsSourceProxyProperty);

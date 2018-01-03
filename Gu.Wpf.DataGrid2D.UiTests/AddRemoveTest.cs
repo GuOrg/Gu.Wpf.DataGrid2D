@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.UiTests
+namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -15,7 +15,7 @@
 
                 var addRowBtn = window.FindButton("Row++");
                 var addColBtn = window.FindButton("Column++");
-                var remRowBtn = window.FindButton("Row--");
+                ////var remRowBtn = window.FindButton("Row--");
                 var remColBtn = window.FindButton("Column--");
 
                 addRowBtn.Click();

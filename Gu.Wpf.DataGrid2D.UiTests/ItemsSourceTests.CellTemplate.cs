@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.UiTests
+namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -22,10 +22,10 @@
                     Assert.AreEqual("C2", dataGrid.ColumnHeaders[1].Text);
                     Assert.AreEqual("C3", dataGrid.ColumnHeaders[2].Text);
 
-                    Assert.AreEqual(3, dataGrid.RowHeaders.Count);
-                    Assert.AreEqual("R1", dataGrid.RowHeaders[0].Text);
-                    Assert.AreEqual("R2", dataGrid.RowHeaders[1].Text);
-                    Assert.AreEqual("R3", dataGrid.RowHeaders[2].Text);
+                    Assert.AreEqual(3, dataGrid.Rows.Count);
+                    Assert.AreEqual("R1", dataGrid.Rows[0].Header.Text);
+                    Assert.AreEqual("R2", dataGrid.Rows[1].Header.Text);
+                    Assert.AreEqual("R3", dataGrid.Rows[2].Header.Text);
                 }
             }
 
