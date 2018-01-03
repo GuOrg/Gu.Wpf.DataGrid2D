@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Linq;
@@ -140,6 +140,7 @@
         /// </summary>
         /// <param name="element">DependencyObject to read EditingTemplateSelector property from.</param>
         /// <returns>EditingTemplateSelector property value.</returns>
+        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static DataTemplateSelector GetEditingTemplateSelector(this DependencyObject element)
         {
             return (DataTemplateSelector)element.GetValue(EditingTemplateSelectorProperty);
@@ -148,7 +149,7 @@
         private static void OnTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            SetCellTemplateProperty(dataGrid, e, editingtemplate: false);
+            SetCellTemplateProperty(dataGrid, e, editingTemplate: false);
             ListenToColumnAutoGeneration(dataGrid);
         }
 
@@ -166,7 +167,7 @@
         private static void OnEditingTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            SetCellTemplateProperty(dataGrid, e, editingtemplate: true);
+            SetCellTemplateProperty(dataGrid, e, editingTemplate: true);
             ListenToColumnAutoGeneration(dataGrid);
         }
 
@@ -185,11 +186,14 @@
         {
             if (dataGrid.GetValue(ListenerProperty) == null)
             {
+                // ReSharper disable once HeapView.ObjectAllocation.Evident
+#pragma warning disable IDISP004 // Don't ignore return value of type IDisposable.
                 dataGrid.SetCurrentValue(ListenerProperty, new AutogenerateColumnListener(dataGrid));
+#pragma warning restore IDISP004 // Don't ignore return value of type IDisposable.
             }
         }
 
-        private static void SetCellTemplateProperty(DataGrid dataGrid, DependencyPropertyChangedEventArgs e, bool editingtemplate)
+        private static void SetCellTemplateProperty(DataGrid dataGrid, DependencyPropertyChangedEventArgs e, bool editingTemplate)
         {
             if (e.OldValue != null && e.NewValue == null)
             {
@@ -197,7 +201,7 @@
                 {
                     if (dataGrid.Columns[i] is CellTemplateColumn col)
                     {
-                        var temp = editingtemplate ?
+                        var temp = editingTemplate ?
                                    col.GetValue(DataGridTemplateColumn.CellTemplateProperty) :
                                    col.GetValue(DataGridTemplateColumn.CellEditingTemplateProperty);
                         if (temp == null)
@@ -207,7 +211,7 @@
                         }
                         else
                         {
-                            SetCellTemplateProperty(dataGrid, (DataTemplate)e.NewValue, editingtemplate);
+                            SetCellTemplateProperty(dataGrid, (DataTemplate)e.NewValue, editingTemplate);
                         }
                     }
                 }
@@ -219,7 +223,7 @@
                     if (dataGrid.Columns[i] is DataGridTextColumn tcol)
                     {
                         var col = new CellTemplateColumn { Binding = tcol.Binding };
-                        if (!editingtemplate)
+                        if (!editingTemplate)
                         {
                             col.CellTemplate = (DataTemplate)e.NewValue;
                         }
@@ -234,15 +238,15 @@
             }
             else
             {
-                SetCellTemplateProperty(dataGrid, (DataTemplate)e.NewValue, editingtemplate);
+                SetCellTemplateProperty(dataGrid, (DataTemplate)e.NewValue, editingTemplate);
             }
         }
 
-        private static void SetCellTemplateProperty(DataGrid dataGrid, DataTemplate t, bool editingtemplate)
+        private static void SetCellTemplateProperty(DataGrid dataGrid, DataTemplate t, bool editingTemplate)
         {
             foreach (var column in dataGrid.Columns.OfType<CellTemplateColumn>())
             {
-                if (!editingtemplate)
+                if (!editingTemplate)
                 {
                     column.SetCurrentValue(DataGridTemplateColumn.CellTemplateProperty, t);
                 }

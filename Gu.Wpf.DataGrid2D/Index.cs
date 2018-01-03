@@ -1,4 +1,4 @@
-﻿#pragma warning disable SA1202
+#pragma warning disable SA1202
 namespace Gu.Wpf.DataGrid2D
 {
     using System;
@@ -94,7 +94,9 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
+#pragma warning disable IDISP004 // Don't ignore return value of type IDisposable. Disposed in beginning of method.
             dataGrid.SetCurrentValue(RowsListenerProperty, new RowsListener(dataGrid));
+#pragma warning restore IDISP004 // Don't ignore return value of type IDisposable.
             dataGrid.UpdateHandler(Events.RowsChangedEvent, OnRowsChangedHandler);
             OnRowsChanged(dataGrid, null);
         }

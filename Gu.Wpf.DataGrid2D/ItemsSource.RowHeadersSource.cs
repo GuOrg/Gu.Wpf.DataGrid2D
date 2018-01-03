@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections;
@@ -65,7 +65,10 @@
                 return;
             }
 
+#pragma warning disable IDISP004 // Don't ignore return value of type IDisposable. disposed in beginning of method.
             dataGrid.SetCurrentValue(RowHeaderListenerProperty, new RowHeaderListener(dataGrid));
+#pragma warning restore IDISP004 // Don't ignore return value of type IDisposable.
+
             dataGrid.UpdateHandler(Events.RowsChangedEvent, OnRowsChangedHandler);
             OnRowsChanged(dataGrid, null);
         }
