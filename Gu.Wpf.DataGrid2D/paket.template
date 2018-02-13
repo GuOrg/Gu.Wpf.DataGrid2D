@@ -5,7 +5,7 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.DataGrid2D
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  BUGFIX: Handle empty sources.
+  BUGFIX: Nullchecks.
 
 excludedgroups
   Analyzers

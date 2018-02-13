@@ -102,7 +102,6 @@
   -->
   <ItemGroup>
     <None Include="Gu.Wpf.DataGrid2D.ruleset" />
-    <None Include="Gu.Wpf.DataGrid2D.snk" />
     <None Include="paket.references" />
     <None Include="paket.template" />
     <None Include="stylecop.json" />
