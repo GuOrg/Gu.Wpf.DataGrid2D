@@ -1,4 +1,4 @@
-﻿#pragma warning disable SA1202
+#pragma warning disable SA1202
 namespace Gu.Wpf.DataGrid2D
 {
     using System.ComponentModel;
@@ -149,7 +149,8 @@ namespace Gu.Wpf.DataGrid2D
                             var index = new RowColumnIndex(r, c);
                             dataGrid.SetIndex(index);
                             var cell = dataGrid.GetCell(index);
-                            cell.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
+                            if(cell != null)
+                                cell.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
                             return;
                         }
                     }
@@ -251,12 +252,15 @@ namespace Gu.Wpf.DataGrid2D
 
             var dataGridColumn = dataGrid.Columns[index.Column];
             var row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(index.Row);
-            var content = dataGridColumn.GetCellContent(row);
-            var cell = content.Ancestors()
-                              .OfType<DataGridCell>()
-                              .FirstOrDefault();
-
-            return cell;
+            if (row != null)
+            {
+                var content = dataGridColumn.GetCellContent(row);
+                var cell = content.Ancestors()
+                                  .OfType<DataGridCell>()
+                                  .FirstOrDefault();
+                return cell;
+            }
+            return null;
         }
 
         private static void UpdateSelectedCellItemFromView(DataGrid dataGrid)
