@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.ComponentModel;
@@ -21,9 +21,9 @@
 
         internal void RaiseAllChanged()
         {
-            foreach (PropertyDescriptor property in this.GetProperties())
+            foreach (var property in this.GetProperties())
             {
-                this.OnPropertyChanged(property.Name);
+                this.OnPropertyChanged(((PropertyDescriptor)property).Name);
             }
         }
 

@@ -1,9 +1,10 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
+    using Gu.Wpf.DataGrid2D.Internals;
 
     internal class CellTemplateColumn : DataGridTemplateColumn
     {
@@ -83,7 +84,8 @@
             }
 
             var contentPresenter = new ContentPresenter();
-            BindingOperations.SetBinding(contentPresenter, ContentPresenter.ContentProperty, this.binding);
+            BindingOperations.SetBinding(contentPresenter, ContentPresenter.ContentProperty, this.binding)
+                             .IgnoreReturnValue();
             contentPresenter.ContentTemplate = template;
             contentPresenter.ContentTemplateSelector = templateSelector;
             return contentPresenter;

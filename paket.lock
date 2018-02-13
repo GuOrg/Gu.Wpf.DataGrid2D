@@ -4,8 +4,8 @@ GROUP Analyzers
 NUGET
   remote: http://www.nuget.org/api/v2
     AsyncUsageAnalyzers (1.0.0-alpha003)
-    Gu.Analyzers (1.1.0-dev)
-    IDisposableAnalyzers (0.1.4.2-dev)
+    Gu.Analyzers (1.2.0-dev)
+    IDisposableAnalyzers (0.1.4.3-dev)
     JetBrains.Annotations (11.1)
       System.Runtime (>= 4.1) - restriction: && (< net10) (>= netstandard1.0)
     Microsoft.NETCore.Platforms (2.0.1) - restriction: || (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< monotouch) (< net10) (>= netstandard1.5) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
@@ -21,11 +21,11 @@ GROUP Build
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    SourceLink.Create.CommandLine (2.7.3)
+    SourceLink.Create.CommandLine (2.8)
 
 GROUP Test
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    Gu.Wpf.UiAutomation (0.2.1)
+    Gu.Wpf.UiAutomation (0.2.2)
     NUnit (3.9)

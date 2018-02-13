@@ -85,9 +85,9 @@ namespace Gu.Wpf.DataGrid2D
 
             if (e.NewValue == null)
             {
-                foreach (DataGridRow row in dataGrid.Items)
+                foreach (var row in dataGrid.Items)
                 {
-                    BindingOperations.ClearBinding(row, DataGridRow.HeaderProperty);
+                    BindingOperations.ClearBinding((DataGridRow)row, DataGridRow.HeaderProperty);
                 }
 
                 dataGrid.RemoveHandler(Events.RowsChangedEvent, OnRowsChangedHandler);

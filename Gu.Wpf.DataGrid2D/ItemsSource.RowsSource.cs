@@ -5,6 +5,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
+    using Gu.Wpf.DataGrid2D.Internals;
 
     public static partial class ItemsSource
     {
@@ -50,7 +51,8 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             dataGrid.Bind(ItemsSourceProxyProperty)
-                    .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
+                    .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty)
+                    .IgnoreReturnValue();
             UpdateItemsSource(dataGrid);
         }
 

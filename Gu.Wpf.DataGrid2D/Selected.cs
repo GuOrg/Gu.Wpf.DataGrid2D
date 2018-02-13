@@ -149,8 +149,11 @@ namespace Gu.Wpf.DataGrid2D
                             var index = new RowColumnIndex(r, c);
                             dataGrid.SetIndex(index);
                             var cell = dataGrid.GetCell(index);
-                            if(cell != null)
+                            if (cell != null)
+                            {
                                 cell.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
+                            }
+
                             return;
                         }
                     }
@@ -260,6 +263,7 @@ namespace Gu.Wpf.DataGrid2D
                                   .FirstOrDefault();
                 return cell;
             }
+
             return null;
         }
 

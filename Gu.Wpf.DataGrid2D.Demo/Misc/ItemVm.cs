@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;

@@ -53,6 +53,7 @@
     <Compile Include="Internals\CellTemplateColumn.cs" />
     <Compile Include="Internals\EnumerableExt.cs" />
     <Compile Include="Internals\Helpers.cs" />
+    <Compile Include="Internals\Ignore.cs" />
     <Compile Include="Internals\RoutedEventHelper.cs" />
     <Compile Include="Internals\RowHeaderListener.cs" />
     <Compile Include="Internals\RowsListener.cs" />

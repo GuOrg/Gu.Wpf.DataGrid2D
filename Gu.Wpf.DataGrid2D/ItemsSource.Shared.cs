@@ -1,4 +1,4 @@
-﻿#pragma warning disable 1591
+#pragma warning disable 1591
 namespace Gu.Wpf.DataGrid2D
 {
     using System;
@@ -6,6 +6,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
+    using Gu.Wpf.DataGrid2D.Internals;
 
     public static partial class ItemsSource
     {
@@ -59,7 +60,8 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                    .OneWayTo(view);
+                    .OneWayTo(view)
+                    .IgnoreReturnValue();
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
     }
