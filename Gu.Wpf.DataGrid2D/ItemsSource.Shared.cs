@@ -6,7 +6,6 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-    using Gu.Wpf.DataGrid2D.Internals;
 
     public static partial class ItemsSource
     {

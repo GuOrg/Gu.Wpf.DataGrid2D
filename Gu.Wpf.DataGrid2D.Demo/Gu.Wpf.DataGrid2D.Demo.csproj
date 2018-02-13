@@ -70,6 +70,7 @@
       <DependentUpon>CellTemplateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AutoSelectTextBox.cs" />
+    <Compile Include="Misc\Ignore.cs" />
     <Compile Include="Misc\ItemVm.cs" />
     <Compile Include="JaggedView.xaml.cs">
       <DependentUpon>JaggedView.xaml</DependentUpon>

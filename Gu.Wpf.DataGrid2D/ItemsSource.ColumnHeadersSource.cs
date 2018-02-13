@@ -82,7 +82,8 @@ namespace Gu.Wpf.DataGrid2D
             {
                 var column = dataGrid.Columns[i];
                 column.Bind(DataGridColumn.HeaderProperty)
-                      .OneWayTo(headers, i);
+                      .OneWayTo(headers, i)
+                      .IgnoreReturnValue();
             }
         }
 

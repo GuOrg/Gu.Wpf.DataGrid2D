@@ -45,7 +45,8 @@ namespace Gu.Wpf.DataGrid2D
                 return true;
             }
 
-            base.ReceiveWeakEvent(managerType, sender, e);
+            base.ReceiveWeakEvent(managerType, sender, e)
+                .IgnoreReturnValue();
             if (ReferenceEquals(sender, this.Source))
             {
                 switch (ccea.Action)

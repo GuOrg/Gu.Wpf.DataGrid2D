@@ -1,4 +1,4 @@
-namespace Gu.Wpf.DataGrid2D.Internals
+namespace Gu.Wpf.DataGrid2D
 {
     internal static class Ignore
     {

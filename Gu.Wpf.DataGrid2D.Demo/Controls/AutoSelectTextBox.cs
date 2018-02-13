@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo.Controls
+namespace Gu.Wpf.DataGrid2D.Demo.Controls
 {
     using System;
     using System.Windows.Controls;
@@ -11,7 +11,7 @@
         {
             // This will cause the cursor to enter the text box ready to
             // type even when there is no content.
-            this.Focus();
+            this.Focus().IgnoreReturnValue();
             base.OnInitialized(e);
         }
 
@@ -29,7 +29,7 @@
             if (this.autoSelectAll)
             {
                 this.SelectAll();
-                this.Focus();
+                this.Focus().IgnoreReturnValue();
                 this.autoSelectAll = false;
             }
 

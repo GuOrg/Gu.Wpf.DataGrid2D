@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Windows;
@@ -56,7 +56,8 @@
 
             var array2DView = Array2DView.Create(array);
             dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                    .OneWayTo(array2DView);
+                    .OneWayTo(array2DView)
+                    .IgnoreReturnValue();
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
 
