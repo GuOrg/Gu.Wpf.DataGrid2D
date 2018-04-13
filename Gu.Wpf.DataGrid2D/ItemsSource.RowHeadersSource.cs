@@ -56,9 +56,12 @@ namespace Gu.Wpf.DataGrid2D
 
             if (headers == null)
             {
-                foreach (var row in dataGrid.Items)
+                for (var i = 0; i < dataGrid.Items.Count; i++)
                 {
-                    BindingOperations.ClearBinding((DataGridRow)row, DataGridRow.HeaderProperty);
+                    if (dataGrid.ItemContainerGenerator.ContainerFromIndex(i) is DataGridRow row)
+                    {
+                        BindingOperations.ClearBinding(row, DataGridRow.HeaderProperty);
+                    }
                 }
 
                 dataGrid.RemoveHandler(Events.RowsChangedEvent, OnRowsChangedHandler);
@@ -78,7 +81,7 @@ namespace Gu.Wpf.DataGrid2D
             var dataGrid = (DataGrid)sender;
             var headers = dataGrid.GetRowHeadersSource();
             var count = headers.Count();
-            for (int i = 0; i < Math.Min(count, dataGrid.Items.Count); i++)
+            for (var i = 0; i < Math.Min(count, dataGrid.Items.Count); i++)
             {
                 var row = dataGrid.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
                 row?.Bind(DataGridRow.HeaderProperty)
