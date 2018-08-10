@@ -30,20 +30,16 @@ namespace Gu.Wpf.DataGrid2D
 
         private static readonly RoutedEventHandler OnRowsChangedHandler = OnRowsChanged;
 
-        /// <summary>
-        /// Helper for setting OfRow property on a DataGridRow.
-        /// </summary>
-        /// <param name="element">DataGridRow to set OfRow property on.</param>
+        /// <summary>Helper for setting <see cref="OfRowPropertyKey"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGridRow"/> to set <see cref="OfRowPropertyKey"/> on.</param>
         /// <param name="value">OfRow property value.</param>
         public static void SetOfRow(this DataGridRow element, int value)
         {
             element.SetValue(OfRowPropertyKey, value);
         }
 
-        /// <summary>
-        /// Helper for reading OfRow property from a DataGridRow.
-        /// </summary>
-        /// <param name="element">DataGridRow to read OfRow property from.</param>
+        /// <summary>Helper for getting <see cref="OfRowProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGridRow"/> to read <see cref="OfRowProperty"/> from.</param>
         /// <returns>OfRow property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
@@ -53,20 +49,17 @@ namespace Gu.Wpf.DataGrid2D
         }
 
 #pragma warning disable WPF0013 // CLR accessor for attached property must match registered type.
-                               /// <summary>
-                               /// Helper for setting StartAt property on a Control.
-                               /// </summary>
-                               /// <param name="element">Control to set StartAt property on.</param>
-                               /// <param name="value">StartAt property value.</param>
+
+        /// <summary>Helper for setting <see cref="StartAtProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="Control"/> to set <see cref="StartAtProperty"/> on.</param>
+        /// <param name="value">StartAt property value.</param>
         public static void SetStartAt(this Control element, int value)
         {
             element.SetValue(StartAtProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading StartAt property from a Control.
-        /// </summary>
-        /// <param name="element">Control to read StartAt property from.</param>
+        /// <summary>Helper for getting <see cref="StartAtProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="Control"/> to read <see cref="StartAtProperty"/> from.</param>
         /// <returns>StartAt property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
@@ -75,6 +68,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             return (int)(element.GetValue(StartAtProperty) ?? 0);
         }
+
 #pragma warning restore WPF0013 // CLR accessor for attached property must match registered type.
 
         private static void OnStartAtChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

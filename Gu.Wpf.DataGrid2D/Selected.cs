@@ -49,20 +49,16 @@ namespace Gu.Wpf.DataGrid2D
 
         private static readonly RoutedEventHandler SelectedCellsChangedHandler = OnSelectedCellsChanged;
 
-        /// <summary>
-        /// Helper for setting CellItem property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set CellItem property on.</param>
+        /// <summary>Helper for setting <see cref="CellItemProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="CellItemProperty"/> on.</param>
         /// <param name="value">CellItem property value.</param>
         public static void SetCellItem(this DataGrid element, object value)
         {
             element.SetValue(CellItemProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading CellItem property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read CellItem property from.</param>
+        /// <summary>Helper for getting <see cref="CellItemProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="CellItemProperty"/> from.</param>
         /// <returns>CellItem property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
@@ -71,20 +67,16 @@ namespace Gu.Wpf.DataGrid2D
             return element.GetValue(CellItemProperty);
         }
 
-        /// <summary>
-        /// Helper for setting Index property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set Index property on.</param>
+        /// <summary>Helper for setting <see cref="IndexProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="IndexProperty"/> on.</param>
         /// <param name="value">Index property value.</param>
         public static void SetIndex(this DataGrid element, RowColumnIndex? value)
         {
             element.SetValue(IndexProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading Index property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read Index property from.</param>
+        /// <summary>Helper for getting <see cref="IndexProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="IndexProperty"/> from.</param>
         /// <returns>Index property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]

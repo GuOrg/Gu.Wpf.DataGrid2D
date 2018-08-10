@@ -14,24 +14,18 @@ namespace Gu.Wpf.DataGrid2D
             new PropertyMetadata(
                 default(Array),
                 OnArray2DTransposedChanged),
-#pragma warning disable WPF0007 // Name of ValidateValueCallback should match registered name.
             ValidateArray2D);
-#pragma warning restore WPF0007 // Name of ValidateValueCallback should match registered name.
 
-        /// <summary>
-        /// Helper for setting Array2DTransposed property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set Array2DTransposed property on.</param>
+        /// <summary>Helper for setting <see cref="Array2DTransposedProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="Array2DTransposedProperty"/> on.</param>
         /// <param name="value">Array2DTransposed property value.</param>
         public static void SetArray2DTransposed(this DataGrid element, Array value)
         {
             element.SetValue(Array2DTransposedProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading Array2DTransposed property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read Array2DTransposed property from.</param>
+        /// <summary>Helper for getting <see cref="Array2DTransposedProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="Array2DTransposedProperty"/> from.</param>
         /// <returns>Array2DTransposed property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]

@@ -59,20 +59,16 @@ namespace Gu.Wpf.DataGrid2D
             typeof(AutogenerateColumnListener),
             typeof(Cell));
 
-        /// <summary>
-        /// Helper for setting Template property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set Template property on.</param>
+        /// <summary>Helper for setting <see cref="TemplateProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="TemplateProperty"/> on.</param>
         /// <param name="value">Template property value.</param>
         public static void SetTemplate(this DataGrid element, DataTemplate value)
         {
             element.SetValue(TemplateProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading Template property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read Template property from.</param>
+        /// <summary>Helper for getting <see cref="TemplateProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="TemplateProperty"/> from.</param>
         /// <returns>Template property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
@@ -81,20 +77,16 @@ namespace Gu.Wpf.DataGrid2D
             return (DataTemplate)element.GetValue(TemplateProperty);
         }
 
-        /// <summary>
-        /// Helper for setting TemplateSelector property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set TemplateSelector property on.</param>
+        /// <summary>Helper for setting <see cref="TemplateSelectorProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="TemplateSelectorProperty"/> on.</param>
         /// <param name="value">TemplateSelector property value.</param>
         public static void SetTemplateSelector(DataGrid element, DataTemplateSelector value)
         {
             element.SetValue(TemplateSelectorProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading TemplateSelector property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read TemplateSelector property from.</param>
+        /// <summary>Helper for getting <see cref="TemplateSelectorProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="TemplateSelectorProperty"/> from.</param>
         /// <returns>TemplateSelector property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
@@ -103,20 +95,16 @@ namespace Gu.Wpf.DataGrid2D
             return (DataTemplateSelector)element.GetValue(TemplateSelectorProperty);
         }
 
-        /// <summary>
-        /// Helper for setting EditingTemplate property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set EditingTemplate property on.</param>
+        /// <summary>Helper for setting <see cref="EditingTemplateProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="EditingTemplateProperty"/> on.</param>
         /// <param name="value">EditingTemplate property value.</param>
         public static void SetEditingTemplate(this DataGrid element, DataTemplate value)
         {
             element.SetValue(EditingTemplateProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading EditingTemplate property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read EditingTemplate property from.</param>
+        /// <summary>Helper for getting <see cref="EditingTemplateProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="EditingTemplateProperty"/> from.</param>
         /// <returns>EditingTemplate property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
@@ -125,20 +113,16 @@ namespace Gu.Wpf.DataGrid2D
             return (DataTemplate)element.GetValue(EditingTemplateProperty);
         }
 
-        /// <summary>
-        /// Helper for setting EditingTemplateSelector property on a DependencyObject.
-        /// </summary>
-        /// <param name="element">DependencyObject to set EditingTemplateSelector property on.</param>
+        /// <summary>Helper for setting <see cref="EditingTemplateSelectorProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DependencyObject"/> to set <see cref="EditingTemplateSelectorProperty"/> on.</param>
         /// <param name="value">EditingTemplateSelector property value.</param>
         public static void SetEditingTemplateSelector(DependencyObject element, DataTemplateSelector value)
         {
             element.SetValue(EditingTemplateSelectorProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading EditingTemplateSelector property from a DependencyObject.
-        /// </summary>
-        /// <param name="element">DependencyObject to read EditingTemplateSelector property from.</param>
+        /// <summary>Helper for getting <see cref="EditingTemplateSelectorProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DependencyObject"/> to read <see cref="EditingTemplateSelectorProperty"/> from.</param>
         /// <returns>EditingTemplateSelector property value.</returns>
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static DataTemplateSelector GetEditingTemplateSelector(this DependencyObject element)

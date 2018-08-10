@@ -8,6 +8,9 @@ namespace Gu.Wpf.DataGrid2D
 
     public static partial class ItemsSource
     {
+        /// <summary>
+        /// An <see cref="IEnumerable"/> of rows where each row is an <see cref="IEnumerable"/> with the values.
+        /// </summary>
         public static readonly DependencyProperty RowsSourceProperty = DependencyProperty.RegisterAttached(
             "RowsSource",
             typeof(IEnumerable),
@@ -17,20 +20,16 @@ namespace Gu.Wpf.DataGrid2D
                 OnRowsSourceChanged),
             ValidateRowsSource);
 
-        /// <summary>
-        /// Helper for setting RowsSource property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set RowsSource property on.</param>
+        /// <summary>Helper for setting <see cref="RowsSourceProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="RowsSourceProperty"/> on.</param>
         /// <param name="value">RowsSource property value.</param>
         public static void SetRowsSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(RowsSourceProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading RowsSource property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read RowsSource property from.</param>
+        /// <summary>Helper for getting <see cref="RowsSourceProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="RowsSourceProperty"/> from.</param>
         /// <returns>RowsSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]

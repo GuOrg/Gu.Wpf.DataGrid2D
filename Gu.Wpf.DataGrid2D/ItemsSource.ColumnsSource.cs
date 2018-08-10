@@ -8,6 +8,9 @@ namespace Gu.Wpf.DataGrid2D
 
     public static partial class ItemsSource
     {
+        /// <summary>
+        /// An <see cref="IEnumerable"/> of columns where each row is an <see cref="IEnumerable"/> with the values.
+        /// </summary>
         public static readonly DependencyProperty ColumnsSourceProperty = DependencyProperty.RegisterAttached(
             "ColumnsSource",
             typeof(IEnumerable),
@@ -15,20 +18,16 @@ namespace Gu.Wpf.DataGrid2D
             new PropertyMetadata(default(IEnumerable), OnColumnsSourceChanged),
             ValidateColumnsSource);
 
-        /// <summary>
-        /// Helper for setting ColumnsSource property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set ColumnsSource property on.</param>
+        /// <summary>Helper for setting <see cref="ColumnsSourceProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="ColumnsSourceProperty"/> on.</param>
         /// <param name="value">ColumnsSource property value.</param>
         public static void SetColumnsSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(ColumnsSourceProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading ColumnsSource property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read ColumnsSource property from.</param>
+        /// <summary>Helper for getting <see cref="ColumnsSourceProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="ColumnsSourceProperty"/> from.</param>
         /// <returns>ColumnsSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]

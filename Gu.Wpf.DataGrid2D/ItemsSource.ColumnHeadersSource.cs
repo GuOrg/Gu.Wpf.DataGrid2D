@@ -26,20 +26,16 @@ namespace Gu.Wpf.DataGrid2D
             typeof(ItemsSource),
             new PropertyMetadata(default(ColumnHeaderListener)));
 
-        /// <summary>
-        /// Helper for setting ColumnHeadersSource property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set ColumnHeadersSource property on.</param>
+        /// <summary>Helper for setting <see cref="ColumnHeadersSourceProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="ColumnHeadersSourceProperty"/> on.</param>
         /// <param name="value">ColumnHeadersSource property value.</param>
         public static void SetColumnHeadersSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(ColumnHeadersSourceProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading ColumnHeadersSource property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read ColumnHeadersSource property from.</param>
+        /// <summary>Helper for getting <see cref="ColumnHeadersSourceProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="ColumnHeadersSourceProperty"/> from.</param>
         /// <returns>ColumnHeadersSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]

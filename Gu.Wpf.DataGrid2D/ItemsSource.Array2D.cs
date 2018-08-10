@@ -22,20 +22,16 @@ namespace Gu.Wpf.DataGrid2D
                 OnArray2DChanged),
             ValidateArray2D);
 
-        /// <summary>
-        /// Helper for setting Array2D property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set Array2D property on.</param>
+        /// <summary>Helper for setting <see cref="Array2DProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="Array2DProperty"/> on.</param>
         /// <param name="value">Array2D property value.</param>
         public static void SetArray2D(this DataGrid element, Array value)
         {
             element.SetValue(Array2DProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading Array2D property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read Array2D property from.</param>
+        /// <summary>Helper for getting <see cref="Array2DProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="Array2DProperty"/> from.</param>
         /// <returns>Array2D property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]

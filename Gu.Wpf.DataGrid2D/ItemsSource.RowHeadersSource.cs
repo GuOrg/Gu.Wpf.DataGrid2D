@@ -8,6 +8,9 @@ namespace Gu.Wpf.DataGrid2D
 
     public static partial class ItemsSource
     {
+        /// <summary>
+        /// An <see cref="IEnumerable"/> with values to display in the row headers.
+        /// </summary>
         public static readonly DependencyProperty RowHeadersSourceProperty = DependencyProperty.RegisterAttached(
             "RowHeadersSource",
             typeof(IEnumerable),
@@ -25,20 +28,16 @@ namespace Gu.Wpf.DataGrid2D
             typeof(ItemsSource),
             new PropertyMetadata(default(RowHeaderListener)));
 
-        /// <summary>
-        /// Helper for setting RowHeadersSource property on a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to set RowHeadersSource property on.</param>
+        /// <summary>Helper for setting <see cref="RowHeadersSourceProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to set <see cref="RowHeadersSourceProperty"/> on.</param>
         /// <param name="value">RowHeadersSource property value.</param>
         public static void SetRowHeadersSource(this DataGrid element, IEnumerable value)
         {
             element.SetValue(RowHeadersSourceProperty, value);
         }
 
-        /// <summary>
-        /// Helper for reading RowHeadersSource property from a DataGrid.
-        /// </summary>
-        /// <param name="element">DataGrid to read RowHeadersSource property from.</param>
+        /// <summary>Helper for getting <see cref="RowHeadersSourceProperty"/> from <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGrid"/> to read <see cref="RowHeadersSourceProperty"/> from.</param>
         /// <returns>RowHeadersSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
