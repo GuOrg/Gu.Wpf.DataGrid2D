@@ -20,8 +20,8 @@ namespace Gu.Wpf.DataGrid2D
         {
             if (e.OldValue is IColumnsChanged oldView)
             {
-                oldView.Dispose();
                 oldView.ColumnsChanged -= OnViewColumnsChanged;
+                oldView.Dispose();
             }
 
             if (e.NewValue is IColumnsChanged newView)
