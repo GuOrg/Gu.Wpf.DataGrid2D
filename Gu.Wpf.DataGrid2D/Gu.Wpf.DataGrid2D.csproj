@@ -101,7 +101,9 @@
   </Target>
   -->
   <ItemGroup>
-    <None Include="Gu.Wpf.DataGrid2D.ruleset" />
+    <None Include="Gu.Wpf.DataGrid2D.ruleset">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="paket.references" />
     <None Include="paket.template" />
     <None Include="stylecop.json" />
