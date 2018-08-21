@@ -1,4 +1,3 @@
-#pragma warning disable SA1202
 namespace Gu.Wpf.DataGrid2D
 {
     using System;
@@ -8,6 +7,8 @@ namespace Gu.Wpf.DataGrid2D
 
     public static class Index
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
+
         private static readonly DependencyPropertyKey OfRowPropertyKey = DependencyProperty.RegisterAttachedReadOnly(
             "OfRow",
             typeof(int),
@@ -27,6 +28,8 @@ namespace Gu.Wpf.DataGrid2D
             typeof(RowsListener),
             typeof(Index),
             new PropertyMetadata(default(RowsListener)));
+
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         private static readonly RoutedEventHandler OnRowsChangedHandler = OnRowsChanged;
 
@@ -74,7 +77,9 @@ namespace Gu.Wpf.DataGrid2D
         private static void OnStartAtChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
+#pragma warning disable IDISP007 // Don't dispose injected.
             (dataGrid.GetValue(RowsListenerProperty) as IDisposable)?.Dispose();
+#pragma warning restore IDISP007 // Don't dispose injected.
             dataGrid.ClearValue(RowsListenerProperty);
 
             if (e.NewValue == null)

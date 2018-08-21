@@ -48,7 +48,9 @@ namespace Gu.Wpf.DataGrid2D
         {
             var dataGrid = (DataGrid)d;
             var headers = (IEnumerable)e.NewValue;
+#pragma warning disable IDISP007 // Don't dispose injected.
             (dataGrid.GetValue(ColumnHeaderListenerProperty) as IDisposable)?.Dispose();
+#pragma warning restore IDISP007 // Don't dispose injected.
             dataGrid.ClearValue(ColumnHeaderListenerProperty);
 
             if (headers == null)

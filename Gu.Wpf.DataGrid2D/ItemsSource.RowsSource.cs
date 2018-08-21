@@ -18,7 +18,7 @@ namespace Gu.Wpf.DataGrid2D
             new PropertyMetadata(
                 default(IEnumerable),
                 OnRowsSourceChanged),
-            ValidateRowsSource);
+            x => x is null || x is IEnumerable<IEnumerable>);
 
         /// <summary>Helper for setting <see cref="RowsSourceProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="RowsSourceProperty"/> on.</param>
@@ -52,16 +52,6 @@ namespace Gu.Wpf.DataGrid2D
                     .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty)
                     .IgnoreReturnValue();
             UpdateItemsSource(dataGrid);
-        }
-
-        private static bool ValidateRowsSource(object value)
-        {
-            if (value == null)
-            {
-                return true;
-            }
-
-            return value is IEnumerable<IEnumerable>;
         }
     }
 }

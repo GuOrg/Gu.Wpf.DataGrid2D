@@ -16,9 +16,7 @@ namespace Gu.Wpf.DataGrid2D
             typeof(IEnumerable),
             typeof(ItemsSource),
             new PropertyMetadata(null, OnRowHeadersSourceChanged),
-#pragma warning disable WPF0007 // Name of ValidateValueCallback should match registered name.
             HeadersSourceValidateValue);
-#pragma warning restore WPF0007 // Name of ValidateValueCallback should match registered name.
 
         private static readonly RoutedEventHandler OnRowsChangedHandler = OnRowsChanged;
 
@@ -50,7 +48,9 @@ namespace Gu.Wpf.DataGrid2D
         {
             var dataGrid = (DataGrid)d;
             var headers = (IEnumerable)e.NewValue;
+#pragma warning disable IDISP007 // Don't dispose injected.
             (dataGrid.GetValue(RowHeaderListenerProperty) as IDisposable)?.Dispose();
+#pragma warning restore IDISP007 // Don't dispose injected.
             dataGrid.ClearValue(RowHeaderListenerProperty);
 
             if (headers == null)
