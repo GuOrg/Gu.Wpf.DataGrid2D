@@ -71,7 +71,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             get => this.rows[index];
             //// ReSharper disable once ValueParameterNotUsed
-            set => ThrowNotSupported();
+            set => throw new NotSupportedException();
         }
 
         bool IWeakEventListener.ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
@@ -99,19 +99,19 @@ namespace Gu.Wpf.DataGrid2D
 
         void ICollection.CopyTo(Array array, int index) => ((IList)this.rows).CopyTo(array, index);
 
-        int IList.Add(object value) => ThrowNotSupported<int>();
+        int IList.Add(object value) => throw new NotSupportedException();
 
         bool IList.Contains(object value) => ((IList)this.rows).Contains(value);
 
-        void IList.Clear() => ThrowNotSupported();
+        void IList.Clear() => throw new NotSupportedException();
 
         int IList.IndexOf(object value) => ((IList)this.rows).IndexOf(value);
 
-        void IList.Insert(int index, object value) => ThrowNotSupported();
+        void IList.Insert(int index, object value) => throw new NotSupportedException();
 
-        void IList.Remove(object value) => ThrowNotSupported();
+        void IList.Remove(object value) => throw new NotSupportedException();
 
-        void IList.RemoveAt(int index) => ThrowNotSupported();
+        void IList.RemoveAt(int index) => throw new NotSupportedException();
 
         public void Dispose()
         {
@@ -130,16 +130,6 @@ namespace Gu.Wpf.DataGrid2D
             {
                 PropertyChangedEventManager.RemoveListener(inpc, this, string.Empty);
             }
-        }
-
-        private static void ThrowNotSupported()
-        {
-            throw new NotSupportedException();
-        }
-
-        private static T ThrowNotSupported<T>()
-        {
-            throw new NotSupportedException();
         }
 
         private void OnColumnsChanged()

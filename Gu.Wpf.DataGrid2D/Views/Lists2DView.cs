@@ -128,7 +128,7 @@ namespace Gu.Wpf.DataGrid2D
                 case NotifyCollectionChangedAction.Move:
                     return false;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(e));
             }
 
             var min = this.MaxColumnCount;

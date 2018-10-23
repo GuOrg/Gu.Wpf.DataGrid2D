@@ -107,5 +107,6 @@
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
     <Rule Id="CA1033" Action="None" />
+    <Rule Id="CA1710" Action="None" />
   </Rules>
 </RuleSet>

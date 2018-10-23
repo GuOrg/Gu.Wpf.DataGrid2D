@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections.Generic;
@@ -40,7 +40,7 @@
 
         /// <summary>
         /// To check if type implements IEquatable{string}
-        /// Call like this type.Implements(typeof(IEquatable{}, typeof(string))
+        /// Call like this type.Implements(typeof(IEquatable{}, typeof(string)).
         /// </summary>
         internal static bool Implements(this Type type, Type genericInterface, Type genericArgument)
         {

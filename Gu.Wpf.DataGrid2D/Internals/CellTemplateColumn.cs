@@ -1,6 +1,5 @@
 namespace Gu.Wpf.DataGrid2D
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
@@ -32,12 +31,12 @@ namespace Gu.Wpf.DataGrid2D
 
         protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
         {
-            return this.LoadTemplateContent(isEditing: true, cell: cell);
+            return this.LoadTemplateContent(isEditing: true);
         }
 
         protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
         {
-            return this.LoadTemplateContent(isEditing: false, cell: cell);
+            return this.LoadTemplateContent(isEditing: false);
         }
 
         private DataTemplate ChooseCellTemplate(bool isEditing)
@@ -72,8 +71,7 @@ namespace Gu.Wpf.DataGrid2D
             return templateSelector;
         }
 
-        [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-        private FrameworkElement LoadTemplateContent(bool isEditing, DataGridCell cell)
+        private FrameworkElement LoadTemplateContent(bool isEditing)
         {
             var template = this.ChooseCellTemplate(isEditing);
             var templateSelector = this.ChooseCellTemplateSelector(isEditing);

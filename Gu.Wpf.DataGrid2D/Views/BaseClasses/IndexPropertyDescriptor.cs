@@ -15,11 +15,15 @@ namespace Gu.Wpf.DataGrid2D
             this.Index = index;
         }
 
+#pragma warning disable INPC017 // Backing field name must match.
         public override Type ComponentType => this.elementType;
+#pragma warning restore INPC017 // Backing field name must match.
 
         public override bool IsReadOnly { get; }
 
+#pragma warning disable INPC017 // Backing field name must match.
         public override Type PropertyType => this.elementType;
+#pragma warning restore INPC017 // Backing field name must match.
 
         protected int Index { get; }
 

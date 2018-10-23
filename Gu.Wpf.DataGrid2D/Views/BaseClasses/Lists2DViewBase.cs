@@ -74,7 +74,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             get => this[index];
             //// ReSharper disable once ValueParameterNotUsed
-            set => ThrowNotSupported();
+            set => throw new NotSupportedException();
         }
 
         public virtual bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
@@ -123,19 +123,19 @@ namespace Gu.Wpf.DataGrid2D
 
         void ICollection.CopyTo(Array array, int index) => ((IList)this.Rows).CopyTo(array, index);
 
-        int IList.Add(object value) => ThrowNotSupported<int>();
+        int IList.Add(object value) => throw new NotSupportedException();
 
         bool IList.Contains(object value) => this.Rows.Contains(value);
 
-        void IList.Clear() => ThrowNotSupported();
+        void IList.Clear() => throw new NotSupportedException();
 
         int IList.IndexOf(object value) => this.Rows.IndexOf((ListRowView)value);
 
-        void IList.Insert(int index, object value) => ThrowNotSupported();
+        void IList.Insert(int index, object value) => throw new NotSupportedException();
 
-        void IList.Remove(object value) => ThrowNotSupported();
+        void IList.Remove(object value) => throw new NotSupportedException();
 
-        void IList.RemoveAt(int index) => ThrowNotSupported();
+        void IList.RemoveAt(int index) => throw new NotSupportedException();
 
         protected void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
@@ -186,16 +186,6 @@ namespace Gu.Wpf.DataGrid2D
             this.OnPropertyChanged(CountPropertyChangedEventArgs);
             this.OnPropertyChanged(IndexerPropertyChangedEventArgs);
             this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, oldItems, oldStartingIndex));
-        }
-
-        private static void ThrowNotSupported()
-        {
-            throw new NotSupportedException();
-        }
-
-        private static T ThrowNotSupported<T>()
-        {
-            throw new NotSupportedException();
         }
     }
 }

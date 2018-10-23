@@ -17,7 +17,7 @@ namespace Gu.Wpf.DataGrid2D
             if (isTransposed)
             {
                 this.rows = new Array2DRowView[source.GetLength(1)];
-                for (int i = 0; i < source.GetLength(1); i++)
+                for (var i = 0; i < source.GetLength(1); i++)
                 {
                     this.rows[i] = Array2DRowView.CreateForColumn(this, i);
                 }
@@ -25,7 +25,7 @@ namespace Gu.Wpf.DataGrid2D
             else
             {
                 this.rows = new Array2DRowView[source.GetLength(0)];
-                for (int i = 0; i < source.GetLength(0); i++)
+                for (var i = 0; i < source.GetLength(0); i++)
                 {
                     this.rows[i] = Array2DRowView.CreateForRow(this, i);
                 }
@@ -58,7 +58,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             get => this[index];
             //// ReSharper disable once ValueParameterNotUsed
-            set => ThrowNotSupported();
+            set => throw new NotSupportedException();
         }
 
         public static Array2DView Create(Array source)
@@ -77,29 +77,19 @@ namespace Gu.Wpf.DataGrid2D
 
         void ICollection.CopyTo(Array array, int index) => this.rows.CopyTo(array, index);
 
-        int IList.Add(object value) => ThrowNotSupported<int>();
+        int IList.Add(object value) => throw new NotSupportedException();
 
         bool IList.Contains(object value) => this.rows.Contains(value);
 
-        void IList.Clear() => ThrowNotSupported();
+        void IList.Clear() => throw new NotSupportedException();
 
         // ReSharper disable once CoVariantArrayConversion
         int IList.IndexOf(object value) => Array.IndexOf(this.rows, value);
 
-        void IList.Insert(int index, object value) => ThrowNotSupported();
+        void IList.Insert(int index, object value) => throw new NotSupportedException();
 
-        void IList.Remove(object value) => ThrowNotSupported();
+        void IList.Remove(object value) => throw new NotSupportedException();
 
-        void IList.RemoveAt(int index) => ThrowNotSupported();
-
-        private static void ThrowNotSupported()
-        {
-            throw new NotSupportedException();
-        }
-
-        private static T ThrowNotSupported<T>()
-        {
-            throw new NotSupportedException();
-        }
+        void IList.RemoveAt(int index) => throw new NotSupportedException();
     }
 }
