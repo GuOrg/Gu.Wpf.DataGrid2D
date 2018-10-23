@@ -1,9 +1,12 @@
 group Analyzers
   AsyncUsageAnalyzers
-  IDisposableAnalyzers
   Gu.Analyzers
+  IDisposableAnalyzers
+  Microsoft.CodeAnalysis.FxCopAnalyzers
   PropertyChangedAnalyzers
+  ReflectionAnalyzers
   StyleCop.Analyzers
+  WpfAnalyzers
   JetBrains.Annotations
 
 group Test

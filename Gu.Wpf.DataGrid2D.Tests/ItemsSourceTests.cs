@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Tests
+namespace Gu.Wpf.DataGrid2D.Tests
 {
     using System.Collections.ObjectModel;
     using System.Threading;
@@ -12,7 +12,12 @@
         [Test]
         public void Array2D()
         {
-            var array = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var array = new[,]
+                        {
+                            { 1, 2 },
+                            { 3, 4 },
+                            { 5, 6 },
+                        };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.Array2DProperty, array);
             dataGrid.Initialize();
@@ -34,7 +39,12 @@
         [Test]
         public void Array2DTransposed()
         {
-            var array = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var array = new[,]
+                        {
+                            { 1, 2 },
+                            { 3, 4 },
+                            { 5, 6 },
+                        };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.Array2DTransposedProperty, array);
             dataGrid.Initialize();
@@ -58,7 +68,7 @@
                            {
                                new ObservableCollection<int>(new[] { 1, 2 }),
                                new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
@@ -93,7 +103,7 @@
                        {
                            new ObservableCollection<int>(new[] { 1, 2 }),
                            new ObservableCollection<int>(new[] { 3, 4 }),
-                           new ObservableCollection<int>(new[] { 5, 6 })
+                           new ObservableCollection<int>(new[] { 5, 6 }),
                        };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
@@ -135,7 +145,7 @@
                            {
                                new ObservableCollection<int>(new[] { 1, 2 }),
                                new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.ColumnsSourceProperty, ints);

@@ -4,6 +4,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.ComponentModel;
     using System.ComponentModel.Design.Serialization;
     using System.Globalization;
+    using System.Reflection;
 
     /// <inheritdoc />
     public class RowColumnIndexConverter : TypeConverter
@@ -33,11 +34,9 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            var text = value as string;
-            if (text != null)
+            if (value is string text)
             {
-                RowColumnIndex result;
-                if (RowColumnIndex.TryParse(text, out result))
+                if (RowColumnIndex.TryParse(text, out var result))
                 {
                     return result;
                 }
@@ -52,9 +51,8 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
-            if (value is RowColumnIndex)
+            if (value is RowColumnIndex index)
             {
-                var index = (RowColumnIndex)value;
                 if (destinationType == typeof(string))
                 {
                     return index.ToString();
@@ -62,7 +60,7 @@ namespace Gu.Wpf.DataGrid2D
 
                 if (destinationType == typeof(InstanceDescriptor))
                 {
-                    var ci = typeof(RowColumnIndex).GetConstructor(new[] { typeof(int), typeof(int) });
+                    var ci = typeof(RowColumnIndex).GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, new[] { typeof(int), typeof(int) }, null);
                     return new InstanceDescriptor(ci, new object[] { index.Row, index.Column });
                 }
             }

@@ -13,7 +13,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
                                new ObservableCollection<int>(new[] { 1, 2 }),
-                               new ObservableCollection<int>(new[] { 3, 4 })
+                               new ObservableCollection<int>(new[] { 3, 4 }),
                            };
                 using (var view = new Lists2DTransposedView(ints))
                 {
@@ -31,7 +31,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                            {
                                new ObservableCollection<int>(new[] { 2 }),
                                new ObservableCollection<int>(new[] { 3 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
                 using (var view = new Lists2DTransposedView(ints))
                 {
@@ -49,7 +49,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                            {
                                new ObservableCollection<int>(new[] { 1, 2 }),
                                new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
                 using (var view = new Lists2DTransposedView(ints))
                 {
@@ -67,7 +67,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                            {
                                new ObservableCollection<int>(new[] { 2, 3 }),
                                new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
                 using (var view = new Lists2DTransposedView(ints))
                 {
@@ -85,7 +85,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                            {
                                new ObservableCollection<int>(new[] { 2 }),
                                new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
                 using (var view = new Lists2DTransposedView(ints))
                 {
@@ -103,7 +103,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                            {
                                new ObservableCollection<int>(new[] { 2 }),
                                new ObservableCollection<int>(new[] { 3 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
                 using (var view = new Lists2DTransposedView(ints))
                 {
@@ -138,7 +138,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                            {
                                new ObservableCollection<int>(new[] { 1 }),
                                new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
                 using (var view = new Lists2DTransposedView(ints))
                 {

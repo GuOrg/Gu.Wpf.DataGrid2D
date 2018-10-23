@@ -73,7 +73,7 @@ namespace Gu.Wpf.DataGrid2D
                         this.ResetRows();
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException(nameof(e));
                 }
             }
             else
@@ -111,7 +111,7 @@ namespace Gu.Wpf.DataGrid2D
 
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException(nameof(e));
                 }
             }
 
@@ -139,7 +139,7 @@ namespace Gu.Wpf.DataGrid2D
                 case NotifyCollectionChangedAction.Move:
                     return false;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(e));
             }
 
             if (ReferenceEquals(sender, this.Source))

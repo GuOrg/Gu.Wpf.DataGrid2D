@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System;
     using System.ComponentModel;
@@ -28,16 +28,16 @@
             this.celleditingtemplate1 = this.CreateCellEditingTemplate("Value1");
             this.celleditingtemplate2 = this.CreateCellEditingTemplate("Value2");
 
-            this.MyCellTemplate = this.celltemplate1;
-            this.MyCellEditingTemplate = this.celleditingtemplate1;
+            this.myCellTemplate = this.celltemplate1;
+            this.myCellEditingTemplate = this.celleditingtemplate1;
 
             this.Data2D = new CellTemplateDemoClass[3, 3];
-            Random r = new Random();
-            for (int i = 0; i < 3; ++i)
+            var r = new Random();
+            for (var i = 0; i < 3; ++i)
             {
-                for (int j = 0; j < 3; ++j)
+                for (var j = 0; j < 3; ++j)
                 {
-                    CellTemplateDemoClass cl = new CellTemplateDemoClass
+                    var cl = new CellTemplateDemoClass
                     {
                         Value1 = i + j,
                         Value2 = 9 - j - i,
@@ -46,8 +46,8 @@
                             A = (byte)r.Next(255),
                             R = (byte)r.Next(255),
                             G = (byte)r.Next(255),
-                            B = (byte)r.Next(255)
-                        })
+                            B = (byte)r.Next(255),
+                        }),
                     };
 
                     this.Data2D[i, j] = cl;

@@ -1,12 +1,19 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.ComponentModel;
+    using System.Globalization;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
 
     public class PropertyChangedViewModel : INotifyPropertyChanged
     {
-        private string[,] strings = { { "1", "2" }, { "3", "4" }, { "5", "6" } };
+        private string[,] strings =
+        {
+            { "1", "2" },
+            { "3", "4" },
+            { "5", "6" },
+        };
+
         private int count;
 
         public PropertyChangedViewModel()
@@ -43,11 +50,11 @@
         {
             this.count++;
             this.Strings = new[,]
-                               {
-                                   { (this.count + 1).ToString(), (this.count + 2).ToString() },
-                                   { (this.count + 3).ToString(), (this.count + 4).ToString() },
-                                   { (this.count + 5).ToString(), (this.count + 6).ToString() },
-                               };
+                           {
+                               { (this.count + 1).ToString(CultureInfo.InvariantCulture), (this.count + 2).ToString(CultureInfo.InvariantCulture) },
+                               { (this.count + 3).ToString(CultureInfo.InvariantCulture), (this.count + 4).ToString(CultureInfo.InvariantCulture) },
+                               { (this.count + 5).ToString(CultureInfo.InvariantCulture), (this.count + 6).ToString(CultureInfo.InvariantCulture) },
+                           };
         }
     }
 }

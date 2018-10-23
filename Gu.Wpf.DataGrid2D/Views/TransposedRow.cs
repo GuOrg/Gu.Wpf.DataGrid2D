@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.ComponentModel;
@@ -45,7 +45,7 @@
             var indexOf = this.Source.Source.IndexOf(sender);
             if (indexOf < 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(sender));
             }
 
             this.OnPropertyChanged(this.properties[indexOf + 1].Name);

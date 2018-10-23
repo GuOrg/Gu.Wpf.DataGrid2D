@@ -8,7 +8,7 @@ namespace Gu.Wpf.DataGrid2D
         private readonly PropertyDescriptor propertyDescriptor;
 
         internal NamePropertyDescriptor(PropertyDescriptor propertyDescriptor)
-            : base("Name", null)
+            : base(nameof(Name), null)
         {
             this.propertyDescriptor = propertyDescriptor;
         }

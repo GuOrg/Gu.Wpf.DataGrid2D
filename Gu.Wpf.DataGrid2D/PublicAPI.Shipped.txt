@@ -1,0 +1,144 @@
+﻿Gu.Wpf.DataGrid2D.Array2DRowView
+Gu.Wpf.DataGrid2D.Array2DView
+Gu.Wpf.DataGrid2D.Array2DView.Count.get -> int
+Gu.Wpf.DataGrid2D.Array2DView.GetEnumerator() -> System.Collections.Generic.IEnumerator<Gu.Wpf.DataGrid2D.Array2DRowView>
+Gu.Wpf.DataGrid2D.Array2DView.IsFixedSize.get -> bool
+Gu.Wpf.DataGrid2D.Array2DView.IsReadOnly.get -> bool
+Gu.Wpf.DataGrid2D.Array2DView.IsTransposed.get -> bool
+Gu.Wpf.DataGrid2D.Array2DView.Source.get -> System.Collections.IEnumerable
+Gu.Wpf.DataGrid2D.Array2DView.this[int index].get -> Gu.Wpf.DataGrid2D.Array2DRowView
+Gu.Wpf.DataGrid2D.Cell
+Gu.Wpf.DataGrid2D.IView2D
+Gu.Wpf.DataGrid2D.IView2D.IsTransposed.get -> bool
+Gu.Wpf.DataGrid2D.IView2D.Source.get -> System.Collections.IEnumerable
+Gu.Wpf.DataGrid2D.Index
+Gu.Wpf.DataGrid2D.ItemsSource
+Gu.Wpf.DataGrid2D.ListRowView
+Gu.Wpf.DataGrid2D.ListRowView.PropertyChanged -> System.ComponentModel.PropertyChangedEventHandler
+Gu.Wpf.DataGrid2D.Lists2DTransposedView
+Gu.Wpf.DataGrid2D.Lists2DTransposedView.Lists2DTransposedView(System.Collections.Generic.IEnumerable<System.Collections.IEnumerable> source) -> void
+Gu.Wpf.DataGrid2D.Lists2DView
+Gu.Wpf.DataGrid2D.Lists2DView.Lists2DView(System.Collections.Generic.IEnumerable<System.Collections.IEnumerable> source) -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase
+Gu.Wpf.DataGrid2D.Lists2DViewBase.AddRows(int newStartingIndex, int count) -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.CollectionChanged -> System.Collections.Specialized.NotifyCollectionChangedEventHandler
+Gu.Wpf.DataGrid2D.Lists2DViewBase.ColumnsChanged -> System.EventHandler
+Gu.Wpf.DataGrid2D.Lists2DViewBase.Count.get -> int
+Gu.Wpf.DataGrid2D.Lists2DViewBase.Dispose() -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.GetEnumerator() -> System.Collections.Generic.IEnumerator<Gu.Wpf.DataGrid2D.ListRowView>
+Gu.Wpf.DataGrid2D.Lists2DViewBase.Lists2DViewBase(System.Collections.Generic.IEnumerable<System.Collections.IEnumerable> source) -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e) -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.OnColumnsChanged() -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs e) -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.OnPropertyChanged(string propertyName = null) -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.PropertyChanged -> System.ComponentModel.PropertyChangedEventHandler
+Gu.Wpf.DataGrid2D.Lists2DViewBase.RemoveRows(int oldStartingIndex, int count) -> void
+Gu.Wpf.DataGrid2D.Lists2DViewBase.Rows.get -> System.Collections.Generic.List<Gu.Wpf.DataGrid2D.ListRowView>
+Gu.Wpf.DataGrid2D.Lists2DViewBase.this[int index].get -> Gu.Wpf.DataGrid2D.ListRowView
+Gu.Wpf.DataGrid2D.RowColumnIndex
+Gu.Wpf.DataGrid2D.RowColumnIndex.Column.get -> int
+Gu.Wpf.DataGrid2D.RowColumnIndex.Equals(Gu.Wpf.DataGrid2D.RowColumnIndex other) -> bool
+Gu.Wpf.DataGrid2D.RowColumnIndex.Row.get -> int
+Gu.Wpf.DataGrid2D.RowColumnIndex.RowColumnIndex(int row, int column) -> void
+Gu.Wpf.DataGrid2D.RowColumnIndexConverter
+Gu.Wpf.DataGrid2D.RowColumnIndexConverter.RowColumnIndexConverter() -> void
+Gu.Wpf.DataGrid2D.RowView<TSource>
+Gu.Wpf.DataGrid2D.RowView<TSource>.Count.get -> int
+Gu.Wpf.DataGrid2D.RowView<TSource>.Index.get -> int
+Gu.Wpf.DataGrid2D.RowView<TSource>.RowView(TSource source, int index, System.ComponentModel.PropertyDescriptorCollection properties) -> void
+Gu.Wpf.DataGrid2D.Selected
+Gu.Wpf.DataGrid2D.TransposedItemsSource
+Gu.Wpf.DataGrid2D.TransposedItemsSource.ColumnsChanged -> System.EventHandler
+Gu.Wpf.DataGrid2D.TransposedItemsSource.Count.get -> int
+Gu.Wpf.DataGrid2D.TransposedItemsSource.Dispose() -> void
+Gu.Wpf.DataGrid2D.TransposedItemsSource.GetEnumerator() -> System.Collections.Generic.IEnumerator<Gu.Wpf.DataGrid2D.TransposedRow>
+Gu.Wpf.DataGrid2D.TransposedItemsSource.IsReadOnly.get -> bool
+Gu.Wpf.DataGrid2D.TransposedItemsSource.IsTransposed.get -> bool
+Gu.Wpf.DataGrid2D.TransposedItemsSource.Source.get -> System.Collections.Generic.IEnumerable<object>
+Gu.Wpf.DataGrid2D.TransposedItemsSource.TransposedItemsSource(System.Collections.IEnumerable source) -> void
+Gu.Wpf.DataGrid2D.TransposedItemsSource.this[int index].get -> Gu.Wpf.DataGrid2D.TransposedRow
+Gu.Wpf.DataGrid2D.TransposedRow
+Gu.Wpf.DataGrid2D.TransposedRow.PropertyChanged -> System.ComponentModel.PropertyChangedEventHandler
+abstract Gu.Wpf.DataGrid2D.Lists2DViewBase.CreateRow(int index) -> Gu.Wpf.DataGrid2D.ListRowView
+abstract Gu.Wpf.DataGrid2D.Lists2DViewBase.IsTransposed.get -> bool
+override Gu.Wpf.DataGrid2D.ListRowView.GetEvents() -> System.ComponentModel.EventDescriptorCollection
+override Gu.Wpf.DataGrid2D.ListRowView.GetEvents(System.Attribute[] attributes) -> System.ComponentModel.EventDescriptorCollection
+override Gu.Wpf.DataGrid2D.Lists2DTransposedView.CreateRow(int index) -> Gu.Wpf.DataGrid2D.ListRowView
+override Gu.Wpf.DataGrid2D.Lists2DTransposedView.IsTransposed.get -> bool
+override Gu.Wpf.DataGrid2D.Lists2DTransposedView.ReceiveWeakEvent(System.Type managerType, object sender, System.EventArgs e) -> bool
+override Gu.Wpf.DataGrid2D.Lists2DView.CreateRow(int index) -> Gu.Wpf.DataGrid2D.ListRowView
+override Gu.Wpf.DataGrid2D.Lists2DView.IsTransposed.get -> bool
+override Gu.Wpf.DataGrid2D.Lists2DView.ReceiveWeakEvent(System.Type managerType, object sender, System.EventArgs e) -> bool
+override Gu.Wpf.DataGrid2D.RowColumnIndex.Equals(object obj) -> bool
+override Gu.Wpf.DataGrid2D.RowColumnIndex.GetHashCode() -> int
+override Gu.Wpf.DataGrid2D.RowColumnIndex.ToString() -> string
+override Gu.Wpf.DataGrid2D.RowColumnIndexConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType) -> bool
+override Gu.Wpf.DataGrid2D.RowColumnIndexConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type destinationType) -> bool
+override Gu.Wpf.DataGrid2D.RowColumnIndexConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value) -> object
+override Gu.Wpf.DataGrid2D.RowColumnIndexConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) -> object
+override Gu.Wpf.DataGrid2D.RowView<TSource>.GetClassName() -> string
+override Gu.Wpf.DataGrid2D.RowView<TSource>.GetProperties() -> System.ComponentModel.PropertyDescriptorCollection
+override Gu.Wpf.DataGrid2D.RowView<TSource>.GetProperties(System.Attribute[] attributes) -> System.ComponentModel.PropertyDescriptorCollection
+override Gu.Wpf.DataGrid2D.TransposedRow.GetEvents() -> System.ComponentModel.EventDescriptorCollection
+override Gu.Wpf.DataGrid2D.TransposedRow.GetEvents(System.Attribute[] attributes) -> System.ComponentModel.EventDescriptorCollection
+override Gu.Wpf.DataGrid2D.TransposedRow.GetProperties() -> System.ComponentModel.PropertyDescriptorCollection
+override Gu.Wpf.DataGrid2D.TransposedRow.GetProperties(System.Attribute[] attributes) -> System.ComponentModel.PropertyDescriptorCollection
+static Gu.Wpf.DataGrid2D.Array2DView.Create(System.Array source) -> Gu.Wpf.DataGrid2D.Array2DView
+static Gu.Wpf.DataGrid2D.Array2DView.CreateTransposed(System.Array source) -> Gu.Wpf.DataGrid2D.Array2DView
+static Gu.Wpf.DataGrid2D.Cell.GetEditingTemplate(this System.Windows.Controls.DataGrid element) -> System.Windows.DataTemplate
+static Gu.Wpf.DataGrid2D.Cell.GetEditingTemplateSelector(this System.Windows.DependencyObject element) -> System.Windows.Controls.DataTemplateSelector
+static Gu.Wpf.DataGrid2D.Cell.GetTemplate(this System.Windows.Controls.DataGrid element) -> System.Windows.DataTemplate
+static Gu.Wpf.DataGrid2D.Cell.GetTemplateSelector(this System.Windows.Controls.DataGrid element) -> System.Windows.Controls.DataTemplateSelector
+static Gu.Wpf.DataGrid2D.Cell.SetEditingTemplate(this System.Windows.Controls.DataGrid element, System.Windows.DataTemplate value) -> void
+static Gu.Wpf.DataGrid2D.Cell.SetEditingTemplateSelector(System.Windows.DependencyObject element, System.Windows.Controls.DataTemplateSelector value) -> void
+static Gu.Wpf.DataGrid2D.Cell.SetTemplate(this System.Windows.Controls.DataGrid element, System.Windows.DataTemplate value) -> void
+static Gu.Wpf.DataGrid2D.Cell.SetTemplateSelector(System.Windows.Controls.DataGrid element, System.Windows.Controls.DataTemplateSelector value) -> void
+static Gu.Wpf.DataGrid2D.Index.GetOfRow(this System.Windows.Controls.DataGridRow element) -> int
+static Gu.Wpf.DataGrid2D.Index.GetStartAt(this System.Windows.Controls.Control element) -> int
+static Gu.Wpf.DataGrid2D.Index.SetOfRow(this System.Windows.Controls.DataGridRow element, int value) -> void
+static Gu.Wpf.DataGrid2D.Index.SetStartAt(this System.Windows.Controls.Control element, int value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.GetArray2D(this System.Windows.Controls.DataGrid element) -> System.Array
+static Gu.Wpf.DataGrid2D.ItemsSource.GetArray2DTransposed(this System.Windows.Controls.DataGrid element) -> System.Array
+static Gu.Wpf.DataGrid2D.ItemsSource.GetColumnHeadersSource(this System.Windows.Controls.DataGrid element) -> System.Collections.IEnumerable
+static Gu.Wpf.DataGrid2D.ItemsSource.GetColumnsSource(this System.Windows.Controls.DataGrid element) -> System.Collections.IEnumerable
+static Gu.Wpf.DataGrid2D.ItemsSource.GetPropertySource(System.Windows.DependencyObject element) -> object
+static Gu.Wpf.DataGrid2D.ItemsSource.GetRowHeadersSource(this System.Windows.Controls.DataGrid element) -> System.Collections.IEnumerable
+static Gu.Wpf.DataGrid2D.ItemsSource.GetRowsSource(this System.Windows.Controls.DataGrid element) -> System.Collections.IEnumerable
+static Gu.Wpf.DataGrid2D.ItemsSource.GetTransposedSource(this System.Windows.Controls.DataGrid element) -> System.Collections.IEnumerable
+static Gu.Wpf.DataGrid2D.ItemsSource.SetArray2D(this System.Windows.Controls.DataGrid element, System.Array value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.SetArray2DTransposed(this System.Windows.Controls.DataGrid element, System.Array value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.SetColumnHeadersSource(this System.Windows.Controls.DataGrid element, System.Collections.IEnumerable value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.SetColumnsSource(this System.Windows.Controls.DataGrid element, System.Collections.IEnumerable value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.SetPropertySource(System.Windows.DependencyObject element, object value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.SetRowHeadersSource(this System.Windows.Controls.DataGrid element, System.Collections.IEnumerable value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.SetRowsSource(this System.Windows.Controls.DataGrid element, System.Collections.IEnumerable value) -> void
+static Gu.Wpf.DataGrid2D.ItemsSource.SetTransposedSource(this System.Windows.Controls.DataGrid element, System.Collections.IEnumerable value) -> void
+static Gu.Wpf.DataGrid2D.RowColumnIndex.Parse(string text) -> Gu.Wpf.DataGrid2D.RowColumnIndex
+static Gu.Wpf.DataGrid2D.RowColumnIndex.TryParse(string text, out Gu.Wpf.DataGrid2D.RowColumnIndex result) -> bool
+static Gu.Wpf.DataGrid2D.RowColumnIndex.operator !=(Gu.Wpf.DataGrid2D.RowColumnIndex left, Gu.Wpf.DataGrid2D.RowColumnIndex right) -> bool
+static Gu.Wpf.DataGrid2D.RowColumnIndex.operator ==(Gu.Wpf.DataGrid2D.RowColumnIndex left, Gu.Wpf.DataGrid2D.RowColumnIndex right) -> bool
+static Gu.Wpf.DataGrid2D.Selected.GetCellItem(this System.Windows.Controls.DataGrid element) -> object
+static Gu.Wpf.DataGrid2D.Selected.GetIndex(this System.Windows.Controls.DataGrid element) -> Gu.Wpf.DataGrid2D.RowColumnIndex?
+static Gu.Wpf.DataGrid2D.Selected.SetCellItem(this System.Windows.Controls.DataGrid element, object value) -> void
+static Gu.Wpf.DataGrid2D.Selected.SetIndex(this System.Windows.Controls.DataGrid element, Gu.Wpf.DataGrid2D.RowColumnIndex? value) -> void
+static readonly Gu.Wpf.DataGrid2D.Cell.EditingTemplateProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.Cell.EditingTemplateSelectorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.Cell.TemplateProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.Cell.TemplateSelectorProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.Index.OfRowProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.Index.StartAtProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.Array2DProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.Array2DTransposedProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.ColumnHeadersSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.ColumnsSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.PropertySourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.RowHeadersSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.RowsSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.ItemsSource.TransposedSourceProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.Lists2DViewBase.CountPropertyChangedEventArgs -> System.ComponentModel.PropertyChangedEventArgs
+static readonly Gu.Wpf.DataGrid2D.Lists2DViewBase.IndexerPropertyChangedEventArgs -> System.ComponentModel.PropertyChangedEventArgs
+static readonly Gu.Wpf.DataGrid2D.Lists2DViewBase.NotifyCollectionResetEventArgs -> System.Collections.Specialized.NotifyCollectionChangedEventArgs
+static readonly Gu.Wpf.DataGrid2D.RowColumnIndex.None -> Gu.Wpf.DataGrid2D.RowColumnIndex
+static readonly Gu.Wpf.DataGrid2D.Selected.CellItemProperty -> System.Windows.DependencyProperty
+static readonly Gu.Wpf.DataGrid2D.Selected.IndexProperty -> System.Windows.DependencyProperty
+virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.ReceiveWeakEvent(System.Type managerType, object sender, System.EventArgs e) -> bool

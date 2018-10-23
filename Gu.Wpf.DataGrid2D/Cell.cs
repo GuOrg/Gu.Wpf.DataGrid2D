@@ -263,7 +263,7 @@ namespace Gu.Wpf.DataGrid2D
                     CellTemplate = ((DataGrid)sender).GetTemplate(),
                     CellEditingTemplate = ((DataGrid)sender).GetEditingTemplate(),
                     CellTemplateSelector = ((DataGrid)sender).GetTemplateSelector(),
-                    CellEditingTemplateSelector = ((DataGrid)sender).GetEditingTemplateSelector()
+                    CellEditingTemplateSelector = ((DataGrid)sender).GetEditingTemplateSelector(),
                 };
 
                 DataGridTextColumn tc = e.Column as DataGridTextColumn;

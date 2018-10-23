@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -12,7 +12,12 @@
 
         public Array2DVm()
         {
-            this.Data2D = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            this.Data2D = new[,]
+                          {
+                              { 1, 2 },
+                              { 3, 4 },
+                              { 5, 6 },
+                          };
             this.RowHeaders = new[] { "1", "2", "3" };
             this.ColumnHeaders = new[] { "A", "B", "C" };
             this.UpdateDataCommand = new RelayCommand(this.UpdateData);

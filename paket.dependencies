@@ -7,10 +7,13 @@ group Build
 group Analyzers
   source http://nuget.org/api/v2
   nuget AsyncUsageAnalyzers
-  nuget IDisposableAnalyzers
   nuget Gu.Analyzers
+  nuget IDisposableAnalyzers
+  nuget Microsoft.CodeAnalysis.FxCopAnalyzers
   nuget PropertyChangedAnalyzers
-  nuget StyleCop.Analyzers
+  nuget PublicApiAnalyzer prerelease
+  nuget ReflectionAnalyzers prerelease
+  nuget StyleCop.Analyzers prerelease
   nuget WpfAnalyzers
   nuget JetBrains.Annotations
 

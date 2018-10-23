@@ -69,7 +69,7 @@ namespace Gu.Wpf.DataGrid2D
                         this.ResetRows();
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException(nameof(e));
                 }
             }
             else
@@ -99,7 +99,7 @@ namespace Gu.Wpf.DataGrid2D
                         this.Rows[row].RaiseColumnsChanged(0, this.MaxColumnCount);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException(nameof(e));
                 }
             }
 

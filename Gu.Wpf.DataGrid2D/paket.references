@@ -3,8 +3,12 @@ group Build
 
 group Analyzers
   AsyncUsageAnalyzers
-  IDisposableAnalyzers
   Gu.Analyzers
+  IDisposableAnalyzers
+  Microsoft.CodeAnalysis.FxCopAnalyzers
+  PropertyChangedAnalyzers
+  PublicApiAnalyzer
+  ReflectionAnalyzers
   StyleCop.Analyzers
   WpfAnalyzers
   JetBrains.Annotations

@@ -35,7 +35,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
                            {
                                new ObservableCollection<int>(new[] { 1, 2 }),
                                new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 })
+                               new ObservableCollection<int>(new[] { 5, 6 }),
                            };
             using (var view = new Lists2DTransposedView(ints))
             {

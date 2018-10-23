@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Tests.Views
+namespace Gu.Wpf.DataGrid2D.Tests.Views
 {
     using NUnit.Framework;
 
@@ -7,7 +7,12 @@
         [Test]
         public void Create()
         {
-            var ints = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var ints = new[,]
+                       {
+                           { 1, 2 },
+                           { 3, 4 },
+                           { 5, 6 },
+                       };
             var view = Array2DView.Create(ints);
 
             Assert.AreEqual(3, view.Count);
@@ -36,7 +41,12 @@
         [TestCase(2, 1, -10)]
         public void Edit(int r, int c, int value)
         {
-            var ints = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var ints = new[,]
+                       {
+                           { 1, 2 },
+                           { 3, 4 },
+                           { 5, 6 },
+                       };
             var view = Array2DView.Create(ints);
             var row = view[r];
             var property = row.GetProperties()[c];
@@ -48,7 +58,12 @@
         [Test]
         public void CreateTransposed()
         {
-            var ints = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var ints = new[,]
+                       {
+                           { 1, 2 },
+                           { 3, 4 },
+                           { 5, 6 },
+                       };
             var view = Array2DView.CreateTransposed(ints);
 
             Assert.AreEqual(2, view.Count);
@@ -74,7 +89,12 @@
         [TestCase(1, 2, -10)]
         public void EditTransposed(int r, int c, int value)
         {
-            var ints = new[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var ints = new[,]
+                       {
+                           { 1, 2 },
+                           { 3, 4 },
+                           { 5, 6 },
+                       };
             var view = Array2DView.CreateTransposed(ints);
             var row = view[r];
             var property = row.GetProperties()[c];

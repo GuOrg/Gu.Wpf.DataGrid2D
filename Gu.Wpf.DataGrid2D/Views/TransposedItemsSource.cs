@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections;
@@ -26,8 +26,7 @@
 
             this.IsReadOnly = this.Properties.OfType<PropertyDescriptor>()
                                            .Any(x => !x.IsReadOnly);
-            var incc = source as INotifyCollectionChanged;
-            if (incc != null)
+            if (source is INotifyCollectionChanged incc)
             {
                 CollectionChangedEventManager.AddListener(incc, this);
             }
@@ -122,8 +121,7 @@
             }
 
             this.disposed = true;
-            var incc = this.Source as INotifyCollectionChanged;
-            if (incc != null)
+            if (this.Source is INotifyCollectionChanged incc)
             {
                 CollectionChangedEventManager.RemoveListener(incc, this);
             }
