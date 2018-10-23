@@ -20,7 +20,7 @@ namespace Gu.Wpf.DataGrid2D
             new PropertyMetadata(
                 default(Array),
                 OnArray2DChanged),
-            ValidateArray2D);
+            Validate2DArray);
 
         /// <summary>Helper for setting <see cref="Array2DProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="Array2DProperty"/> on.</param>
@@ -57,7 +57,7 @@ namespace Gu.Wpf.DataGrid2D
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
 
-        private static bool ValidateArray2D(object value)
+        private static bool Validate2DArray(object value)
         {
             if (value is Array array)
             {

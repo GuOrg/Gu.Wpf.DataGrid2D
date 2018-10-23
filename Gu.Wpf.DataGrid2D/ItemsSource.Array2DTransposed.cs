@@ -14,7 +14,7 @@ namespace Gu.Wpf.DataGrid2D
             new PropertyMetadata(
                 default(Array),
                 OnArray2DTransposedChanged),
-            ValidateArray2D);
+            Validate2DArray);
 
         /// <summary>Helper for setting <see cref="Array2DTransposedProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="Array2DTransposedProperty"/> on.</param>

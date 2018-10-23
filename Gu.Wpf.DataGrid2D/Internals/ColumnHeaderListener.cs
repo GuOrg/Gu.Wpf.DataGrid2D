@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections.Specialized;
@@ -32,8 +32,7 @@
 
             this.disposed = true;
             this.dataGrid.Columns.CollectionChanged -= this.OnCollectionChanged;
-            var headers = this.dataGrid.GetColumnHeadersSource() as INotifyCollectionChanged;
-            if (headers != null)
+            if (this.dataGrid.GetColumnHeadersSource() is INotifyCollectionChanged headers)
             {
                 headers.CollectionChanged -= this.OnCollectionChanged;
             }

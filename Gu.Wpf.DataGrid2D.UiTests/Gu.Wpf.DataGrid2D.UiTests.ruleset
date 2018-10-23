@@ -116,4 +116,7 @@
   <Rules AnalyzerId="Gu.Analyzers" RuleNamespace="Gu.Analyzers">
     <Rule Id="GU0015" Action="None" />
   </Rules>
+  <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
+    <Rule Id="CA1034" Action="None" />
+  </Rules>
 </RuleSet>

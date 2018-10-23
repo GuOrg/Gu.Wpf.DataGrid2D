@@ -4,7 +4,7 @@
     <Rule Id="CA1001" Action="Warning" />
     <Rule Id="CA1009" Action="Warning" />
     <Rule Id="CA1016" Action="Warning" />
-    <Rule Id="CA1033" Action="Warning" />
+    <Rule Id="CA1033" Action="None" />
     <Rule Id="CA1049" Action="Warning" />
     <Rule Id="CA1060" Action="Warning" />
     <Rule Id="CA1061" Action="Warning" />
@@ -104,5 +104,8 @@
     <Rule Id="WPF0083" Action="Warning" />
     <Rule Id="WPF0090" Action="Warning" />
     <Rule Id="WPF0091" Action="Warning" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
+    <Rule Id="CA1033" Action="None" />
   </Rules>
 </RuleSet>
