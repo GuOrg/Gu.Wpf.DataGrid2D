@@ -40,20 +40,15 @@ namespace Gu.Wpf.DataGrid2D
         private static void UpdateItemsSource(DataGrid dataGrid)
         {
             IEnumerable view = null;
-            var rowsSource = (IEnumerable<IEnumerable>)dataGrid.GetRowsSource();
-            if (rowsSource != null)
+            if (dataGrid.GetRowsSource() is IEnumerable<IEnumerable> rowsSource)
             {
                 view = new Lists2DView(rowsSource);
             }
-
-            var colsSource = (IEnumerable<IEnumerable>)dataGrid.GetColumnsSource();
-            if (colsSource != null)
+            else if (dataGrid.GetColumnsSource() is IEnumerable<IEnumerable> colsSource)
             {
                 view = new Lists2DTransposedView(colsSource);
             }
-
-            var transposedSource = dataGrid.GetTransposedSource();
-            if (transposedSource != null)
+            else if (dataGrid.GetTransposedSource() is IEnumerable transposedSource)
             {
                 view = new TransposedItemsSource(transposedSource);
             }

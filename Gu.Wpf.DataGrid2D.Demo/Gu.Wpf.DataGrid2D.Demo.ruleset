@@ -109,6 +109,7 @@
     <Rule Id="SA1649" Action="None" />
     <Rule Id="SA1651" Action="None" />
     <Rule Id="SA1652" Action="None" />
+    <Rule Id="SA0001" Action="None" />
   </Rules>
   <Rules AnalyzerId="Gu.Analyzers" RuleNamespace="Gu.Analyzers">
     <Rule Id="GU0015" Action="None" />
@@ -116,5 +117,6 @@
   <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
     <Rule Id="CA1814" Action="None" />
     <Rule Id="CA1819" Action="None" />
+    <Rule Id="CA1710" Action="None" />
   </Rules>
 </RuleSet>
