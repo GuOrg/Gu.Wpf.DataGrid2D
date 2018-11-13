@@ -5,7 +5,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
 
-    internal class RowsListener : IDisposable
+    internal sealed class RowsListener : IDisposable
     {
         private static readonly RoutedEventArgs RowsChangedEventArgs = new RoutedEventArgs(Events.RowsChangedEvent);
 
