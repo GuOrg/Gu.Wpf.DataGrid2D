@@ -27,3 +27,5 @@ group Test
 
   nuget NUnit
   nuget Gu.Wpf.UiAutomation
+  nuget NUnit3TestAdapter
+  nuget Microsoft.NET.Test.Sdk

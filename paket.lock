@@ -37,4 +37,8 @@ RESTRICTION: == net45
 NUGET
   remote: http://www.nuget.org/api/v2
     Gu.Wpf.UiAutomation (0.2.5)
+    Microsoft.CodeCoverage (15.9)
+    Microsoft.NET.Test.Sdk (15.9)
+      Microsoft.CodeCoverage (>= 15.9)
     NUnit (3.11)
+    NUnit3TestAdapter (3.12)
