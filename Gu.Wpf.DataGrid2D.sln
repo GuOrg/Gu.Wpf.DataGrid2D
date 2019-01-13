@@ -5,7 +5,10 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{70700050-2381-499E-AD41-69BFE55B22EE}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
+		azure-devops.yml = azure-devops.yml
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
 		.paket\Readme.paket.md = .paket\Readme.paket.md
@@ -13,11 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{707000
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.DataGrid2D.Demo", "Gu.Wpf.DataGrid2D.Demo\Gu.Wpf.DataGrid2D.Demo.csproj", "{AD21B5EF-1BF4-4089-838B-47A58C1EC8FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.DataGrid2D.Tests", "Gu.Wpf.DataGrid2D.Tests\Gu.Wpf.DataGrid2D.Tests.csproj", "{E5FCD5C0-4746-4264-BF7F-F07756C74255}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.DataGrid2D.Tests", "Gu.Wpf.DataGrid2D.Tests\Gu.Wpf.DataGrid2D.Tests.csproj", "{E5FCD5C0-4746-4264-BF7F-F07756C74255}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.DataGrid2D", "Gu.Wpf.DataGrid2D\Gu.Wpf.DataGrid2D.csproj", "{53AF7FFF-BCAD-43A5-8367-48429B2878BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.DataGrid2D.UiTests", "Gu.Wpf.DataGrid2D.UiTests\Gu.Wpf.DataGrid2D.UiTests.csproj", "{18A39C1F-6582-4C4F-8678-4128FE9287B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.DataGrid2D.UiTests", "Gu.Wpf.DataGrid2D.UiTests\Gu.Wpf.DataGrid2D.UiTests.csproj", "{18A39C1F-6582-4C4F-8678-4128FE9287B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{CFCAB8E2-4BC1-4EB1-8737-3BE82CDACEC2}"
 	ProjectSection(SolutionItems) = preProject
