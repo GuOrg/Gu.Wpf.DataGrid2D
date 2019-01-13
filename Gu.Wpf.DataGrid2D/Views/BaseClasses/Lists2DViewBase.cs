@@ -50,14 +50,19 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         public int Count => this.Rows.Count;
 
+        /// <inheritdoc />
         bool IList.IsReadOnly => this.Source.IsReadOnly();
 
+        /// <inheritdoc />
         bool IList.IsFixedSize => true;
 
+        /// <inheritdoc />
         object ICollection.SyncRoot => (this.Source as ICollection)?.SyncRoot ?? new object();
 
+        /// <inheritdoc />
         bool ICollection.IsSynchronized => (this.Source as ICollection)?.IsSynchronized == true;
 
+        /// <inheritdoc />
         IEnumerable IView2D.Source => this.Source;
 
         public abstract bool IsTransposed { get; }
@@ -104,6 +109,7 @@ namespace Gu.Wpf.DataGrid2D
             return true;
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             if (this.Source is INotifyCollectionChanged incc)
