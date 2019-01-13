@@ -115,20 +115,39 @@ namespace Gu.Wpf.DataGrid2D
 
         public void Dispose()
         {
+            this.Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             if (this.disposed)
             {
                 return;
             }
 
             this.disposed = true;
-            if (this.Source is INotifyCollectionChanged incc)
+            if (disposing)
             {
-                CollectionChangedEventManager.RemoveListener(incc, this);
-            }
+                if (this.Source is INotifyCollectionChanged incc)
+                {
+                    CollectionChangedEventManager.RemoveListener(incc, this);
+                }
 
-            foreach (var inpc in this.Source.OfType<INotifyPropertyChanged>())
+                if (this.Source is IEnumerable source)
+                {
+                    foreach (var inpc in source.OfType<INotifyPropertyChanged>())
+                    {
+                        PropertyChangedEventManager.RemoveListener(inpc, this, string.Empty);
+                    }
+                }
+            }
+        }
+
+        protected virtual void ThrowIfDisposed()
+        {
+            if (this.disposed)
             {
-                PropertyChangedEventManager.RemoveListener(inpc, this, string.Empty);
+                throw new ObjectDisposedException(this.GetType().FullName);
             }
         }
 
