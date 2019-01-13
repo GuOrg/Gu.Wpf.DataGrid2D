@@ -5,7 +5,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections.Generic;
     using System.Linq;
 
+#pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public class Array2DView : IList, IView2D
+#pragma warning restore CA1010 // Collections should implement generic interface
     {
         private readonly WeakReference source = new WeakReference(null);
         private readonly Array2DRowView[] rows;

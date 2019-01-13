@@ -1,2 +1,4 @@
 ﻿virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.Dispose(bool disposing) -> void
 virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.ThrowIfDisposed() -> void
+virtual Gu.Wpf.DataGrid2D.TransposedItemsSource.Dispose(bool disposing) -> void
+virtual Gu.Wpf.DataGrid2D.TransposedItemsSource.ThrowIfDisposed() -> void

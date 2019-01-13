@@ -9,7 +9,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
+#pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public class TransposedItemsSource : IList, IDisposable, IWeakEventListener, IView2D, IColumnsChanged
+#pragma warning restore CA1010 // Collections should implement generic interface
     {
         private readonly WeakReference source;
         private readonly IReadOnlyList<TransposedRow> rows;
@@ -116,6 +118,7 @@ namespace Gu.Wpf.DataGrid2D
         public void Dispose()
         {
             this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)

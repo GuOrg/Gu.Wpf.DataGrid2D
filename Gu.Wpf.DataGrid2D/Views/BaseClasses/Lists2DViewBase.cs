@@ -10,7 +10,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
-#pragma warning disable CA1010 // Collections should implement generic interface WPF only needs IList
+#pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public abstract class Lists2DViewBase : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable, IView2D, IColumnsChanged
 #pragma warning restore CA1010 // Collections should implement generic interface
     {
@@ -135,6 +135,7 @@ namespace Gu.Wpf.DataGrid2D
         public void Dispose()
         {
             this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         protected void OnCollectionChanged(NotifyCollectionChangedEventArgs e)

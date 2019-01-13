@@ -8,7 +8,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.ComponentModel;
     using System.Linq;
 
+#pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public class Lists2DTransposedView : Lists2DViewBase
+#pragma warning restore CA1010 // Collections should implement generic interface
     {
         public Lists2DTransposedView(IEnumerable<IEnumerable> source)
             : base(source)
