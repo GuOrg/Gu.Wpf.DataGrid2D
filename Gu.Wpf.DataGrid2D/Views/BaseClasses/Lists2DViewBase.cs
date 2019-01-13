@@ -10,7 +10,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
+#pragma warning disable CA1010 // Collections should implement generic interface WPF only needs IList
     public abstract class Lists2DViewBase : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable, IView2D, IColumnsChanged
+#pragma warning restore CA1010 // Collections should implement generic interface
     {
         protected static readonly NotifyCollectionChangedEventArgs NotifyCollectionResetEventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
         protected static readonly PropertyChangedEventArgs CountPropertyChangedEventArgs = new PropertyChangedEventArgs(nameof(Count));
@@ -18,6 +20,7 @@ namespace Gu.Wpf.DataGrid2D
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         private readonly WeakReference source = new WeakReference(null);
+        private bool disposed;
 
         protected Lists2DViewBase(IEnumerable<IEnumerable> source)
         {
@@ -109,23 +112,6 @@ namespace Gu.Wpf.DataGrid2D
             return true;
         }
 
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            if (this.Source is INotifyCollectionChanged incc)
-            {
-                CollectionChangedEventManager.RemoveListener(incc, this);
-            }
-
-            if (this.Source is IEnumerable source)
-            {
-                foreach (var row in source.OfType<INotifyCollectionChanged>())
-                {
-                    CollectionChangedEventManager.RemoveListener(row, this);
-                }
-            }
-        }
-
         public IEnumerator<ListRowView> GetEnumerator() => this.Rows.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
@@ -145,6 +131,11 @@ namespace Gu.Wpf.DataGrid2D
         void IList.Remove(object value) => throw new NotSupportedException();
 
         void IList.RemoveAt(int index) => throw new NotSupportedException();
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+        }
 
         protected void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
@@ -168,6 +159,7 @@ namespace Gu.Wpf.DataGrid2D
 
         protected void AddRows(int newStartingIndex, int count)
         {
+            this.ThrowIfDisposed();
             var newItems = new List<ListRowView>();
             for (var index = newStartingIndex; index < newStartingIndex + count; index++)
             {
@@ -185,6 +177,7 @@ namespace Gu.Wpf.DataGrid2D
 
         protected void RemoveRows(int oldStartingIndex, int count)
         {
+            this.ThrowIfDisposed();
             var oldItems = new List<ListRowView>();
             for (var i = oldStartingIndex; i < oldStartingIndex + count; i++)
             {
@@ -195,6 +188,39 @@ namespace Gu.Wpf.DataGrid2D
             this.OnPropertyChanged(CountPropertyChangedEventArgs);
             this.OnPropertyChanged(IndexerPropertyChangedEventArgs);
             this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, oldItems, oldStartingIndex));
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+            {
+                return;
+            }
+
+            this.disposed = true;
+            if (disposing)
+            {
+                if (this.Source is INotifyCollectionChanged incc)
+                {
+                    CollectionChangedEventManager.RemoveListener(incc, this);
+                }
+
+                if (this.Source is IEnumerable source)
+                {
+                    foreach (var row in source.OfType<INotifyCollectionChanged>())
+                    {
+                        CollectionChangedEventManager.RemoveListener(row, this);
+                    }
+                }
+            }
+        }
+
+        protected virtual void ThrowIfDisposed()
+        {
+            if (this.disposed)
+            {
+                throw new ObjectDisposedException(this.GetType().FullName);
+            }
         }
     }
 }
