@@ -1,3 +1,6 @@
+#### 0.2.1.6
+* BUGFIX: Null checks
+
 #### 0.2.1.5
 * BUGFIX: Handle setting RowHeadersSource to null.
 
