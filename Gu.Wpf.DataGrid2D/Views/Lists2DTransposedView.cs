@@ -142,7 +142,8 @@ namespace Gu.Wpf.DataGrid2D
                     throw new ArgumentOutOfRangeException(nameof(e));
             }
 
-            if (ReferenceEquals(sender, this.Source))
+            if (ReferenceEquals(sender, this.Source) ||
+                this.Source is null)
             {
                 return true;
             }
