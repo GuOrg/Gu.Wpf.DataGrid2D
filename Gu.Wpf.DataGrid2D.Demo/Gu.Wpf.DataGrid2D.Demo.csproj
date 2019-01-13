@@ -4,6 +4,7 @@
   <Import Project="..\packages\analyzers\Microsoft.NetFramework.Analyzers\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.NetFramework.Analyzers\build\Microsoft.NetFramework.Analyzers.props')" Label="Paket" />
   <Import Project="..\packages\analyzers\Microsoft.NetCore.Analyzers\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.NetCore.Analyzers\build\Microsoft.NetCore.Analyzers.props')" Label="Paket" />
   <Import Project="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.CodeQuality.Analyzers\build\Microsoft.CodeQuality.Analyzers.props')" Label="Paket" />
+  <Import Project="..\packages\analyzers\Microsoft.CodeAnalysis.FxCopAnalyzers\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.CodeAnalysis.FxCopAnalyzers\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Label="Paket" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -275,6 +276,9 @@
     </When>
   </Choose>
   <ItemGroup>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\Humanizer.dll">
+      <Paket>True</Paket>
+    </Analyzer>
     <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
