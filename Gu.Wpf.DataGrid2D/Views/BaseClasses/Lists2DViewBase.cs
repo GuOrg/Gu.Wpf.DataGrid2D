@@ -111,9 +111,12 @@ namespace Gu.Wpf.DataGrid2D
                 CollectionChangedEventManager.RemoveListener(incc, this);
             }
 
-            foreach (var row in this.Source.OfType<INotifyCollectionChanged>())
+            if (this.Source is IEnumerable source)
             {
-                CollectionChangedEventManager.RemoveListener(row, this);
+                foreach (var row in source.OfType<INotifyCollectionChanged>())
+                {
+                    CollectionChangedEventManager.RemoveListener(row, this);
+                }
             }
         }
 
