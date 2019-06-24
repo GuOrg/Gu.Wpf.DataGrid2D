@@ -1,20 +1,18 @@
 source http://www.nuget.org/api/v2/
 
 group Build
-  framework: net45
   source http://www.nuget.org/api/v2/
   nuget SourceLink.Create.CommandLine
 
 group Analyzers
   source http://nuget.org/api/v2
-  framework: net45
 
   nuget AsyncUsageAnalyzers
   nuget Gu.Analyzers
   nuget IDisposableAnalyzers
   nuget Microsoft.CodeAnalysis.FxCopAnalyzers
+  nuget Microsoft.CodeAnalysis.PublicApiAnalyzers
   nuget PropertyChangedAnalyzers
-  nuget PublicApiAnalyzer prerelease
   nuget ReflectionAnalyzers prerelease
   nuget StyleCop.Analyzers prerelease
   nuget WpfAnalyzers
@@ -22,10 +20,9 @@ group Analyzers
 
 group Test
   source http://www.nuget.org/api/v2/
-  framework: net45
   storage:none
 
-  nuget NUnit
-  nuget Gu.Wpf.UiAutomation
-  nuget NUnit3TestAdapter
   nuget Microsoft.NET.Test.Sdk
+  nuget NUnit
+  nuget NUnit3TestAdapter
+  nuget Gu.Wpf.UiAutomation
