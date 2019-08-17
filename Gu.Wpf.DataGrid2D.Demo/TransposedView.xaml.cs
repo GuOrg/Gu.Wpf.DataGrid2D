@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for TransposedView.xaml
+    /// Interaction logic for TransposedView.xaml.
     /// </summary>
     public partial class TransposedView : UserControl
     {

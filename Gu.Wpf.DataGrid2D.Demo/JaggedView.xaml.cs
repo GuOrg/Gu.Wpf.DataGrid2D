@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for JaggedView.xaml
+    /// Interaction logic for JaggedView.xaml.
     /// </summary>
     public partial class JaggedView : UserControl
     {

@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for PropertyChangedView.xaml
+    /// Interaction logic for PropertyChangedView.xaml.
     /// </summary>
     public partial class PropertyChangedView : UserControl
     {

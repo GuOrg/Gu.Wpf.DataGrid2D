@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for ObservableView.xaml
+    /// Interaction logic for ObservableView.xaml.
     /// </summary>
     public partial class ObservableView : UserControl
     {

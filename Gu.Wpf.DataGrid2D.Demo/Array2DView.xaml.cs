@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for Array2DView.xaml
+    /// Interaction logic for Array2DView.xaml.
     /// </summary>
     public partial class Array2DView : UserControl
     {

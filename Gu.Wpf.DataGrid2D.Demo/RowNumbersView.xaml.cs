@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for RowNumbersView.xaml
+    /// Interaction logic for RowNumbersView.xaml.
     /// </summary>
     public partial class RowNumbersView : UserControl
     {

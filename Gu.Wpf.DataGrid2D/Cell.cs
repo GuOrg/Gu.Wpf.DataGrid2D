@@ -245,7 +245,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             private readonly DataGrid dataGrid;
 
-            public AutogenerateColumnListener(DataGrid dataGrid)
+            internal AutogenerateColumnListener(DataGrid dataGrid)
             {
                 this.dataGrid = dataGrid;
                 dataGrid.AutoGeneratingColumn += OnDataGridAutoGeneratingColumn;

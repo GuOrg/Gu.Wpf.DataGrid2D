@@ -13,7 +13,7 @@ namespace Gu.Wpf.DataGrid2D
         private readonly DataGrid dataGrid;
         private bool disposed;
 
-        public RowHeaderListener(DataGrid dataGrid)
+        internal RowHeaderListener(DataGrid dataGrid)
         {
             this.dataGrid = dataGrid;
             ////dataGrid.ItemContainerGenerator.ItemsChanged += this.OnItemsChanged;

@@ -3,7 +3,7 @@
     using System.Windows;
 
     /// <summary>
-    /// Interaction logic for PerfWindow.xaml
+    /// Interaction logic for PerfWindow.xaml.
     /// </summary>
     public partial class PerfWindow : Window
     {

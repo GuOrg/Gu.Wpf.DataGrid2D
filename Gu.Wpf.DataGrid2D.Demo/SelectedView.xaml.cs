@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for SelectedView.xaml
+    /// Interaction logic for SelectedView.xaml.
     /// </summary>
     public partial class SelectedView : UserControl
     {

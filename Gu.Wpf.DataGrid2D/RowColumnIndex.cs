@@ -95,7 +95,7 @@ namespace Gu.Wpf.DataGrid2D
                 return false;
             }
 
-            return obj is RowColumnIndex && this.Equals((RowColumnIndex)obj);
+            return obj is RowColumnIndex index && this.Equals(index);
         }
 
         public override int GetHashCode()

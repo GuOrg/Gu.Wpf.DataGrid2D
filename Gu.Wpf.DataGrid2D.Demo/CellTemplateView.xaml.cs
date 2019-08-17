@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for CellTemplateView.xaml
+    /// Interaction logic for CellTemplateView.xaml.
     /// </summary>
     public partial class CellTemplateView : UserControl
     {
