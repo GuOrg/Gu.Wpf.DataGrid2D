@@ -306,6 +306,45 @@
     <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll">
       <Paket>True</Paket>
     </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\de\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\es\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\fr\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\it\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\ja\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\ko\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\pl\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\pt-BR\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\ru\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\tr\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\zh-Hans\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\analyzers\dotnet\zh-Hant\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\Humanizer.dll">
@@ -317,6 +356,84 @@
     <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\cs\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\de\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\es\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\fr\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\it\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\ja\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\ko\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\pl\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\pt-BR\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\ru\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\tr\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\zh-Hans\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\cs\zh-Hant\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\cs\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\de\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\es\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\fr\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\it\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\ja\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\ko\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\pl\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\pt-BR\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\ru\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\tr\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\zh-Hans\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\analyzers\dotnet\vb\zh-Hant\Microsoft.CodeQuality.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll">
@@ -325,12 +442,168 @@
     <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\cs\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\de\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\es\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\fr\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\it\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\ja\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\ko\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\pl\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\pt-BR\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\ru\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\tr\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\zh-Hans\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\cs\zh-Hant\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\cs\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\de\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\es\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\fr\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\it\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\ja\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\ko\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\pl\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\pt-BR\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\ru\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\tr\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\zh-Hans\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetCore.Analyzers\analyzers\dotnet\vb\zh-Hant\Microsoft.NetCore.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
     <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\cs\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\de\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\es\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\fr\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\it\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\ja\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\ko\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\pl\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\pt-BR\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\ru\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\tr\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\zh-Hans\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\cs\zh-Hant\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\cs\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\de\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\es\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\fr\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\it\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\ja\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\ko\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\pl\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\pt-BR\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\ru\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\tr\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\zh-Hans\Microsoft.NetFramework.Analyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.NetFramework.Analyzers\analyzers\dotnet\vb\zh-Hant\Microsoft.NetFramework.Analyzers.resources.dll">
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
