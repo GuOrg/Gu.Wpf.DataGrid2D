@@ -15,8 +15,8 @@ using System.Windows.Markup;
 [assembly: ComVisible(false)]
 [assembly: Guid("f04cba4d-f4f6-4dfd-99bb-de7679060281")]
 
-[assembly: AssemblyVersion("0.2.2.0")]
-[assembly: AssemblyFileVersion("0.2.2.0")]
+[assembly: AssemblyVersion("0.2.2")]
+[assembly: AssemblyFileVersion("0.2.2")]
 [assembly: XmlnsDefinition("http://gu.se/DataGrid2D", "Gu.Wpf.DataGrid2D")]
 [assembly: XmlnsPrefix("http://gu.se/DataGrid2D", "dataGrid2D")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
