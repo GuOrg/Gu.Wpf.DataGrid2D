@@ -9,6 +9,7 @@
     <!--<TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <OutputType>WinExe</OutputType>-->
+    <OutputType>Exe</OutputType>
     <TargetFramework>net45</TargetFramework>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
