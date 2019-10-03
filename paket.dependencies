@@ -7,6 +7,8 @@ group Build
 group Analyzers
   source http://nuget.org/api/v2
 
+  framework:auto-detect
+
   nuget AsyncUsageAnalyzers
   nuget Gu.Analyzers
   nuget IDisposableAnalyzers

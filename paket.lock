@@ -1,32 +1,29 @@
 
 
 GROUP Analyzers
+RESTRICTION: || (== net45) (== netcoreapp3.0)
 NUGET
   remote: http://www.nuget.org/api/v2
     AsyncUsageAnalyzers (1.0.0-alpha003)
     Gu.Analyzers (1.5.5-dev)
     IDisposableAnalyzers (2.1.2)
     JetBrains.Annotations (2019.1.3)
-      System.Runtime (>= 4.1) - restriction: && (< net10) (>= netstandard1.0) (< netstandard2.0)
-    Microsoft.CodeAnalysis.FxCopAnalyzers (2.9.4)
-      Microsoft.CodeAnalysis.VersionCheckAnalyzer (2.9.4)
-      Microsoft.CodeQuality.Analyzers (2.9.4)
-      Microsoft.NetCore.Analyzers (2.9.4)
-      Microsoft.NetFramework.Analyzers (2.9.4)
-    Microsoft.CodeAnalysis.PublicApiAnalyzers (2.9.4)
-    Microsoft.CodeAnalysis.VersionCheckAnalyzer (2.9.4)
-    Microsoft.CodeQuality.Analyzers (2.9.4)
-    Microsoft.NetCore.Analyzers (2.9.4)
-    Microsoft.NETCore.Platforms (2.2.2) - restriction: || (&& (< monoandroid) (< monotouch) (< net10) (>= netstandard1.5) (< netstandard2.0) (< win8) (< wpa81) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
-    Microsoft.NETCore.Targets (2.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net10) (>= netstandard1.5) (< netstandard2.0) (< win8) (< wpa81) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
-    Microsoft.NetFramework.Analyzers (2.9.4)
+    Microsoft.CodeAnalysis.FxCopAnalyzers (2.9.5)
+      Microsoft.CodeAnalysis.VersionCheckAnalyzer (2.9.5)
+      Microsoft.CodeQuality.Analyzers (2.9.5)
+      Microsoft.NetCore.Analyzers (2.9.5)
+      Microsoft.NetFramework.Analyzers (2.9.5)
+    Microsoft.CodeAnalysis.PublicApiAnalyzers (2.9.5)
+    Microsoft.CodeAnalysis.VersionCheckAnalyzer (2.9.5)
+    Microsoft.CodeQuality.Analyzers (2.9.5)
+    Microsoft.NetCore.Analyzers (2.9.5)
+    Microsoft.NetFramework.Analyzers (2.9.5)
     PropertyChangedAnalyzers (2.7.2)
     ReflectionAnalyzers (0.1.20-dev)
-    StyleCop.Analyzers (1.1.118)
-    System.Runtime (4.3.1) - restriction: && (< net10) (>= netstandard1.0) (< netstandard2.0)
-      Microsoft.NETCore.Platforms (>= 1.1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (< portable-net45+win8+wp8+wpa81)
-      Microsoft.NETCore.Targets (>= 1.1.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (< portable-net45+win8+wp8+wpa81)
-    WpfAnalyzers (2.3.1)
+    StyleCop.Analyzers (1.2.0-beta.66)
+      StyleCop.Analyzers.Unstable (>= 1.2.0.66)
+    StyleCop.Analyzers.Unstable (1.2.0.66)
+    WpfAnalyzers (2.4)
 
 GROUP Build
 NUGET
