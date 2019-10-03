@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.UiTests
+namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -13,7 +13,9 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("TransposedExplicitColumns");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("TransposedExplicitColumns");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(2, columnHeaders.Count);
                     Assert.AreEqual("Name", columnHeaders[0].Text);
@@ -33,7 +35,9 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("TransposedSingleton");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("TransposedSingleton");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(2, columnHeaders.Count);
                     Assert.AreEqual("Name", columnHeaders[0].Text);
@@ -53,7 +57,9 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("TransposedObservableCollection");
 
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(3, columnHeaders.Count);
@@ -77,7 +83,9 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("TransposedObservableCollection");
                     dataGrid[0, 1].Value = "New Value";
                     Keyboard.Type(Key.DOWN);
                     window.WaitUntilResponsive();
@@ -93,9 +101,11 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var reference = window.FindDataGrid("ReferenceDataGrid");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var reference = tabItem.FindDataGrid("ReferenceDataGrid");
 
-                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    var dataGrid = tabItem.FindDataGrid("TransposedObservableCollection");
                     Assert.AreEqual("Johan", dataGrid[0, 1].Value);
 
                     reference[0, 0].Value = "New Value";
@@ -110,9 +120,11 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var reference = window.FindDataGrid("ReferenceDataGrid");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var reference = tabItem.FindDataGrid("ReferenceDataGrid");
 
-                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    var dataGrid = tabItem.FindDataGrid("TransposedObservableCollection");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(3, columnHeaders.Count);
                     Assert.AreEqual("Name", columnHeaders[0].Text);
@@ -146,7 +158,9 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("TransposedObservableCollection");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("TransposedObservableCollection");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(3, columnHeaders.Count);
                     Assert.AreEqual("Name", columnHeaders[0].Text);
@@ -189,7 +203,9 @@
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("TransposedExplicitColumns");
+                    var tabItem = window.FindTabItem("Transposed");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("TransposedExplicitColumns");
                     var columnHeaders = dataGrid.ColumnHeaders;
                     Assert.AreEqual(2, columnHeaders.Count);
                     Assert.AreEqual("Name", columnHeaders[0].Text);

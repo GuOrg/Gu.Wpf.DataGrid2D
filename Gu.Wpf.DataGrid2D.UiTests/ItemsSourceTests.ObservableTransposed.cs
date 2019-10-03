@@ -90,8 +90,10 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("AutoColumnsTransposed");
-                    var readOnly = window.FindDataGrid("AutoColumnsTransposedReadOnly");
+                    var tabItem = window.FindTabItem("OC<OC<T>>");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("AutoColumnsTransposed");
+                    var readOnly = tabItem.FindDataGrid("AutoColumnsTransposedReadOnly");
                     Assert.AreEqual("1", dataGrid[0, 0].Value);
                     Assert.AreEqual("3", dataGrid[0, 1].Value);
                     Assert.AreEqual("5", dataGrid[0, 2].Value);

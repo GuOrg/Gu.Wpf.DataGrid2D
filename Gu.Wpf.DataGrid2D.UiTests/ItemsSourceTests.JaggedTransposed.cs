@@ -37,7 +37,9 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("DifferentLengthsTransposed");
+                    var tabItem = window.FindTabItem("int[][]");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("DifferentLengthsTransposed");
 
                     Assert.AreEqual(3, dataGrid.ColumnCount);
                     Assert.AreEqual(3, dataGrid.RowCount);

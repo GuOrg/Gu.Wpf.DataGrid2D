@@ -11,7 +11,9 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             using (var app = Application.Launch(Info.ExeFileName, "AddRemoveWindow"))
             {
                 var window = app.MainWindow;
-                var dataGrid = window.FindDataGrid("DataGridData");
+                var tabItem = window.FindTabItem("AddRemoveView");
+                tabItem.Click();
+                var dataGrid = tabItem.FindDataGrid("DataGridData");
 
                 var addRowBtn = window.FindButton("Row++");
                 var addColBtn = window.FindButton("Column++");

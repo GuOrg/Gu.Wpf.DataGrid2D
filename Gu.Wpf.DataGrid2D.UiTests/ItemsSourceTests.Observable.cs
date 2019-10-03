@@ -84,8 +84,10 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
                     var window = app.MainWindow;
-                    var dataGrid = window.FindDataGrid("AutoColumns");
-                    var readOnly = window.FindDataGrid("AutoColumnsReadOnly");
+                    var tabItem = window.FindTabItem("OC<OC<T>>");
+                    tabItem.Click();
+                    var dataGrid = tabItem.FindDataGrid("AutoColumns");
+                    var readOnly = tabItem.FindDataGrid("AutoColumnsReadOnly");
                     Assert.AreEqual("1", dataGrid[0, 0].Value);
                     Assert.AreEqual("2", dataGrid[0, 1].Value);
                     Assert.AreEqual("3", dataGrid[1, 0].Value);
