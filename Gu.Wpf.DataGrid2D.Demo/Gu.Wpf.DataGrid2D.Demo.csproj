@@ -9,7 +9,7 @@
     <!--<TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <OutputType>WinExe</OutputType>-->
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net45</TargetFramework>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -26,6 +26,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+   <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="AddRemoveView.xaml.cs">
       <DependentUpon>AddRemoveView.xaml</DependentUpon>
     </Compile>
