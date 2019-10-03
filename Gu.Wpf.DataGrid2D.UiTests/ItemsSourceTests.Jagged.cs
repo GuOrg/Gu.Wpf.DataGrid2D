@@ -35,9 +35,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
                     var window = app.MainWindow;
-                    var tabItem = window.FindTabItem("int[][]");
-                    tabItem.Click();
-                    var dataGrid = tabItem.FindDataGrid("AutoColumnsDifferentLengths");
+                    var dataGrid = window.FindDataGrid("AutoColumnsDifferentLengths");
 
                     Assert.AreEqual(3, dataGrid.Rows[0].Cells.Count);
                     Assert.AreEqual(3, dataGrid.Rows.Count);
@@ -143,9 +141,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
                     var window = app.MainWindow;
-                    var tabItem = window.FindTabItem("int[][]");
-                    tabItem.Click();
-                    var dataGrid = tabItem.FindDataGrid("WithHeaders");
+                    var dataGrid = window.FindDataGrid("WithHeaders");
                     var useHeadersButton = window.FindButton("Use row headers");
                     var nullHeadersButton = window.FindButton("Null row headers");
 
@@ -213,9 +209,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
                     var window = app.MainWindow;
-                    var tabItem = window.FindTabItem("int[][]");
-                    tabItem.Click();
-                    var dataGrid = tabItem.FindDataGrid("WithHeaders");
+                    var dataGrid = window.FindDataGrid("WithHeaders");
                     var useHeadersButton = window.FindButton("Use column headers");
                     var nullHeadersButton = window.FindButton("Null column headers");
 

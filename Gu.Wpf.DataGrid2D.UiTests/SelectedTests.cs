@@ -1,4 +1,4 @@
-namespace Gu.Wpf.DataGrid2D.UiTests
+﻿namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -11,11 +11,9 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
                 var window = app.MainWindow;
-                var tabItem = window.FindTabItem("SelectedCellItem");
-                tabItem.Click();
-                var dataGrid = tabItem.FindDataGrid("DataGrid");
-                var indexBox = tabItem.FindTextBox("SelectedIndex");
-                var itemBox = tabItem.FindTextBlock("SelectedItem");
+                var dataGrid = window.FindDataGrid("DataGrid");
+                var indexBox = window.FindTextBox("SelectedIndex");
+                var itemBox = window.FindTextBlock("SelectedItem");
 
                 dataGrid[0, 0].Click();
                 Assert.AreEqual("R0 C0", indexBox.Text);
@@ -45,10 +43,8 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
                 var window = app.MainWindow;
-                var tabItem = window.FindTabItem("SelectedCellItem");
-                tabItem.Click();
-                var indexBox = tabItem.FindTextBox("SelectedIndex");
-                var itemBox = tabItem.FindTextBlock("SelectedItem");
+                var indexBox = window.FindTextBox("SelectedIndex");
+                var itemBox = window.FindTextBlock("SelectedItem");
                 var loseFocusButton = window.FindButton("SelectionLoseFocusButton");
 
                 indexBox.Text = "R1 C1";
@@ -72,10 +68,8 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
                 var window = app.MainWindow;
-                var tabItem = window.FindTabItem("SelectedCellItem");
-                tabItem.Click();
-                var indexBox = tabItem.FindTextBox("SelectedIndex");
-                var itemBox = tabItem.FindListBox("SelectionList");
+                var indexBox = window.FindTextBox("SelectedIndex");
+                var itemBox = window.FindListBox("SelectionList");
                 itemBox.Select(3);
                 Assert.AreEqual("R1 C1", indexBox.Text);
 

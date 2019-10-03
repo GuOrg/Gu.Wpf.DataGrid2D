@@ -16,9 +16,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
                     var window = app.MainWindow;
-                    var tabItem = window.FindTabItem("CellTemplate");
-                    tabItem.Click();
-                    var dataGrid = tabItem.FindDataGrid(name);
+                    var dataGrid = window.FindDataGrid(name);
                     Assert.AreEqual(3, dataGrid.ColumnHeaders.Count);
                     Assert.AreEqual("C1", dataGrid.ColumnHeaders[0].Text);
                     Assert.AreEqual("C2", dataGrid.ColumnHeaders[1].Text);
@@ -40,9 +38,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
                     var window = app.MainWindow;
-                    var tabItem = window.FindTabItem("CellTemplate");
-                    tabItem.Click();
-                    var dataGrid = tabItem.FindDataGrid(name);
+                    var dataGrid = window.FindDataGrid(name);
 
                     for (var r = 0; r < 3; ++r)
                     {
@@ -64,9 +60,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
                     var window = app.MainWindow;
-                    var tabItem = window.FindTabItem("CellTemplate");
-                    tabItem.Click();
-                    var dataGrid = tabItem.FindDataGrid(name);
+                    var dataGrid = window.FindDataGrid(name);
                     var readOnlyDataGrid = window.FindDataGrid(name + "RO");
                     var cell = dataGrid[0, 0];
                     cell.Click();
@@ -93,10 +87,8 @@ namespace Gu.Wpf.DataGrid2D.UiTests
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
                     var window = app.MainWindow;
-                    var tabItem = window.FindTabItem("CellTemplate");
-                    tabItem.Click();
-                    var dataGrid = tabItem.FindDataGrid("CellTemplateChangingGrid");
-                    var button = tabItem.FindButton("CellTemplateChangeButton");
+                    var dataGrid = window.FindDataGrid("CellTemplateChangingGrid");
+                    var button = window.FindButton("CellTemplateChangeButton");
 
                     for (var i = 0; i < 3; ++i)
                     {
