@@ -24,6 +24,8 @@ group Test
   source http://www.nuget.org/api/v2/
   storage:none
 
+  framework:auto-detect
+
   nuget Microsoft.NET.Test.Sdk
   nuget NUnit
   nuget NUnit3TestAdapter
