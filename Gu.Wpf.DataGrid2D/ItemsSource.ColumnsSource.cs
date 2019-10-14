@@ -46,9 +46,8 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
-            dataGrid.Bind(ItemsSourceProxyProperty)
-                    .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty)
-                    .IgnoreReturnValue();
+            _ = dataGrid.Bind(ItemsSourceProxyProperty)
+                        .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
             UpdateItemsSource(dataGrid);
         }
     }

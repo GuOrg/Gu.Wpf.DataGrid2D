@@ -81,8 +81,7 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             var contentPresenter = new ContentPresenter();
-            BindingOperations.SetBinding(contentPresenter, ContentPresenter.ContentProperty, this.binding)
-                             .IgnoreReturnValue();
+            _ = BindingOperations.SetBinding(contentPresenter, ContentPresenter.ContentProperty, this.binding);
             contentPresenter.ContentTemplate = template;
             contentPresenter.ContentTemplateSelector = templateSelector;
             return contentPresenter;

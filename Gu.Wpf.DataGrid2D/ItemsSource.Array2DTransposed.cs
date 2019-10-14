@@ -45,9 +45,8 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             var array2DView = Array2DView.CreateTransposed(array);
-            dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                    .OneWayTo(array2DView)
-                    .IgnoreReturnValue();
+            _ = dataGrid.Bind(ItemsControl.ItemsSourceProperty)
+                        .OneWayTo(array2DView);
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
     }

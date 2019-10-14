@@ -53,9 +53,8 @@ namespace Gu.Wpf.DataGrid2D
                 view = new TransposedItemsSource(transposedSource);
             }
 
-            dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                    .OneWayTo(view)
-                    .IgnoreReturnValue();
+            _ = dataGrid.Bind(ItemsControl.ItemsSourceProperty)
+                        .OneWayTo(view);
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
     }

@@ -79,9 +79,8 @@ namespace Gu.Wpf.DataGrid2D
             for (int i = 0; i < Math.Min(count, dataGrid.Columns.Count); i++)
             {
                 var column = dataGrid.Columns[i];
-                column.Bind(DataGridColumn.HeaderProperty)
-                      .OneWayTo(headers, i)
-                      .IgnoreReturnValue();
+                _ = column.Bind(DataGridColumn.HeaderProperty)
+                          .OneWayTo(headers, i);
             }
         }
 
