@@ -18,8 +18,7 @@ namespace Gu.Wpf.DataGrid2D
             this.dataGrid = dataGrid;
             ////dataGrid.ItemContainerGenerator.ItemsChanged += this.OnItemsChanged;
             dataGrid.ItemContainerGenerator.StatusChanged += this.OnStatusChanged;
-            var headers = dataGrid.GetRowHeadersSource() as INotifyCollectionChanged;
-            if (headers != null)
+            if (dataGrid.GetRowHeadersSource() is INotifyCollectionChanged headers)
             {
                 headers.CollectionChanged += this.OnHeadersChanged;
             }
@@ -35,8 +34,7 @@ namespace Gu.Wpf.DataGrid2D
             this.disposed = true;
             ////this.dataGrid.ItemContainerGenerator.ItemsChanged -= this.OnItemsChanged;
             this.dataGrid.ItemContainerGenerator.StatusChanged -= this.OnStatusChanged;
-            var headers = this.dataGrid.GetRowHeadersSource() as INotifyCollectionChanged;
-            if (headers != null)
+            if (this.dataGrid.GetRowHeadersSource() is INotifyCollectionChanged headers)
             {
                 headers.CollectionChanged += this.OnHeadersChanged;
             }

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections;
@@ -17,16 +17,14 @@
         public override object GetValue(object component)
         {
             var listRowView = (ListRowView)component;
-            var lists2DView = listRowView.Source as Lists2DView;
-            if (lists2DView != null)
+            if (listRowView.Source is Lists2DView lists2DView)
             {
                 return lists2DView.Source
                   .ElementAtOrDefault<IEnumerable>(listRowView.Index)
                   .ElementAtOrDefault(this.Index);
             }
 
-            var lists2DTransposedView = listRowView.Source as Lists2DTransposedView;
-            if (lists2DTransposedView != null)
+            if (listRowView.Source is Lists2DTransposedView lists2DTransposedView)
             {
                 return lists2DTransposedView.Source
                   .ElementAtOrDefault<IEnumerable>(this.Index)
@@ -39,16 +37,14 @@
         public override void SetValue(object component, object value)
         {
             var listRowView = (ListRowView)component;
-            var lists2DView = listRowView.Source as Lists2DView;
-            if (lists2DView != null)
+            if (listRowView.Source is Lists2DView lists2DView)
             {
                 var list = lists2DView.Source.ElementAtOrDefault<IEnumerable>(listRowView.Index);
                 list.SetElementAt(this.Index, value);
                 return;
             }
 
-            var lists2DTransposedView = listRowView.Source as Lists2DTransposedView;
-            if (lists2DTransposedView != null)
+            if (listRowView.Source is Lists2DTransposedView lists2DTransposedView)
             {
                 var list = lists2DTransposedView.Source.ElementAtOrDefault<IEnumerable>(this.Index);
                 list.SetElementAt(listRowView.Index, value);

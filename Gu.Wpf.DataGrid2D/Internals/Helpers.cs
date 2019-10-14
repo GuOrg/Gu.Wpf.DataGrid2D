@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections;
@@ -25,14 +25,12 @@
                 return 0;
             }
 
-            var col = collection as ICollection;
-            if (col != null)
+            if (collection is ICollection col)
             {
                 return col.Count;
             }
 
-            var rol = collection as IReadOnlyCollection<object>;
-            if (rol != null)
+            if (collection is IReadOnlyCollection<object> rol)
             {
                 return rol.Count;
             }

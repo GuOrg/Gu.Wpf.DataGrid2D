@@ -16,8 +16,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             this.dataGrid = dataGrid;
             dataGrid.Columns.CollectionChanged += this.OnCollectionChanged;
-            var headers = dataGrid.GetColumnHeadersSource() as INotifyCollectionChanged;
-            if (headers != null)
+            if (dataGrid.GetColumnHeadersSource() is INotifyCollectionChanged headers)
             {
                 headers.CollectionChanged += this.OnCollectionChanged;
             }

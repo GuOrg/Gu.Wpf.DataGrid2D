@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.Collections;
@@ -37,8 +37,7 @@
 
         internal static void SetElementAt(this IEnumerable source, int index, object value)
         {
-            var list = source as IList;
-            if (list != null)
+            if (source is IList list)
             {
                 list[index] = value;
                 return;
@@ -50,8 +49,7 @@
 
         internal static int IndexOf(this IEnumerable source, object item)
         {
-            var list = source as IList;
-            if (list != null)
+            if (source is IList list)
             {
                 return list.IndexOf(item);
             }
@@ -82,8 +80,7 @@
                 return null;
             }
 
-            var list = source as IList;
-            if (list != null)
+            if (source is IList list)
             {
                 if (index >= list.Count)
                 {
@@ -93,8 +90,7 @@
                 return list[index];
             }
 
-            var readOnlyList = source as IReadOnlyList<object>;
-            if (readOnlyList != null)
+            if (source is IReadOnlyList<object> readOnlyList)
             {
                 if (index >= readOnlyList.Count)
                 {
