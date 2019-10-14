@@ -64,9 +64,9 @@ namespace Gu.Wpf.DataGrid2D
                 return;
             }
 
-#pragma warning disable IDISP004 // Don't ignore return value of type IDisposable.
+#pragma warning disable IDISP004, CA2000  // Don't ignore return value of type IDisposable.
             dataGrid.SetCurrentValue(ColumnHeaderListenerProperty, new ColumnHeaderListener(dataGrid));
-#pragma warning restore IDISP004 // Don't ignore return value of type IDisposable.
+#pragma warning restore IDISP004, CA2000  // Don't ignore return value of type IDisposable.
             dataGrid.UpdateHandler(Events.ColumnsChangedEvent, OnColumnsChangedHandler);
             OnColumnsChanged(dataGrid, null);
         }

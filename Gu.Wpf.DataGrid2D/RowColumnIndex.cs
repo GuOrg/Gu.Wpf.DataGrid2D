@@ -80,21 +80,19 @@ namespace Gu.Wpf.DataGrid2D
             return false;
         }
 
+        /// <inheritdoc />
         public bool Equals(RowColumnIndex other)
         {
             return this.Row == other.Row && this.Column == other.Column;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
             return obj is RowColumnIndex index && this.Equals(index);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             unchecked
@@ -103,6 +101,7 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return $"R{this.Row} C{this.Column}";

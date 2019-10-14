@@ -8,7 +8,13 @@ namespace Gu.Wpf.DataGrid2D
     {
         private BindingBase binding;
 
-        public BindingBase Binding
+        public override BindingBase ClipboardContentBinding
+        {
+            get => base.ClipboardContentBinding ?? this.Binding;
+            set => base.ClipboardContentBinding = value;
+        }
+
+        internal BindingBase Binding
         {
             get => this.binding;
 
@@ -21,12 +27,6 @@ namespace Gu.Wpf.DataGrid2D
                     this.NotifyPropertyChanged(nameof(this.Binding));
                 }
             }
-        }
-
-        public override BindingBase ClipboardContentBinding
-        {
-            get => base.ClipboardContentBinding ?? this.Binding;
-            set => base.ClipboardContentBinding = value;
         }
 
         protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)

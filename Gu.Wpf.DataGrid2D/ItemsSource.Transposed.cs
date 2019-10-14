@@ -22,7 +22,7 @@ namespace Gu.Wpf.DataGrid2D
             typeof(object),
             typeof(ItemsSource),
             new PropertyMetadata(
-                default(object),
+                null,
                 OnPropertySourceChanged));
 
         /// <summary>Helper for setting <see cref="TransposedSourceProperty"/> on <paramref name="element"/>.</summary>

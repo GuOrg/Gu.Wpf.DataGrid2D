@@ -287,14 +287,11 @@ namespace Gu.Wpf.DataGrid2D
                 return descriptor.GetValue(item);
             }
 
-            var binding = (column as DataGridBoundColumn)?.Binding as Binding;
+            var binding = (column as DataGridBoundColumn)?.Binding as Binding ??
+                          (column as CellTemplateColumn)?.Binding as Binding;
             if (binding == null)
             {
-                binding = (column as CellTemplateColumn)?.Binding as Binding;
-                if (binding == null)
-                {
-                    return null;
-                }
+                return null;
             }
 
             descriptor = TypeDescriptor.GetProperties(item)
