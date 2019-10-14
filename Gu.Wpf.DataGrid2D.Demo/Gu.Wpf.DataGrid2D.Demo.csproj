@@ -17,6 +17,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xaml">
@@ -26,6 +27,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
+  
   <ItemGroup>
    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AddRemoveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObservableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,18 +198,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.DataGrid2D\Gu.Wpf.DataGrid2D.csproj">
       <Project>{53af7fff-bcad-43a5-8367-48429b2878be}</Project>
       <Name>Gu.Wpf.DataGrid2D</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="Windows\AddRemoveWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-  <Import Project="..\packages\build\SourceLink.Create.CommandLine\build\SourceLink.Create.CommandLine.props" Condition="Exists('..\packages\build\SourceLink.Create.CommandLine\build\SourceLink.Create.CommandLine.props')" Label="Paket" />
-  <Import Project="..\packages\analyzers\Microsoft.NetFramework.Analyzers\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.NetFramework.Analyzers\build\Microsoft.NetFramework.Analyzers.props')" Label="Paket" />
-  <Import Project="..\packages\analyzers\Microsoft.NetCore.Analyzers\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.NetCore.Analyzers\build\Microsoft.NetCore.Analyzers.props')" Label="Paket" />
-  <Import Project="..\packages\analyzers\Microsoft.CodeQuality.Analyzers\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.CodeQuality.Analyzers\build\Microsoft.CodeQuality.Analyzers.props')" Label="Paket" />
-  <Import Project="..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\analyzers\Microsoft.CodeAnalysis.VersionCheckAnalyzer\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Label="Paket" />
-  <Import Project="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\build\Microsoft.CodeAnalysis.PublicApiAnalyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\build\Microsoft.CodeAnalysis.PublicApiAnalyzers.props')" Label="Paket" />
-  <Import Project="..\packages\analyzers\Microsoft.CodeAnalysis.FxCopAnalyzers\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\analyzers\Microsoft.CodeAnalysis.FxCopAnalyzers\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Label="Paket" />
-
   <PropertyGroup>
     <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
@@ -44,20 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="paket.references" />
-    <None Include="paket.template" />
-    <None Include="stylecop.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <AdditionalFiles Include="PublicAPI.Shipped.txt" />
     <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <Import Project="..\packages\build\SourceLink.Create.CommandLine\build\SourceLink.Create.CommandLine.targets" Condition="Exists('..\packages\build\SourceLink.Create.CommandLine\build\SourceLink.Create.CommandLine.targets')" Label="Paket" />
-  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
