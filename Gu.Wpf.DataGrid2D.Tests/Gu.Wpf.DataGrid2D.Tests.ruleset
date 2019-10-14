@@ -120,4 +120,7 @@
     <Rule Id="SA1651" Action="None" />
     <Rule Id="SA1652" Action="None" />
   </Rules>
+  <Rules AnalyzerId="WpfAnalyzers" RuleNamespace="WpfAnalyzers">
+    <Rule Id="WPF0014" Action="Warning" />
+  </Rules>
 </RuleSet>

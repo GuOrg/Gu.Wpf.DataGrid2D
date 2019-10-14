@@ -7,8 +7,6 @@ namespace Gu.Wpf.DataGrid2D
 
     internal class ColumnHeaderListener : IDisposable
     {
-        private static readonly RoutedEventArgs ColumnsChangedEventArgs = new RoutedEventArgs(Events.ColumnsChangedEvent);
-
         private readonly DataGrid dataGrid;
         private bool disposed;
 
@@ -39,7 +37,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
         {
-            this.dataGrid.RaiseEvent(ColumnsChangedEventArgs);
+            this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
     }
 }

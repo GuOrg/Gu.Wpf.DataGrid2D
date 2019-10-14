@@ -8,8 +8,6 @@ namespace Gu.Wpf.DataGrid2D
 
     internal class RowHeaderListener : IDisposable
     {
-        private static readonly RoutedEventArgs RowsChangedEventArgs = new RoutedEventArgs(Events.RowsChangedEvent);
-
         private readonly DataGrid dataGrid;
         private bool disposed;
 
@@ -47,7 +45,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private void OnHeadersChanged(object o, NotifyCollectionChangedEventArgs e)
         {
-            this.dataGrid.RaiseEvent(RowsChangedEventArgs);
+            this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.RowsChangedEvent));
         }
 
         private void OnStatusChanged(object o, EventArgs e)
@@ -55,7 +53,7 @@ namespace Gu.Wpf.DataGrid2D
             var generator = (ItemContainerGenerator)o;
             if (generator.Status == GeneratorStatus.ContainersGenerated)
             {
-                this.dataGrid.RaiseEvent(RowsChangedEventArgs);
+                this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.RowsChangedEvent));
             }
         }
     }
