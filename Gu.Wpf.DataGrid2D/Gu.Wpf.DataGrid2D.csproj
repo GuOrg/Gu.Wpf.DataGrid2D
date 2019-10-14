@@ -16,6 +16,7 @@
     <AssemblyName>Gu.Wpf.DataGrid2D</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
  
   <PropertyGroup>
@@ -30,14 +31,13 @@
     <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System.Xaml" />
     <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="WindowsBase" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="Gu.Wpf.DataGrid2D.ruleset">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="paket.references" />
     <None Include="paket.template" />
     <None Include="stylecop.json" />
   </ItemGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="PublicAPI.Shipped.txt" />
     <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
