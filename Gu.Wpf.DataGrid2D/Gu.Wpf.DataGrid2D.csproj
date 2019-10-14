@@ -17,14 +17,14 @@
     <PackageReleaseNotes>BUGFIX: Null checks</PackageReleaseNotes>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</RepositoryUrl>
+    <Description>Attached properties for DataGrid to enable binding to 2D sources.</Description>
   </PropertyGroup>
   
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\\Gu.Wpf.DataGrid2D.snk</AssemblyOriginatorKeyFile>
-    <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</RepositoryUrl>
-    <Description>Attached properties for DataGrid to enable binding to 2D sources.</Description>
   </PropertyGroup>
 
   <PropertyGroup>
