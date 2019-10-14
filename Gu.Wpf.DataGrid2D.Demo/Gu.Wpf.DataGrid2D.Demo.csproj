@@ -15,6 +15,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EnableDefaultPageItems>false</EnableDefaultPageItems>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -54,6 +55,7 @@
     <Compile Include="CellTemplateVM.cs">
       <DependentUpon>CellTemplateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AssemblyAttributes.cs" />
     <Compile Include="Controls\AutoSelectTextBox.cs" />
     <Compile Include="Misc\Ignore.cs" />
     <Compile Include="Misc\ItemVm.cs" />
@@ -186,11 +188,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Gu.Wpf.DataGrid2D.Demo.ruleset" />
-    <None Include="paket.references" />
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
+
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
@@ -206,8 +204,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
