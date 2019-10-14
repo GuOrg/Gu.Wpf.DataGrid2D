@@ -4,6 +4,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Data;
 
     /// <summary>
     /// Exposes attached properties for <see cref="DataGrid"/> cells.
@@ -181,7 +182,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             if (e.OldValue != null && e.NewValue == null)
             {
-                for (int i = 0; i < dataGrid.Columns.Count; ++i)
+                for (var i = 0; i < dataGrid.Columns.Count; ++i)
                 {
                     if (dataGrid.Columns[i] is CellTemplateColumn col)
                     {
@@ -202,7 +203,7 @@ namespace Gu.Wpf.DataGrid2D
             }
             else if (e.OldValue == null && e.NewValue != null)
             {
-                for (int i = 0; i < dataGrid.Columns.Count; ++i)
+                for (var i = 0; i < dataGrid.Columns.Count; ++i)
                 {
                     if (dataGrid.Columns[i] is DataGridTextColumn tcol)
                     {
@@ -266,10 +267,9 @@ namespace Gu.Wpf.DataGrid2D
                     CellEditingTemplateSelector = ((DataGrid)sender).GetEditingTemplateSelector(),
                 };
 
-                DataGridTextColumn tc = e.Column as DataGridTextColumn;
-                if (tc?.Binding != null)
+                if ((e.Column as DataGridTextColumn)?.Binding is BindingBase binding)
                 {
-                    col.Binding = tc.Binding;
+                    col.Binding = binding;
                     e.Column = col;
                 }
             }

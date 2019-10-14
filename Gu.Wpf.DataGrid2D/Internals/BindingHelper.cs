@@ -54,20 +54,19 @@ namespace Gu.Wpf.DataGrid2D
 
         internal static PropertyPath GetPath(int index)
         {
-            PropertyPath path;
-            if (!IndexPaths.TryGetValue(index, out path))
+            if (IndexPaths.TryGetValue(index, out var path))
             {
-                path = new PropertyPath($"[{index}]");
-                IndexPaths[index] = path;
+                return path;
             }
 
+            path = new PropertyPath($"[{index}]");
+            IndexPaths[index] = path;
             return path;
         }
 
         internal static PropertyPath GetPath(DependencyProperty property)
         {
-            PropertyPath path;
-            if (PropertyPaths.TryGetValue(property, out path))
+            if (PropertyPaths.TryGetValue(property, out var path))
             {
                 return path;
             }

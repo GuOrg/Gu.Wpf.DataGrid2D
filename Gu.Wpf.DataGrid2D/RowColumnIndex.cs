@@ -47,8 +47,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public static RowColumnIndex Parse(string text)
         {
-            RowColumnIndex result;
-            if (TryParse(text, out result))
+            if (TryParse(text, out var result))
             {
                 return result;
             }
@@ -67,10 +66,8 @@ namespace Gu.Wpf.DataGrid2D
             var match = Regex.Match(text, @"^ *R(?<row>\d+) *C(?<col>\d+) *$", RegexOptions.IgnoreCase);
             if (match.Success)
             {
-                int row;
-                int col;
-                if (int.TryParse(match.Groups["row"].Value, out row) &&
-                    int.TryParse(match.Groups["col"].Value, out col) &&
+                if (int.TryParse(match.Groups["row"].Value, out var row) &&
+                    int.TryParse(match.Groups["col"].Value, out var col) &&
                     row >= 0 &&
                     col >= 0)
                 {

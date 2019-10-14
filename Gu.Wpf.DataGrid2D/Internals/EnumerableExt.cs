@@ -54,7 +54,7 @@ namespace Gu.Wpf.DataGrid2D
                 return list.IndexOf(item);
             }
 
-            int index = 0;
+            var index = 0;
             foreach (var element in source)
             {
                 if (Equals(element, item))
