@@ -14,14 +14,25 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gu.Wpf.DataGrid2D</RootNamespace>
     <AssemblyName>Gu.Wpf.DataGrid2D</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
- 
+
+  <PropertyGroup>
+    <Version>0.2.2</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>xaml wpf datagrid attachedproperty</PackageTags>
+    <PackageReleaseNotes>BUGFIX: Null checks</PackageReleaseNotes>
+    <Authors>Johan Larsson</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+  
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\\Gu.Wpf.DataGrid2D.snk</AssemblyOriginatorKeyFile>
+    <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</RepositoryUrl>
+    <Description>Attached properties for DataGrid to enable binding to 2D sources.</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,6 +52,10 @@
   <ItemGroup>
     <AdditionalFiles Include="PublicAPI.Shipped.txt" />
     <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <Import Project="..\packages\build\SourceLink.Create.CommandLine\build\SourceLink.Create.CommandLine.targets" Condition="Exists('..\packages\build\SourceLink.Create.CommandLine\build\SourceLink.Create.CommandLine.targets')" Label="Paket" />
