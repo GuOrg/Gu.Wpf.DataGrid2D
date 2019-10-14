@@ -1,12 +1,12 @@
-﻿namespace Gu.Wpf.DataGrid2D.UiTests
+namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public class MainWindowTests
+    public static class MainWindowTests
     {
         [Test]
-        public void ClickAllTabs()
+        public static void ClickAllTabs()
         {
             // Just a smoke test so that we do not explode.
             using (var app = Application.Launch(Info.ExeFileName))

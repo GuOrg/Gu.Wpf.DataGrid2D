@@ -1,12 +1,12 @@
-﻿namespace Gu.Wpf.DataGrid2D.Tests.Views
+namespace Gu.Wpf.DataGrid2D.Tests.Views
 {
     using Gu.Wpf.DataGrid2D.Tests.Views.Stubs;
     using NUnit.Framework;
 
-    public class TransposedItemsSourceTests
+    public static class TransposedItemsSourceTests
     {
         [Test]
-        public void Create()
+        public static void Create()
         {
             var person = new Person { FirstName = "Johan", LastName = "Larsson" };
             var persons = new[] { person };

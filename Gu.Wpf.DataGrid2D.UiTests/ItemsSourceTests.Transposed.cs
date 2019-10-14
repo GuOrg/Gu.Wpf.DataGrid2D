@@ -1,14 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.UiTests
+namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public partial class ItemsSourceTests
+    public static partial class ItemsSourceTests
     {
-        public class Transposed
+        public static class Transposed
         {
             [Test]
-            public void ExplicitColumns()
+            public static void ExplicitColumns()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
@@ -28,7 +28,7 @@
             }
 
             [Test]
-            public void Singleton()
+            public static void Singleton()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
@@ -48,7 +48,7 @@
             }
 
             [Test]
-            public void ObservableCollection()
+            public static void ObservableCollection()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
@@ -72,7 +72,7 @@
             }
 
             [Test]
-            public void ObservableCollectionEditCellInViewUpdatesDataContext()
+            public static void ObservableCollectionEditCellInViewUpdatesDataContext()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
@@ -88,7 +88,7 @@
             }
 
             [Test]
-            public void ObservableCollectionEditDataContextUpdatesView()
+            public static void ObservableCollectionEditDataContextUpdatesView()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
@@ -105,7 +105,7 @@
             }
 
             [Test]
-            public void RemoveRowInDataContext()
+            public static void RemoveRowInDataContext()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
@@ -141,7 +141,7 @@
             }
 
             [Test]
-            public void AddRowInDataContext()
+            public static void AddRowInDataContext()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {
@@ -184,7 +184,7 @@
             }
 
             [Test]
-            public void NammeColumnIsReadOnly()
+            public static void NammeColumnIsReadOnly()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "TransposedWindow"))
                 {

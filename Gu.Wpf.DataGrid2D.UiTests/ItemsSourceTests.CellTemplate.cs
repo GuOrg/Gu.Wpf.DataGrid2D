@@ -3,15 +3,15 @@ namespace Gu.Wpf.DataGrid2D.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public partial class ItemsSourceTests
+    public static partial class ItemsSourceTests
     {
-        public class CellTemplate
+        public static class CellTemplate
         {
             [TestCase("CellTemplate1Grid")]
             [TestCase("CellTemplate1GridRO")]
             [TestCase("CellTemplate2Grid")]
             [TestCase("CellTemplate2GridRO")]
-            public void Headers(string name)
+            public static void Headers(string name)
             {
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
@@ -33,7 +33,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             [TestCase("CellTemplate1GridRO")]
             [TestCase("CellTemplate2Grid")]
             [TestCase("CellTemplate2GridRO")]
-            public void CellTemplateTest(string name)
+            public static void CellTemplateTest(string name)
             {
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
@@ -55,7 +55,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
 
             [TestCase("CellTemplate1Grid")]
             [TestCase("CellTemplate2Grid")]
-            public void Edit(string name)
+            public static void Edit(string name)
             {
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {
@@ -82,7 +82,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ChangeCellTemplateTest()
+            public static void ChangeCellTemplateTest()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "CellTemplateWindow"))
                 {

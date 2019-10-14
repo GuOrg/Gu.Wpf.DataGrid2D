@@ -5,10 +5,10 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
 
     public partial class Lists2DViewTests
     {
-        public class ColumnsChanged
+        public static class ColumnsChanged
         {
             [Test]
-            public void SignalsWhenColumnIsAdded()
+            public static void SignalsWhenColumnIsAdded()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -26,7 +26,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             }
 
             [Test]
-            public void SignalsWhenColumnIsAdded2()
+            public static void SignalsWhenColumnIsAdded2()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -44,7 +44,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             }
 
             [Test]
-            public void SignalsWhenColumnIsRemoved()
+            public static void SignalsWhenColumnIsRemoved()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -62,7 +62,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             }
 
             [Test]
-            public void SignalsWhenColumnIsRemoved2()
+            public static void SignalsWhenColumnIsRemoved2()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -80,7 +80,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             }
 
             [Test]
-            public void SignalsWhenColumnBecomesReadOnly()
+            public static void SignalsWhenColumnBecomesReadOnly()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -98,7 +98,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             }
 
             [Test]
-            public void SignalsWhenColumnBecomesEditable()
+            public static void SignalsWhenColumnBecomesEditable()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -116,7 +116,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             }
 
             [Test]
-            public void NoChangeWhenAlreadyReadOnly()
+            public static void NoChangeWhenAlreadyReadOnly()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -134,7 +134,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             }
 
             [Test]
-            public void NoChangeWhenUpdateCell()
+            public static void NoChangeWhenUpdateCell()
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                            {

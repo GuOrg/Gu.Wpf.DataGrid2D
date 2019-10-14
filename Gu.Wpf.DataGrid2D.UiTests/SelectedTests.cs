@@ -1,12 +1,12 @@
-﻿namespace Gu.Wpf.DataGrid2D.UiTests
+namespace Gu.Wpf.DataGrid2D.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public class SelectedTests
+    public static class SelectedTests
     {
         [Test]
-        public void SelectingInViewUpdatesIndexAndCellItem()
+        public static void SelectingInViewUpdatesIndexAndCellItem()
         {
             using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
@@ -38,7 +38,7 @@
         }
 
         [Test]
-        public void SettingIndexInViewModelUpdatesSelectionAndCellItem()
+        public static void SettingIndexInViewModelUpdatesSelectionAndCellItem()
         {
             using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
@@ -63,7 +63,7 @@
         }
 
         [Test]
-        public void SettingCellItemInViewModelUpdatesSelectionAndIndex()
+        public static void SettingCellItemInViewModelUpdatesSelectionAndIndex()
         {
             using (var app = Application.Launch(Info.ExeFileName, "SelectionWindow"))
             {
@@ -79,7 +79,7 @@
         }
 
         [Test]
-        public void Reminder()
+        public static void Reminder()
         {
             Assert.Inconclusive("Assert cell.IsSelected when supported");
         }

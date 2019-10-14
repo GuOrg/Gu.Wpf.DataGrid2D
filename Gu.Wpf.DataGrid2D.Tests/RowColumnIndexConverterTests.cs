@@ -1,12 +1,12 @@
-﻿namespace Gu.Wpf.DataGrid2D.Tests
+namespace Gu.Wpf.DataGrid2D.Tests
 {
     using System.ComponentModel.Design.Serialization;
     using NUnit.Framework;
 
-    public class RowColumnIndexConverterTests
+    public static class RowColumnIndexConverterTests
     {
         [Test]
-        public void StringRoundtrips()
+        public static void StringRoundtrips()
         {
             var index = new RowColumnIndex(1, 2);
             var converter = new RowColumnIndexConverter();
@@ -22,7 +22,7 @@
         }
 
         [Test]
-        public void InstanceDescriptorRoundtrip()
+        public static void InstanceDescriptorRoundtrip()
         {
             var index = new RowColumnIndex(1, 2);
             var converter = new RowColumnIndexConverter();

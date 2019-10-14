@@ -6,10 +6,10 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
     using System.ComponentModel;
     using NUnit.Framework;
 
-    public partial class Lists2DViewTests
+    public static partial class Lists2DViewTests
     {
         [Test]
-        public void CreateFromArrays()
+        public static void CreateFromArrays()
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
             using (var view = new Lists2DView(ints))
@@ -41,7 +41,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         }
 
         [Test]
-        public void CreateFromObservableCollections()
+        public static void CreateFromObservableCollections()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                        {
@@ -79,7 +79,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         [TestCase(0, 1, -10)]
         [TestCase(1, 1, -10)]
         [TestCase(2, 1, -10)]
-        public void Edit(int r, int c, int value)
+        public static void Edit(int r, int c, int value)
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
             using (var view = new Lists2DView(ints))
@@ -93,7 +93,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         }
 
         [Test]
-        public void ObservesAndNotifies()
+        public static void ObservesAndNotifies()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -142,7 +142,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         }
 
         [Test]
-        public void ColumnsReadOnly()
+        public static void ColumnsReadOnly()
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
             using (var view = new Lists2DView(ints))

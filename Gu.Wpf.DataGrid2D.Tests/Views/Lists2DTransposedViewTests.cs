@@ -7,7 +7,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
     public partial class Lists2DTransposedViewTests
     {
         [Test]
-        public void CreateFromArrays()
+        public static void CreateFromArrays()
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
             using (var view = new Lists2DTransposedView(ints))
@@ -29,7 +29,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         }
 
         [Test]
-        public void CreateFromObservableCollections()
+        public static void CreateFromObservableCollections()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -61,7 +61,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         [TestCase(1, 1, -10)]
         [TestCase(0, 2, -10)]
         [TestCase(1, 2, -10)]
-        public void EditTransposed(int r, int c, int value)
+        public static void EditTransposed(int r, int c, int value)
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
             using (var view = new Lists2DTransposedView(ints))
@@ -75,7 +75,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         }
 
         [Test]
-        public void ColumnsReadOnly()
+        public static void ColumnsReadOnly()
         {
             var ints = new[] { new[] { 1, 2 }, new[] { 3, 4 }, new[] { 5, 6 } };
             using (var view = new Lists2DTransposedView(ints))

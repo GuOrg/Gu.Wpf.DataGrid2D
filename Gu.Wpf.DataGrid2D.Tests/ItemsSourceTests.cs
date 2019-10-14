@@ -7,10 +7,10 @@ namespace Gu.Wpf.DataGrid2D.Tests
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
-    public class ItemsSourceTests
+    public static class ItemsSourceTests
     {
         [Test]
-        public void Array2D()
+        public static void Array2D()
         {
             var array = new[,]
                         {
@@ -37,7 +37,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         }
 
         [Test]
-        public void Array2DTransposed()
+        public static void Array2DTransposed()
         {
             var array = new[,]
                         {
@@ -62,7 +62,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         }
 
         [Test]
-        public void RowsSourceRemove()
+        public static void RowsSourceRemove()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -97,7 +97,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         }
 
         [Test]
-        public void RowsSourceAddRow()
+        public static void RowsSourceAddRow()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                        {
@@ -139,7 +139,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         }
 
         [Test]
-        public void ColumnsSource()
+        public static void ColumnsSource()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
                            {
@@ -162,7 +162,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         }
 
         [Test]
-        public void TransposedSource()
+        public static void TransposedSource()
         {
             var persons = new ObservableCollection<Person> { new Person { FirstName = "Johan", LastName = "Larsson" } };
             var dataGrid = new DataGrid();
@@ -197,7 +197,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         }
 
         [Test]
-        public void EmptyRowsSource()
+        public static void EmptyRowsSource()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>();
 
@@ -218,7 +218,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         }
 
         [Test]
-        public void EmptyColumnsSource()
+        public static void EmptyColumnsSource()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>();
 

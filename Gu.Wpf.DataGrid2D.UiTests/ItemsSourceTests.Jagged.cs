@@ -3,12 +3,12 @@ namespace Gu.Wpf.DataGrid2D.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public partial class ItemsSourceTests
+    public static partial class ItemsSourceTests
     {
-        public class Jagged
+        public static class Jagged
         {
             [Test]
-            public void AutoColumns()
+            public static void AutoColumns()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
@@ -30,7 +30,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void DifferentLengths()
+            public static void DifferentLengths()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
@@ -59,7 +59,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ExplicitColumns()
+            public static void ExplicitColumns()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
@@ -82,7 +82,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void WithHeaders()
+            public static void WithHeaders()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
@@ -110,7 +110,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ViewUpdatesSource()
+            public static void ViewUpdatesSource()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
@@ -136,7 +136,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ToggleRowHeaders()
+            public static void ToggleRowHeaders()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {
@@ -204,7 +204,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ToggleColumnHeaders()
+            public static void ToggleColumnHeaders()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "JaggedWindow"))
                 {

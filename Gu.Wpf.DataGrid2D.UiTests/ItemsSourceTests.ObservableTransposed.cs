@@ -3,12 +3,12 @@ namespace Gu.Wpf.DataGrid2D.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public partial class ItemsSourceTests
+    public static partial class ItemsSourceTests
     {
-        public class ObservableTransposed
+        public static class ObservableTransposed
         {
             [Test]
-            public void AutoColumns()
+            public static void AutoColumns()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
@@ -32,7 +32,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ExplicitColumns()
+            public static void ExplicitColumns()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
@@ -57,7 +57,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void WithHeaders()
+            public static void WithHeaders()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {
@@ -85,7 +85,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
             }
 
             [Test]
-            public void ViewUpdatesSource()
+            public static void ViewUpdatesSource()
             {
                 using (var app = Application.Launch(Info.ExeFileName, "ObservableWindow"))
                 {

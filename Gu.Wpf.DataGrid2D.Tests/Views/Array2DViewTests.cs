@@ -2,10 +2,10 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
 {
     using NUnit.Framework;
 
-    public class Array2DViewTests
+    public static class Array2DViewTests
     {
         [Test]
-        public void Create()
+        public static void Create()
         {
             var ints = new[,]
                        {
@@ -39,7 +39,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         [TestCase(0, 1, -10)]
         [TestCase(1, 1, -10)]
         [TestCase(2, 1, -10)]
-        public void Edit(int r, int c, int value)
+        public static void Edit(int r, int c, int value)
         {
             var ints = new[,]
                        {
@@ -56,7 +56,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         }
 
         [Test]
-        public void CreateTransposed()
+        public static void CreateTransposed()
         {
             var ints = new[,]
                        {
@@ -87,7 +87,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         [TestCase(1, 1, -10)]
         [TestCase(0, 2, -10)]
         [TestCase(1, 2, -10)]
-        public void EditTransposed(int r, int c, int value)
+        public static void EditTransposed(int r, int c, int value)
         {
             var ints = new[,]
                        {
