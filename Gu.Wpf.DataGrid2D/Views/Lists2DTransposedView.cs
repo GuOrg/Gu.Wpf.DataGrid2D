@@ -5,7 +5,6 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.ComponentModel;
     using System.Linq;
 
 #pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
