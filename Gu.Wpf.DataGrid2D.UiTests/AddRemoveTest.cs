@@ -20,6 +20,7 @@ namespace Gu.Wpf.DataGrid2D.UiTests
 
                 var addColBtn = window.FindButton("Column++");
                 addColBtn.Click();
+                // hack around framework bug.
                 _ = dataGrid.FindAllChildren();
                 Assert.AreEqual("0", dataGrid[0, 0].Value);
                 Assert.AreEqual("0", dataGrid[1, 0].Value);
