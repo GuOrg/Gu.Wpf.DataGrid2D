@@ -12,11 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gu.Analyzers" Version="1.5.5-dev">
+    <PackageReference Include="Gu.Analyzers" Version="1.6.1-dev">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.2.8.1" />
+    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.2.10" />
     <PackageReference Include="IDisposableAnalyzers" Version="2.1.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
