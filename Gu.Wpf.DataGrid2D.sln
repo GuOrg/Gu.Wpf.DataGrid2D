@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sln", ".sln", "{70700050-2
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
-		azure-devops.yml = azure-devops.yml
+		azure-pipelines.yml = azure-pipelines.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.DataGrid2D.Demo", "Gu.Wpf.DataGrid2D.Demo\Gu.Wpf.DataGrid2D.Demo.csproj", "{AD21B5EF-1BF4-4089-838B-47A58C1EC8FE}"
