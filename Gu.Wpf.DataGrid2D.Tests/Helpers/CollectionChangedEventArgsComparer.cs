@@ -1,10 +1,10 @@
-﻿namespace Gu.Wpf.DataGrid2D.Tests
+namespace Gu.Wpf.DataGrid2D.Tests
 {
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Specialized;
 
-    public class CollectionChangedEventArgsComparer : IComparer, IComparer<NotifyCollectionChangedEventArgs>
+    public sealed class CollectionChangedEventArgsComparer : IComparer, IComparer<NotifyCollectionChangedEventArgs>
     {
         public static readonly CollectionChangedEventArgsComparer Default = new CollectionChangedEventArgsComparer();
 
