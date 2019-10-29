@@ -87,7 +87,7 @@ namespace Gu.Wpf.DataGrid2D
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is RowColumnIndex index && this.Equals(index);
         }

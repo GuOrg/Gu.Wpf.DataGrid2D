@@ -39,7 +39,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void UpdateItemsSource(DataGrid dataGrid)
         {
-            IEnumerable view = null;
+            IEnumerable? view = null;
             if (dataGrid.GetRowsSource() is IEnumerable<IEnumerable> rowsSource)
             {
                 view = new Lists2DView(rowsSource);

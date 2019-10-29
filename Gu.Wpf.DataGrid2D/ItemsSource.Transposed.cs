@@ -77,7 +77,7 @@ namespace Gu.Wpf.DataGrid2D
             UpdateItemsSource(dataGrid);
         }
 
-        private static object CoerceTransposedSource(DependencyObject dependencyObject, object baseValue)
+        private static object? CoerceTransposedSource(DependencyObject dependencyObject, object baseValue)
         {
             if (baseValue == null)
             {

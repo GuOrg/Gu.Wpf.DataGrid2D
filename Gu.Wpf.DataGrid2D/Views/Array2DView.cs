@@ -79,18 +79,18 @@ namespace Gu.Wpf.DataGrid2D
 
         void ICollection.CopyTo(Array array, int index) => this.rows.CopyTo(array, index);
 
-        int IList.Add(object value) => throw new NotSupportedException();
+        int IList.Add(object? value) => throw new NotSupportedException();
 
-        bool IList.Contains(object value) => this.rows.Contains(value);
+        bool IList.Contains(object? value) => this.rows.Contains(value);
 
         void IList.Clear() => throw new NotSupportedException();
 
         // ReSharper disable once CoVariantArrayConversion
-        int IList.IndexOf(object value) => Array.IndexOf(this.rows, value);
+        int IList.IndexOf(object? value) => Array.IndexOf(this.rows, value);
 
-        void IList.Insert(int index, object value) => throw new NotSupportedException();
+        void IList.Insert(int index, object? value) => throw new NotSupportedException();
 
-        void IList.Remove(object value) => throw new NotSupportedException();
+        void IList.Remove(object? value) => throw new NotSupportedException();
 
         void IList.RemoveAt(int index) => throw new NotSupportedException();
     }

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Tests.Views.Stubs
+namespace Gu.Wpf.DataGrid2D.Tests.Views.Stubs
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -42,7 +42,7 @@
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

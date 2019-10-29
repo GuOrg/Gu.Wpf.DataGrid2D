@@ -42,13 +42,13 @@ namespace Gu.Wpf.DataGrid2D
         /// Just adding a column would not play nice with explicit columns.
         /// This way will not be ideal for performance if it changes frequently
         /// </summary>
-        public event EventHandler ColumnsChanged;
+        public event EventHandler? ColumnsChanged;
 
         /// <inheritdoc />
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <inheritdoc />
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
         /// <inheritdoc />
         public int Count => this.Rows.Count;
@@ -118,17 +118,17 @@ namespace Gu.Wpf.DataGrid2D
 
         void ICollection.CopyTo(Array array, int index) => ((IList)this.Rows).CopyTo(array, index);
 
-        int IList.Add(object value) => throw new NotSupportedException();
+        int IList.Add(object? value) => throw new NotSupportedException();
 
-        bool IList.Contains(object value) => this.Rows.Contains(value);
+        bool IList.Contains(object? value) => this.Rows.Contains(value);
 
         void IList.Clear() => throw new NotSupportedException();
 
-        int IList.IndexOf(object value) => this.Rows.IndexOf((ListRowView)value);
+        int IList.IndexOf(object? value) => this.Rows.IndexOf((ListRowView)value);
 
-        void IList.Insert(int index, object value) => throw new NotSupportedException();
+        void IList.Insert(int index, object? value) => throw new NotSupportedException();
 
-        void IList.Remove(object value) => throw new NotSupportedException();
+        void IList.Remove(object? value) => throw new NotSupportedException();
 
         void IList.RemoveAt(int index) => throw new NotSupportedException();
 

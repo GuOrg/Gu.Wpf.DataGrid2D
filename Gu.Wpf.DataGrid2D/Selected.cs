@@ -232,7 +232,7 @@ namespace Gu.Wpf.DataGrid2D
             return new RowColumnIndex(rowIndex, dataGrid.CurrentColumn.DisplayIndex);
         }
 
-        private static DataGridCell GetCell(this DataGrid dataGrid, RowColumnIndex index)
+        private static DataGridCell? GetCell(this DataGrid dataGrid, RowColumnIndex index)
         {
             if (index.Column < 0 || index.Column >= dataGrid.Columns.Count)
             {
@@ -274,7 +274,7 @@ namespace Gu.Wpf.DataGrid2D
             dataGrid.SetCurrentValue(CellItemProperty, cellItem);
         }
 
-        private static object GetCellItem(this DataGridColumn column, object item)
+        private static object? GetCellItem(this DataGridColumn column, object item)
         {
             if (column == null || item == null)
             {
