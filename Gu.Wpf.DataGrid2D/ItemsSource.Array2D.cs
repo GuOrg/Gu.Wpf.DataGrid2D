@@ -27,6 +27,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">Array2D property value.</param>
         public static void SetArray2D(this DataGrid element, Array value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(Array2DProperty, value);
         }
 
@@ -37,6 +42,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static Array GetArray2D(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (Array)element.GetValue(Array2DProperty);
         }
 

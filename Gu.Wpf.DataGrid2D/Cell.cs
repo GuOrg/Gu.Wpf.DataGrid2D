@@ -65,6 +65,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">Template property value.</param>
         public static void SetTemplate(this DataGrid element, DataTemplate value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(TemplateProperty, value);
         }
 
@@ -75,6 +80,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static DataTemplate GetTemplate(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (DataTemplate)element.GetValue(TemplateProperty);
         }
 
@@ -83,6 +93,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">TemplateSelector property value.</param>
         public static void SetTemplateSelector(DataGrid element, DataTemplateSelector value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(TemplateSelectorProperty, value);
         }
 
@@ -93,6 +108,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static DataTemplateSelector GetTemplateSelector(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (DataTemplateSelector)element.GetValue(TemplateSelectorProperty);
         }
 
@@ -101,6 +121,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">EditingTemplate property value.</param>
         public static void SetEditingTemplate(this DataGrid element, DataTemplate value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(EditingTemplateProperty, value);
         }
 
@@ -111,6 +136,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static DataTemplate GetEditingTemplate(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (DataTemplate)element.GetValue(EditingTemplateProperty);
         }
 
@@ -119,6 +149,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">EditingTemplateSelector property value.</param>
         public static void SetEditingTemplateSelector(DependencyObject element, DataTemplateSelector value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(EditingTemplateSelectorProperty, value);
         }
 
@@ -128,6 +163,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static DataTemplateSelector GetEditingTemplateSelector(this DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (DataTemplateSelector)element.GetValue(EditingTemplateSelectorProperty);
         }
 
@@ -180,7 +220,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void SetCellTemplateProperty(DataGrid dataGrid, DependencyPropertyChangedEventArgs e, bool editingTemplate)
         {
-            if (e.OldValue != null && e.NewValue == null)
+            if (e is { OldValue: { }, NewValue: null })
             {
                 for (var i = 0; i < dataGrid.Columns.Count; ++i)
                 {
@@ -201,7 +241,7 @@ namespace Gu.Wpf.DataGrid2D
                     }
                 }
             }
-            else if (e.OldValue == null && e.NewValue != null)
+            else if (e is { OldValue: null, NewValue: { } })
             {
                 for (var i = 0; i < dataGrid.Columns.Count; ++i)
                 {

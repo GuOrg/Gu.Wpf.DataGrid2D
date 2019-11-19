@@ -21,6 +21,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">Array2DTransposed property value.</param>
         public static void SetArray2DTransposed(this DataGrid element, Array value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(Array2DTransposedProperty, value);
         }
 
@@ -31,6 +36,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static Array GetArray2DTransposed(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (Array)element.GetValue(Array2DTransposedProperty);
         }
 

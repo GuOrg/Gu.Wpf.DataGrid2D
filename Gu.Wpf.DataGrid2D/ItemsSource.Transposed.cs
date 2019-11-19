@@ -30,6 +30,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">TransposedSource property value.</param>
         public static void SetTransposedSource(this DataGrid element, IEnumerable value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(TransposedSourceProperty, value);
         }
 
@@ -40,6 +45,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static IEnumerable GetTransposedSource(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (IEnumerable)element.GetValue(TransposedSourceProperty);
         }
 
@@ -48,6 +58,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">PropertySource property value.</param>
         public static void SetPropertySource(DependencyObject element, object value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(PropertySourceProperty, value);
         }
 
@@ -58,6 +73,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static object GetPropertySource(DependencyObject element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return element.GetValue(PropertySourceProperty);
         }
 

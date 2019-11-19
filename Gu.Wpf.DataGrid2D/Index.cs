@@ -38,6 +38,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">OfRow property value.</param>
         public static void SetOfRow(this DataGridRow element, int value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(OfRowPropertyKey, value);
         }
 
@@ -48,6 +53,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
         public static int GetOfRow(this DataGridRow element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (int)element.GetValue(OfRowProperty);
         }
 
@@ -58,6 +68,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">StartAt property value.</param>
         public static void SetStartAt(this Control element, int value)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(StartAtProperty, value);
         }
 
@@ -69,6 +84,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static int GetStartAt(this Control element)
         {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             return (int)(element.GetValue(StartAtProperty) ?? 0);
         }
 

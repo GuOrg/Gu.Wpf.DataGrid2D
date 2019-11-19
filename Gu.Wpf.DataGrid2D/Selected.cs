@@ -53,6 +53,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">CellItem property value.</param>
         public static void SetCellItem(this DataGrid element, object value)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(CellItemProperty, value);
         }
 
@@ -63,6 +68,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static object GetCellItem(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             return element.GetValue(CellItemProperty);
         }
 
@@ -71,6 +81,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">Index property value.</param>
         public static void SetIndex(this DataGrid element, RowColumnIndex? value)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(IndexProperty, value);
         }
 
@@ -81,6 +96,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static RowColumnIndex? GetIndex(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             return (RowColumnIndex?)element.GetValue(IndexProperty);
         }
 

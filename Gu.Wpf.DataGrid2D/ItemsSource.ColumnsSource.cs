@@ -23,6 +23,11 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="value">ColumnsSource property value.</param>
         public static void SetColumnsSource(this DataGrid element, IEnumerable value)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             element.SetValue(ColumnsSourceProperty, value);
         }
 
@@ -33,6 +38,11 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static IEnumerable GetColumnsSource(this DataGrid element)
         {
+            if (element is null)
+            {
+                throw new System.ArgumentNullException(nameof(element));
+            }
+
             return (IEnumerable)element.GetValue(ColumnsSourceProperty);
         }
 

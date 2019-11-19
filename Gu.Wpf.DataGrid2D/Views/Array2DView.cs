@@ -65,11 +65,21 @@ namespace Gu.Wpf.DataGrid2D
 
         public static Array2DView Create(Array source)
         {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             return new Array2DView(source, isTransposed: false);
         }
 
         public static Array2DView CreateTransposed(Array source)
         {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             return new Array2DView(source, isTransposed: true);
         }
 
