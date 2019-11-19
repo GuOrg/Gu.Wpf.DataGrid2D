@@ -20,23 +20,13 @@ namespace Gu.Wpf.DataGrid2D
 
         internal static int Count(this IEnumerable collection)
         {
-            if (collection == null)
+            return collection switch
             {
-                return 0;
-            }
-
-            if (collection is ICollection col)
-            {
-                return col.Count;
-            }
-
-            if (collection is IReadOnlyCollection<object> rol)
-            {
-                return rol.Count;
-            }
-
-            return collection.Cast<object>()
-                             .Count();
+                null => 0,
+                ICollection col => col.Count,
+                IReadOnlyCollection<object> rol => rol.Count,
+                _ => collection.Cast<object>().Count(),
+            };
         }
 
         internal static object First(this IEnumerable collection)

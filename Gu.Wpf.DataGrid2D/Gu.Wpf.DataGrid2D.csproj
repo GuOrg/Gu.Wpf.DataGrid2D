@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gu.Wpf.DataGrid2D</RootNamespace>
     <AssemblyName>Gu.Wpf.DataGrid2D</AssemblyName>
