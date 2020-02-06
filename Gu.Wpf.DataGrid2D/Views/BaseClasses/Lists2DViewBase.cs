@@ -85,8 +85,14 @@ namespace Gu.Wpf.DataGrid2D
             set => throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public virtual bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
+            if (e is null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             var ccea = (NotifyCollectionChangedEventArgs)e;
             if (ReferenceEquals(sender, this.Source))
             {
@@ -114,6 +120,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public IEnumerator<ListRowView> GetEnumerator() => this.Rows.GetEnumerator();
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
         void ICollection.CopyTo(Array array, int index) => ((IList)this.Rows).CopyTo(array, index);

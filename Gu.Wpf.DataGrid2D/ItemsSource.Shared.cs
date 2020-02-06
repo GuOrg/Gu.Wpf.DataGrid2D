@@ -48,7 +48,7 @@ namespace Gu.Wpf.DataGrid2D
             {
                 view = new Lists2DTransposedView(colsSource);
             }
-            else if (dataGrid.GetTransposedSource() is IEnumerable transposedSource)
+            else if (dataGrid.GetTransposedSource() is { } transposedSource)
             {
                 view = new TransposedItemsSource(transposedSource);
             }

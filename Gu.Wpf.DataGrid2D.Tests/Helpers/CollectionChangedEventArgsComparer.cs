@@ -42,9 +42,9 @@ namespace Gu.Wpf.DataGrid2D.Tests
             return 0;
         }
 
-        int IComparer.Compare(object x, object y)
+        int IComparer.Compare(object? x, object? y)
         {
-            return this.Compare((NotifyCollectionChangedEventArgs)x, (NotifyCollectionChangedEventArgs)y);
+            return this.Compare((NotifyCollectionChangedEventArgs)x!, (NotifyCollectionChangedEventArgs)y!);
         }
     }
 }

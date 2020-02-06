@@ -7,7 +7,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
     {
         private int value;
 
-        private string name;
+        private string? name;
         private bool isSelected;
 
         public ItemVm(int value)
@@ -15,7 +15,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.Value = value;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public bool IsSelected
         {
@@ -33,7 +33,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        public string Name
+        public string? Name
         {
             get => this.name;
 
@@ -66,12 +66,12 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
             return this.Name;
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

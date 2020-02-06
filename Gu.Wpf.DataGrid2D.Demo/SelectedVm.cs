@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -7,7 +7,7 @@
 
     public class SelectedVm : INotifyPropertyChanged
     {
-        private ItemVm selectedItem;
+        private ItemVm? selectedItem;
 
         private RowColumnIndex? index;
 
@@ -32,13 +32,13 @@
             this.AllRowsItems = rowVms.SelectMany(x => x).ToList();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public IReadOnlyList<RowVm> RowVms { get; }
 
         public IReadOnlyList<ItemVm> AllRowsItems { get; }
 
-        public ItemVm SelectedItem
+        public ItemVm? SelectedItem
         {
             get => this.selectedItem;
 
@@ -60,7 +60,7 @@
 
             set
             {
-                if (value.Equals(this.index))
+                if (value == this.index)
                 {
                     return;
                 }
@@ -70,7 +70,7 @@
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

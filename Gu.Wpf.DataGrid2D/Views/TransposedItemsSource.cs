@@ -19,6 +19,11 @@ namespace Gu.Wpf.DataGrid2D
 
         public TransposedItemsSource(IEnumerable source)
         {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             this.source = new WeakReference(source);
             var type = source.GetElementType();
             this.Properties = TypeDescriptor.GetProperties(type);

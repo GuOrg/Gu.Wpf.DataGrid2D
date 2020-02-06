@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -8,9 +8,9 @@
     {
         private int value1;
         private int value2;
-        private SolidColorBrush background;
+        private SolidColorBrush? background;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public int Value1
         {
@@ -44,7 +44,7 @@
             }
         }
 
-        public SolidColorBrush Background
+        public SolidColorBrush? Background
         {
             get => this.background;
 
@@ -60,7 +60,7 @@
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

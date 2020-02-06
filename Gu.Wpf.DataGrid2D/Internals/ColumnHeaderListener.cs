@@ -5,7 +5,7 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
-    internal class ColumnHeaderListener : IDisposable
+    internal sealed class ColumnHeaderListener : IDisposable
     {
         private readonly DataGrid dataGrid;
         private bool disposed;

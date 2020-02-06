@@ -21,7 +21,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.UpdateDataCommand = new RelayCommand(this.UpdateData);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public string[,] Strings
         {
@@ -41,7 +41,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public ICommand UpdateDataCommand { get; }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

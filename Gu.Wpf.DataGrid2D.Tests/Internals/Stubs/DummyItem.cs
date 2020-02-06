@@ -4,7 +4,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Internals
     {
         private int value;
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event System.ComponentModel.PropertyChangedEventHandler? PropertyChanged;
 
         public int Value
         {
@@ -21,7 +21,7 @@ namespace Gu.Wpf.DataGrid2D.Tests.Internals
             }
         }
 
-        protected virtual void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }

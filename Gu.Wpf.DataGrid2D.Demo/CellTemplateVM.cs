@@ -15,8 +15,8 @@ namespace Gu.Wpf.DataGrid2D.Demo
         private readonly DataTemplate cellTemplate2;
         private readonly DataTemplate cellEditingTemplate1;
         private readonly DataTemplate cellEditingTemplate2;
-        private DataTemplate myCellTemplate;
-        private DataTemplate myCellEditingTemplate;
+        private DataTemplate? myCellTemplate;
+        private DataTemplate? myCellEditingTemplate;
 
         public CellTemplateVm()
         {
@@ -57,13 +57,11 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.ChangeCellTemplateCommand = new RelayCommand(this.ChangeCellTemplate);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public string[] RowHeaders { get; }
 
         public string[] ColumnHeaders { get; }
-
-        public ICommand UpdateDataCommand { get; }
 
         public ICommand ChangeCellTemplateCommand { get; }
 
@@ -96,7 +94,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        public DataTemplate MyCellTemplate
+        public DataTemplate? MyCellTemplate
         {
             get => this.myCellTemplate;
             set
@@ -112,7 +110,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        public DataTemplate MyCellEditingTemplate
+        public DataTemplate? MyCellEditingTemplate
         {
             get => this.myCellEditingTemplate;
             set
@@ -128,7 +126,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

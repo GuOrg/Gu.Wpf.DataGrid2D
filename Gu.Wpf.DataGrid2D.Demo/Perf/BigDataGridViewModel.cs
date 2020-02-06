@@ -10,9 +10,9 @@ namespace Gu.Wpf.DataGrid2D.Demo
     public sealed class BigDataGridViewModel : INotifyPropertyChanged
     {
         public static readonly BigDataGridViewModel Default = new BigDataGridViewModel();
-        private string[] rowHeaders;
-        private string[] columnHeaders;
-        private int[,] data2D;
+        private string[]? rowHeaders;
+        private string[]? columnHeaders;
+        private int[,]? data2D;
         private int rows = 10; // small grid as default
         private int columns = 10;
         private TimeSpan updateTime;
@@ -23,9 +23,9 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.UpdateData();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public string[] RowHeaders
+        public string[]? RowHeaders
         {
             get => this.rowHeaders;
             private set
@@ -40,7 +40,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        public string[] ColumnHeaders
+        public string[]? ColumnHeaders
         {
             get => this.columnHeaders;
             private set
@@ -55,7 +55,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        public int[,] Data2D
+        public int[,]? Data2D
         {
             get => this.data2D;
             private set
@@ -144,7 +144,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             Mouse.OverrideCursor = null;
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

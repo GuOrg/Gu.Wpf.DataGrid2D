@@ -13,7 +13,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
         }
 
 #pragma warning disable CS0067
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 #pragma warning restore CS0067
 
         public bool CanExecute(object parameter)

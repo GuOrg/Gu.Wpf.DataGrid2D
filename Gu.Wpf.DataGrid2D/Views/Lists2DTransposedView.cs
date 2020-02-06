@@ -34,6 +34,11 @@ namespace Gu.Wpf.DataGrid2D
 
         public override bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
+            if (e is null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             if (managerType != typeof(CollectionChangedEventManager))
             {
                 return false;

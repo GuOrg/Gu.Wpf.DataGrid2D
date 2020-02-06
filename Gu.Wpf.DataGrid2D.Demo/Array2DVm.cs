@@ -8,7 +8,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
     public class Array2DVm : INotifyPropertyChanged
     {
-        private string data;
+        private string? data;
 
         public Array2DVm()
         {
@@ -24,7 +24,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.UpdateData();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public string[] RowHeaders { get; }
 
@@ -34,7 +34,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
         public ICommand UpdateDataCommand { get; }
 
-        public string Data
+        public string? Data
         {
             get => this.data;
 
@@ -50,7 +50,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
