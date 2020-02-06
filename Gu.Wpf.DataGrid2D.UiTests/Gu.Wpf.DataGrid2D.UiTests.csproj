@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!--<TargetFramework>netcoreapp3.0</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <OutputType>WinExe</OutputType>-->
-    <TargetFramework>net45</TargetFramework>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <TargetFramework>net48</TargetFramework>
     <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
