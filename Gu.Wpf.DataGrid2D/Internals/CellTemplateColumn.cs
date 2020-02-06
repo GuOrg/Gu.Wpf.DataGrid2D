@@ -6,15 +6,15 @@ namespace Gu.Wpf.DataGrid2D
 
     internal class CellTemplateColumn : DataGridTemplateColumn
     {
-        private BindingBase binding;
+        private BindingBase? binding;
 
-        public override BindingBase ClipboardContentBinding
+        public override BindingBase? ClipboardContentBinding
         {
             get => base.ClipboardContentBinding ?? this.Binding;
             set => base.ClipboardContentBinding = value;
         }
 
-        internal BindingBase Binding
+        internal BindingBase? Binding
         {
             get => this.binding;
 
@@ -41,18 +41,12 @@ namespace Gu.Wpf.DataGrid2D
 
         private DataTemplate ChooseCellTemplate(bool isEditing)
         {
-            DataTemplate template = null;
             if (isEditing)
             {
-                template = this.CellEditingTemplate;
+               return this.CellEditingTemplate ?? this.CellTemplate;
             }
 
-            if (template is null)
-            {
-                template = this.CellTemplate;
-            }
-
-            return template;
+            return this.CellTemplate;
         }
 
         private DataTemplateSelector ChooseCellTemplateSelector(bool isEditing)

@@ -125,17 +125,17 @@ namespace Gu.Wpf.DataGrid2D
 
         void ICollection.CopyTo(Array array, int index) => ((IList)this.Rows).CopyTo(array, index);
 
-        int IList.Add(object value) => throw new NotSupportedException();
+        int IList.Add(object? value) => throw new NotSupportedException();
 
-        bool IList.Contains(object value) => this.Rows.Contains(value);
+        bool IList.Contains(object? value) => this.Rows.Contains(value);
 
         void IList.Clear() => throw new NotSupportedException();
 
-        int IList.IndexOf(object value) => this.Rows.IndexOf((ListRowView)value);
+        int IList.IndexOf(object? value) => this.Rows.IndexOf((ListRowView)value);
 
-        void IList.Insert(int index, object value) => throw new NotSupportedException();
+        void IList.Insert(int index, object? value) => throw new NotSupportedException();
 
-        void IList.Remove(object value) => throw new NotSupportedException();
+        void IList.Remove(object? value) => throw new NotSupportedException();
 
         void IList.RemoveAt(int index) => throw new NotSupportedException();
 

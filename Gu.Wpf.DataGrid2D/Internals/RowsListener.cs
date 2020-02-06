@@ -13,7 +13,6 @@ namespace Gu.Wpf.DataGrid2D
         internal RowsListener(DataGrid dataGrid)
         {
             this.dataGrid = dataGrid;
-            ////dataGrid.ItemContainerGenerator.ItemsChanged += this.OnItemsChanged;
             dataGrid.ItemContainerGenerator.StatusChanged += this.OnStatusChanged;
         }
 
@@ -25,19 +24,12 @@ namespace Gu.Wpf.DataGrid2D
             }
 
             this.disposed = true;
-            ////this.dataGrid.ItemContainerGenerator.ItemsChanged -= this.OnItemsChanged;
             this.dataGrid.ItemContainerGenerator.StatusChanged -= this.OnStatusChanged;
         }
 
-        ////private void OnItemsChanged(object sender, ItemsChangedEventArgs e)
-        ////{
-        ////    this.dataGrid.RaiseEvent(RowsChangedEventArgs);
-        ////}
-
-        private void OnStatusChanged(object o, EventArgs e)
+        private void OnStatusChanged(object? o, EventArgs e)
         {
-            var generator = (ItemContainerGenerator)o;
-            if (generator.Status == GeneratorStatus.ContainersGenerated)
+            if (o is ItemContainerGenerator { Status: GeneratorStatus.ContainersGenerated })
             {
                 this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.RowsChangedEvent));
             }

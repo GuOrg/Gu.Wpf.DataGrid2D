@@ -74,7 +74,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public TransposedRow this[int index] => this.rows[index];
 
-        object IList.this[int index]
+        object? IList.this[int index]
         {
             get => this.rows[index];
             //// ReSharper disable once ValueParameterNotUsed
@@ -106,17 +106,17 @@ namespace Gu.Wpf.DataGrid2D
 
         void ICollection.CopyTo(Array array, int index) => ((IList)this.rows).CopyTo(array, index);
 
-        int IList.Add(object value) => throw new NotSupportedException();
+        int IList.Add(object? value) => throw new NotSupportedException();
 
-        bool IList.Contains(object value) => ((IList)this.rows).Contains(value);
+        bool IList.Contains(object? value) => ((IList)this.rows).Contains(value);
 
         void IList.Clear() => throw new NotSupportedException();
 
-        int IList.IndexOf(object value) => ((IList)this.rows).IndexOf(value);
+        int IList.IndexOf(object? value) => ((IList)this.rows).IndexOf(value);
 
-        void IList.Insert(int index, object value) => throw new NotSupportedException();
+        void IList.Insert(int index, object? value) => throw new NotSupportedException();
 
-        void IList.Remove(object value) => throw new NotSupportedException();
+        void IList.Remove(object? value) => throw new NotSupportedException();
 
         void IList.RemoveAt(int index) => throw new NotSupportedException();
 

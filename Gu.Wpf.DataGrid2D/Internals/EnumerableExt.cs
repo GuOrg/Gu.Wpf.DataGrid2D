@@ -13,7 +13,7 @@ namespace Gu.Wpf.DataGrid2D
             var type = enumerable.GetType();
             if (type.HasElementType)
             {
-                return type.GetElementType();
+                return type.GetElementType()!;
             }
 
             if (type.IsEnumerableOfT())

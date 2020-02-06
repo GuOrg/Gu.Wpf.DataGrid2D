@@ -1,6 +1,5 @@
 namespace Gu.Wpf.DataGrid2D
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -27,16 +26,6 @@ namespace Gu.Wpf.DataGrid2D
                 IReadOnlyCollection<object> rol => rol.Count,
                 _ => collection.Cast<object>().Count(),
             };
-        }
-
-        internal static object First(this IEnumerable collection)
-        {
-            var enumerator = collection.GetEnumerator();
-            object first = enumerator.MoveNext() ? enumerator.Current : null;
-            var disposable = enumerator as IDisposable;
-            disposable?.Dispose();
-
-            return first;
         }
 
         internal static IEnumerable<DependencyObject> Ancestors(this DependencyObject o)

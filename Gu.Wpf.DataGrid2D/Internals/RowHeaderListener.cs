@@ -48,10 +48,9 @@ namespace Gu.Wpf.DataGrid2D
             this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.RowsChangedEvent));
         }
 
-        private void OnStatusChanged(object o, EventArgs e)
+        private void OnStatusChanged(object? o, EventArgs e)
         {
-            var generator = (ItemContainerGenerator)o;
-            if (generator.Status == GeneratorStatus.ContainersGenerated)
+            if (o is ItemContainerGenerator { Status: GeneratorStatus.ContainersGenerated })
             {
                 this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.RowsChangedEvent));
             }
