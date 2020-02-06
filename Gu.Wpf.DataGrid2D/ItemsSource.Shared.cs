@@ -42,15 +42,21 @@ namespace Gu.Wpf.DataGrid2D
             IEnumerable view = null;
             if (dataGrid.GetRowsSource() is IEnumerable<IEnumerable> rowsSource)
             {
+#pragma warning disable IDISP001 // Dispose created.
                 view = new Lists2DView(rowsSource);
+#pragma warning restore IDISP001 // Dispose created.
             }
             else if (dataGrid.GetColumnsSource() is IEnumerable<IEnumerable> colsSource)
             {
+#pragma warning disable IDISP001 // Dispose created.
                 view = new Lists2DTransposedView(colsSource);
+#pragma warning restore IDISP001 // Dispose created.
             }
             else if (dataGrid.GetTransposedSource() is { } transposedSource)
             {
+#pragma warning disable IDISP001 // Dispose created.
                 view = new TransposedItemsSource(transposedSource);
+#pragma warning restore IDISP001 // Dispose created.
             }
 
             _ = dataGrid.Bind(ItemsControl.ItemsSourceProperty)

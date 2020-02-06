@@ -14,6 +14,11 @@ namespace Gu.Wpf.DataGrid2D
         public Lists2DView(IEnumerable<IEnumerable> source)
             : base(source)
         {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             bool isEmpty = source.IsEmpty();
             this.MaxColumnCount = isEmpty ? 0 : source.Max(x => x.Count());
             var itemType = source.GetElementType().GetEnumerableItemType();
@@ -35,6 +40,11 @@ namespace Gu.Wpf.DataGrid2D
 
         public override bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
+            if (sender is null)
+            {
+                throw new ArgumentNullException(nameof(sender));
+            }
+
             if (e is null)
             {
                 throw new ArgumentNullException(nameof(e));
