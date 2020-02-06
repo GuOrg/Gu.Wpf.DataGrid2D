@@ -62,13 +62,13 @@ namespace Gu.Wpf.DataGrid2D
 
         bool ICollection.IsSynchronized => ((ICollection)this.rows).IsSynchronized;
 
-        IEnumerable IView2D.Source => this.Source;
+        IEnumerable? IView2D.Source => this.Source;
 
         public bool IsTransposed => true;
 
-        DataGrid IColumnsChanged.DataGrid { get; set; }
+        DataGrid? IColumnsChanged.DataGrid { get; set; }
 
-        public IEnumerable<object> Source => (IEnumerable<object>)this.source.Target;
+        public IEnumerable<object>? Source => (IEnumerable<object>?)this.source.Target;
 
         internal PropertyDescriptorCollection Properties { get; }
 

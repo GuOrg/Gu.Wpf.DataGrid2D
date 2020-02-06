@@ -15,14 +15,14 @@ namespace Gu.Wpf.DataGrid2D
         public override object GetValue(object component)
         {
             var row = (TransposedRow)component;
-            var match = row.Source.Source.ElementAtOrDefault(this.Index);
+            var match = row.Source.Source?.ElementAtOrDefault(this.Index);
             return this.propertyDescriptor.GetValue(match);
         }
 
         public override void SetValue(object component, object value)
         {
             var row = (TransposedRow)component;
-            var match = row.Source.Source.ElementAtOrDefault(this.Index);
+            var match = row.Source.Source?.ElementAtOrDefault(this.Index);
             this.propertyDescriptor.SetValue(match, value);
         }
     }

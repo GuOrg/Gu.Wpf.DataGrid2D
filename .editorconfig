@@ -97,3 +97,8 @@ csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
 csharp_style_inlined_variable_declaration = true:none
 csharp_style_throw_expression = true:none
 csharp_style_conditional_delegate_call = true:suggestion
+
+# diagnostics
+
+# CS8604: Possible null reference argument.
+dotnet_diagnostic.IDE0009.severity = none

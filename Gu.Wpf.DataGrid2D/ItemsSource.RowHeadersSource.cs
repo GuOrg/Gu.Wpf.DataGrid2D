@@ -89,6 +89,11 @@ namespace Gu.Wpf.DataGrid2D
         {
             var dataGrid = (DataGrid)sender!;
             var headers = dataGrid.GetRowHeadersSource();
+            if (headers is null)
+            {
+                return;
+            }
+
             var count = headers.Count();
             for (var i = 0; i < Math.Min(count, dataGrid.Items.Count); i++)
             {

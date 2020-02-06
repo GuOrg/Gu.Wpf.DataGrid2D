@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.ComponentModel;
@@ -14,29 +14,30 @@
         {
         }
 
-        public override object GetValue(object component)
+        public override object? GetValue(object component)
         {
-            var rowView = (Array2DRowView)component;
-            var source = rowView.Source;
-            if (source.IsTransposed)
+            return component switch
             {
-                return ((Array)source.Source)?.GetValue(this.Index, rowView.Index);
-            }
-
-            return ((Array)source.Source)?.GetValue(rowView.Index, this.Index);
+                Array2DRowView { Source: { IsTransposed: true, Source: Array array }, Index: var index }
+                => array.GetValue(this.Index, index),
+                Array2DRowView { Source: { IsTransposed: false, Source: Array array }, Index: var index }
+                => array.GetValue(index, this.Index),
+                _ => throw new InvalidOperationException("Error getting value."),
+            };
         }
 
-        public override void SetValue(object component, object value)
+        public override void SetValue(object component, object? value)
         {
-            var rowView = (Array2DRowView)component;
-            var source = rowView.Source;
-            if (source.IsTransposed)
+            switch (component)
             {
-                ((Array)source.Source)?.SetValue(value, this.Index, rowView.Index);
-            }
-            else
-            {
-                ((Array)source.Source)?.SetValue(value, rowView.Index, this.Index);
+                case Array2DRowView { Source: { IsTransposed: true, Source: Array array }, Index: var index }:
+                    array.SetValue(value, this.Index, index);
+                    break;
+                case Array2DRowView { Source: { IsTransposed: false, Source: Array array }, Index: var index }:
+                    array.SetValue(value, index, this.Index);
+                    break;
+                default:
+                    throw new InvalidOperationException("Error setting value.");
             }
         }
 

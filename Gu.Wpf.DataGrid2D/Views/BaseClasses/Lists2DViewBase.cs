@@ -54,7 +54,7 @@ namespace Gu.Wpf.DataGrid2D
         public int Count => this.Rows.Count;
 
         /// <inheritdoc />
-        bool IList.IsReadOnly => this.Source.IsReadOnly();
+        bool IList.IsReadOnly => this.Source?.IsReadOnly() ?? true;
 
         /// <inheritdoc />
         bool IList.IsFixedSize => true;
@@ -66,13 +66,13 @@ namespace Gu.Wpf.DataGrid2D
         bool ICollection.IsSynchronized => (this.Source as ICollection)?.IsSynchronized == true;
 
         /// <inheritdoc />
-        IEnumerable IView2D.Source => this.Source;
+        IEnumerable? IView2D.Source => this.Source;
 
         public abstract bool IsTransposed { get; }
 
         DataGrid IColumnsChanged.DataGrid { get; set; }
 
-        internal IEnumerable<IEnumerable> Source => (IEnumerable<IEnumerable>)this.source.Target;
+        internal IEnumerable<IEnumerable>? Source => (IEnumerable<IEnumerable>?)this.source.Target;
 
         protected List<ListRowView> Rows { get; } = new List<ListRowView>();
 
@@ -131,7 +131,7 @@ namespace Gu.Wpf.DataGrid2D
 
         void IList.Clear() => throw new NotSupportedException();
 
-        int IList.IndexOf(object? value) => this.Rows.IndexOf((ListRowView)value);
+        int IList.IndexOf(object? value) => ((IList)this.Rows).IndexOf(value);
 
         void IList.Insert(int index, object? value) => throw new NotSupportedException();
 

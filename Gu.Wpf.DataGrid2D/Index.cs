@@ -104,9 +104,12 @@ namespace Gu.Wpf.DataGrid2D
 
             if (e.NewValue is null)
             {
-                foreach (var row in dataGrid.Items)
+                foreach (var item in dataGrid.Items)
                 {
-                    BindingOperations.ClearBinding((DataGridRow)row, DataGridRow.HeaderProperty);
+                    if (item is DataGridRow row)
+                    {
+                        BindingOperations.ClearBinding(row, DataGridRow.HeaderProperty);
+                    }
                 }
 
                 dataGrid.RemoveHandler(Events.RowsChangedEvent, OnRowsChangedHandler);
@@ -120,7 +123,7 @@ namespace Gu.Wpf.DataGrid2D
             OnRowsChanged(dataGrid, null);
         }
 
-        private static void OnRowsChanged(object sender, RoutedEventArgs routedEventArgs)
+        private static void OnRowsChanged(object sender, RoutedEventArgs? routedEventArgs)
         {
             var dataGrid = (DataGrid)sender;
             var startAt = dataGrid.GetStartAt();
