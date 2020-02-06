@@ -20,16 +20,13 @@ namespace Gu.Wpf.DataGrid2D
 
         internal TSource Source { get; }
 
-        public override string GetClassName() => this.GetType().FullName;
+        /// <inheritdoc />
+        public override string GetClassName() => this.GetType().FullName!;
 
-        public override PropertyDescriptorCollection GetProperties()
-        {
-            return this.properties;
-        }
+        /// <inheritdoc />
+        public override PropertyDescriptorCollection GetProperties() => this.properties;
 
-        public override PropertyDescriptorCollection GetProperties(Attribute[] attributes)
-        {
-            return this.properties;
-        }
+        /// <inheritdoc />
+        public override PropertyDescriptorCollection GetProperties(Attribute[] attributes) => this.properties;
     }
 }

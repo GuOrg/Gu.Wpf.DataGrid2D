@@ -9,8 +9,8 @@ namespace Gu.Wpf.DataGrid2D
 
     internal class ListIndexPropertyDescriptor : IndexPropertyDescriptor
     {
-        private ListIndexPropertyDescriptor(Type elementType, int index, bool isreadOnly)
-            : base(elementType, index, isreadOnly)
+        private ListIndexPropertyDescriptor(Type elementType, int index, bool isReadOnly)
+            : base(elementType, index, isReadOnly)
         {
         }
 

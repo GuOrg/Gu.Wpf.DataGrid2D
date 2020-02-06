@@ -294,7 +294,7 @@ namespace Gu.Wpf.DataGrid2D
             dataGrid.SetCurrentValue(CellItemProperty, cellItem);
         }
 
-        private static object GetCellItem(this DataGridColumn column, object item)
+        private static object? GetCellItem(this DataGridColumn column, object item)
         {
             if (column is null || item is null)
             {

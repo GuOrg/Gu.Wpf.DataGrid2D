@@ -299,18 +299,17 @@ namespace Gu.Wpf.DataGrid2D
 
             private static void OnDataGridAutoGeneratingColumn(object? sender, DataGridAutoGeneratingColumnEventArgs e)
             {
-                var col = new CellTemplateColumn
+                if (e.Column is DataGridTextColumn { Binding: { } binding } &&
+                    sender is DataGrid dataGrid)
                 {
-                    CellTemplate = ((DataGrid)sender).GetTemplate(),
-                    CellEditingTemplate = ((DataGrid)sender).GetEditingTemplate(),
-                    CellTemplateSelector = ((DataGrid)sender).GetTemplateSelector(),
-                    CellEditingTemplateSelector = ((DataGrid)sender).GetEditingTemplateSelector(),
-                };
-
-                if ((e.Column as DataGridTextColumn)?.Binding is { } binding)
-                {
-                    col.Binding = binding;
-                    e.Column = col;
+                    e.Column = new CellTemplateColumn
+                    {
+                        Binding = binding,
+                        CellTemplate = dataGrid.GetTemplate(),
+                        CellEditingTemplate = dataGrid.GetEditingTemplate(),
+                        CellTemplateSelector = dataGrid.GetTemplateSelector(),
+                        CellEditingTemplateSelector = dataGrid.GetEditingTemplateSelector(),
+                    };
                 }
             }
         }

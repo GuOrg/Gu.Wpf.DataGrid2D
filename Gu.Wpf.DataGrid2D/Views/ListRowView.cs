@@ -13,10 +13,13 @@ namespace Gu.Wpf.DataGrid2D
         {
         }
 
+        /// <inheritdoc />
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        /// <inheritdoc />
         public override EventDescriptorCollection GetEvents() => Events;
 
+        /// <inheritdoc />
         public override EventDescriptorCollection GetEvents(Attribute[] attributes) => Events;
 
         internal void RaiseAllChanged()

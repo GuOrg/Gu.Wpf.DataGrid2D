@@ -29,12 +29,12 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        protected override FrameworkElement GenerateEditingElement(DataGridCell cell, object dataItem)
+        protected override FrameworkElement? GenerateEditingElement(DataGridCell cell, object dataItem)
         {
             return this.LoadTemplateContent(isEditing: true);
         }
 
-        protected override FrameworkElement GenerateElement(DataGridCell cell, object dataItem)
+        protected override FrameworkElement? GenerateElement(DataGridCell cell, object dataItem)
         {
             return this.LoadTemplateContent(isEditing: false);
         }
