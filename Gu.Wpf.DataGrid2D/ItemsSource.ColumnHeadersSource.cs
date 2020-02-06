@@ -63,7 +63,7 @@ namespace Gu.Wpf.DataGrid2D
 #pragma warning restore IDISP007 // Don't dispose injected.
             dataGrid.ClearValue(ColumnHeaderListenerProperty);
 
-            if (headers == null)
+            if (headers is null)
             {
                 foreach (var column in dataGrid.Columns)
                 {
@@ -96,7 +96,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static bool HeadersSourceValidateValue(object value)
         {
-            if (value == null ||
+            if (value is null ||
                 value is IList ||
                 value is IReadOnlyList<object>)
             {

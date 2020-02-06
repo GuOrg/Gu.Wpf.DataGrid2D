@@ -47,7 +47,7 @@ namespace Gu.Wpf.DataGrid2D
                 template = this.CellEditingTemplate;
             }
 
-            if (template == null)
+            if (template is null)
             {
                 template = this.CellTemplate;
             }
@@ -57,25 +57,19 @@ namespace Gu.Wpf.DataGrid2D
 
         private DataTemplateSelector ChooseCellTemplateSelector(bool isEditing)
         {
-            DataTemplateSelector templateSelector = null;
             if (isEditing)
             {
-                templateSelector = this.CellEditingTemplateSelector;
+                return this.CellEditingTemplateSelector ?? this.CellTemplateSelector;
             }
 
-            if (templateSelector == null)
-            {
-                templateSelector = this.CellTemplateSelector;
-            }
-
-            return templateSelector;
+            return this.CellTemplateSelector;
         }
 
-        private FrameworkElement LoadTemplateContent(bool isEditing)
+        private FrameworkElement? LoadTemplateContent(bool isEditing)
         {
             var template = this.ChooseCellTemplate(isEditing);
             var templateSelector = this.ChooseCellTemplateSelector(isEditing);
-            if ((template == null) && (templateSelector == null))
+            if (template is null && templateSelector is null)
             {
                 return null;
             }

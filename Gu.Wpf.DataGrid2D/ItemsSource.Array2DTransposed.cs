@@ -48,7 +48,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             var dataGrid = (DataGrid)d;
             var array = (Array)e.NewValue;
-            if (array == null)
+            if (array is null)
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
                 return;

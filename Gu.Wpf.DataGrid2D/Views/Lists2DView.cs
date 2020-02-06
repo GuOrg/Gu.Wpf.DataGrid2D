@@ -182,7 +182,7 @@ namespace Gu.Wpf.DataGrid2D
             var source = this.Source;
             this.Rows.Clear();
 
-            if (source == null || !source.Any())
+            if (source is null || !source.Any())
             {
                 this.OnCollectionChanged(NotifyCollectionResetEventArgs);
                 return;

@@ -15,7 +15,7 @@ namespace Gu.Wpf.DataGrid2D
         internal static Type GetEnumerableItemType(this Type type)
         {
             var enumerable = type.GetIEnumerableOfT();
-            if (enumerable == null)
+            if (enumerable is null)
             {
                 var message = $"Trying to get typeof(T) when type is not IEnumerable<T>, type is {type.Name}";
                 throw new ArgumentException(message, nameof(type));

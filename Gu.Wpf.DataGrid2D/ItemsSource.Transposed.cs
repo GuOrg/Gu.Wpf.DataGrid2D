@@ -85,7 +85,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             var dataGrid = (DataGrid)d;
             var source = (IEnumerable)e.NewValue;
-            if (source == null)
+            if (source is null)
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
                 BindingOperations.ClearBinding(dataGrid, ItemsSourceProxyProperty);
@@ -99,7 +99,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static object CoerceTransposedSource(DependencyObject dependencyObject, object baseValue)
         {
-            if (baseValue == null)
+            if (baseValue is null)
             {
                 return null;
             }
@@ -114,7 +114,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void OnPropertySourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue == null)
+            if (e.NewValue is null)
             {
                 d.SetCurrentValue(TransposedSourceProperty, null);
             }

@@ -209,7 +209,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static void ListenToColumnAutoGeneration(DataGrid dataGrid)
         {
-            if (dataGrid.GetValue(ListenerProperty) == null)
+            if (dataGrid.GetValue(ListenerProperty) is null)
             {
                 // ReSharper disable once HeapView.ObjectAllocation.Evident
 #pragma warning disable IDISP004, CA2000  // Don't ignore return value of type IDisposable.
@@ -229,7 +229,7 @@ namespace Gu.Wpf.DataGrid2D
                         var temp = editingTemplate ?
                                    col.GetValue(DataGridTemplateColumn.CellTemplateProperty) :
                                    col.GetValue(DataGridTemplateColumn.CellEditingTemplateProperty);
-                        if (temp == null)
+                        if (temp is null)
                         {
                             var tcol = new DataGridTextColumn { Binding = col.Binding };
                             dataGrid.Columns[i] = tcol;

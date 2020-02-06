@@ -102,7 +102,7 @@ namespace Gu.Wpf.DataGrid2D
 #pragma warning restore IDISP007 // Don't dispose injected.
             dataGrid.ClearValue(RowsListenerProperty);
 
-            if (e.NewValue == null)
+            if (e.NewValue is null)
             {
                 foreach (var row in dataGrid.Items)
                 {

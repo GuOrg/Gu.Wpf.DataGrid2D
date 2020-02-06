@@ -79,11 +79,11 @@ namespace Gu.Wpf.DataGrid2D.Demo
                 {
                     return "CellTemplate and CellEditingTemplate with binding to Value2";
                 }
-                else if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate == null)
+                else if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate is null)
                 {
                     return "CellTemplate with binding to Value1, CellEditingTemplate set to null";
                 }
-                else if (this.MyCellTemplate == null && this.MyCellEditingTemplate == this.cellEditingTemplate1)
+                else if (this.MyCellTemplate is null && this.MyCellEditingTemplate == this.cellEditingTemplate1)
                 {
                     return "CellTemplate set to null, CellEditingTemplate with binding to Value1";
                 }
@@ -143,12 +143,12 @@ namespace Gu.Wpf.DataGrid2D.Demo
                 this.MyCellTemplate = this.cellTemplate1;
                 this.MyCellEditingTemplate = null;
             }
-            else if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate == null)
+            else if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate is null)
             {
                 this.MyCellTemplate = null;
                 this.MyCellEditingTemplate = this.cellEditingTemplate1;
             }
-            else if (this.MyCellTemplate == null && this.MyCellEditingTemplate == this.cellEditingTemplate1)
+            else if (this.MyCellTemplate is null && this.MyCellEditingTemplate == this.cellEditingTemplate1)
             {
                 this.MyCellTemplate = null;
                 this.MyCellEditingTemplate = null;

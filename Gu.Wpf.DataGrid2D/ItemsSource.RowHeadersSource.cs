@@ -63,7 +63,7 @@ namespace Gu.Wpf.DataGrid2D
 #pragma warning restore IDISP007 // Don't dispose injected.
             dataGrid.ClearValue(RowHeaderListenerProperty);
 
-            if (headers == null)
+            if (headers is null)
             {
                 for (var i = 0; i < dataGrid.Items.Count; i++)
                 {

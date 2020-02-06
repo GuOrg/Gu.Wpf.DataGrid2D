@@ -143,7 +143,7 @@ namespace Gu.Wpf.DataGrid2D
             {
                 var dataGrid = (DataGrid)d;
                 dataGrid.UnselectAllCells();
-                if (e.NewValue == null)
+                if (e.NewValue is null)
                 {
                     dataGrid.SetIndex(null);
                     return;
@@ -201,7 +201,7 @@ namespace Gu.Wpf.DataGrid2D
                 var dataGrid = (DataGrid)d;
                 dataGrid.UnselectAllCells();
                 var rowColumnIndex = (RowColumnIndex?)e.NewValue;
-                if (rowColumnIndex == null)
+                if (rowColumnIndex is null)
                 {
                     return;
                 }
@@ -237,13 +237,13 @@ namespace Gu.Wpf.DataGrid2D
         private static RowColumnIndex? SelectedRowColumnIndex(this DataGrid dataGrid)
         {
             var item = dataGrid.CurrentItem;
-            if (item == null)
+            if (item is null)
             {
                 return null;
             }
 
             var row = dataGrid.ItemContainerGenerator.ContainerFromItem(item);
-            if (row == null || dataGrid.CurrentColumn == null)
+            if (row is null || dataGrid.CurrentColumn is null)
             {
                 return null;
             }
@@ -281,7 +281,7 @@ namespace Gu.Wpf.DataGrid2D
         private static void UpdateSelectedCellItemFromView(DataGrid dataGrid)
         {
             var index = dataGrid.GetIndex();
-            if (index == null || index.Value.Column < 0 || index.Value.Column >= dataGrid.Columns.Count)
+            if (index is null || index.Value.Column < 0 || index.Value.Column >= dataGrid.Columns.Count)
             {
                 dataGrid.SetCurrentValue(CellItemProperty, null);
                 return;
@@ -296,7 +296,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static object GetCellItem(this DataGridColumn column, object item)
         {
-            if (column == null || item == null)
+            if (column is null || item is null)
             {
                 return null;
             }
@@ -309,7 +309,7 @@ namespace Gu.Wpf.DataGrid2D
 
             var binding = (column as DataGridBoundColumn)?.Binding as Binding ??
                           (column as CellTemplateColumn)?.Binding as Binding;
-            if (binding == null)
+            if (binding is null)
             {
                 return null;
             }
