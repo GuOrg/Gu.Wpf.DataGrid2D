@@ -73,7 +73,7 @@ namespace Gu.Wpf.DataGrid2D
             return (T)(source.ElementAtOrDefault(index) ?? default(T));
         }
 
-        internal static object ElementAtOrDefault(this IEnumerable source, int index)
+        internal static object? ElementAtOrDefault(this IEnumerable source, int index)
         {
             if (source == null)
             {

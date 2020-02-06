@@ -21,7 +21,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="ColumnsSourceProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="ColumnsSourceProperty"/> on.</param>
         /// <param name="value">ColumnsSource property value.</param>
-        public static void SetColumnsSource(this DataGrid element, IEnumerable value)
+        public static void SetColumnsSource(this DataGrid element, IEnumerable? value)
         {
             if (element is null)
             {
@@ -36,7 +36,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>ColumnsSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static IEnumerable GetColumnsSource(this DataGrid element)
+        public static IEnumerable? GetColumnsSource(this DataGrid element)
         {
             if (element is null)
             {

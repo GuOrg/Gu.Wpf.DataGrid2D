@@ -42,13 +42,13 @@ namespace Gu.Wpf.DataGrid2D
         /// Just adding a column would not play nice with explicit columns.
         /// This way will not be ideal for performance if it changes frequently
         /// </summary>
-        public event EventHandler ColumnsChanged;
+        public event EventHandler? ColumnsChanged;
 
         /// <inheritdoc />
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <inheritdoc />
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
         /// <inheritdoc />
         public int Count => this.Rows.Count;
@@ -155,7 +155,7 @@ namespace Gu.Wpf.DataGrid2D
             this.PropertyChanged?.Invoke(this, e);
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

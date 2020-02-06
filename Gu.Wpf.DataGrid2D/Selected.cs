@@ -51,7 +51,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="CellItemProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="CellItemProperty"/> on.</param>
         /// <param name="value">CellItem property value.</param>
-        public static void SetCellItem(this DataGrid element, object value)
+        public static void SetCellItem(this DataGrid element, object? value)
         {
             if (element is null)
             {
@@ -66,7 +66,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>CellItem property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static object GetCellItem(this DataGrid element)
+        public static object? GetCellItem(this DataGrid element)
         {
             if (element is null)
             {

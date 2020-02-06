@@ -4,7 +4,7 @@
     <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <LangVersion>latest</LangVersion>
-    <!--<Nullable>enable</Nullable>-->
+    <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>

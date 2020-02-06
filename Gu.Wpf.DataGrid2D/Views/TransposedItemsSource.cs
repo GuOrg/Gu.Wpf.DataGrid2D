@@ -50,7 +50,7 @@ namespace Gu.Wpf.DataGrid2D
         /// Just adding a column would not play nice with explicit columns.
         /// This way will not be ideal for performance if it changes frequently
         /// </summary>
-        public event EventHandler ColumnsChanged;
+        public event EventHandler? ColumnsChanged;
 
         public int Count => this.rows.Count;
 

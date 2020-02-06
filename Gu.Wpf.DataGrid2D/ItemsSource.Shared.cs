@@ -31,7 +31,7 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        private static void OnViewColumnsChanged(object sender, EventArgs e)
+        private static void OnViewColumnsChanged(object? sender, EventArgs e)
         {
             var view = (IColumnsChanged)sender;
             UpdateItemsSource(view.DataGrid);

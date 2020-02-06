@@ -13,11 +13,11 @@ namespace Gu.Wpf.DataGrid2D.Tests
         public static void Array2D()
         {
             var array = new[,]
-                        {
-                            { 1, 2 },
-                            { 3, 4 },
-                            { 5, 6 },
-                        };
+            {
+                { 1, 2 },
+                { 3, 4 },
+                { 5, 6 },
+            };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.Array2DProperty, array);
             dataGrid.Initialize();
@@ -40,11 +40,11 @@ namespace Gu.Wpf.DataGrid2D.Tests
         public static void Array2DTransposed()
         {
             var array = new[,]
-                        {
-                            { 1, 2 },
-                            { 3, 4 },
-                            { 5, 6 },
-                        };
+            {
+                { 1, 2 },
+                { 3, 4 },
+                { 5, 6 },
+            };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.Array2DTransposedProperty, array);
             dataGrid.Initialize();
@@ -65,11 +65,11 @@ namespace Gu.Wpf.DataGrid2D.Tests
         public static void RowsSourceRemove()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
-                           {
-                               new ObservableCollection<int>(new[] { 1, 2 }),
-                               new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 }),
-                           };
+            {
+                new ObservableCollection<int>(new[] { 1, 2 }),
+                new ObservableCollection<int>(new[] { 3, 4 }),
+                new ObservableCollection<int>(new[] { 5, 6 }),
+            };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
             dataGrid.Initialize();
@@ -100,11 +100,11 @@ namespace Gu.Wpf.DataGrid2D.Tests
         public static void RowsSourceAddRow()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
-                       {
-                           new ObservableCollection<int>(new[] { 1, 2 }),
-                           new ObservableCollection<int>(new[] { 3, 4 }),
-                           new ObservableCollection<int>(new[] { 5, 6 }),
-                       };
+            {
+                new ObservableCollection<int>(new[] { 1, 2 }),
+                new ObservableCollection<int>(new[] { 3, 4 }),
+                new ObservableCollection<int>(new[] { 5, 6 }),
+            };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
             dataGrid.Initialize();
@@ -142,11 +142,11 @@ namespace Gu.Wpf.DataGrid2D.Tests
         public static void ColumnsSource()
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
-                           {
-                               new ObservableCollection<int>(new[] { 1, 2 }),
-                               new ObservableCollection<int>(new[] { 3, 4 }),
-                               new ObservableCollection<int>(new[] { 5, 6 }),
-                           };
+            {
+                new ObservableCollection<int>(new[] { 1, 2 }),
+                new ObservableCollection<int>(new[] { 3, 4 }),
+                new ObservableCollection<int>(new[] { 5, 6 }),
+            };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.ColumnsSourceProperty, ints);
             dataGrid.Initialize();

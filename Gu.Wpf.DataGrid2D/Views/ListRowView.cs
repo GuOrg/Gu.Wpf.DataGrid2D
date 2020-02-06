@@ -13,7 +13,7 @@ namespace Gu.Wpf.DataGrid2D
         {
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public override EventDescriptorCollection GetEvents() => Events;
 
@@ -36,7 +36,7 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

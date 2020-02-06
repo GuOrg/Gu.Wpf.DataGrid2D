@@ -6,16 +6,16 @@ namespace Gu.Wpf.DataGrid2D.Tests
     public static class RowColumnIndexConverterTests
     {
         [Test]
-        public static void StringRoundtrips()
+        public static void StringRoundtrip()
         {
             var index = new RowColumnIndex(1, 2);
             var converter = new RowColumnIndexConverter();
 
-            Assert.IsTrue(converter.CanConvertTo(null, typeof(string)));
+            Assert.IsTrue(converter.CanConvertTo(null!, typeof(string)));
             var convertTo = converter.ConvertTo(index, typeof(string));
             Assert.AreEqual("R1 C2", convertTo);
 
-            Assert.IsTrue(converter.CanConvertFrom(null, typeof(string)));
+            Assert.IsTrue(converter.CanConvertFrom(null!, typeof(string)));
 
             var convertFrom = converter.ConvertFrom(convertTo);
             Assert.AreEqual(index, convertFrom);
@@ -27,11 +27,11 @@ namespace Gu.Wpf.DataGrid2D.Tests
             var index = new RowColumnIndex(1, 2);
             var converter = new RowColumnIndexConverter();
 
-            Assert.IsTrue(converter.CanConvertTo(null, typeof(InstanceDescriptor)));
+            Assert.IsTrue(converter.CanConvertTo(null!, typeof(InstanceDescriptor)));
             var convertTo = converter.ConvertTo(index, typeof(InstanceDescriptor));
             Assert.IsInstanceOf<InstanceDescriptor>(convertTo);
 
-            Assert.IsTrue(converter.CanConvertFrom(null, typeof(InstanceDescriptor)));
+            Assert.IsTrue(converter.CanConvertFrom(null!, typeof(InstanceDescriptor)));
 
             var convertFrom = converter.ConvertFrom(convertTo);
             Assert.AreEqual(index, convertFrom);

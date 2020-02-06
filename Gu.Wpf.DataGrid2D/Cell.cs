@@ -57,13 +57,13 @@ namespace Gu.Wpf.DataGrid2D
 
         private static readonly DependencyProperty ListenerProperty = DependencyProperty.RegisterAttached(
             "Listener",
-            typeof(AutogenerateColumnListener),
+            typeof(AutoGenerateColumnListener),
             typeof(Cell));
 
         /// <summary>Helper for setting <see cref="TemplateProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="TemplateProperty"/> on.</param>
         /// <param name="value">Template property value.</param>
-        public static void SetTemplate(this DataGrid element, DataTemplate value)
+        public static void SetTemplate(this DataGrid element, DataTemplate? value)
         {
             if (element is null)
             {
@@ -78,7 +78,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>Template property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplate GetTemplate(this DataGrid element)
+        public static DataTemplate? GetTemplate(this DataGrid element)
         {
             if (element is null)
             {
@@ -91,7 +91,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="TemplateSelectorProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="TemplateSelectorProperty"/> on.</param>
         /// <param name="value">TemplateSelector property value.</param>
-        public static void SetTemplateSelector(DataGrid element, DataTemplateSelector value)
+        public static void SetTemplateSelector(DataGrid element, DataTemplateSelector? value)
         {
             if (element is null)
             {
@@ -106,7 +106,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>TemplateSelector property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplateSelector GetTemplateSelector(this DataGrid element)
+        public static DataTemplateSelector? GetTemplateSelector(this DataGrid element)
         {
             if (element is null)
             {
@@ -119,7 +119,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="EditingTemplateProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="EditingTemplateProperty"/> on.</param>
         /// <param name="value">EditingTemplate property value.</param>
-        public static void SetEditingTemplate(this DataGrid element, DataTemplate value)
+        public static void SetEditingTemplate(this DataGrid element, DataTemplate? value)
         {
             if (element is null)
             {
@@ -134,7 +134,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>EditingTemplate property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplate GetEditingTemplate(this DataGrid element)
+        public static DataTemplate? GetEditingTemplate(this DataGrid element)
         {
             if (element is null)
             {
@@ -147,7 +147,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="EditingTemplateSelectorProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to set <see cref="EditingTemplateSelectorProperty"/> on.</param>
         /// <param name="value">EditingTemplateSelector property value.</param>
-        public static void SetEditingTemplateSelector(DependencyObject element, DataTemplateSelector value)
+        public static void SetEditingTemplateSelector(DependencyObject element, DataTemplateSelector? value)
         {
             if (element is null)
             {
@@ -161,7 +161,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <param name="element"><see cref="DependencyObject"/> to read <see cref="EditingTemplateSelectorProperty"/> from.</param>
         /// <returns>EditingTemplateSelector property value.</returns>
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static DataTemplateSelector GetEditingTemplateSelector(this DependencyObject element)
+        public static DataTemplateSelector? GetEditingTemplateSelector(this DependencyObject element)
         {
             if (element is null)
             {
@@ -213,7 +213,7 @@ namespace Gu.Wpf.DataGrid2D
             {
                 // ReSharper disable once HeapView.ObjectAllocation.Evident
 #pragma warning disable IDISP004, CA2000  // Don't ignore return value of type IDisposable.
-                dataGrid.SetCurrentValue(ListenerProperty, new AutogenerateColumnListener(dataGrid));
+                dataGrid.SetCurrentValue(ListenerProperty, new AutoGenerateColumnListener(dataGrid));
 #pragma warning restore IDISP004, CA2000  // Don't ignore return value of type IDisposable.
             }
         }
@@ -236,7 +236,7 @@ namespace Gu.Wpf.DataGrid2D
                         }
                         else
                         {
-                            SetCellTemplateProperty(dataGrid, (DataTemplate)e.NewValue, editingTemplate);
+                            SetCellTemplateProperty(dataGrid, (DataTemplate?)e.NewValue, editingTemplate);
                         }
                     }
                 }
@@ -263,11 +263,11 @@ namespace Gu.Wpf.DataGrid2D
             }
             else
             {
-                SetCellTemplateProperty(dataGrid, (DataTemplate)e.NewValue, editingTemplate);
+                SetCellTemplateProperty(dataGrid, (DataTemplate?)e.NewValue, editingTemplate);
             }
         }
 
-        private static void SetCellTemplateProperty(DataGrid dataGrid, DataTemplate t, bool editingTemplate)
+        private static void SetCellTemplateProperty(DataGrid dataGrid, DataTemplate? t, bool editingTemplate)
         {
             foreach (var column in dataGrid.Columns.OfType<CellTemplateColumn>())
             {
@@ -282,11 +282,11 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        private sealed class AutogenerateColumnListener : IDisposable
+        private sealed class AutoGenerateColumnListener : IDisposable
         {
             private readonly DataGrid dataGrid;
 
-            internal AutogenerateColumnListener(DataGrid dataGrid)
+            internal AutoGenerateColumnListener(DataGrid dataGrid)
             {
                 this.dataGrid = dataGrid;
                 dataGrid.AutoGeneratingColumn += OnDataGridAutoGeneratingColumn;
@@ -297,7 +297,7 @@ namespace Gu.Wpf.DataGrid2D
                 this.dataGrid.AutoGeneratingColumn -= OnDataGridAutoGeneratingColumn;
             }
 
-            private static void OnDataGridAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+            private static void OnDataGridAutoGeneratingColumn(object? sender, DataGridAutoGeneratingColumnEventArgs e)
             {
                 var col = new CellTemplateColumn
                 {
@@ -307,7 +307,7 @@ namespace Gu.Wpf.DataGrid2D
                     CellEditingTemplateSelector = ((DataGrid)sender).GetEditingTemplateSelector(),
                 };
 
-                if ((e.Column as DataGridTextColumn)?.Binding is BindingBase binding)
+                if ((e.Column as DataGridTextColumn)?.Binding is { } binding)
                 {
                     col.Binding = binding;
                     e.Column = col;

@@ -28,7 +28,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="TransposedSourceProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="TransposedSourceProperty"/> on.</param>
         /// <param name="value">TransposedSource property value.</param>
-        public static void SetTransposedSource(this DataGrid element, IEnumerable value)
+        public static void SetTransposedSource(this DataGrid element, IEnumerable? value)
         {
             if (element is null)
             {
@@ -43,7 +43,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>TransposedSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static IEnumerable GetTransposedSource(this DataGrid element)
+        public static IEnumerable? GetTransposedSource(this DataGrid element)
         {
             if (element is null)
             {
@@ -56,7 +56,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="PropertySourceProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DependencyObject"/> to set <see cref="PropertySourceProperty"/> on.</param>
         /// <param name="value">PropertySource property value.</param>
-        public static void SetPropertySource(DependencyObject element, object value)
+        public static void SetPropertySource(DependencyObject element, object? value)
         {
             if (element is null)
             {
@@ -71,7 +71,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>PropertySource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static object GetPropertySource(DependencyObject element)
+        public static object? GetPropertySource(DependencyObject element)
         {
             if (element is null)
             {

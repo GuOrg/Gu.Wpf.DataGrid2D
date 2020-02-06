@@ -25,7 +25,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="Array2DProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="Array2DProperty"/> on.</param>
         /// <param name="value">Array2D property value.</param>
-        public static void SetArray2D(this DataGrid element, Array value)
+        public static void SetArray2D(this DataGrid element, Array? value)
         {
             if (element is null)
             {
@@ -40,7 +40,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>Array2D property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static Array GetArray2D(this DataGrid element)
+        public static Array? GetArray2D(this DataGrid element)
         {
             if (element is null)
             {

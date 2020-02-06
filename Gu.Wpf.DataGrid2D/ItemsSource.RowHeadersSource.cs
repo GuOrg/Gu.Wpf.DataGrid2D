@@ -29,7 +29,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="RowHeadersSourceProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGrid"/> to set <see cref="RowHeadersSourceProperty"/> on.</param>
         /// <param name="value">RowHeadersSource property value.</param>
-        public static void SetRowHeadersSource(this DataGrid element, IEnumerable value)
+        public static void SetRowHeadersSource(this DataGrid element, IEnumerable? value)
         {
             if (element is null)
             {
@@ -44,7 +44,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <returns>RowHeadersSource property value.</returns>
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static IEnumerable GetRowHeadersSource(this DataGrid element)
+        public static IEnumerable? GetRowHeadersSource(this DataGrid element)
         {
             if (element is null)
             {
