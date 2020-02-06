@@ -78,7 +78,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public ListRowView this[int index] => this.Rows[index];
 
-        object IList.this[int index]
+        object? IList.this[int index]
         {
             get => this[index];
             //// ReSharper disable once ValueParameterNotUsed

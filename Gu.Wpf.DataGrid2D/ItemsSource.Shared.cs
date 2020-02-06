@@ -29,17 +29,17 @@ namespace Gu.Wpf.DataGrid2D
                 newView.ColumnsChanged += OnViewColumnsChanged;
                 newView.DataGrid = (DataGrid)d;
             }
-        }
 
-        private static void OnViewColumnsChanged(object? sender, EventArgs e)
-        {
-            var view = (IColumnsChanged)sender;
-            UpdateItemsSource(view.DataGrid);
+            static void OnViewColumnsChanged(object? sender, EventArgs e)
+            {
+                var view = (IColumnsChanged)sender!;
+                UpdateItemsSource(view.DataGrid);
+            }
         }
 
         private static void UpdateItemsSource(DataGrid dataGrid)
         {
-            IEnumerable view = null;
+            IEnumerable? view = null;
             if (dataGrid.GetRowsSource() is IEnumerable<IEnumerable> rowsSource)
             {
 #pragma warning disable IDISP001 // Dispose created.

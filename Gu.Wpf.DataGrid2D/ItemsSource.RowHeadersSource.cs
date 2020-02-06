@@ -85,9 +85,9 @@ namespace Gu.Wpf.DataGrid2D
             OnRowsChanged(dataGrid, null);
         }
 
-        private static void OnRowsChanged(object sender, RoutedEventArgs routedEventArgs)
+        private static void OnRowsChanged(object? sender, RoutedEventArgs? routedEventArgs)
         {
-            var dataGrid = (DataGrid)sender;
+            var dataGrid = (DataGrid)sender!;
             var headers = dataGrid.GetRowHeadersSource();
             var count = headers.Count();
             for (var i = 0; i < Math.Min(count, dataGrid.Items.Count); i++)

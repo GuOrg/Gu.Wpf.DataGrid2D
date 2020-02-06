@@ -15,7 +15,12 @@ namespace Gu.Wpf.DataGrid2D
             new PropertyMetadata(
                 default(IEnumerable),
                 OnTransposedSourceChanged,
-                CoerceTransposedSource));
+                (dependencyObject, baseValue) => baseValue switch
+                {
+                    null => null,
+                    IEnumerable _ => baseValue,
+                    _ => CreateSingletonEnumerable(baseValue),
+                }));
 
         public static readonly DependencyProperty PropertySourceProperty = DependencyProperty.RegisterAttached(
             "PropertySource",
@@ -95,21 +100,6 @@ namespace Gu.Wpf.DataGrid2D
             _ = dataGrid.Bind(ItemsSourceProxyProperty)
                         .OneWayTo(dataGrid, ItemsControl.ItemsSourceProperty);
             UpdateItemsSource(dataGrid);
-        }
-
-        private static object CoerceTransposedSource(DependencyObject dependencyObject, object baseValue)
-        {
-            if (baseValue is null)
-            {
-                return null;
-            }
-
-            if (baseValue is IEnumerable)
-            {
-                return baseValue;
-            }
-
-            return CreateSingletonEnumerable(baseValue);
         }
 
         private static void OnPropertySourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

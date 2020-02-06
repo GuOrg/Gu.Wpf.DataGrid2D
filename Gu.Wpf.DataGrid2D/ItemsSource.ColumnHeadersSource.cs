@@ -81,10 +81,15 @@ namespace Gu.Wpf.DataGrid2D
             OnColumnsChanged(dataGrid, null);
         }
 
-        private static void OnColumnsChanged(object sender, RoutedEventArgs routedEventArgs)
+        private static void OnColumnsChanged(object sender, RoutedEventArgs? routedEventArgs)
         {
             var dataGrid = (DataGrid)sender;
             var headers = dataGrid.GetColumnHeadersSource();
+            if (headers is null)
+            {
+                return;
+            }
+
             var count = headers.Count();
             for (int i = 0; i < Math.Min(count, dataGrid.Columns.Count); i++)
             {
