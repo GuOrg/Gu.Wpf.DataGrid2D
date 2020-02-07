@@ -21,7 +21,8 @@ namespace Gu.Wpf.DataGrid2D
             "StartAt",
             typeof(int?),
             typeof(Index),
-            new PropertyMetadata(null, OnStartAtChanged));
+            new PropertyMetadata(null, OnStartAtChanged),
+            value => ((int?)value ?? 0) >= 0);
 
         private static readonly DependencyProperty RowsListenerProperty = DependencyProperty.RegisterAttached(
             "RowsListener",
@@ -66,7 +67,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>Helper for setting <see cref="StartAtProperty"/> on <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="Control"/> to set <see cref="StartAtProperty"/> on.</param>
         /// <param name="value">StartAt property value.</param>
-        public static void SetStartAt(this Control element, int value)
+        public static void SetStartAt(this Control element, int? value)
         {
             if (element is null)
             {
@@ -82,14 +83,14 @@ namespace Gu.Wpf.DataGrid2D
         [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
         [AttachedPropertyBrowsableForType(typeof(DataGridRow))]
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static int GetStartAt(this Control element)
+        public static int? GetStartAt(this Control element)
         {
             if (element is null)
             {
                 throw new ArgumentNullException(nameof(element));
             }
 
-            return (int)(element.GetValue(StartAtProperty) ?? 0);
+            return (int?)element.GetValue(StartAtProperty);
         }
 
 #pragma warning restore WPF0013 // CLR accessor for attached property must match registered type.
@@ -126,7 +127,7 @@ namespace Gu.Wpf.DataGrid2D
         private static void OnRowsChanged(object sender, RoutedEventArgs? routedEventArgs)
         {
             var dataGrid = (DataGrid)sender;
-            var startAt = dataGrid.GetStartAt();
+            var startAt = dataGrid.GetStartAt() ?? 0;
             for (int index = 0; index < dataGrid.ItemContainerGenerator.Items.Count; index++)
             {
                 var row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(index);
