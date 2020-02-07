@@ -70,7 +70,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public abstract bool IsTransposed { get; }
 
-        DataGrid IColumnsChanged.DataGrid { get; set; }
+        DataGrid? IColumnsChanged.DataGrid { get; set; }
 
         internal IEnumerable<IEnumerable>? Source => (IEnumerable<IEnumerable>?)this.source.Target;
 

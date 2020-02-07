@@ -26,18 +26,23 @@ namespace Gu.Wpf.DataGrid2D
             this.properties = new PropertyDescriptorCollection(propertyDescriptors, readOnly: true);
         }
 
+        /// <inheritdoc />
         public event PropertyChangedEventHandler? PropertyChanged;
 
         internal PropertyDescriptor Property { get; }
 
         internal TransposedItemsSource Source { get; }
 
+        /// <inheritdoc />
         public override EventDescriptorCollection GetEvents() => Events;
 
+        /// <inheritdoc />
         public override EventDescriptorCollection GetEvents(Attribute[] attributes) => Events;
 
+        /// <inheritdoc />
         public override PropertyDescriptorCollection GetProperties() => this.properties;
 
+        /// <inheritdoc />
         public override PropertyDescriptorCollection GetProperties(Attribute[] attributes) => this.properties;
 
         internal void RaiseColumnPropertyChanged(object sender)
