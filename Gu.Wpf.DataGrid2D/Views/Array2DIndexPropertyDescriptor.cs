@@ -53,7 +53,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static PropertyDescriptorCollection CreateRowPropertyDescriptorCollection(Array source)
         {
-            var elementType = source.GetType().GetElementType();
+            var elementType = source.GetType().GetElementType()!;
             var n = source.GetLength(1);
             var descriptors = new Array2DIndexPropertyDescriptor[n];
             for (int i = 0; i < n; i++)
@@ -67,7 +67,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private static PropertyDescriptorCollection CreateColumnPropertyDescriptorCollection(Array source)
         {
-            var elementType = source.GetType().GetElementType();
+            var elementType = source.GetType().GetElementType()!;
             var n = source.GetLength(0);
             var descriptors = new Array2DIndexPropertyDescriptor[n];
             for (int i = 0; i < n; i++)

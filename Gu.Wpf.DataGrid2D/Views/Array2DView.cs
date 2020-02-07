@@ -43,16 +43,16 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         public bool IsFixedSize => true;
 
-        object ICollection.SyncRoot => this.Array.SyncRoot;
+        object ICollection.SyncRoot => this.Array?.SyncRoot ?? new object();
 
-        bool ICollection.IsSynchronized => this.Array.IsSynchronized;
+        bool ICollection.IsSynchronized => this.Array?.IsSynchronized ?? false;
 
         /// <inheritdoc />
-        public IEnumerable Source => this.Array;
+        public IEnumerable? Source => this.Array;
 
         public bool IsTransposed { get; }
 
-        private Array Array => (Array)this.source.Target;
+        private Array? Array => (Array?)this.source.Target;
 
         public Array2DRowView this[int index] => this.rows[index];
 

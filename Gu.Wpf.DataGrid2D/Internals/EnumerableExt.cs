@@ -35,7 +35,7 @@ namespace Gu.Wpf.DataGrid2D
             return source.Any(x => x.GetElementType().IsPrimitive);
         }
 
-        internal static void SetElementAt(this IEnumerable source, int index, object value)
+        internal static void SetElementAt(this IEnumerable source, int index, object? value)
         {
             if (source is IList list)
             {

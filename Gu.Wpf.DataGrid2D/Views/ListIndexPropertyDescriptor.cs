@@ -14,7 +14,7 @@ namespace Gu.Wpf.DataGrid2D
         {
         }
 
-        public override object GetValue(object component)
+        public override object? GetValue(object component)
         {
             var listRowView = (ListRowView)component;
             if (listRowView.Source is Lists2DView lists2DView)
@@ -34,7 +34,7 @@ namespace Gu.Wpf.DataGrid2D
             throw new ArgumentOutOfRangeException($"Could not get value from {component.GetType()}");
         }
 
-        public override void SetValue(object component, object value)
+        public override void SetValue(object component, object? value)
         {
             var listRowView = (ListRowView)component;
             if (listRowView.Source is Lists2DView lists2DView)
