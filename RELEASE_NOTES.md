@@ -1,3 +1,6 @@
+#### 0.2.3
+* FEATURE: netcoreapp3.1
+
 #### 0.2.1.6
 * BUGFIX: Null checks
 

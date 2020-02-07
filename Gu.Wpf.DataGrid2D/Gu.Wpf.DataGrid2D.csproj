@@ -10,10 +10,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.2</Version>
+    <Version>0.2.3</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>xaml wpf datagrid attachedproperty</PackageTags>
-    <PackageReleaseNotes>BUGFIX: Null checks</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      0.2.3
+      FEATURE: netcoreapp3.1
+      0.2.2
+      BUGFIX: Null checks
+    </PackageReleaseNotes>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</PackageProjectUrl>

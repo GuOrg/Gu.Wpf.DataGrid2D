@@ -94,9 +94,9 @@ static Gu.Wpf.DataGrid2D.Cell.SetEditingTemplateSelector(System.Windows.Dependen
 static Gu.Wpf.DataGrid2D.Cell.SetTemplate(this System.Windows.Controls.DataGrid element, System.Windows.DataTemplate value) -> void
 static Gu.Wpf.DataGrid2D.Cell.SetTemplateSelector(System.Windows.Controls.DataGrid element, System.Windows.Controls.DataTemplateSelector value) -> void
 static Gu.Wpf.DataGrid2D.Index.GetOfRow(this System.Windows.Controls.DataGridRow element) -> int
-static Gu.Wpf.DataGrid2D.Index.GetStartAt(this System.Windows.Controls.Control element) -> int
+static Gu.Wpf.DataGrid2D.Index.GetStartAt(this System.Windows.Controls.Control element) -> int?
 static Gu.Wpf.DataGrid2D.Index.SetOfRow(this System.Windows.Controls.DataGridRow element, int value) -> void
-static Gu.Wpf.DataGrid2D.Index.SetStartAt(this System.Windows.Controls.Control element, int value) -> void
+static Gu.Wpf.DataGrid2D.Index.SetStartAt(this System.Windows.Controls.Control element, int? value) -> void
 static Gu.Wpf.DataGrid2D.ItemsSource.GetArray2D(this System.Windows.Controls.DataGrid element) -> System.Array
 static Gu.Wpf.DataGrid2D.ItemsSource.GetArray2DTransposed(this System.Windows.Controls.DataGrid element) -> System.Array
 static Gu.Wpf.DataGrid2D.ItemsSource.GetColumnHeadersSource(this System.Windows.Controls.DataGrid element) -> System.Collections.IEnumerable
@@ -141,4 +141,8 @@ static readonly Gu.Wpf.DataGrid2D.Lists2DViewBase.NotifyCollectionResetEventArgs
 static readonly Gu.Wpf.DataGrid2D.RowColumnIndex.None -> Gu.Wpf.DataGrid2D.RowColumnIndex
 static readonly Gu.Wpf.DataGrid2D.Selected.CellItemProperty -> System.Windows.DependencyProperty
 static readonly Gu.Wpf.DataGrid2D.Selected.IndexProperty -> System.Windows.DependencyProperty
+virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.Dispose(bool disposing) -> void
 virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.ReceiveWeakEvent(System.Type managerType, object sender, System.EventArgs e) -> bool
+virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.ThrowIfDisposed() -> void
+virtual Gu.Wpf.DataGrid2D.TransposedItemsSource.Dispose(bool disposing) -> void
+virtual Gu.Wpf.DataGrid2D.TransposedItemsSource.ThrowIfDisposed() -> void

@@ -1,6 +1,1 @@
-﻿static Gu.Wpf.DataGrid2D.Index.GetStartAt(this System.Windows.Controls.Control element) -> int?
-static Gu.Wpf.DataGrid2D.Index.SetStartAt(this System.Windows.Controls.Control element, int? value) -> void
-virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.Dispose(bool disposing) -> void
-virtual Gu.Wpf.DataGrid2D.Lists2DViewBase.ThrowIfDisposed() -> void
-virtual Gu.Wpf.DataGrid2D.TransposedItemsSource.Dispose(bool disposing) -> void
-virtual Gu.Wpf.DataGrid2D.TransposedItemsSource.ThrowIfDisposed() -> void
+﻿
