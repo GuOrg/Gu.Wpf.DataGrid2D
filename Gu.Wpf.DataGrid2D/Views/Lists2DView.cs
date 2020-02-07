@@ -88,10 +88,10 @@ namespace Gu.Wpf.DataGrid2D
                         throw new ArgumentOutOfRangeException(nameof(e));
                 }
             }
-            else
+            else if (this.Source is { } source)
             {
                 var changed = (IEnumerable)sender;
-                var row = this.Source.IndexOf(changed);
+                var row = source.IndexOf(changed);
                 switch (ccea.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
@@ -147,31 +147,34 @@ namespace Gu.Wpf.DataGrid2D
                     throw new ArgumentOutOfRangeException(nameof(e));
             }
 
-            var min = this.MaxColumnCount;
-            var max = 0;
-            foreach (var row in this.Source)
+            if (this.Source is { } source)
             {
-                var count = row.Count();
-                if (count > max)
+                var min = this.MaxColumnCount;
+                var max = 0;
+                foreach (var row in source)
                 {
-                    max = count;
+                    var count = row.Count();
+                    if (count > max)
+                    {
+                        max = count;
+                    }
+
+                    if (count < min)
+                    {
+                        min = count;
+                    }
                 }
 
-                if (count < min)
+                if (max != this.MaxColumnCount)
                 {
-                    min = count;
+                    return true;
                 }
-            }
 
-            if (max != this.MaxColumnCount)
-            {
-                return true;
-            }
-
-            var readOnlies = this.ColumnIsReadOnlies.Count(x => x == false);
-            if (min != readOnlies)
-            {
-                return true;
+                var readOnlies = this.ColumnIsReadOnlies.Count(x => x == false);
+                if (min != readOnlies)
+                {
+                    return true;
+                }
             }
 
             return false;

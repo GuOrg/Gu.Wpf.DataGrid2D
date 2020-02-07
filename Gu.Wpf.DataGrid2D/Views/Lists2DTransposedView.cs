@@ -81,10 +81,10 @@ namespace Gu.Wpf.DataGrid2D
                         throw new ArgumentOutOfRangeException(nameof(e));
                 }
             }
-            else
+            else if (this.Source is { } source)
             {
                 var changed = (IEnumerable)sender;
-                var col = this.Source.IndexOf(changed);
+                var col = source.IndexOf(changed);
                 switch (ccea.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
