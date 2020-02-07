@@ -2,6 +2,7 @@ namespace Gu.Wpf.DataGrid2D
 {
     using System;
     using System.ComponentModel;
+    using System.Linq;
     using System.Runtime.CompilerServices;
 
     public class ListRowView : RowView<IView2D>, INotifyPropertyChanged
@@ -24,9 +25,9 @@ namespace Gu.Wpf.DataGrid2D
 
         internal void RaiseAllChanged()
         {
-            foreach (var property in this.GetProperties())
+            foreach (var property in this.GetProperties().Cast<PropertyDescriptor>())
             {
-                this.OnPropertyChanged(((PropertyDescriptor)property).Name);
+                this.OnPropertyChanged(property.Name);
             }
         }
 

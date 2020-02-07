@@ -26,14 +26,14 @@ namespace Gu.Wpf.DataGrid2D
 
             if (e.NewValue is IColumnsChanged newView)
             {
-                newView.ColumnsChanged += OnViewColumnsChanged;
                 newView.DataGrid = (DataGrid)d;
+                newView.ColumnsChanged += OnViewColumnsChanged;
             }
 
             static void OnViewColumnsChanged(object? sender, EventArgs e)
             {
                 var view = (IColumnsChanged)sender!;
-                UpdateItemsSource(view.DataGrid);
+                UpdateItemsSource(view.DataGrid!);
             }
         }
 
