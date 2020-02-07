@@ -48,7 +48,9 @@ namespace Gu.Wpf.DataGrid2D
                 return RowDescriptorCache.GetOrAdd(new Key(array.GetElementType(), array.GetLength(1)), x => Create(x));
             }
 
+#pragma warning disable CA1825 // Avoid zero-length array allocations.
             return RowDescriptorCache.GetOrAdd(Key.Empty, _ => new PropertyDescriptorCollection(new PropertyDescriptor[0], readOnly: true));
+#pragma warning restore CA1825 // Avoid zero-length array allocations.
 
             static PropertyDescriptorCollection Create(Key key)
             {
@@ -70,7 +72,9 @@ namespace Gu.Wpf.DataGrid2D
                 return ColumnDescriptorCache.GetOrAdd(new Key(array.GetElementType(), array.GetLength(0)), x => Create(x));
             }
 
+#pragma warning disable CA1825 // Avoid zero-length array allocations.
             return ColumnDescriptorCache.GetOrAdd(Key.Empty, _ => new PropertyDescriptorCollection(new PropertyDescriptor[0], readOnly: true));
+#pragma warning restore CA1825 // Avoid zero-length array allocations.
 
             static PropertyDescriptorCollection Create(Key key)
             {
