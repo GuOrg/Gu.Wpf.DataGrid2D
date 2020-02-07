@@ -15,7 +15,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             this.Source = source;
             this.Property = property;
-            var count = source.Source.Count();
+            var count = source.Source?.Count() ?? 0;
             var propertyDescriptors = new PropertyDescriptor[count + 1];
             propertyDescriptors[0] = new NamePropertyDescriptor(property);
             for (int i = 0; i < count; i++)
@@ -47,7 +47,7 @@ namespace Gu.Wpf.DataGrid2D
 
         internal void RaiseColumnPropertyChanged(object sender)
         {
-            var indexOf = this.Source.Source.IndexOf(sender);
+            var indexOf = this.Source.Source?.IndexOf(sender) ?? -1;
             if (indexOf < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(sender));
