@@ -1,13 +1,13 @@
 namespace Gu.Wpf.DataGrid2D
 {
     using System;
+    using System.Collections.Concurrent;
     using System.ComponentModel;
-    using System.Runtime.CompilerServices;
 
     internal class Array2DIndexPropertyDescriptor : IndexPropertyDescriptor
     {
-        private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> RowDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
-        private static readonly ConditionalWeakTable<Array, PropertyDescriptorCollection> ColumnDescriptorCache = new ConditionalWeakTable<Array, PropertyDescriptorCollection>();
+        private static readonly ConcurrentDictionary<Key, PropertyDescriptorCollection> RowDescriptorCache = new ConcurrentDictionary<Key, PropertyDescriptorCollection>();
+        private static readonly ConcurrentDictionary<Key, PropertyDescriptorCollection> ColumnDescriptorCache = new ConcurrentDictionary<Key, PropertyDescriptorCollection>();
 
         private Array2DIndexPropertyDescriptor(Type elementType, int index)
             : base(elementType, index, isReadOnly: false)
@@ -43,40 +43,90 @@ namespace Gu.Wpf.DataGrid2D
 
         internal static PropertyDescriptorCollection GetRowPropertyDescriptorCollection(Array2DView source)
         {
-            return RowDescriptorCache.GetValue((Array)source.Source, CreateRowPropertyDescriptorCollection);
+            if (source.Source is Array array)
+            {
+                return RowDescriptorCache.GetOrAdd(new Key(array.GetElementType(), array.GetLength(1)), x => Create(x));
+            }
+
+            return RowDescriptorCache.GetOrAdd(Key.Empty, _ => new PropertyDescriptorCollection(new PropertyDescriptor[0], readOnly: true));
+
+            static PropertyDescriptorCollection Create(Key key)
+            {
+                var descriptors = new Array2DIndexPropertyDescriptor[key.Length];
+                for (int i = 0; i < descriptors.Length; i++)
+                {
+                    descriptors[i] = new Array2DIndexPropertyDescriptor(key.ElementType, i);
+                }
+
+                // ReSharper disable once CoVariantArrayConversion
+                return new PropertyDescriptorCollection(descriptors);
+            }
         }
 
         internal static PropertyDescriptorCollection GetColumnPropertyDescriptorCollection(Array2DView source)
         {
-            return ColumnDescriptorCache.GetValue((Array)source.Source, CreateColumnPropertyDescriptorCollection);
-        }
-
-        private static PropertyDescriptorCollection CreateRowPropertyDescriptorCollection(Array source)
-        {
-            var elementType = source.GetType().GetElementType()!;
-            var n = source.GetLength(1);
-            var descriptors = new Array2DIndexPropertyDescriptor[n];
-            for (int i = 0; i < n; i++)
+            if (source.Source is Array array)
             {
-                descriptors[i] = new Array2DIndexPropertyDescriptor(elementType, i);
+                return ColumnDescriptorCache.GetOrAdd(new Key(array.GetElementType(), array.GetLength(0)),x => Create(x));
+
             }
 
-            // ReSharper disable once CoVariantArrayConversion
-            return new PropertyDescriptorCollection(descriptors);
+            return ColumnDescriptorCache.GetOrAdd(Key.Empty, _ => new PropertyDescriptorCollection(new PropertyDescriptor[0], readOnly: true));
+
+            static PropertyDescriptorCollection Create(Key key)
+            {
+                var descriptors = new Array2DIndexPropertyDescriptor[key.Length];
+                for (int i = 0; i < descriptors.Length; i++)
+                {
+                    descriptors[i] = new Array2DIndexPropertyDescriptor(key.ElementType, i);
+                }
+
+                // ReSharper disable once CoVariantArrayConversion
+                return new PropertyDescriptorCollection(descriptors);
+            }
         }
 
-        private static PropertyDescriptorCollection CreateColumnPropertyDescriptorCollection(Array source)
+        private struct Key : IEquatable<Key>
         {
-            var elementType = source.GetType().GetElementType()!;
-            var n = source.GetLength(0);
-            var descriptors = new Array2DIndexPropertyDescriptor[n];
-            for (int i = 0; i < n; i++)
+            internal static readonly Key Empty = new Key(typeof(int), 0);
+
+            internal readonly Type ElementType;
+            internal readonly int Length;
+
+            internal Key(Type elementType, int length)
             {
-                descriptors[i] = new Array2DIndexPropertyDescriptor(elementType, i);
+                this.ElementType = elementType;
+                this.Length = length;
             }
 
-            // ReSharper disable once CoVariantArrayConversion
-            return new PropertyDescriptorCollection(descriptors);
+            public static bool operator ==(Key left, Key right)
+            {
+                return left.Equals(right);
+            }
+
+            public static bool operator !=(Key left, Key right)
+            {
+                return !left.Equals(right);
+            }
+
+            public bool Equals(Key other)
+            {
+                return this.ElementType == other.ElementType &&
+                       this.Length == other.Length;
+            }
+
+            public override bool Equals(object? obj)
+            {
+                return obj is Key other && this.Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    return (this.ElementType.GetHashCode() * 397) ^ this.Length;
+                }
+            }
         }
     }
 }
