@@ -67,8 +67,7 @@ namespace Gu.Wpf.DataGrid2D
         {
             if (source.Source is Array array)
             {
-                return ColumnDescriptorCache.GetOrAdd(new Key(array.GetElementType(), array.GetLength(0)),x => Create(x));
-
+                return ColumnDescriptorCache.GetOrAdd(new Key(array.GetElementType(), array.GetLength(0)), x => Create(x));
             }
 
             return ColumnDescriptorCache.GetOrAdd(Key.Empty, _ => new PropertyDescriptorCollection(new PropertyDescriptor[0], readOnly: true));
