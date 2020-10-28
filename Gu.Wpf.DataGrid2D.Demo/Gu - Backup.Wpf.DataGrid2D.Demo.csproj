@@ -10,11 +10,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Gu.Analyzers" Version="1.8.1" PrivateAssets="all" />
-    <PackageReference Include="IDisposableAnalyzers" Version="3.4.3" PrivateAssets="all" />
-    <PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
+    <PackageReference Include="IDisposableAnalyzers" Version="3.3.0" PrivateAssets="all" />
+    <PackageReference Include="PropertyChangedAnalyzers" Version="3.2.0" PrivateAssets="all" />
     <PackageReference Include="ReflectionAnalyzers" Version="0.1.21-dev" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113" PrivateAssets="all" />
-    <PackageReference Include="WpfAnalyzers" Version="3.2.0" PrivateAssets="all" />
+    <PackageReference Include="WpfAnalyzers" Version="2.4.5" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
