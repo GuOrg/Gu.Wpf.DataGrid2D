@@ -6,8 +6,12 @@
     <OutputType>WinExe</OutputType>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gu.Wpf.DataGrid2D\Gu.Wpf.DataGrid2D.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Gu.Analyzers" Version="1.8.1" PrivateAssets="all" />
     <PackageReference Include="IDisposableAnalyzers" Version="3.4.3" PrivateAssets="all" />
@@ -16,9 +20,5 @@
     <PackageReference Include="ReflectionAnalyzers" Version="0.1.22-dev" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all" />
     <PackageReference Include="WpfAnalyzers" Version="3.2.0" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Gu.Wpf.DataGrid2D\Gu.Wpf.DataGrid2D.csproj" />
   </ItemGroup>
 </Project>

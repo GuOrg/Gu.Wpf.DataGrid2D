@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <UseWpf>true</UseWpf>
-    <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

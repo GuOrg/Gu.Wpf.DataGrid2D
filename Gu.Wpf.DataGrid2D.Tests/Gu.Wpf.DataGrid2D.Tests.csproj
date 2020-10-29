@@ -5,19 +5,17 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <UseWpf>true</UseWpf>
-    <CodeAnalysisRuleSet>Gu.Wpf.DataGrid2D.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\\Gu.Wpf.DataGrid2D.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-  
-      <ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.DataGrid2D\Gu.Wpf.DataGrid2D.csproj" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="Gu.Analyzers" Version="1.8.1" PrivateAssets="all" />
     <PackageReference Include="IDisposableAnalyzers" Version="3.4.3" PrivateAssets="all" />
