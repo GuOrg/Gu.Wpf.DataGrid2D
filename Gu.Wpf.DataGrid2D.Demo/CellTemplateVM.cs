@@ -131,6 +131,30 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private static DataTemplate CreateCellTemplate(string property)
+        {
+            var dt = new DataTemplate();
+            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
+            var title = new FrameworkElementFactory(typeof(TextBlock));
+            title.SetBinding(TextBlock.TextProperty, new Binding(property));
+            stackPanelFactory.AppendChild(title);
+            dt.VisualTree = stackPanelFactory;
+            return dt;
+        }
+
+        private static DataTemplate CreateCellEditingTemplate(string property)
+        {
+            var dt = new DataTemplate();
+            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
+            var title = new FrameworkElementFactory(typeof(TextBox));
+            title.SetBinding(TextBox.TextProperty, new Binding(property));
+            stackPanelFactory.AppendChild(title);
+            dt.VisualTree = stackPanelFactory;
+            return dt;
+        }
+
         private void ChangeCellTemplate()
         {
             if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate == this.cellEditingTemplate1)
@@ -162,30 +186,6 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.OnPropertyChanged(nameof(this.MyCellTemplate));
             this.OnPropertyChanged(nameof(this.MyCellEditingTemplate));
             this.OnPropertyChanged(nameof(this.BoundTemplate));
-        }
-
-        private static DataTemplate CreateCellTemplate(string property)
-        {
-            var dt = new DataTemplate();
-            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
-            var title = new FrameworkElementFactory(typeof(TextBlock));
-            title.SetBinding(TextBlock.TextProperty, new Binding(property));
-            stackPanelFactory.AppendChild(title);
-            dt.VisualTree = stackPanelFactory;
-            return dt;
-        }
-
-        private static DataTemplate CreateCellEditingTemplate(string property)
-        {
-            var dt = new DataTemplate();
-            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
-            var title = new FrameworkElementFactory(typeof(TextBox));
-            title.SetBinding(TextBox.TextProperty, new Binding(property));
-            stackPanelFactory.AppendChild(title);
-            dt.VisualTree = stackPanelFactory;
-            return dt;
         }
     }
 }

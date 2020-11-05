@@ -4,11 +4,22 @@ namespace Gu.Wpf.DataGrid2D
     using System.ComponentModel;
     using System.Text.RegularExpressions;
 
+    /// <summary>
+    /// For specifying a cell index.
+    /// </summary>
     [TypeConverter(typeof(RowColumnIndexConverter))]
     public struct RowColumnIndex : IEquatable<RowColumnIndex>
     {
+        /// <summary>
+        /// No selection.
+        /// </summary>
         public static readonly RowColumnIndex None = new RowColumnIndex(-1);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RowColumnIndex"/> struct.
+        /// </summary>
+        /// <param name="row">The row index.</param>
+        /// <param name="column">The column index.</param>
         public RowColumnIndex(int row, int column)
         {
             if (row < 0)
@@ -31,8 +42,14 @@ namespace Gu.Wpf.DataGrid2D
             this.Column = rowcol;
         }
 
+        /// <summary>
+        /// Gets the row index.
+        /// </summary>
         public int Row { get; }
 
+        /// <summary>
+        /// Gets the column index.
+        /// </summary>
         public int Column { get; }
 
         /// <summary>Check if <paramref name="left"/> is equal to <paramref name="right"/>.</summary>
@@ -53,6 +70,11 @@ namespace Gu.Wpf.DataGrid2D
             return !left.Equals(right);
         }
 
+        /// <summary>
+        /// Parse a <see cref="RowColumnIndex"/> from <paramref name="text"/>.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns>A <see cref="RowColumnIndex"/>.</returns>
         public static RowColumnIndex Parse(string text)
         {
             if (TryParse(text, out var result))
@@ -63,6 +85,12 @@ namespace Gu.Wpf.DataGrid2D
             throw new FormatException($"Could not parse '{text}' to a {typeof(RowColumnIndex)}");
         }
 
+        /// <summary>
+        /// Try parse a <see cref="RowColumnIndex"/> from <paramref name="text"/>.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="result">A <see cref="RowColumnIndex"/>.</param>
+        /// <returns>True if success.</returns>
         public static bool TryParse(string text, out RowColumnIndex result)
         {
             if (string.IsNullOrWhiteSpace(text))

@@ -41,6 +41,7 @@ Gu.Wpf.DataGrid2D.RowColumnIndex.Column.get -> int
 Gu.Wpf.DataGrid2D.RowColumnIndex.Equals(Gu.Wpf.DataGrid2D.RowColumnIndex other) -> bool
 Gu.Wpf.DataGrid2D.RowColumnIndex.Row.get -> int
 Gu.Wpf.DataGrid2D.RowColumnIndex.RowColumnIndex(int row, int column) -> void
+Gu.Wpf.DataGrid2D.RowColumnIndex.RowColumnIndex() -> void
 Gu.Wpf.DataGrid2D.RowColumnIndexConverter
 Gu.Wpf.DataGrid2D.RowColumnIndexConverter.RowColumnIndexConverter() -> void
 Gu.Wpf.DataGrid2D.RowView<TSource>

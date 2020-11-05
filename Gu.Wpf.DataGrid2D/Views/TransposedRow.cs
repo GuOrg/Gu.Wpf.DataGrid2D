@@ -4,6 +4,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
+    /// <summary>
+    /// A transposed row.
+    /// </summary>
     public class TransposedRow : CustomTypeDescriptor, INotifyPropertyChanged
     {
         private static readonly EventDescriptorCollection Events = TypeDescriptor.GetEvents(typeof(TransposedRow));
@@ -56,6 +59,10 @@ namespace Gu.Wpf.DataGrid2D
             this.OnPropertyChanged(this.properties[indexOf + 1].Name);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event.
+        /// </summary>
+        /// <param name="propertyName">The property.</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

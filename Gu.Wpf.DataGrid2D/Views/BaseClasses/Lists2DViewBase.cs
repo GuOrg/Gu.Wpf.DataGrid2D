@@ -10,6 +10,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
+    /// <summary>
+    /// Bindable representation of an <see cref="IEnumerable"/>.
+    /// </summary>
 #pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public abstract class Lists2DViewBase : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable, IView2D, IColumnsChanged
 #pragma warning restore CA1010 // Collections should implement generic interface
@@ -62,6 +65,8 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         public int Count => this.Rows.Count;
 
+#pragma warning disable CA1033 // Interface methods should be callable by child types
+
         /// <inheritdoc />
         bool IList.IsReadOnly => this.Source?.IsReadOnly() ?? true;
 
@@ -77,6 +82,8 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         IEnumerable? IView2D.Source => this.Source;
 
+#pragma warning restore CA1033 // Interface methods should be callable by child types
+
         /// <inheritdoc/>
         public abstract bool IsTransposed { get; }
 
@@ -85,8 +92,15 @@ namespace Gu.Wpf.DataGrid2D
 
         internal IEnumerable<IEnumerable>? Source => (IEnumerable<IEnumerable>?)this.source.Target;
 
+        /// <summary>
+        /// Gets the rows.
+        /// </summary>
         protected List<ListRowView> Rows { get; } = new List<ListRowView>();
 
+        /// <summary>
+        /// Gets the row at <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index.</param>
         public ListRowView this[int index] => this.Rows[index];
 
         /// <inheritdoc/>

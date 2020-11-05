@@ -5,6 +5,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// A bindable representation for <see cref="Array2DView"/>.
+    /// </summary>
 #pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public class Array2DView : IList, IView2D
 #pragma warning restore CA1010 // Collections should implement generic interface
@@ -43,11 +46,15 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         public bool IsFixedSize => true;
 
+#pragma warning disable CA1033 // Interface methods should be callable by child types
+
         /// <inheritdoc/>
         object ICollection.SyncRoot => this.Array?.SyncRoot ?? new object();
 
         /// <inheritdoc/>
         bool ICollection.IsSynchronized => this.Array?.IsSynchronized ?? false;
+
+#pragma warning restore CA1033 // Interface methods should be callable by child types
 
         /// <inheritdoc />
         public IEnumerable? Source => this.Array;
@@ -57,6 +64,10 @@ namespace Gu.Wpf.DataGrid2D
 
         private Array? Array => (Array?)this.source.Target;
 
+        /// <summary>
+        /// Gets the row at <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index.</param>
         public Array2DRowView this[int index] => this.rows[index];
 
         /// <inheritdoc/>
@@ -89,6 +100,8 @@ namespace Gu.Wpf.DataGrid2D
 
         public IEnumerator<Array2DRowView> GetEnumerator() => ((IList<Array2DRowView>)this.rows).GetEnumerator();
 
+#pragma warning disable CA1033 // Interface methods should be callable by child types
+
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
@@ -116,5 +129,7 @@ namespace Gu.Wpf.DataGrid2D
 
         /// <inheritdoc/>
         void IList.RemoveAt(int index) => throw new NotSupportedException();
+
+#pragma warning restore CA1033 // Interface methods should be callable by child types
     }
 }

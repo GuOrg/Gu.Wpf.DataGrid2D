@@ -2,6 +2,9 @@ namespace Gu.Wpf.DataGrid2D
 {
     using System.ComponentModel;
 
+    /// <summary>
+    /// A bindable representation for <see cref="Array2DView"/>.
+    /// </summary>
     public class Array2DRowView : RowView<Array2DView>
     {
         private Array2DRowView(Array2DView source, int index, PropertyDescriptorCollection properties)

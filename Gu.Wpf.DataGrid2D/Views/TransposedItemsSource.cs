@@ -9,6 +9,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
+    /// <summary>
+    /// A transposed source.
+    /// </summary>
 #pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public class TransposedItemsSource : IList, IDisposable, IWeakEventListener, IView2D, IColumnsChanged
 #pragma warning restore CA1010 // Collections should implement generic interface
@@ -17,6 +20,10 @@ namespace Gu.Wpf.DataGrid2D
         private readonly IReadOnlyList<TransposedRow> rows;
         private bool disposed;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransposedItemsSource"/> class.
+        /// </summary>
+        /// <param name="source">The <see cref="IEnumerable"/>.</param>
         public TransposedItemsSource(IEnumerable source)
         {
             if (source is null)
@@ -58,6 +65,8 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc/>
         public bool IsReadOnly { get; }
 
+#pragma warning disable CA1033 // Interface methods should be callable by child types
+
         /// <inheritdoc/>
         bool IList.IsFixedSize => true;
 
@@ -66,6 +75,8 @@ namespace Gu.Wpf.DataGrid2D
 
         /// <inheritdoc/>
         bool ICollection.IsSynchronized => ((ICollection)this.rows).IsSynchronized;
+
+#pragma warning restore CA1033 // Interface methods should be callable by child types
 
         /// <inheritdoc/>
         IEnumerable? IView2D.Source => this.Source;
@@ -89,6 +100,8 @@ namespace Gu.Wpf.DataGrid2D
             //// ReSharper disable once ValueParameterNotUsed
             set => throw new NotSupportedException();
         }
+
+#pragma warning disable CA1033 // Interface methods should be callable by child types
 
         /// <inheritdoc/>
         bool IWeakEventListener.ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
@@ -138,6 +151,8 @@ namespace Gu.Wpf.DataGrid2D
 
         /// <inheritdoc/>
         void IList.RemoveAt(int index) => throw new NotSupportedException();
+
+#pragma warning restore CA1033 // Interface methods should be callable by child types
 
         /// <inheritdoc/>
         public void Dispose()
