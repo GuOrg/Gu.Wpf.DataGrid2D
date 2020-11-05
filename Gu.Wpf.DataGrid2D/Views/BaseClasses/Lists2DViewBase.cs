@@ -14,14 +14,23 @@ namespace Gu.Wpf.DataGrid2D
     public abstract class Lists2DViewBase : IList, INotifyCollectionChanged, INotifyPropertyChanged, IWeakEventListener, IDisposable, IView2D, IColumnsChanged
 #pragma warning restore CA1010 // Collections should implement generic interface
     {
+        /// <summary> Cached <see cref="NotifyCollectionChangedEventArgs"/> for <see cref="NotifyCollectionChangedAction.Reset"/>. </summary>
         protected static readonly NotifyCollectionChangedEventArgs NotifyCollectionResetEventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+
+        /// <summary> Cached <see cref="PropertyChangedEventArgs"/> for Count. </summary>
         protected static readonly PropertyChangedEventArgs CountPropertyChangedEventArgs = new PropertyChangedEventArgs(nameof(Count));
+
+        /// <summary> Cached <see cref="PropertyChangedEventArgs"/> for Item[]. </summary>
         protected static readonly PropertyChangedEventArgs IndexerPropertyChangedEventArgs = new PropertyChangedEventArgs("Item[]");
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         private readonly WeakReference source = new WeakReference(null);
         private bool disposed;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Lists2DViewBase"/> class.
+        /// </summary>
+        /// <param name="source">The <see cref="IEnumerable{IEnumerable}"/>.</param>
         protected Lists2DViewBase(IEnumerable<IEnumerable> source)
         {
             this.source.Target = source;

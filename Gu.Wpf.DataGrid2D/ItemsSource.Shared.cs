@@ -7,6 +7,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows;
     using System.Windows.Controls;
 
+    /// <summary>
+    /// Private helpers.
+    /// </summary>
     public static partial class ItemsSource
     {
         // Using this for disposing ListView2D

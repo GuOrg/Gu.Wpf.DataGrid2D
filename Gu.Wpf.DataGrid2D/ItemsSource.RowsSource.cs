@@ -6,6 +6,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    /// <summary>
+    /// Attached properties for setting rows.
+    /// </summary>
     public static partial class ItemsSource
     {
         /// <summary>

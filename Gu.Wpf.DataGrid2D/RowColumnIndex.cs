@@ -35,11 +35,19 @@ namespace Gu.Wpf.DataGrid2D
 
         public int Column { get; }
 
+        /// <summary>Check if <paramref name="left"/> is equal to <paramref name="right"/>.</summary>
+        /// <param name="left">The left <see cref="RowColumnIndex"/>.</param>
+        /// <param name="right">The right <see cref="RowColumnIndex"/>.</param>
+        /// <returns>True if <paramref name="left"/> is equal to <paramref name="right"/>.</returns>
         public static bool operator ==(RowColumnIndex left, RowColumnIndex right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>Check if <paramref name="left"/> is not equal to <paramref name="right"/>.</summary>
+        /// <param name="left">The left <see cref="RowColumnIndex"/>.</param>
+        /// <param name="right">The right <see cref="RowColumnIndex"/>.</param>
+        /// <returns>True if <paramref name="left"/> is not equal to <paramref name="right"/>.</returns>
         public static bool operator !=(RowColumnIndex left, RowColumnIndex right)
         {
             return !left.Equals(right);

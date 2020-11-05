@@ -55,12 +55,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void UpdateData()
-        {
-            this.Data = $"{{{string.Join(", ", this.Rows(this.Data2D).Select(x => $"{{{string.Join(", ", x)}}}"))}}}";
-        }
-
-        private IEnumerable<IEnumerable<T>> Rows<T>(T[,] source)
+        private static IEnumerable<IEnumerable<T>> Rows<T>(T[,] source)
         {
             for (int r = 0; r < source.GetLength(0); r++)
             {
@@ -72,6 +67,11 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
                 yield return row;
             }
+        }
+
+        private void UpdateData()
+        {
+            this.Data = $"{{{string.Join(", ", Rows(this.Data2D).Select(x => $"{{{string.Join(", ", x)}}}"))}}}";
         }
     }
 }

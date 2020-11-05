@@ -6,8 +6,12 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    /// <summary>
+    /// Attached properties for transposed sources.
+    /// </summary>
     public static partial class ItemsSource
     {
+        /// <summary>For setting the <see cref="ItemsControl.ItemsSourceProperty"/> to a transposed collection.</summary>
         public static readonly DependencyProperty TransposedSourceProperty = DependencyProperty.RegisterAttached(
             "TransposedSource",
             typeof(IEnumerable),
@@ -22,6 +26,7 @@ namespace Gu.Wpf.DataGrid2D
                     _ => CreateSingletonEnumerable(baseValue),
                 }));
 
+        /// <summary>The property source.</summary>
         public static readonly DependencyProperty PropertySourceProperty = DependencyProperty.RegisterAttached(
             "PropertySource",
             typeof(object),

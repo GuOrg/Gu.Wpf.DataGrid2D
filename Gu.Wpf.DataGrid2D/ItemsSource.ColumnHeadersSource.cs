@@ -7,8 +7,12 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    /// <summary>
+    /// Attached properties for column headers.
+    /// </summary>
     public static partial class ItemsSource
     {
+        /// <summary>For setting column headers.</summary>
         public static readonly DependencyProperty ColumnHeadersSourceProperty = DependencyProperty.RegisterAttached(
             "ColumnHeadersSource",
             typeof(IEnumerable),

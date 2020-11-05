@@ -10,9 +10,7 @@ namespace Gu.Wpf.DataGrid2D
     /// </summary>
     public static partial class ItemsSource
     {
-        /// <summary>
-        /// For setting the <see cref="ItemsControl.ItemsSourceProperty"/> to a two-dimensional array.
-        /// </summary>
+        /// <summary>For setting the <see cref="ItemsControl.ItemsSourceProperty"/> to a two-dimensional array.</summary>
         public static readonly DependencyProperty Array2DProperty = DependencyProperty.RegisterAttached(
             "Array2D",
             typeof(Array),

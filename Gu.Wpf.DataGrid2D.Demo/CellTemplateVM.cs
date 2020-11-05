@@ -23,10 +23,10 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.RowHeaders = new[] { "R1", "R2", "R3" };
             this.ColumnHeaders = new[] { "C1", "C2", "C3" };
 
-            this.cellTemplate1 = this.CreateCellTemplate("Value1");
-            this.cellTemplate2 = this.CreateCellTemplate("Value2");
-            this.cellEditingTemplate1 = this.CreateCellEditingTemplate("Value1");
-            this.cellEditingTemplate2 = this.CreateCellEditingTemplate("Value2");
+            this.cellTemplate1 = CreateCellTemplate("Value1");
+            this.cellTemplate2 = CreateCellTemplate("Value2");
+            this.cellEditingTemplate1 = CreateCellEditingTemplate("Value1");
+            this.cellEditingTemplate2 = CreateCellEditingTemplate("Value2");
 
             this.myCellTemplate = this.cellTemplate1;
             this.myCellEditingTemplate = this.cellEditingTemplate1;
@@ -164,7 +164,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             this.OnPropertyChanged(nameof(this.BoundTemplate));
         }
 
-        private DataTemplate CreateCellTemplate(string property)
+        private static DataTemplate CreateCellTemplate(string property)
         {
             var dt = new DataTemplate();
             var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
@@ -176,7 +176,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
             return dt;
         }
 
-        private DataTemplate CreateCellEditingTemplate(string property)
+        private static DataTemplate CreateCellEditingTemplate(string property)
         {
             var dt = new DataTemplate();
             var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));

@@ -5,8 +5,12 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    /// <summary>
+    /// Attached properties for transposed two dimensional sources.
+    /// </summary>
     public static partial class ItemsSource
     {
+        /// <summary>For setting the <see cref="ItemsControl.ItemsSourceProperty"/> to a two-dimensional array.</summary>
         public static readonly DependencyProperty Array2DTransposedProperty = DependencyProperty.RegisterAttached(
             "Array2DTransposed",
             typeof(Array),
