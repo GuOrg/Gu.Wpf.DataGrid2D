@@ -53,7 +53,7 @@ namespace Gu.Wpf.DataGrid2D
         private static void OnArray2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            var array = (Array)e.NewValue;
+            var array = (Array?)e.NewValue;
             if (array is null)
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);

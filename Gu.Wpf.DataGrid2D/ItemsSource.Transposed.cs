@@ -89,7 +89,7 @@ namespace Gu.Wpf.DataGrid2D
         private static void OnTransposedSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            var source = (IEnumerable)e.NewValue;
+            var source = (IEnumerable?)e.NewValue;
             if (source is null)
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);

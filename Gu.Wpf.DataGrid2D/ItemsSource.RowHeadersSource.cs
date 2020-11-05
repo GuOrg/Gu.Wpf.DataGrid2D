@@ -57,7 +57,7 @@ namespace Gu.Wpf.DataGrid2D
         private static void OnRowHeadersSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            var headers = (IEnumerable)e.NewValue;
+            var headers = (IEnumerable?)e.NewValue;
 #pragma warning disable IDISP007 // Don't dispose injected.
             (dataGrid.GetValue(RowHeaderListenerProperty) as IDisposable)?.Dispose();
 #pragma warning restore IDISP007 // Don't dispose injected.

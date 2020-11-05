@@ -41,13 +41,13 @@ namespace Gu.Wpf.DataGrid2D
                 throw new ArgumentNullException(nameof(element));
             }
 
-            return (Array)element.GetValue(Array2DTransposedProperty);
+            return (Array?)element.GetValue(Array2DTransposedProperty);
         }
 
         private static void OnArray2DTransposedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var dataGrid = (DataGrid)d;
-            var array = (Array)e.NewValue;
+            var array = (Array?)e.NewValue;
             if (array is null)
             {
                 BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
