@@ -12,8 +12,13 @@ namespace Gu.Wpf.DataGrid2D.Tests
         {
         }
 
-        public int Compare(NotifyCollectionChangedEventArgs x, NotifyCollectionChangedEventArgs y)
+        public int Compare(NotifyCollectionChangedEventArgs? x, NotifyCollectionChangedEventArgs? y)
         {
+            if (x is null || y is null)
+            {
+                return Comparer.Default.Compare(x, y);
+            }
+
             if (x.Action != y.Action)
             {
                 return -1;
@@ -44,7 +49,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
 
         int IComparer.Compare(object? x, object? y)
         {
-            return this.Compare((NotifyCollectionChangedEventArgs)x!, (NotifyCollectionChangedEventArgs)y!);
+            return this.Compare((NotifyCollectionChangedEventArgs?)x, (NotifyCollectionChangedEventArgs?)y);
         }
     }
 }

@@ -50,11 +50,11 @@ namespace Gu.Wpf.DataGrid2D.Demo
         {
             this.count++;
             this.Strings = new[,]
-                           {
-                               { (this.count + 1).ToString(CultureInfo.InvariantCulture), (this.count + 2).ToString(CultureInfo.InvariantCulture) },
-                               { (this.count + 3).ToString(CultureInfo.InvariantCulture), (this.count + 4).ToString(CultureInfo.InvariantCulture) },
-                               { (this.count + 5).ToString(CultureInfo.InvariantCulture), (this.count + 6).ToString(CultureInfo.InvariantCulture) },
-                           };
+            {
+                { (this.count + 1).ToString(CultureInfo.InvariantCulture), (this.count + 2).ToString(CultureInfo.InvariantCulture) },
+                { (this.count + 3).ToString(CultureInfo.InvariantCulture), (this.count + 4).ToString(CultureInfo.InvariantCulture) },
+                { (this.count + 5).ToString(CultureInfo.InvariantCulture), (this.count + 6).ToString(CultureInfo.InvariantCulture) },
+            };
         }
     }
 }
