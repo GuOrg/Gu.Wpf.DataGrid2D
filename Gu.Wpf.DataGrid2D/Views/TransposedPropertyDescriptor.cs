@@ -12,6 +12,7 @@ namespace Gu.Wpf.DataGrid2D
             this.propertyDescriptor = propertyDescriptor;
         }
 
+        /// <inheritdoc/>
         public override object GetValue(object component)
         {
             var row = (TransposedRow)component;
@@ -19,6 +20,7 @@ namespace Gu.Wpf.DataGrid2D
             return this.propertyDescriptor.GetValue(match);
         }
 
+        /// <inheritdoc/>
         public override void SetValue(object component, object value)
         {
             var row = (TransposedRow)component;

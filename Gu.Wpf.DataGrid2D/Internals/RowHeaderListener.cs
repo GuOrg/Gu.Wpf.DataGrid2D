@@ -22,6 +22,7 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (this.disposed)

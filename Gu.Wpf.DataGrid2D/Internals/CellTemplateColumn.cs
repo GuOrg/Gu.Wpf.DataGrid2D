@@ -8,6 +8,7 @@ namespace Gu.Wpf.DataGrid2D
     {
         private BindingBase? binding;
 
+        /// <inheritdoc/>
         public override BindingBase? ClipboardContentBinding
         {
             get => base.ClipboardContentBinding ?? this.Binding;
@@ -29,11 +30,13 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
+        /// <inheritdoc/>
         protected override FrameworkElement? GenerateEditingElement(DataGridCell cell, object dataItem)
         {
             return this.LoadTemplateContent(isEditing: true);
         }
 
+        /// <inheritdoc/>
         protected override FrameworkElement? GenerateElement(DataGridCell cell, object dataItem)
         {
             return this.LoadTemplateContent(isEditing: false);

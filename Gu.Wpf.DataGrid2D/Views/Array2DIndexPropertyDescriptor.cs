@@ -14,6 +14,7 @@ namespace Gu.Wpf.DataGrid2D
         {
         }
 
+        /// <inheritdoc/>
         public override object? GetValue(object component)
         {
             return component switch
@@ -26,6 +27,7 @@ namespace Gu.Wpf.DataGrid2D
             };
         }
 
+        /// <inheritdoc/>
         public override void SetValue(object component, object? value)
         {
             switch (component)

@@ -30,6 +30,7 @@ namespace Gu.Wpf.DataGrid2D
             this.ResetRows();
         }
 
+        /// <inheritdoc/>
         public override bool IsTransposed => false;
 
         internal IReadOnlyList<Type> ColumnElementTypes { get; }
@@ -38,6 +39,7 @@ namespace Gu.Wpf.DataGrid2D
 
         internal int MaxColumnCount { get; }
 
+        /// <inheritdoc/>
         public override bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
             if (sender is null)
@@ -122,6 +124,7 @@ namespace Gu.Wpf.DataGrid2D
             return true;
         }
 
+        /// <inheritdoc/>
         protected override ListRowView CreateRow(int index)
         {
             var propertyDescriptors = this.Rows.Count > 0

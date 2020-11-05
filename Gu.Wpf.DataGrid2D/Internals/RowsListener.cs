@@ -16,6 +16,7 @@ namespace Gu.Wpf.DataGrid2D
             dataGrid.ItemContainerGenerator.StatusChanged += this.OnStatusChanged;
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (this.disposed)

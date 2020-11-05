@@ -43,19 +43,23 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         public bool IsFixedSize => true;
 
+        /// <inheritdoc/>
         object ICollection.SyncRoot => this.Array?.SyncRoot ?? new object();
 
+        /// <inheritdoc/>
         bool ICollection.IsSynchronized => this.Array?.IsSynchronized ?? false;
 
         /// <inheritdoc />
         public IEnumerable? Source => this.Array;
 
+        /// <inheritdoc/>
         public bool IsTransposed { get; }
 
         private Array? Array => (Array?)this.source.Target;
 
         public Array2DRowView this[int index] => this.rows[index];
 
+        /// <inheritdoc/>
         object? IList.this[int index]
         {
             get => this[index];
@@ -85,23 +89,32 @@ namespace Gu.Wpf.DataGrid2D
 
         public IEnumerator<Array2DRowView> GetEnumerator() => ((IList<Array2DRowView>)this.rows).GetEnumerator();
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
+        /// <inheritdoc/>
         void ICollection.CopyTo(Array array, int index) => this.rows.CopyTo(array, index);
 
+        /// <inheritdoc/>
         int IList.Add(object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         bool IList.Contains(object? value) => this.rows.Contains(value);
 
+        /// <inheritdoc/>
         void IList.Clear() => throw new NotSupportedException();
 
         // ReSharper disable once CoVariantArrayConversion
+        /// <inheritdoc/>
         int IList.IndexOf(object? value) => Array.IndexOf(this.rows, value);
 
+        /// <inheritdoc/>
         void IList.Insert(int index, object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         void IList.Remove(object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         void IList.RemoveAt(int index) => throw new NotSupportedException();
     }
 }
