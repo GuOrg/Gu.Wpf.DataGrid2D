@@ -311,7 +311,7 @@ namespace Gu.Wpf.DataGrid2D
 
             var binding = column switch
             {
-                DataGridBoundColumn c => c.Binding as Binding,,
+                DataGridBoundColumn c => c.Binding as Binding,
                 CellTemplateColumn c => c.Binding as Binding,
                 _ => null,
             };
