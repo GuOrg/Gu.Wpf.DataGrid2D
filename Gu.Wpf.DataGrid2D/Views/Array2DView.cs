@@ -78,6 +78,11 @@ namespace Gu.Wpf.DataGrid2D
             set => throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Create an <see cref="Array2DView"/> from <paramref name="source"/>.
+        /// </summary>
+        /// <param name="source">The <see cref="Array"/>.</param>
+        /// <returns>An <see cref="Array2DView"/>.</returns>
         public static Array2DView Create(Array source)
         {
             if (source is null)
@@ -88,6 +93,11 @@ namespace Gu.Wpf.DataGrid2D
             return new Array2DView(source, isTransposed: false);
         }
 
+        /// <summary>
+        /// Create <see langword="abstract"/>transposed <see cref="Array2DView"/> from <paramref name="source"/>.
+        /// </summary>
+        /// <param name="source">The <see cref="Array"/>.</param>
+        /// <returns>An <see cref="Array2DView"/>.</returns>
         public static Array2DView CreateTransposed(Array source)
         {
             if (source is null)
@@ -98,6 +108,8 @@ namespace Gu.Wpf.DataGrid2D
             return new Array2DView(source, isTransposed: true);
         }
 
+        /// <summary> Get the enumerator. </summary>
+        /// <returns>A <see cref="IEnumerator{Array2DRowView}"/>.</returns>
         public IEnumerator<Array2DRowView> GetEnumerator() => ((IList<Array2DRowView>)this.rows).GetEnumerator();
 
 #pragma warning disable CA1033 // Interface methods should be callable by child types
