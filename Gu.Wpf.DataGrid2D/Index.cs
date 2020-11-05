@@ -5,6 +5,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    /// <summary>
+    /// Attached properties for specifying cell index.
+    /// </summary>
     public static class Index
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
