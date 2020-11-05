@@ -52,20 +52,28 @@ namespace Gu.Wpf.DataGrid2D
         /// </summary>
         public event EventHandler? ColumnsChanged;
 
+        /// <inheritdoc/>
         public int Count => this.rows.Count;
 
+        /// <inheritdoc/>
         public bool IsReadOnly { get; }
 
+        /// <inheritdoc/>
         bool IList.IsFixedSize => true;
 
+        /// <inheritdoc/>
         object ICollection.SyncRoot => ((ICollection)this.rows).SyncRoot;
 
+        /// <inheritdoc/>
         bool ICollection.IsSynchronized => ((ICollection)this.rows).IsSynchronized;
 
+        /// <inheritdoc/>
         IEnumerable? IView2D.Source => this.Source;
 
+        /// <inheritdoc/>
         public bool IsTransposed => true;
 
+        /// <inheritdoc/>
         DataGrid? IColumnsChanged.DataGrid { get; set; }
 
         public IEnumerable<object>? Source => (IEnumerable<object>?)this.source.Target;
@@ -74,6 +82,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public TransposedRow this[int index] => this.rows[index];
 
+        /// <inheritdoc/>
         object? IList.this[int index]
         {
             get => this.rows[index];
@@ -81,6 +90,7 @@ namespace Gu.Wpf.DataGrid2D
             set => throw new NotSupportedException();
         }
 
+        /// <inheritdoc/>
         bool IWeakEventListener.ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
         {
             if (managerType == typeof(CollectionChangedEventManager))
@@ -102,24 +112,34 @@ namespace Gu.Wpf.DataGrid2D
 
         public IEnumerator<TransposedRow> GetEnumerator() => this.rows.GetEnumerator();
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => this.rows.GetEnumerator();
 
+        /// <inheritdoc/>
         void ICollection.CopyTo(Array array, int index) => ((IList)this.rows).CopyTo(array, index);
 
+        /// <inheritdoc/>
         int IList.Add(object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         bool IList.Contains(object? value) => ((IList)this.rows).Contains(value);
 
+        /// <inheritdoc/>
         void IList.Clear() => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         int IList.IndexOf(object? value) => ((IList)this.rows).IndexOf(value);
 
+        /// <inheritdoc/>
         void IList.Insert(int index, object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         void IList.Remove(object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         void IList.RemoveAt(int index) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             this.Dispose(true);
