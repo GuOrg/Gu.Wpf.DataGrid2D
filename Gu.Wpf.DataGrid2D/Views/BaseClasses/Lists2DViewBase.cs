@@ -157,21 +157,36 @@ namespace Gu.Wpf.DataGrid2D
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Raises a <see cref="CollectionChanged"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="NotifyCollectionChangedEventArgs"/>.</param>
         protected void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             this.CollectionChanged?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Raises a <see cref="PropertyChanged"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="PropertyChangedEventArgs"/>.</param>
         protected void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             this.PropertyChanged?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Raises a <see cref="PropertyChanged"/> event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Raises a <see cref="ColumnsChanged"/> event.
+        /// </summary>
         protected void OnColumnsChanged()
         {
             this.ColumnsChanged?.Invoke(this, EventArgs.Empty);
