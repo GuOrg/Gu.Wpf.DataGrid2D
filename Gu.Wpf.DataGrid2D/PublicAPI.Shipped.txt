@@ -1,4 +1,5 @@
-﻿Gu.Wpf.DataGrid2D.Array2DRowView
+﻿#nullable enable
+Gu.Wpf.DataGrid2D.Array2DRowView
 Gu.Wpf.DataGrid2D.Array2DView
 Gu.Wpf.DataGrid2D.Array2DView.Count.get -> int
 Gu.Wpf.DataGrid2D.Array2DView.GetEnumerator() -> System.Collections.Generic.IEnumerator<Gu.Wpf.DataGrid2D.Array2DRowView>

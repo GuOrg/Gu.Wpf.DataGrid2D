@@ -68,8 +68,10 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         IEnumerable? IView2D.Source => this.Source;
 
+        /// <inheritdoc/>
         public abstract bool IsTransposed { get; }
 
+        /// <inheritdoc/>
         DataGrid? IColumnsChanged.DataGrid { get; set; }
 
         internal IEnumerable<IEnumerable>? Source => (IEnumerable<IEnumerable>?)this.source.Target;
@@ -78,6 +80,7 @@ namespace Gu.Wpf.DataGrid2D
 
         public ListRowView this[int index] => this.Rows[index];
 
+        /// <inheritdoc/>
         object? IList.this[int index]
         {
             get => this[index];
@@ -123,22 +126,31 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
+        /// <inheritdoc/>
         void ICollection.CopyTo(Array array, int index) => ((IList)this.Rows).CopyTo(array, index);
 
+        /// <inheritdoc/>
         int IList.Add(object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         bool IList.Contains(object? value) => this.Rows.Contains(value);
 
+        /// <inheritdoc/>
         void IList.Clear() => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         int IList.IndexOf(object? value) => ((IList)this.Rows).IndexOf(value);
 
+        /// <inheritdoc/>
         void IList.Insert(int index, object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         void IList.Remove(object? value) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         void IList.RemoveAt(int index) => throw new NotSupportedException();
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             this.Dispose(true);
