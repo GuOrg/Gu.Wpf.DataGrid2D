@@ -6,8 +6,12 @@ namespace Gu.Wpf.DataGrid2D
     using System.Windows.Controls;
     using System.Windows.Data;
 
+    /// <summary>
+    /// Attached properties for selection.
+    /// </summary>
     public static class Selected
     {
+        /// <summary> The cell item property. </summary>
         public static readonly DependencyProperty CellItemProperty = DependencyProperty.RegisterAttached(
             "CellItem",
             typeof(object),
@@ -18,6 +22,7 @@ namespace Gu.Wpf.DataGrid2D
                 OnCellItemChanged,
                 CoerceCellItem));
 
+        /// <summary> The index property. </summary>
         public static readonly DependencyProperty IndexProperty = DependencyProperty.RegisterAttached(
             "Index",
             typeof(RowColumnIndex?),
@@ -200,16 +205,13 @@ namespace Gu.Wpf.DataGrid2D
             {
                 var dataGrid = (DataGrid)d;
                 dataGrid.UnselectAllCells();
-                var rowColumnIndex = (RowColumnIndex?)e.NewValue;
-                if (rowColumnIndex is null)
+                if (e.NewValue is RowColumnIndex rowColumnIndex)
                 {
-                    return;
+                    var cell = dataGrid.GetCell(rowColumnIndex);
+                    cell?.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
+
+                    UpdateSelectedCellItemFromView(dataGrid);
                 }
-
-                var cell = dataGrid.GetCell(rowColumnIndex.Value);
-                cell?.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
-
-                UpdateSelectedCellItemFromView(dataGrid);
             }
             finally
             {
@@ -307,8 +309,13 @@ namespace Gu.Wpf.DataGrid2D
                 return descriptor.GetValue(item);
             }
 
-            var binding = (column as DataGridBoundColumn)?.Binding as Binding ??
-                          (column as CellTemplateColumn)?.Binding as Binding;
+            var binding = column switch
+            {
+                DataGridBoundColumn c => c.Binding as Binding,,
+                CellTemplateColumn c => c.Binding as Binding,
+                _ => null,
+            };
+
             if (binding is null)
             {
                 return null;

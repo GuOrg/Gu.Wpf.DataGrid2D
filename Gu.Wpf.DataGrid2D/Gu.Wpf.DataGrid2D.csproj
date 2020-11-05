@@ -5,13 +5,10 @@
     <UseWPF>true</UseWPF>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup>
     <Version>0.2.3</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>xaml wpf datagrid attachedproperty</PackageTags>
     <PackageReleaseNotes>
       0.2.3
@@ -24,8 +21,10 @@
     <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.DataGrid2D</RepositoryUrl>
     <Description>Attached properties for DataGrid to enable binding to 2D sources.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\\Gu.Wpf.DataGrid2D.snk</AssemblyOriginatorKeyFile>

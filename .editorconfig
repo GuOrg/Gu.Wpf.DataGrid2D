@@ -1,5 +1,10 @@
 root = true
 
+[*.csproj]
+indent_style = space
+indent_size = 2
+end_of_line = crlf
+
 [*.xaml]
 indent_style = space
 indent_size = 4
