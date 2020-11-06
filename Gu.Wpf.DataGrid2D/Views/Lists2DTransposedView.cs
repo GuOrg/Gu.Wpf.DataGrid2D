@@ -7,10 +7,17 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections.Specialized;
     using System.Linq;
 
+    /// <summary>
+    /// A bindable view of a transposed list.
+    /// </summary>
 #pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public class Lists2DTransposedView : Lists2DViewBase
 #pragma warning restore CA1010 // Collections should implement generic interface
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Lists2DTransposedView"/> class.
+        /// </summary>
+        /// <param name="source">The <see cref="IEnumerable{IEnumerable}"/>.</param>
         public Lists2DTransposedView(IEnumerable<IEnumerable> source)
             : base(source)
         {

@@ -146,10 +146,14 @@ namespace Gu.Wpf.DataGrid2D
             return true;
         }
 
+        /// <summary> Get the enumerator. </summary>
+        /// <returns>A <see cref="IEnumerator{Array2DRowView}"/>.</returns>
         public IEnumerator<ListRowView> GetEnumerator() => this.Rows.GetEnumerator();
 
         /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+
+#pragma warning disable CA1033 // Interface methods should be callable by child types
 
         /// <inheritdoc/>
         void ICollection.CopyTo(Array array, int index) => ((IList)this.Rows).CopyTo(array, index);
@@ -174,6 +178,8 @@ namespace Gu.Wpf.DataGrid2D
 
         /// <inheritdoc/>
         void IList.RemoveAt(int index) => throw new NotSupportedException();
+
+#pragma warning restore CA1033 // Interface methods should be callable by child types
 
         /// <inheritdoc/>
         public void Dispose()
@@ -217,6 +223,9 @@ namespace Gu.Wpf.DataGrid2D
             this.ColumnsChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>Notifies that rows were added.</summary>
+        /// <param name="newStartingIndex">The index of the first added row.</param>
+        /// <param name="count">The number of added rows.</param>
         protected void AddRows(int newStartingIndex, int count)
         {
             this.ThrowIfDisposed();
@@ -233,8 +242,14 @@ namespace Gu.Wpf.DataGrid2D
             this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newItems, newStartingIndex));
         }
 
+        /// <summary>Create a <see cref="ListRowView"/>.</summary>
+        /// <param name="index">The index.</param>
+        /// <returns>A <see cref="ListRowView"/>.</returns>
         protected abstract ListRowView CreateRow(int index);
 
+        /// <summary>Notifies that rows were added.</summary>
+        /// <param name="oldStartingIndex">The index of the first removed row.</param>
+        /// <param name="count">The number of removed rows.</param>
         protected void RemoveRows(int oldStartingIndex, int count)
         {
             this.ThrowIfDisposed();
@@ -250,6 +265,16 @@ namespace Gu.Wpf.DataGrid2D
             this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, oldItems, oldStartingIndex));
         }
 
+        /// <summary>
+        /// Disposes of an <see cref="Lists2DViewBase"/>.
+        /// </summary>
+        /// <remarks>
+        /// Called from Dispose() with disposing=true, and from the finalizer (~Lists2DViewBase) with disposing=false.
+        /// Guidelines:
+        /// 1. We may be called more than once: do nothing after the first call.
+        /// 2. Avoid throwing exceptions if disposing is false, i.e. if we're being finalized.
+        /// </remarks>
+        /// <param name="disposing">True if called from Dispose(), false if called from the finalizer.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)
@@ -275,6 +300,7 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
+        /// <summary>Throws <see cref="ObjectDisposedException"/> is this instance is disposed. </summary>
         protected virtual void ThrowIfDisposed()
         {
             if (this.disposed)

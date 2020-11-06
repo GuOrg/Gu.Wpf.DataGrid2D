@@ -5,6 +5,9 @@ namespace Gu.Wpf.DataGrid2D
     using System.Linq;
     using System.Runtime.CompilerServices;
 
+    /// <summary>
+    /// A bindable view of a list row.
+    /// </summary>
     public class ListRowView : RowView<IView2D>, INotifyPropertyChanged
     {
         private static readonly EventDescriptorCollection Events = TypeDescriptor.GetEvents(typeof(ListRowView));

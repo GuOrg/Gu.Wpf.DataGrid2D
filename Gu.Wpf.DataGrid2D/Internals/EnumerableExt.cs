@@ -24,7 +24,6 @@ namespace Gu.Wpf.DataGrid2D
             return typeof(object);
         }
 
-        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
         internal static bool IsReadOnly(this IEnumerable<IEnumerable> source)
         {
             if (source.All(x => x is IList))

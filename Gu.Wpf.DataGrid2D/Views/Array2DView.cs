@@ -129,7 +129,6 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc/>
         void IList.Clear() => throw new NotSupportedException();
 
-        // ReSharper disable once CoVariantArrayConversion
         /// <inheritdoc/>
         int IList.IndexOf(object? value) => Array.IndexOf(this.rows, value);
 
