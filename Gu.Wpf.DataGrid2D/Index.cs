@@ -16,10 +16,8 @@ namespace Gu.Wpf.DataGrid2D
             typeof(Index),
             new PropertyMetadata(-1, null));
 
-#pragma warning disable SA1202 // Elements should be ordered by access
         /// <summary>The of row property.</summary>
         public static readonly DependencyProperty OfRowProperty = OfRowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements should be ordered by access
 
         /// <summary>The index of the firt element, default is 0.</summary>
         public static readonly DependencyProperty StartAtProperty = DependencyProperty.RegisterAttached(
