@@ -16,8 +16,10 @@ namespace Gu.Wpf.DataGrid2D
             typeof(Index),
             new PropertyMetadata(-1, null));
 
+#pragma warning disable SA1202 // Elements should be ordered by access
         /// <summary>The of row property.</summary>
         public static readonly DependencyProperty OfRowProperty = OfRowPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements should be ordered by access
 
         /// <summary>The index of the firt element, default is 0.</summary>
         public static readonly DependencyProperty StartAtProperty = DependencyProperty.RegisterAttached(
@@ -35,19 +37,6 @@ namespace Gu.Wpf.DataGrid2D
 
         private static readonly RoutedEventHandler OnRowsChangedHandler = OnRowsChanged;
 
-        /// <summary>Helper for setting <see cref="OfRowPropertyKey"/> on <paramref name="element"/>.</summary>
-        /// <param name="element"><see cref="DataGridRow"/> to set <see cref="OfRowPropertyKey"/> on.</param>
-        /// <param name="value">OfRow property value.</param>
-        public static void SetOfRow(this DataGridRow element, int value)
-        {
-            if (element is null)
-            {
-                throw new ArgumentNullException(nameof(element));
-            }
-
-            element.SetValue(OfRowPropertyKey, value);
-        }
-
         /// <summary>Helper for getting <see cref="OfRowProperty"/> from <paramref name="element"/>.</summary>
         /// <param name="element"><see cref="DataGridRow"/> to read <see cref="OfRowProperty"/> from.</param>
         /// <returns>OfRow property value.</returns>
@@ -63,19 +52,17 @@ namespace Gu.Wpf.DataGrid2D
             return (int)element.GetValue(OfRowProperty);
         }
 
-#pragma warning disable WPF0013 // CLR accessor for attached property must match registered type.
-
-        /// <summary>Helper for setting <see cref="StartAtProperty"/> on <paramref name="element"/>.</summary>
-        /// <param name="element"><see cref="Control"/> to set <see cref="StartAtProperty"/> on.</param>
-        /// <param name="value">StartAt property value.</param>
-        public static void SetStartAt(this Control element, int? value)
+        /// <summary>Helper for setting <see cref="OfRowPropertyKey"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="DataGridRow"/> to set <see cref="OfRowPropertyKey"/> on.</param>
+        /// <param name="value">OfRow property value.</param>
+        public static void SetOfRow(this DataGridRow element, int value)
         {
             if (element is null)
             {
                 throw new ArgumentNullException(nameof(element));
             }
 
-            element.SetValue(StartAtProperty, value);
+            element.SetValue(OfRowPropertyKey, value);
         }
 
         /// <summary>Helper for getting <see cref="StartAtProperty"/> from <paramref name="element"/>.</summary>
@@ -94,7 +81,18 @@ namespace Gu.Wpf.DataGrid2D
             return (int?)element.GetValue(StartAtProperty);
         }
 
-#pragma warning restore WPF0013 // CLR accessor for attached property must match registered type.
+        /// <summary>Helper for setting <see cref="StartAtProperty"/> on <paramref name="element"/>.</summary>
+        /// <param name="element"><see cref="Control"/> to set <see cref="StartAtProperty"/> on.</param>
+        /// <param name="value">StartAt property value.</param>
+        public static void SetStartAt(this Control element, int? value)
+        {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
+            element.SetValue(StartAtProperty, value);
+        }
 
         private static void OnStartAtChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

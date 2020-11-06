@@ -87,13 +87,13 @@ namespace Gu.Wpf.DataGrid2D
                 this.targetProperty = targetProperty;
             }
 
-            internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty)
+            internal BindingExpression? OneWayTo(object source, DependencyProperty sourceProperty)
             {
                 var sourcePath = GetPath(sourceProperty);
                 return this.OneWayTo(source, sourcePath);
             }
 
-            internal BindingExpression OneWayTo(object source, int index)
+            internal BindingExpression? OneWayTo(object source, int index)
             {
                 var sourcePath = GetPath(index);
                 return this.OneWayTo(source, sourcePath);
@@ -110,7 +110,7 @@ namespace Gu.Wpf.DataGrid2D
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
             }
 
-            internal BindingExpression OneWayTo(object source, PropertyPath sourcePath)
+            internal BindingExpression? OneWayTo(object source, PropertyPath sourcePath)
             {
                 var binding = new Binding
                 {
@@ -127,7 +127,7 @@ namespace Gu.Wpf.DataGrid2D
                 catch
                 {
                     // This is insanely bad.
-                    return null!;
+                    return null;
                 }
             }
         }
