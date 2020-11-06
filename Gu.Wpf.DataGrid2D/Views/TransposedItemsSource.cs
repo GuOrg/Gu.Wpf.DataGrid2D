@@ -87,10 +87,18 @@ namespace Gu.Wpf.DataGrid2D
         /// <inheritdoc/>
         DataGrid? IColumnsChanged.DataGrid { get; set; }
 
+        /// <summary>
+        /// Gets the source collection.
+        /// </summary>
         public IEnumerable<object>? Source => (IEnumerable<object>?)this.source.Target;
 
         internal PropertyDescriptorCollection Properties { get; }
 
+        /// <summary>
+        /// Gets the row at the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>The <see cref="TransposedRow"/>.</returns>
         public TransposedRow this[int index] => this.rows[index];
 
         /// <inheritdoc/>
@@ -123,6 +131,10 @@ namespace Gu.Wpf.DataGrid2D
             return false;
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the <see cref="TransposedItemsSource"/>.
+        /// </summary>
+        /// <returns>An enumerator for the <see cref="TransposedItemsSource"/>.</returns>
         public IEnumerator<TransposedRow> GetEnumerator() => this.rows.GetEnumerator();
 
         /// <inheritdoc/>
@@ -161,6 +173,16 @@ namespace Gu.Wpf.DataGrid2D
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of an <see cref="TransposedItemsSource"/>.
+        /// </summary>
+        /// <remarks>
+        /// Called from Dispose() with disposing=true, and from the finalizer (~TransposedItemsSource) with disposing=false.
+        /// Guidelines:
+        /// 1. We may be called more than once: do nothing after the first call.
+        /// 2. Avoid throwing exceptions if disposing is false, i.e. if we're being finalized.
+        /// </remarks>
+        /// <param name="disposing">True if called from Dispose(), false if called from the finalizer.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)
@@ -186,6 +208,9 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
+        /// <summary>
+        /// Throws <see cref="ObjectDisposedException"/> is this instance is disposed.
+        /// </summary>
         protected virtual void ThrowIfDisposed()
         {
             if (this.disposed)

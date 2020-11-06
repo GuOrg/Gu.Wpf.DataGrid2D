@@ -7,10 +7,17 @@ namespace Gu.Wpf.DataGrid2D
     using System.Collections.Specialized;
     using System.Linq;
 
+    /// <summary>
+    /// A bindable view of a list.
+    /// </summary>
 #pragma warning disable CA1010 // Collections should implement generic interface WPF needs only IList
     public class Lists2DView : Lists2DViewBase
 #pragma warning restore CA1010 // Collections should implement generic interface
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Lists2DView"/> class.
+        /// </summary>
+        /// <param name="source">The <see cref="IEnumerable{IEnumerable}"/>.</param>
         public Lists2DView(IEnumerable<IEnumerable> source)
             : base(source)
         {
@@ -59,7 +66,7 @@ namespace Gu.Wpf.DataGrid2D
 
             var ccea = (NotifyCollectionChangedEventArgs)e;
 
-            if (this.IsColumnsChange(sender, ccea))
+            if (this.IsColumnsChange(ccea))
             {
                 this.OnColumnsChanged();
                 return true;
@@ -135,7 +142,7 @@ namespace Gu.Wpf.DataGrid2D
         }
 
         // ReSharper disable once UnusedParameter.Local
-        private bool IsColumnsChange(object sender, NotifyCollectionChangedEventArgs e)
+        private bool IsColumnsChange(NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {

@@ -95,7 +95,9 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>
         /// Gets the rows.
         /// </summary>
+#pragma warning disable CA1002 // Do not expose generic lists
         protected List<ListRowView> Rows { get; } = new List<ListRowView>();
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Gets the row at <paramref name="index"/>.
