@@ -19,7 +19,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>The of row property.</summary>
         public static readonly DependencyProperty OfRowProperty = OfRowPropertyKey.DependencyProperty;
 
-        /// <summary>The index of the firt element, default is 0.</summary>
+        /// <summary>The index of the first element, default is 0.</summary>
         public static readonly DependencyProperty StartAtProperty = DependencyProperty.RegisterAttached(
             "StartAt",
             typeof(int?),

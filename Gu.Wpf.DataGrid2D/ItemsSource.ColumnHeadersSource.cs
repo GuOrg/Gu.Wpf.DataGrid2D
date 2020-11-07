@@ -103,7 +103,7 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        private static bool HeadersSourceValidateValue(object value)
+        private static bool HeadersSourceValidateValue(object? value)
         {
             if (value is null ||
                 value is IList ||

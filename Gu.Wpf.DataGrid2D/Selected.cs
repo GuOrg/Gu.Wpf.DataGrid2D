@@ -183,14 +183,14 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        private static object CoerceCellItem(DependencyObject d, object basevalue)
+        private static object? CoerceCellItem(DependencyObject d, object? baseValue)
         {
             if (Equals(d.GetValue(IsSubscribingChangesProperty), BooleanBoxes.False))
             {
                 SubscribeSelectionChanges((DataGrid)d);
             }
 
-            return basevalue;
+            return baseValue;
         }
 
         private static void OnIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -219,14 +219,14 @@ namespace Gu.Wpf.DataGrid2D
             }
         }
 
-        private static object CoerceIndex(DependencyObject d, object basevalue)
+        private static object? CoerceIndex(DependencyObject d, object? baseValue)
         {
             if (Equals(d.GetValue(IsSubscribingChangesProperty), BooleanBoxes.False))
             {
                 SubscribeSelectionChanges((DataGrid)d);
             }
 
-            return basevalue;
+            return baseValue;
         }
 
         private static void SubscribeSelectionChanges(DataGrid dataGrid)

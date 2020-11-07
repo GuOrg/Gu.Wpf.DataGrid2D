@@ -64,7 +64,7 @@ namespace Gu.Wpf.DataGrid2D
             dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
         }
 
-        private static bool Validate2DArray(object value)
+        private static bool Validate2DArray(object? value)
         {
             if (value is Array array)
             {
