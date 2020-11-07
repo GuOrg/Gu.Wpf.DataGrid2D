@@ -1,3 +1,6 @@
+#### 0.2.4
+* Tweak annotations
+
 #### 0.2.3
 * FEATURE: netcoreapp3.1
 

@@ -8,9 +8,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.3</Version>
+    <Version>0.2.4</Version>
     <PackageTags>xaml wpf datagrid attachedproperty</PackageTags>
     <PackageReleaseNotes>
+      0.2.4
+      Tweak annotations
       0.2.3
       FEATURE: netcoreapp3.1
       0.2.2
