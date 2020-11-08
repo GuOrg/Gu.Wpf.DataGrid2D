@@ -25,7 +25,7 @@ namespace Gu.Wpf.DataGrid2D
             var rowCount = this.MaxColumnCount == 0 ? 0 : source.Max(x => x.Count());
             this.ColumnIsReadOnlies = source.Select(x => x.Count() != rowCount)
                                        .ToList();
-            this.ColumnElementTypes = this.Source.Select(x => x.GetElementType())
+            this.ColumnElementTypes = source.Select(x => x.GetElementType())
                                      .ToList();
 
             this.ResetRows();
