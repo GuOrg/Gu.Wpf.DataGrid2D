@@ -18,9 +18,7 @@ namespace Gu.Wpf.DataGrid2D
             typeof(IEnumerable),
             typeof(ItemsSource),
             new PropertyMetadata(null, OnColumnHeadersSourceChanged),
-#pragma warning disable WPF0007 // Name of ValidateValueCallback should match registered name.
             HeadersSourceValidateValue);
-#pragma warning restore WPF0007 // Name of ValidateValueCallback should match registered name.
 
         private static readonly RoutedEventHandler OnColumnsChangedHandler = OnColumnsChanged;
 

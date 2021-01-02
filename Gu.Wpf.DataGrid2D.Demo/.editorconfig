@@ -10,3 +10,6 @@ dotnet_diagnostic.CA1819.severity = none
 
 # CA1814: Prefer jagged arrays over multidimensional
 dotnet_diagnostic.CA1814.severity = none
+
+# CA5394: Do not use insecure randomness
+dotnet_diagnostic.CA5394.severity = none
