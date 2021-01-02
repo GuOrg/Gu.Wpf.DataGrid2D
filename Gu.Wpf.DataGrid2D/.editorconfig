@@ -2,3 +2,6 @@
 
 # SA1633: File should have header
 dotnet_diagnostic.SA1633.severity = none
+
+# CA1825: Avoid zero-length array allocations
+dotnet_diagnostic.CA1825.severity = none
