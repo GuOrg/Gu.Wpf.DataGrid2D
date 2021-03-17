@@ -139,7 +139,7 @@ Renders:
 ![ItemsSource2D render](http://i.imgur.com/ftkeyDu.png)
 
 ## Rownumbers
-Conveninence attached property if you want to display rownumbers.
+Convenience attached property if you want to display rownumbers.
 Specify the number to start fom using `StartAt` 
 ```xml
 <DataGrid ItemsSource="{Binding Persons}" dataGrid2D:Index.StartAt="1">
