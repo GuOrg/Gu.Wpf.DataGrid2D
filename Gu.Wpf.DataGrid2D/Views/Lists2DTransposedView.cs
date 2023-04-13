@@ -22,12 +22,13 @@ public class Lists2DTransposedView : Lists2DViewBase
         : base(source)
     {
         this.MaxColumnCount = source.Count();
+#pragma warning disable CA1851 // Possible multiple enumerations of 'IEnumerable' collection
         var rowCount = this.MaxColumnCount == 0 ? 0 : source.Max(x => x.Count());
         this.ColumnIsReadOnlies = source.Select(x => x.Count() != rowCount)
                                    .ToList();
         this.ColumnElementTypes = source.Select(x => x.GetElementType())
                                  .ToList();
-
+#pragma warning restore CA1851 // Possible multiple enumerations of 'IEnumerable' collection
         this.ResetRows();
     }
 

@@ -25,12 +25,14 @@ internal static class EnumerableExt
 
     internal static bool IsReadOnly(this IEnumerable<IEnumerable> source)
     {
+#pragma warning disable CA1851 // Possible multiple enumerations of 'IEnumerable' collection
         if (source.All(x => x is IList))
         {
             return false;
         }
 
         return source.Any(x => x.GetElementType().IsPrimitive);
+#pragma warning restore CA1851 // Possible multiple enumerations of 'IEnumerable' collection
     }
 
     internal static void SetElementAt(this IEnumerable source, int index, object? value)
