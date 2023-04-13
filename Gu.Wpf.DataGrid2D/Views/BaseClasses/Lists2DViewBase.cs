@@ -18,16 +18,16 @@ namespace Gu.Wpf.DataGrid2D
 #pragma warning restore CA1010 // Collections should implement generic interface
     {
         /// <summary> Cached <see cref="NotifyCollectionChangedEventArgs"/> for <see cref="NotifyCollectionChangedAction.Reset"/>. </summary>
-        protected static readonly NotifyCollectionChangedEventArgs NotifyCollectionResetEventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+        protected static readonly NotifyCollectionChangedEventArgs NotifyCollectionResetEventArgs = new(NotifyCollectionChangedAction.Reset);
 
         /// <summary> Cached <see cref="PropertyChangedEventArgs"/> for Count. </summary>
-        protected static readonly PropertyChangedEventArgs CountPropertyChangedEventArgs = new PropertyChangedEventArgs(nameof(Count));
+        protected static readonly PropertyChangedEventArgs CountPropertyChangedEventArgs = new(nameof(Count));
 
         /// <summary> Cached <see cref="PropertyChangedEventArgs"/> for Item[]. </summary>
-        protected static readonly PropertyChangedEventArgs IndexerPropertyChangedEventArgs = new PropertyChangedEventArgs("Item[]");
+        protected static readonly PropertyChangedEventArgs IndexerPropertyChangedEventArgs = new("Item[]");
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private readonly WeakReference source = new WeakReference(null);
+        private readonly WeakReference source = new(null);
         private bool disposed;
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Gu.Wpf.DataGrid2D
         /// Gets the rows.
         /// </summary>
 #pragma warning disable CA1002 // Do not expose generic lists
-        protected List<ListRowView> Rows { get; } = new List<ListRowView>();
+        protected List<ListRowView> Rows { get; } = new();
 #pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>

@@ -6,10 +6,9 @@ namespace Gu.Wpf.DataGrid2D
 
     internal static class BindingHelper
     {
-        private static readonly Dictionary<int, PropertyPath> IndexPaths = new Dictionary<int, PropertyPath>();
+        private static readonly Dictionary<int, PropertyPath> IndexPaths = new();
 
-        private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths =
-            new Dictionary<DependencyProperty, PropertyPath>();
+        private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths = new();
 
         internal static BindingBuilder Bind(
             this DependencyObject target,

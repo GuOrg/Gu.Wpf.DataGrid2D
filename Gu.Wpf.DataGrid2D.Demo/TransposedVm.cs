@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo
 {
     using System.Collections.ObjectModel;
 
@@ -10,8 +10,8 @@
             this.Persons.Add(new Person { FirstName = "Erik", LastName = "Svensson" });
         }
 
-        public ObservableCollection<Person> Persons { get; } = new ObservableCollection<Person>();
+        public ObservableCollection<Person> Persons { get; } = new();
 
-        public Person Person { get; } = new Person { FirstName = "Johan", LastName = "Larsson" };
+        public Person Person { get; } = new() { FirstName = "Johan", LastName = "Larsson" };
     }
 }

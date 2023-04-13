@@ -9,7 +9,7 @@ namespace Gu.Wpf.DataGrid2D.Demo
 
     public sealed class BigDataGridViewModel : INotifyPropertyChanged
     {
-        public static readonly BigDataGridViewModel Default = new BigDataGridViewModel();
+        public static readonly BigDataGridViewModel Default = new();
         private string[]? rowHeaders;
         private string[]? columnHeaders;
         private int[,]? data2D;

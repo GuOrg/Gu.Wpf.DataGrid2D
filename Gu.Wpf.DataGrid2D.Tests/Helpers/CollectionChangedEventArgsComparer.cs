@@ -6,7 +6,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
 
     public sealed class CollectionChangedEventArgsComparer : IComparer, IComparer<NotifyCollectionChangedEventArgs>
     {
-        public static readonly CollectionChangedEventArgsComparer Default = new CollectionChangedEventArgsComparer();
+        public static readonly CollectionChangedEventArgsComparer Default = new();
 
         private CollectionChangedEventArgsComparer()
         {

@@ -12,9 +12,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 2, 3 }),
-                    new ObservableCollection<int>(new[] { 3, 4 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 2, 3 }),
+                    new(new[] { 3, 4 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;
@@ -28,9 +28,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 2, 3 }),
-                    new ObservableCollection<int>(new[] { 3, 4 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 2, 3 }),
+                    new(new[] { 3, 4 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;
@@ -44,9 +44,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 2 }),
-                    new ObservableCollection<int>(new[] { 3 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 2 }),
+                    new(new[] { 3 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;
@@ -60,9 +60,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 2 }),
-                    new ObservableCollection<int>(new[] { 3 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 2 }),
+                    new(new[] { 3 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;
@@ -76,9 +76,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 1, 2 }),
-                    new ObservableCollection<int>(new[] { 3, 4 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 1, 2 }),
+                    new(new[] { 3, 4 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;
@@ -92,9 +92,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 2 }),
-                    new ObservableCollection<int>(new[] { 3, 4 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 2 }),
+                    new(new[] { 3, 4 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;
@@ -108,9 +108,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 2 }),
-                    new ObservableCollection<int>(new[] { 3, 4 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 2 }),
+                    new(new[] { 3, 4 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;
@@ -124,9 +124,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
             {
                 var ints = new ObservableCollection<ObservableCollection<int>>
                 {
-                    new ObservableCollection<int>(new[] { 1 }),
-                    new ObservableCollection<int>(new[] { 3, 4 }),
-                    new ObservableCollection<int>(new[] { 5, 6 }),
+                    new(new[] { 1 }),
+                    new(new[] { 3, 4 }),
+                    new(new[] { 5, 6 }),
                 };
                 using var view = new Lists2DView(ints);
                 var count = 0;

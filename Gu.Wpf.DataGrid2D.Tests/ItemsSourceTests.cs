@@ -66,9 +66,9 @@ namespace Gu.Wpf.DataGrid2D.Tests
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
             {
-                new ObservableCollection<int>(new[] { 1, 2 }),
-                new ObservableCollection<int>(new[] { 3, 4 }),
-                new ObservableCollection<int>(new[] { 5, 6 }),
+                new(new[] { 1, 2 }),
+                new(new[] { 3, 4 }),
+                new(new[] { 5, 6 }),
             };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
@@ -101,9 +101,9 @@ namespace Gu.Wpf.DataGrid2D.Tests
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
             {
-                new ObservableCollection<int>(new[] { 1, 2 }),
-                new ObservableCollection<int>(new[] { 3, 4 }),
-                new ObservableCollection<int>(new[] { 5, 6 }),
+                new(new[] { 1, 2 }),
+                new(new[] { 3, 4 }),
+                new(new[] { 5, 6 }),
             };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.RowsSourceProperty, ints);
@@ -143,9 +143,9 @@ namespace Gu.Wpf.DataGrid2D.Tests
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
             {
-                new ObservableCollection<int>(new[] { 1, 2 }),
-                new ObservableCollection<int>(new[] { 3, 4 }),
-                new ObservableCollection<int>(new[] { 5, 6 }),
+                new(new[] { 1, 2 }),
+                new(new[] { 3, 4 }),
+                new(new[] { 5, 6 }),
             };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.ColumnsSourceProperty, ints);
@@ -164,7 +164,7 @@ namespace Gu.Wpf.DataGrid2D.Tests
         [Test]
         public static void TransposedSource()
         {
-            var persons = new ObservableCollection<Person> { new Person { FirstName = "Johan", LastName = "Larsson" } };
+            var persons = new ObservableCollection<Person> { new() { FirstName = "Johan", LastName = "Larsson" } };
             var dataGrid = new DataGrid();
             dataGrid.SetValue(ItemsSource.TransposedSourceProperty, persons);
             dataGrid.Initialize();

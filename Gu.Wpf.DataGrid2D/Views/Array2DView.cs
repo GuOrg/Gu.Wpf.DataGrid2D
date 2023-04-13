@@ -12,7 +12,7 @@ namespace Gu.Wpf.DataGrid2D
     public class Array2DView : IList, IView2D
 #pragma warning restore CA1010 // Collections should implement generic interface
     {
-        private readonly WeakReference source = new WeakReference(null);
+        private readonly WeakReference source = new(null);
         private readonly Array2DRowView[] rows;
 
         private Array2DView(Array source, bool isTransposed)

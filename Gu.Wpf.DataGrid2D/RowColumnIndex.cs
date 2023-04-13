@@ -13,7 +13,7 @@ namespace Gu.Wpf.DataGrid2D
         /// <summary>
         /// No selection.
         /// </summary>
-        public static readonly RowColumnIndex None = new RowColumnIndex(-1);
+        public static readonly RowColumnIndex None = new(-1);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RowColumnIndex"/> struct.

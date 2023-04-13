@@ -6,8 +6,8 @@ namespace Gu.Wpf.DataGrid2D
 
     internal class Array2DIndexPropertyDescriptor : IndexPropertyDescriptor
     {
-        private static readonly ConcurrentDictionary<Key, PropertyDescriptorCollection> RowDescriptorCache = new ConcurrentDictionary<Key, PropertyDescriptorCollection>();
-        private static readonly ConcurrentDictionary<Key, PropertyDescriptorCollection> ColumnDescriptorCache = new ConcurrentDictionary<Key, PropertyDescriptorCollection>();
+        private static readonly ConcurrentDictionary<Key, PropertyDescriptorCollection> RowDescriptorCache = new();
+        private static readonly ConcurrentDictionary<Key, PropertyDescriptorCollection> ColumnDescriptorCache = new();
 
         private Array2DIndexPropertyDescriptor(Type elementType, int index)
             : base(elementType, index, isReadOnly: false)
@@ -89,7 +89,7 @@ namespace Gu.Wpf.DataGrid2D
 
         private struct Key : IEquatable<Key>
         {
-            internal static readonly Key Empty = new Key(typeof(int), 0);
+            internal static readonly Key Empty = new(typeof(int), 0);
 
             internal readonly Type ElementType;
             internal readonly int Length;

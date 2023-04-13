@@ -43,9 +43,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
             {
-                new ObservableCollection<int>(new[] { 1, 2 }),
-                new ObservableCollection<int>(new[] { 3, 4 }),
-                new ObservableCollection<int>(new[] { 5, 6 }),
+                new(new[] { 1, 2 }),
+                new(new[] { 3, 4 }),
+                new(new[] { 5, 6 }),
             };
             using var view = new Lists2DView(ints);
             Assert.AreEqual(3, view.Count);
@@ -91,9 +91,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
             {
-                new ObservableCollection<int>(new[] { 1, 2 }),
-                new ObservableCollection<int>(new[] { 3, 4 }),
-                new ObservableCollection<int>(new[] { 5, 6 }),
+                new(new[] { 1, 2 }),
+                new(new[] { 3, 4 }),
+                new(new[] { 5, 6 }),
             };
             using var view = new Lists2DView(ints);
             var expectedPropertyChanges = new List<string>();

@@ -31,9 +31,9 @@ namespace Gu.Wpf.DataGrid2D.Tests.Views
         {
             var ints = new ObservableCollection<ObservableCollection<int>>
             {
-                new ObservableCollection<int>(new[] { 1, 2 }),
-                new ObservableCollection<int>(new[] { 3, 4 }),
-                new ObservableCollection<int>(new[] { 5, 6 }),
+                new(new[] { 1, 2 }),
+                new(new[] { 3, 4 }),
+                new(new[] { 5, 6 }),
             };
             using var view = new Lists2DTransposedView(ints);
             Assert.AreEqual(2, view.Count);
