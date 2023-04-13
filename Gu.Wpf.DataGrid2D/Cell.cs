@@ -4,7 +4,6 @@ namespace Gu.Wpf.DataGrid2D
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
 
     /// <summary>
     /// Exposes attached properties for <see cref="DataGrid"/> cells.
