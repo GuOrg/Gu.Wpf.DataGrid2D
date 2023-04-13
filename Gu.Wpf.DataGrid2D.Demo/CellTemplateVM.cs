@@ -1,191 +1,190 @@
-namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo;
+
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
+using System.Windows.Media;
+
+public class CellTemplateVm : INotifyPropertyChanged
 {
-    using System;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Input;
-    using System.Windows.Media;
+    private readonly DataTemplate cellTemplate1;
+    private readonly DataTemplate cellTemplate2;
+    private readonly DataTemplate cellEditingTemplate1;
+    private readonly DataTemplate cellEditingTemplate2;
+    private DataTemplate? myCellTemplate;
+    private DataTemplate? myCellEditingTemplate;
 
-    public class CellTemplateVm : INotifyPropertyChanged
+    public CellTemplateVm()
     {
-        private readonly DataTemplate cellTemplate1;
-        private readonly DataTemplate cellTemplate2;
-        private readonly DataTemplate cellEditingTemplate1;
-        private readonly DataTemplate cellEditingTemplate2;
-        private DataTemplate? myCellTemplate;
-        private DataTemplate? myCellEditingTemplate;
+        this.RowHeaders = new[] { "R1", "R2", "R3" };
+        this.ColumnHeaders = new[] { "C1", "C2", "C3" };
 
-        public CellTemplateVm()
+        this.cellTemplate1 = CreateCellTemplate("Value1");
+        this.cellTemplate2 = CreateCellTemplate("Value2");
+        this.cellEditingTemplate1 = CreateCellEditingTemplate("Value1");
+        this.cellEditingTemplate2 = CreateCellEditingTemplate("Value2");
+
+        this.myCellTemplate = this.cellTemplate1;
+        this.myCellEditingTemplate = this.cellEditingTemplate1;
+
+        this.Data2D = new CellTemplateDemoClass[3, 3];
+        var r = new Random();
+        for (var i = 0; i < 3; ++i)
         {
-            this.RowHeaders = new[] { "R1", "R2", "R3" };
-            this.ColumnHeaders = new[] { "C1", "C2", "C3" };
-
-            this.cellTemplate1 = CreateCellTemplate("Value1");
-            this.cellTemplate2 = CreateCellTemplate("Value2");
-            this.cellEditingTemplate1 = CreateCellEditingTemplate("Value1");
-            this.cellEditingTemplate2 = CreateCellEditingTemplate("Value2");
-
-            this.myCellTemplate = this.cellTemplate1;
-            this.myCellEditingTemplate = this.cellEditingTemplate1;
-
-            this.Data2D = new CellTemplateDemoClass[3, 3];
-            var r = new Random();
-            for (var i = 0; i < 3; ++i)
+            for (var j = 0; j < 3; ++j)
             {
-                for (var j = 0; j < 3; ++j)
+                var cl = new CellTemplateDemoClass
                 {
-                    var cl = new CellTemplateDemoClass
+                    Value1 = i + j,
+                    Value2 = 9 - j - i,
+                    Background = new SolidColorBrush(new Color
                     {
-                        Value1 = i + j,
-                        Value2 = 9 - j - i,
-                        Background = new SolidColorBrush(new Color
-                        {
-                            A = (byte)r.Next(255),
-                            R = (byte)r.Next(255),
-                            G = (byte)r.Next(255),
-                            B = (byte)r.Next(255),
-                        }),
-                    };
+                        A = (byte)r.Next(255),
+                        R = (byte)r.Next(255),
+                        G = (byte)r.Next(255),
+                        B = (byte)r.Next(255),
+                    }),
+                };
 
-                    this.Data2D[i, j] = cl;
-                }
-            }
-
-            this.ChangeCellTemplateCommand = new RelayCommand(this.ChangeCellTemplate);
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public string[] RowHeaders { get; }
-
-        public string[] ColumnHeaders { get; }
-
-        public ICommand ChangeCellTemplateCommand { get; }
-
-        public CellTemplateDemoClass[,] Data2D { get; }
-
-        public string BoundTemplate
-        {
-            get
-            {
-                if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate == this.cellEditingTemplate1)
-                {
-                    return "CellTemplate and CellEditingTemplate with binding to Value1";
-                }
-                else if (this.MyCellTemplate == this.cellTemplate2 && this.MyCellEditingTemplate == this.cellEditingTemplate2)
-                {
-                    return "CellTemplate and CellEditingTemplate with binding to Value2";
-                }
-                else if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate is null)
-                {
-                    return "CellTemplate with binding to Value1, CellEditingTemplate set to null";
-                }
-                else if (this.MyCellTemplate is null && this.MyCellEditingTemplate == this.cellEditingTemplate1)
-                {
-                    return "CellTemplate set to null, CellEditingTemplate with binding to Value1";
-                }
-                else
-                {
-                    return "CellTemplate and CellEditingTemplate both set to null";
-                }
+                this.Data2D[i, j] = cl;
             }
         }
 
-        public DataTemplate? MyCellTemplate
-        {
-            get => this.myCellTemplate;
-            set
-            {
-                if (ReferenceEquals(value, this.myCellTemplate))
-                {
-                    return;
-                }
+        this.ChangeCellTemplateCommand = new RelayCommand(this.ChangeCellTemplate);
+    }
 
-                this.myCellTemplate = value;
-                this.OnPropertyChanged();
-                this.OnPropertyChanged(nameof(this.BoundTemplate));
-            }
-        }
+    public event PropertyChangedEventHandler? PropertyChanged;
 
-        public DataTemplate? MyCellEditingTemplate
-        {
-            get => this.myCellEditingTemplate;
-            set
-            {
-                if (ReferenceEquals(value, this.myCellEditingTemplate))
-                {
-                    return;
-                }
+    public string[] RowHeaders { get; }
 
-                this.myCellEditingTemplate = value;
-                this.OnPropertyChanged();
-                this.OnPropertyChanged(nameof(this.BoundTemplate));
-            }
-        }
+    public string[] ColumnHeaders { get; }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+    public ICommand ChangeCellTemplateCommand { get; }
 
-        private static DataTemplate CreateCellTemplate(string property)
-        {
-            var dt = new DataTemplate();
-            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
-            var title = new FrameworkElementFactory(typeof(TextBlock));
-            title.SetBinding(TextBlock.TextProperty, new Binding(property));
-            stackPanelFactory.AppendChild(title);
-            dt.VisualTree = stackPanelFactory;
-            return dt;
-        }
+    public CellTemplateDemoClass[,] Data2D { get; }
 
-        private static DataTemplate CreateCellEditingTemplate(string property)
-        {
-            var dt = new DataTemplate();
-            var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
-            var title = new FrameworkElementFactory(typeof(TextBox));
-            title.SetBinding(TextBox.TextProperty, new Binding(property));
-            stackPanelFactory.AppendChild(title);
-            dt.VisualTree = stackPanelFactory;
-            return dt;
-        }
-
-        private void ChangeCellTemplate()
+    public string BoundTemplate
+    {
+        get
         {
             if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate == this.cellEditingTemplate1)
             {
-                this.MyCellTemplate = this.cellTemplate2;
-                this.MyCellEditingTemplate = this.cellEditingTemplate2;
+                return "CellTemplate and CellEditingTemplate with binding to Value1";
             }
             else if (this.MyCellTemplate == this.cellTemplate2 && this.MyCellEditingTemplate == this.cellEditingTemplate2)
             {
-                this.MyCellTemplate = this.cellTemplate1;
-                this.MyCellEditingTemplate = null;
+                return "CellTemplate and CellEditingTemplate with binding to Value2";
             }
             else if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate is null)
             {
-                this.MyCellTemplate = null;
-                this.MyCellEditingTemplate = this.cellEditingTemplate1;
+                return "CellTemplate with binding to Value1, CellEditingTemplate set to null";
             }
             else if (this.MyCellTemplate is null && this.MyCellEditingTemplate == this.cellEditingTemplate1)
             {
-                this.MyCellTemplate = null;
-                this.MyCellEditingTemplate = null;
+                return "CellTemplate set to null, CellEditingTemplate with binding to Value1";
             }
             else
             {
-                this.MyCellTemplate = this.cellTemplate1;
-                this.MyCellEditingTemplate = this.cellEditingTemplate1;
+                return "CellTemplate and CellEditingTemplate both set to null";
+            }
+        }
+    }
+
+    public DataTemplate? MyCellTemplate
+    {
+        get => this.myCellTemplate;
+        set
+        {
+            if (ReferenceEquals(value, this.myCellTemplate))
+            {
+                return;
             }
 
-            this.OnPropertyChanged(nameof(this.MyCellTemplate));
-            this.OnPropertyChanged(nameof(this.MyCellEditingTemplate));
+            this.myCellTemplate = value;
+            this.OnPropertyChanged();
             this.OnPropertyChanged(nameof(this.BoundTemplate));
         }
+    }
+
+    public DataTemplate? MyCellEditingTemplate
+    {
+        get => this.myCellEditingTemplate;
+        set
+        {
+            if (ReferenceEquals(value, this.myCellEditingTemplate))
+            {
+                return;
+            }
+
+            this.myCellEditingTemplate = value;
+            this.OnPropertyChanged();
+            this.OnPropertyChanged(nameof(this.BoundTemplate));
+        }
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private static DataTemplate CreateCellTemplate(string property)
+    {
+        var dt = new DataTemplate();
+        var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+        stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
+        var title = new FrameworkElementFactory(typeof(TextBlock));
+        title.SetBinding(TextBlock.TextProperty, new Binding(property));
+        stackPanelFactory.AppendChild(title);
+        dt.VisualTree = stackPanelFactory;
+        return dt;
+    }
+
+    private static DataTemplate CreateCellEditingTemplate(string property)
+    {
+        var dt = new DataTemplate();
+        var stackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
+        stackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
+        var title = new FrameworkElementFactory(typeof(TextBox));
+        title.SetBinding(TextBox.TextProperty, new Binding(property));
+        stackPanelFactory.AppendChild(title);
+        dt.VisualTree = stackPanelFactory;
+        return dt;
+    }
+
+    private void ChangeCellTemplate()
+    {
+        if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate == this.cellEditingTemplate1)
+        {
+            this.MyCellTemplate = this.cellTemplate2;
+            this.MyCellEditingTemplate = this.cellEditingTemplate2;
+        }
+        else if (this.MyCellTemplate == this.cellTemplate2 && this.MyCellEditingTemplate == this.cellEditingTemplate2)
+        {
+            this.MyCellTemplate = this.cellTemplate1;
+            this.MyCellEditingTemplate = null;
+        }
+        else if (this.MyCellTemplate == this.cellTemplate1 && this.MyCellEditingTemplate is null)
+        {
+            this.MyCellTemplate = null;
+            this.MyCellEditingTemplate = this.cellEditingTemplate1;
+        }
+        else if (this.MyCellTemplate is null && this.MyCellEditingTemplate == this.cellEditingTemplate1)
+        {
+            this.MyCellTemplate = null;
+            this.MyCellEditingTemplate = null;
+        }
+        else
+        {
+            this.MyCellTemplate = this.cellTemplate1;
+            this.MyCellEditingTemplate = this.cellEditingTemplate1;
+        }
+
+        this.OnPropertyChanged(nameof(this.MyCellTemplate));
+        this.OnPropertyChanged(nameof(this.MyCellEditingTemplate));
+        this.OnPropertyChanged(nameof(this.BoundTemplate));
     }
 }

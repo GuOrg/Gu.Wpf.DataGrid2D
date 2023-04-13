@@ -1,29 +1,28 @@
-namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo;
+
+using System;
+using System.Windows.Input;
+
+public class RelayCommand : ICommand
 {
-    using System;
-    using System.Windows.Input;
+    private readonly Action action;
 
-    public class RelayCommand : ICommand
+    public RelayCommand(Action action)
     {
-        private readonly Action action;
-
-        public RelayCommand(Action action)
-        {
-            this.action = action;
-        }
+        this.action = action;
+    }
 
 #pragma warning disable CS0067
-        public event EventHandler? CanExecuteChanged;
+    public event EventHandler? CanExecuteChanged;
 #pragma warning restore CS0067
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+    public bool CanExecute(object parameter)
+    {
+        return true;
+    }
 
-        public void Execute(object parameter)
-        {
-            this.action();
-        }
+    public void Execute(object parameter)
+    {
+        this.action();
     }
 }

@@ -1,146 +1,145 @@
-namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D;
+
+using System;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+
+/// <summary>
+/// For specifying a cell index.
+/// </summary>
+[TypeConverter(typeof(RowColumnIndexConverter))]
+public struct RowColumnIndex : IEquatable<RowColumnIndex>
 {
-    using System;
-    using System.ComponentModel;
-    using System.Text.RegularExpressions;
+    /// <summary>
+    /// No selection.
+    /// </summary>
+    public static readonly RowColumnIndex None = new(-1);
 
     /// <summary>
-    /// For specifying a cell index.
+    /// Initializes a new instance of the <see cref="RowColumnIndex"/> struct.
     /// </summary>
-    [TypeConverter(typeof(RowColumnIndexConverter))]
-    public struct RowColumnIndex : IEquatable<RowColumnIndex>
+    /// <param name="row">The row index.</param>
+    /// <param name="column">The column index.</param>
+    public RowColumnIndex(int row, int column)
     {
-        /// <summary>
-        /// No selection.
-        /// </summary>
-        public static readonly RowColumnIndex None = new(-1);
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RowColumnIndex"/> struct.
-        /// </summary>
-        /// <param name="row">The row index.</param>
-        /// <param name="column">The column index.</param>
-        public RowColumnIndex(int row, int column)
+        if (row < 0)
         {
-            if (row < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(row), "Row must be greater than or equal to 0");
-            }
-
-            if (column < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(column), "Column must be greater than or equal to 0");
-            }
-
-            this.Row = row;
-            this.Column = column;
+            throw new ArgumentOutOfRangeException(nameof(row), "Row must be greater than or equal to 0");
         }
 
-        private RowColumnIndex(int rowcol)
+        if (column < 0)
         {
-            this.Row = rowcol;
-            this.Column = rowcol;
+            throw new ArgumentOutOfRangeException(nameof(column), "Column must be greater than or equal to 0");
         }
 
-        /// <summary>
-        /// Gets the row index.
-        /// </summary>
-        public int Row { get; }
+        this.Row = row;
+        this.Column = column;
+    }
 
-        /// <summary>
-        /// Gets the column index.
-        /// </summary>
-        public int Column { get; }
+    private RowColumnIndex(int rowcol)
+    {
+        this.Row = rowcol;
+        this.Column = rowcol;
+    }
 
-        /// <summary>Check if <paramref name="left"/> is equal to <paramref name="right"/>.</summary>
-        /// <param name="left">The left <see cref="RowColumnIndex"/>.</param>
-        /// <param name="right">The right <see cref="RowColumnIndex"/>.</param>
-        /// <returns>True if <paramref name="left"/> is equal to <paramref name="right"/>.</returns>
-        public static bool operator ==(RowColumnIndex left, RowColumnIndex right)
+    /// <summary>
+    /// Gets the row index.
+    /// </summary>
+    public int Row { get; }
+
+    /// <summary>
+    /// Gets the column index.
+    /// </summary>
+    public int Column { get; }
+
+    /// <summary>Check if <paramref name="left"/> is equal to <paramref name="right"/>.</summary>
+    /// <param name="left">The left <see cref="RowColumnIndex"/>.</param>
+    /// <param name="right">The right <see cref="RowColumnIndex"/>.</param>
+    /// <returns>True if <paramref name="left"/> is equal to <paramref name="right"/>.</returns>
+    public static bool operator ==(RowColumnIndex left, RowColumnIndex right)
+    {
+        return left.Equals(right);
+    }
+
+    /// <summary>Check if <paramref name="left"/> is not equal to <paramref name="right"/>.</summary>
+    /// <param name="left">The left <see cref="RowColumnIndex"/>.</param>
+    /// <param name="right">The right <see cref="RowColumnIndex"/>.</param>
+    /// <returns>True if <paramref name="left"/> is not equal to <paramref name="right"/>.</returns>
+    public static bool operator !=(RowColumnIndex left, RowColumnIndex right)
+    {
+        return !left.Equals(right);
+    }
+
+    /// <summary>
+    /// Parse a <see cref="RowColumnIndex"/> from <paramref name="text"/>.
+    /// </summary>
+    /// <param name="text">The text.</param>
+    /// <returns>A <see cref="RowColumnIndex"/>.</returns>
+    public static RowColumnIndex Parse(string text)
+    {
+        if (TryParse(text, out var result))
         {
-            return left.Equals(right);
+            return result;
         }
 
-        /// <summary>Check if <paramref name="left"/> is not equal to <paramref name="right"/>.</summary>
-        /// <param name="left">The left <see cref="RowColumnIndex"/>.</param>
-        /// <param name="right">The right <see cref="RowColumnIndex"/>.</param>
-        /// <returns>True if <paramref name="left"/> is not equal to <paramref name="right"/>.</returns>
-        public static bool operator !=(RowColumnIndex left, RowColumnIndex right)
+        throw new FormatException($"Could not parse '{text}' to a {typeof(RowColumnIndex)}");
+    }
+
+    /// <summary>
+    /// Try parse a <see cref="RowColumnIndex"/> from <paramref name="text"/>.
+    /// </summary>
+    /// <param name="text">The text.</param>
+    /// <param name="result">A <see cref="RowColumnIndex"/>.</param>
+    /// <returns>True if success.</returns>
+    public static bool TryParse(string text, out RowColumnIndex result)
+    {
+        if (string.IsNullOrWhiteSpace(text))
         {
-            return !left.Equals(right);
-        }
-
-        /// <summary>
-        /// Parse a <see cref="RowColumnIndex"/> from <paramref name="text"/>.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <returns>A <see cref="RowColumnIndex"/>.</returns>
-        public static RowColumnIndex Parse(string text)
-        {
-            if (TryParse(text, out var result))
-            {
-                return result;
-            }
-
-            throw new FormatException($"Could not parse '{text}' to a {typeof(RowColumnIndex)}");
-        }
-
-        /// <summary>
-        /// Try parse a <see cref="RowColumnIndex"/> from <paramref name="text"/>.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="result">A <see cref="RowColumnIndex"/>.</param>
-        /// <returns>True if success.</returns>
-        public static bool TryParse(string text, out RowColumnIndex result)
-        {
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                result = RowColumnIndex.None;
-                return false;
-            }
-
-            var match = Regex.Match(text, @"^ *R(?<row>\d+) *C(?<col>\d+) *$", RegexOptions.IgnoreCase);
-            if (match.Success)
-            {
-                if (int.TryParse(match.Groups["row"].Value, out var row) &&
-                    int.TryParse(match.Groups["col"].Value, out var col) &&
-                    row >= 0 &&
-                    col >= 0)
-                {
-                    result = new RowColumnIndex(row, col);
-                    return true;
-                }
-            }
-
             result = RowColumnIndex.None;
             return false;
         }
 
-        /// <inheritdoc />
-        public bool Equals(RowColumnIndex other)
+        var match = Regex.Match(text, @"^ *R(?<row>\d+) *C(?<col>\d+) *$", RegexOptions.IgnoreCase);
+        if (match.Success)
         {
-            return this.Row == other.Row && this.Column == other.Column;
-        }
-
-        /// <inheritdoc />
-        public override bool Equals(object? obj)
-        {
-            return obj is RowColumnIndex index && this.Equals(index);
-        }
-
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            unchecked
+            if (int.TryParse(match.Groups["row"].Value, out var row) &&
+                int.TryParse(match.Groups["col"].Value, out var col) &&
+                row >= 0 &&
+                col >= 0)
             {
-                return (this.Row * 397) ^ this.Column;
+                result = new RowColumnIndex(row, col);
+                return true;
             }
         }
 
-        /// <inheritdoc />
-        public override string ToString()
+        result = RowColumnIndex.None;
+        return false;
+    }
+
+    /// <inheritdoc />
+    public bool Equals(RowColumnIndex other)
+    {
+        return this.Row == other.Row && this.Column == other.Column;
+    }
+
+    /// <inheritdoc />
+    public override bool Equals(object? obj)
+    {
+        return obj is RowColumnIndex index && this.Equals(index);
+    }
+
+    /// <inheritdoc />
+    public override int GetHashCode()
+    {
+        unchecked
         {
-            return $"R{this.Row} C{this.Column}";
+            return (this.Row * 397) ^ this.Column;
         }
+    }
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return $"R{this.Row} C{this.Column}";
     }
 }

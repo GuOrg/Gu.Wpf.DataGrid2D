@@ -1,68 +1,67 @@
-namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo;
+
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Media;
+
+public class CellTemplateDemoClass : INotifyPropertyChanged
 {
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-    using System.Windows.Media;
+    private int value1;
+    private int value2;
+    private SolidColorBrush? background;
 
-    public class CellTemplateDemoClass : INotifyPropertyChanged
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public int Value1
     {
-        private int value1;
-        private int value2;
-        private SolidColorBrush? background;
+        get => this.value1;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public int Value1
+        set
         {
-            get => this.value1;
-
-            set
+            if (value == this.value1)
             {
-                if (value == this.value1)
-                {
-                    return;
-                }
-
-                this.value1 = value;
-                this.OnPropertyChanged();
+                return;
             }
+
+            this.value1 = value;
+            this.OnPropertyChanged();
         }
+    }
 
-        public int Value2
+    public int Value2
+    {
+        get => this.value2;
+
+        set
         {
-            get => this.value2;
-
-            set
+            if (value == this.value2)
             {
-                if (value == this.value2)
-                {
-                    return;
-                }
-
-                this.value2 = value;
-                this.OnPropertyChanged();
+                return;
             }
+
+            this.value2 = value;
+            this.OnPropertyChanged();
         }
+    }
 
-        public SolidColorBrush? Background
+    public SolidColorBrush? Background
+    {
+        get => this.background;
+
+        set
         {
-            get => this.background;
-
-            set
+            if (Equals(value, this.background))
             {
-                if (Equals(value, this.background))
-                {
-                    return;
-                }
-
-                this.background = value;
-                this.OnPropertyChanged();
+                return;
             }
-        }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.background = value;
+            this.OnPropertyChanged();
         }
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

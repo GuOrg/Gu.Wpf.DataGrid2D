@@ -1,45 +1,44 @@
-namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo;
+
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+public class RowVm : List<ItemVm>, INotifyPropertyChanged
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
+    private string name;
 
-    public class RowVm : List<ItemVm>, INotifyPropertyChanged
+    public RowVm(string name)
     {
-        private string name;
+        this.name = name;
+    }
 
-        public RowVm(string name)
+    public RowVm(string name, IEnumerable<ItemVm> items)
+        : base(items)
+    {
+        this.name = name;
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public string Name
+    {
+        get => this.name;
+
+        set
         {
-            this.name = name;
-        }
-
-        public RowVm(string name, IEnumerable<ItemVm> items)
-            : base(items)
-        {
-            this.name = name;
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public string Name
-        {
-            get => this.name;
-
-            set
+            if (value == this.name)
             {
-                if (value == this.name)
-                {
-                    return;
-                }
-
-                this.name = value;
-                this.OnPropertyChanged();
+                return;
             }
-        }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.name = value;
+            this.OnPropertyChanged();
         }
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

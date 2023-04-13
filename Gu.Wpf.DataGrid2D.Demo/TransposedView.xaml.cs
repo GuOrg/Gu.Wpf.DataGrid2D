@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for TransposedView.xaml.
-    /// </summary>
-    public partial class TransposedView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for TransposedView.xaml.
+/// </summary>
+public partial class TransposedView : UserControl
+{
+    public TransposedView()
     {
-        public TransposedView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

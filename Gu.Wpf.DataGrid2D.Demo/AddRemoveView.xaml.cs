@@ -1,12 +1,11 @@
-namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+namespace Gu.Wpf.DataGrid2D.Demo;
 
-    public partial class AddRemoveView : UserControl
+using System.Windows.Controls;
+
+public partial class AddRemoveView : UserControl
+{
+    public AddRemoveView()
     {
-        public AddRemoveView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for ObservableView.xaml.
-    /// </summary>
-    public partial class ObservableView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for ObservableView.xaml.
+/// </summary>
+public partial class ObservableView : UserControl
+{
+    public ObservableView()
     {
-        public ObservableView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

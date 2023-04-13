@@ -1,50 +1,49 @@
-namespace Gu.Wpf.DataGrid2D.Tests.Views.Stubs
+namespace Gu.Wpf.DataGrid2D.Tests.Views.Stubs;
+
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+public class Person : INotifyPropertyChanged
 {
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
+    private string? firstName;
+    private string? lastName;
 
-    public class Person : INotifyPropertyChanged
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public string? FirstName
     {
-        private string? firstName;
-        private string? lastName;
+        get => this.firstName;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public string? FirstName
+        set
         {
-            get => this.firstName;
-
-            set
+            if (value == this.firstName)
             {
-                if (value == this.firstName)
-                {
-                    return;
-                }
-
-                this.firstName = value;
-                this.OnPropertyChanged();
+                return;
             }
+
+            this.firstName = value;
+            this.OnPropertyChanged();
         }
+    }
 
-        public string? LastName
+    public string? LastName
+    {
+        get => this.lastName;
+
+        set
         {
-            get => this.lastName;
-
-            set
+            if (value == this.lastName)
             {
-                if (value == this.lastName)
-                {
-                    return;
-                }
-
-                this.lastName = value;
-                this.OnPropertyChanged();
+                return;
             }
-        }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.lastName = value;
+            this.OnPropertyChanged();
         }
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

@@ -1,79 +1,78 @@
-namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo;
+
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+public class ItemVm : INotifyPropertyChanged
 {
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
+    private int value;
 
-    public class ItemVm : INotifyPropertyChanged
+    private string? name;
+    private bool isSelected;
+
+    public ItemVm(int value)
     {
-        private int value;
+        this.Value = value;
+    }
 
-        private string? name;
-        private bool isSelected;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ItemVm(int value)
+    public bool IsSelected
+    {
+        get => this.isSelected;
+
+        set
         {
-            this.Value = value;
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public bool IsSelected
-        {
-            get => this.isSelected;
-
-            set
+            if (value == this.isSelected)
             {
-                if (value == this.isSelected)
-                {
-                    return;
-                }
-
-                this.isSelected = value;
-                this.OnPropertyChanged();
+                return;
             }
+
+            this.isSelected = value;
+            this.OnPropertyChanged();
         }
+    }
 
-        public string? Name
+    public string? Name
+    {
+        get => this.name;
+
+        set
         {
-            get => this.name;
-
-            set
+            if (value == this.name)
             {
-                if (value == this.name)
-                {
-                    return;
-                }
-
-                this.name = value;
-                this.OnPropertyChanged();
+                return;
             }
+
+            this.name = value;
+            this.OnPropertyChanged();
         }
+    }
 
-        public int Value
+    public int Value
+    {
+        get => this.value;
+
+        set
         {
-            get => this.value;
-
-            set
+            if (value == this.value)
             {
-                if (value == this.value)
-                {
-                    return;
-                }
-
-                this.value = value;
-                this.OnPropertyChanged();
-                this.Name = "Item: " + value;
+                return;
             }
-        }
 
-        public override string? ToString()
-        {
-            return this.Name;
+            this.value = value;
+            this.OnPropertyChanged();
+            this.Name = "Item: " + value;
         }
+    }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+    public override string? ToString()
+    {
+        return this.Name;
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

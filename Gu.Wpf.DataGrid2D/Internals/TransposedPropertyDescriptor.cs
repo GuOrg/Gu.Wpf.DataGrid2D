@@ -1,31 +1,30 @@
-namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D;
+
+using System.ComponentModel;
+
+internal class TransposedPropertyDescriptor : IndexPropertyDescriptor
 {
-    using System.ComponentModel;
+    private readonly PropertyDescriptor propertyDescriptor;
 
-    internal class TransposedPropertyDescriptor : IndexPropertyDescriptor
+    internal TransposedPropertyDescriptor(int index, PropertyDescriptor propertyDescriptor)
+        : base(propertyDescriptor.PropertyType, index, propertyDescriptor.IsReadOnly)
     {
-        private readonly PropertyDescriptor propertyDescriptor;
+        this.propertyDescriptor = propertyDescriptor;
+    }
 
-        internal TransposedPropertyDescriptor(int index, PropertyDescriptor propertyDescriptor)
-            : base(propertyDescriptor.PropertyType, index, propertyDescriptor.IsReadOnly)
-        {
-            this.propertyDescriptor = propertyDescriptor;
-        }
+    /// <inheritdoc/>
+    public override object GetValue(object component)
+    {
+        var row = (TransposedRow)component;
+        var match = row.Source.Source?.ElementAtOrDefault(this.Index);
+        return this.propertyDescriptor.GetValue(match);
+    }
 
-        /// <inheritdoc/>
-        public override object GetValue(object component)
-        {
-            var row = (TransposedRow)component;
-            var match = row.Source.Source?.ElementAtOrDefault(this.Index);
-            return this.propertyDescriptor.GetValue(match);
-        }
-
-        /// <inheritdoc/>
-        public override void SetValue(object component, object value)
-        {
-            var row = (TransposedRow)component;
-            var match = row.Source.Source?.ElementAtOrDefault(this.Index);
-            this.propertyDescriptor.SetValue(match, value);
-        }
+    /// <inheritdoc/>
+    public override void SetValue(object component, object value)
+    {
+        var row = (TransposedRow)component;
+        var match = row.Source.Source?.ElementAtOrDefault(this.Index);
+        this.propertyDescriptor.SetValue(match, value);
     }
 }

@@ -1,52 +1,51 @@
-namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D;
+
+using System;
+using System.ComponentModel;
+
+internal class NamePropertyDescriptor : PropertyDescriptor
 {
-    using System;
-    using System.ComponentModel;
+    private readonly PropertyDescriptor propertyDescriptor;
 
-    internal class NamePropertyDescriptor : PropertyDescriptor
+    internal NamePropertyDescriptor(PropertyDescriptor propertyDescriptor)
+        : base(nameof(Name), null)
     {
-        private readonly PropertyDescriptor propertyDescriptor;
+        this.propertyDescriptor = propertyDescriptor;
+    }
 
-        internal NamePropertyDescriptor(PropertyDescriptor propertyDescriptor)
-            : base(nameof(Name), null)
-        {
-            this.propertyDescriptor = propertyDescriptor;
-        }
+    /// <inheritdoc/>
+    public override Type ComponentType => typeof(string);
 
-        /// <inheritdoc/>
-        public override Type ComponentType => typeof(string);
+    /// <inheritdoc/>
+    public override bool IsReadOnly => true;
 
-        /// <inheritdoc/>
-        public override bool IsReadOnly => true;
+    /// <inheritdoc/>
+    public override Type PropertyType => typeof(string);
 
-        /// <inheritdoc/>
-        public override Type PropertyType => typeof(string);
+    /// <inheritdoc/>
+    public override bool CanResetValue(object component) => false;
 
-        /// <inheritdoc/>
-        public override bool CanResetValue(object component) => false;
+    /// <inheritdoc/>
+    public override object GetValue(object component)
+    {
+        return this.propertyDescriptor.Name;
+    }
 
-        /// <inheritdoc/>
-        public override object GetValue(object component)
-        {
-            return this.propertyDescriptor.Name;
-        }
+    /// <inheritdoc/>
+    public override void ResetValue(object component)
+    {
+        // NOP
+    }
 
-        /// <inheritdoc/>
-        public override void ResetValue(object component)
-        {
-            // NOP
-        }
+    /// <inheritdoc/>
+    public override void SetValue(object component, object value)
+    {
+        throw new NotSupportedException();
+    }
 
-        /// <inheritdoc/>
-        public override void SetValue(object component, object value)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc/>
-        public override bool ShouldSerializeValue(object component)
-        {
-            return true;
-        }
+    /// <inheritdoc/>
+    public override bool ShouldSerializeValue(object component)
+    {
+        return true;
     }
 }

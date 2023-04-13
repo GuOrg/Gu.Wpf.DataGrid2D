@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for PerfWindow.xaml.
-    /// </summary>
-    public partial class PerfWindow : Window
+using System.Windows;
+
+/// <summary>
+/// Interaction logic for PerfWindow.xaml.
+/// </summary>
+public partial class PerfWindow : Window
+{
+    public PerfWindow()
     {
-        public PerfWindow()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

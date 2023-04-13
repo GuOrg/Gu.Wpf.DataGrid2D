@@ -1,69 +1,68 @@
-namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D;
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+
+/// <summary>
+/// Private helpers.
+/// </summary>
+public static partial class ItemsSource
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Controls;
+    // Using this for disposing ListView2D
+    private static readonly DependencyProperty ItemsSourceProxyProperty = DependencyProperty.RegisterAttached(
+        "ItemsSourceProxy",
+        typeof(IEnumerable),
+        typeof(ItemsSource),
+        new PropertyMetadata(default(IEnumerable), OnItemsSourceProxyChanged));
 
-    /// <summary>
-    /// Private helpers.
-    /// </summary>
-    public static partial class ItemsSource
+    private static void OnItemsSourceProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        // Using this for disposing ListView2D
-        private static readonly DependencyProperty ItemsSourceProxyProperty = DependencyProperty.RegisterAttached(
-            "ItemsSourceProxy",
-            typeof(IEnumerable),
-            typeof(ItemsSource),
-            new PropertyMetadata(default(IEnumerable), OnItemsSourceProxyChanged));
-
-        private static void OnItemsSourceProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        if (e.OldValue is IColumnsChanged oldView)
         {
-            if (e.OldValue is IColumnsChanged oldView)
-            {
-                oldView.ColumnsChanged -= OnViewColumnsChanged;
-                oldView.Dispose();
-            }
-
-            if (e.NewValue is IColumnsChanged newView)
-            {
-                newView.DataGrid = (DataGrid)d;
-                newView.ColumnsChanged += OnViewColumnsChanged;
-            }
-
-            static void OnViewColumnsChanged(object? sender, EventArgs e)
-            {
-                var view = (IColumnsChanged)sender!;
-                UpdateItemsSource(view.DataGrid!);
-            }
+            oldView.ColumnsChanged -= OnViewColumnsChanged;
+            oldView.Dispose();
         }
 
-        private static void UpdateItemsSource(DataGrid dataGrid)
+        if (e.NewValue is IColumnsChanged newView)
         {
-            IEnumerable? view = null;
-            if (dataGrid.GetRowsSource() is IEnumerable<IEnumerable> rowsSource)
-            {
-#pragma warning disable IDISP001 // Dispose created.
-                view = new Lists2DView(rowsSource);
-#pragma warning restore IDISP001 // Dispose created.
-            }
-            else if (dataGrid.GetColumnsSource() is IEnumerable<IEnumerable> colsSource)
-            {
-#pragma warning disable IDISP001 // Dispose created.
-                view = new Lists2DTransposedView(colsSource);
-#pragma warning restore IDISP001 // Dispose created.
-            }
-            else if (dataGrid.GetTransposedSource() is { } transposedSource)
-            {
-#pragma warning disable IDISP001 // Dispose created.
-                view = new TransposedItemsSource(transposedSource);
-#pragma warning restore IDISP001 // Dispose created.
-            }
-
-            _ = dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                        .OneWayTo(view);
-            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
+            newView.DataGrid = (DataGrid)d;
+            newView.ColumnsChanged += OnViewColumnsChanged;
         }
+
+        static void OnViewColumnsChanged(object? sender, EventArgs e)
+        {
+            var view = (IColumnsChanged)sender!;
+            UpdateItemsSource(view.DataGrid!);
+        }
+    }
+
+    private static void UpdateItemsSource(DataGrid dataGrid)
+    {
+        IEnumerable? view = null;
+        if (dataGrid.GetRowsSource() is IEnumerable<IEnumerable> rowsSource)
+        {
+#pragma warning disable IDISP001 // Dispose created.
+            view = new Lists2DView(rowsSource);
+#pragma warning restore IDISP001 // Dispose created.
+        }
+        else if (dataGrid.GetColumnsSource() is IEnumerable<IEnumerable> colsSource)
+        {
+#pragma warning disable IDISP001 // Dispose created.
+            view = new Lists2DTransposedView(colsSource);
+#pragma warning restore IDISP001 // Dispose created.
+        }
+        else if (dataGrid.GetTransposedSource() is { } transposedSource)
+        {
+#pragma warning disable IDISP001 // Dispose created.
+            view = new TransposedItemsSource(transposedSource);
+#pragma warning restore IDISP001 // Dispose created.
+        }
+
+        _ = dataGrid.Bind(ItemsControl.ItemsSourceProperty)
+                    .OneWayTo(view);
+        dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
     }
 }

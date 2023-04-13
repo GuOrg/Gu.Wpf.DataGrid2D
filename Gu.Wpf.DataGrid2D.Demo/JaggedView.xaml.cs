@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for JaggedView.xaml.
-    /// </summary>
-    public partial class JaggedView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for JaggedView.xaml.
+/// </summary>
+public partial class JaggedView : UserControl
+{
+    public JaggedView()
     {
-        public JaggedView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

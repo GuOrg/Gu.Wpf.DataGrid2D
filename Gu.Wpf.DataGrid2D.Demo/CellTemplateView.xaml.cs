@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for CellTemplateView.xaml.
-    /// </summary>
-    public partial class CellTemplateView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for CellTemplateView.xaml.
+/// </summary>
+public partial class CellTemplateView : UserControl
+{
+    public CellTemplateView()
     {
-        public CellTemplateView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

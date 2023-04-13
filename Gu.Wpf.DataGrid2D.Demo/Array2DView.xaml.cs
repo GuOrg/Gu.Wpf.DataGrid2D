@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for Array2DView.xaml.
-    /// </summary>
-    public partial class Array2DView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for Array2DView.xaml.
+/// </summary>
+public partial class Array2DView : UserControl
+{
+    public Array2DView()
     {
-        public Array2DView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

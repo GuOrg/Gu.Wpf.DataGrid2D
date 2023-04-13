@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for SelectedView.xaml.
-    /// </summary>
-    public partial class SelectedView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for SelectedView.xaml.
+/// </summary>
+public partial class SelectedView : UserControl
+{
+    public SelectedView()
     {
-        public SelectedView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

@@ -1,78 +1,77 @@
-namespace Gu.Wpf.DataGrid2D.Demo
+namespace Gu.Wpf.DataGrid2D.Demo;
+
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
+public class SelectedVm : INotifyPropertyChanged
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Runtime.CompilerServices;
+    private ItemVm? selectedItem;
 
-    public class SelectedVm : INotifyPropertyChanged
+    private RowColumnIndex? index;
+
+    public SelectedVm()
     {
-        private ItemVm? selectedItem;
+        var rowVms = new List<RowVm>();
+        int count = 1;
 
-        private RowColumnIndex? index;
-
-        public SelectedVm()
+        for (int i = 0; i < 3; i++)
         {
-            var rowVms = new List<RowVm>();
-            int count = 1;
-
-            for (int i = 0; i < 3; i++)
+            var rowVm = new RowVm("Row" + i);
+            rowVms.Add(rowVm);
+            for (int j = 0; j < 2; j++)
             {
-                var rowVm = new RowVm("Row" + i);
-                rowVms.Add(rowVm);
-                for (int j = 0; j < 2; j++)
-                {
-                    var itemVm = new ItemVm(count);
-                    rowVm.Add(itemVm);
-                    count++;
-                }
-            }
-
-            this.RowVms = rowVms;
-            this.AllRowsItems = rowVms.SelectMany(x => x).ToList();
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public IReadOnlyList<RowVm> RowVms { get; }
-
-        public IReadOnlyList<ItemVm> AllRowsItems { get; }
-
-        public ItemVm? SelectedItem
-        {
-            get => this.selectedItem;
-
-            set
-            {
-                if (Equals(value, this.selectedItem))
-                {
-                    return;
-                }
-
-                this.selectedItem = value;
-                this.OnPropertyChanged();
+                var itemVm = new ItemVm(count);
+                rowVm.Add(itemVm);
+                count++;
             }
         }
 
-        public RowColumnIndex? Index
-        {
-            get => this.index;
+        this.RowVms = rowVms;
+        this.AllRowsItems = rowVms.SelectMany(x => x).ToList();
+    }
 
-            set
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public IReadOnlyList<RowVm> RowVms { get; }
+
+    public IReadOnlyList<ItemVm> AllRowsItems { get; }
+
+    public ItemVm? SelectedItem
+    {
+        get => this.selectedItem;
+
+        set
+        {
+            if (Equals(value, this.selectedItem))
             {
-                if (value == this.index)
-                {
-                    return;
-                }
-
-                this.index = value;
-                this.OnPropertyChanged();
+                return;
             }
-        }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.selectedItem = value;
+            this.OnPropertyChanged();
         }
+    }
+
+    public RowColumnIndex? Index
+    {
+        get => this.index;
+
+        set
+        {
+            if (value == this.index)
+            {
+                return;
+            }
+
+            this.index = value;
+            this.OnPropertyChanged();
+        }
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

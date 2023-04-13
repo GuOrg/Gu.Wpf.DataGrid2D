@@ -1,12 +1,11 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    public partial class BigDataGridView : UserControl
+using System.Windows.Controls;
+
+public partial class BigDataGridView : UserControl
+{
+    public BigDataGridView()
     {
-        public BigDataGridView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

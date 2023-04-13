@@ -1,77 +1,76 @@
-namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D;
+
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+
+/// <summary>
+/// Attached properties for setting ItemsSource to 2D collections of different shapes.
+/// </summary>
+public static partial class ItemsSource
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
+    /// <summary>For setting the <see cref="ItemsControl.ItemsSourceProperty"/> to a two-dimensional array.</summary>
+    public static readonly DependencyProperty Array2DProperty = DependencyProperty.RegisterAttached(
+        "Array2D",
+        typeof(Array),
+        typeof(ItemsSource),
+        new PropertyMetadata(
+            default(Array),
+            OnArray2DChanged),
+        Validate2DArray);
 
-    /// <summary>
-    /// Attached properties for setting ItemsSource to 2D collections of different shapes.
-    /// </summary>
-    public static partial class ItemsSource
+    /// <summary>Helper for setting <see cref="Array2DProperty"/> on <paramref name="element"/>.</summary>
+    /// <param name="element"><see cref="DataGrid"/> to set <see cref="Array2DProperty"/> on.</param>
+    /// <param name="value">Array2D property value.</param>
+    public static void SetArray2D(this DataGrid element, Array? value)
     {
-        /// <summary>For setting the <see cref="ItemsControl.ItemsSourceProperty"/> to a two-dimensional array.</summary>
-        public static readonly DependencyProperty Array2DProperty = DependencyProperty.RegisterAttached(
-            "Array2D",
-            typeof(Array),
-            typeof(ItemsSource),
-            new PropertyMetadata(
-                default(Array),
-                OnArray2DChanged),
-            Validate2DArray);
-
-        /// <summary>Helper for setting <see cref="Array2DProperty"/> on <paramref name="element"/>.</summary>
-        /// <param name="element"><see cref="DataGrid"/> to set <see cref="Array2DProperty"/> on.</param>
-        /// <param name="value">Array2D property value.</param>
-        public static void SetArray2D(this DataGrid element, Array? value)
+        if (element is null)
         {
-            if (element is null)
-            {
-                throw new ArgumentNullException(nameof(element));
-            }
-
-            element.SetValue(Array2DProperty, value);
+            throw new ArgumentNullException(nameof(element));
         }
 
-        /// <summary>Helper for getting <see cref="Array2DProperty"/> from <paramref name="element"/>.</summary>
-        /// <param name="element"><see cref="DataGrid"/> to read <see cref="Array2DProperty"/> from.</param>
-        /// <returns>Array2D property value.</returns>
-        [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
-        [AttachedPropertyBrowsableForType(typeof(DataGrid))]
-        public static Array? GetArray2D(this DataGrid element)
-        {
-            if (element is null)
-            {
-                throw new ArgumentNullException(nameof(element));
-            }
+        element.SetValue(Array2DProperty, value);
+    }
 
-            return (Array)element.GetValue(Array2DProperty);
+    /// <summary>Helper for getting <see cref="Array2DProperty"/> from <paramref name="element"/>.</summary>
+    /// <param name="element"><see cref="DataGrid"/> to read <see cref="Array2DProperty"/> from.</param>
+    /// <returns>Array2D property value.</returns>
+    [AttachedPropertyBrowsableForChildren(IncludeDescendants = false)]
+    [AttachedPropertyBrowsableForType(typeof(DataGrid))]
+    public static Array? GetArray2D(this DataGrid element)
+    {
+        if (element is null)
+        {
+            throw new ArgumentNullException(nameof(element));
         }
 
-        private static void OnArray2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var dataGrid = (DataGrid)d;
-            var array = (Array?)e.NewValue;
-            if (array is null)
-            {
-                BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
-                return;
-            }
+        return (Array)element.GetValue(Array2DProperty);
+    }
 
-            var array2DView = Array2DView.Create(array);
-            _ = dataGrid.Bind(ItemsControl.ItemsSourceProperty)
-                        .OneWayTo(array2DView);
-            dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
+    private static void OnArray2DChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var dataGrid = (DataGrid)d;
+        var array = (Array?)e.NewValue;
+        if (array is null)
+        {
+            BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
+            return;
         }
 
-        private static bool Validate2DArray(object? value)
-        {
-            if (value is Array array)
-            {
-                return array.Rank == 2;
-            }
+        var array2DView = Array2DView.Create(array);
+        _ = dataGrid.Bind(ItemsControl.ItemsSourceProperty)
+                    .OneWayTo(array2DView);
+        dataGrid.RaiseEvent(new RoutedEventArgs(Events.ColumnsChangedEvent));
+    }
 
-            return true;
+    private static bool Validate2DArray(object? value)
+    {
+        if (value is Array array)
+        {
+            return array.Rank == 2;
         }
+
+        return true;
     }
 }

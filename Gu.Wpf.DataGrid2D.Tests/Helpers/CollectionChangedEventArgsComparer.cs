@@ -1,55 +1,54 @@
-namespace Gu.Wpf.DataGrid2D.Tests
+namespace Gu.Wpf.DataGrid2D.Tests;
+
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+
+public sealed class CollectionChangedEventArgsComparer : IComparer, IComparer<NotifyCollectionChangedEventArgs>
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
+    public static readonly CollectionChangedEventArgsComparer Default = new();
 
-    public sealed class CollectionChangedEventArgsComparer : IComparer, IComparer<NotifyCollectionChangedEventArgs>
+    private CollectionChangedEventArgsComparer()
     {
-        public static readonly CollectionChangedEventArgsComparer Default = new();
+    }
 
-        private CollectionChangedEventArgsComparer()
+    public int Compare(NotifyCollectionChangedEventArgs? x, NotifyCollectionChangedEventArgs? y)
+    {
+        if (x is null || y is null)
         {
+            return Comparer.Default.Compare(x, y);
         }
 
-        public int Compare(NotifyCollectionChangedEventArgs? x, NotifyCollectionChangedEventArgs? y)
+        if (x.Action != y.Action)
         {
-            if (x is null || y is null)
-            {
-                return Comparer.Default.Compare(x, y);
-            }
-
-            if (x.Action != y.Action)
-            {
-                return -1;
-            }
-
-            if (x.NewStartingIndex != y.NewStartingIndex)
-            {
-                return -1;
-            }
-
-            if (x.NewItems?.Count != y.NewItems?.Count)
-            {
-                return -1;
-            }
-
-            if (x.OldStartingIndex != y.OldStartingIndex)
-            {
-                return -1;
-            }
-
-            if (x.OldItems?.Count != y.OldItems?.Count)
-            {
-                return -1;
-            }
-
-            return 0;
+            return -1;
         }
 
-        int IComparer.Compare(object? x, object? y)
+        if (x.NewStartingIndex != y.NewStartingIndex)
         {
-            return this.Compare((NotifyCollectionChangedEventArgs?)x, (NotifyCollectionChangedEventArgs?)y);
+            return -1;
         }
+
+        if (x.NewItems?.Count != y.NewItems?.Count)
+        {
+            return -1;
+        }
+
+        if (x.OldStartingIndex != y.OldStartingIndex)
+        {
+            return -1;
+        }
+
+        if (x.OldItems?.Count != y.OldItems?.Count)
+        {
+            return -1;
+        }
+
+        return 0;
+    }
+
+    int IComparer.Compare(object? x, object? y)
+    {
+        return this.Compare((NotifyCollectionChangedEventArgs?)x, (NotifyCollectionChangedEventArgs?)y);
     }
 }

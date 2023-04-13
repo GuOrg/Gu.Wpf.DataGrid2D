@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for RowNumbersView.xaml.
-    /// </summary>
-    public partial class RowNumbersView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for RowNumbersView.xaml.
+/// </summary>
+public partial class RowNumbersView : UserControl
+{
+    public RowNumbersView()
     {
-        public RowNumbersView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

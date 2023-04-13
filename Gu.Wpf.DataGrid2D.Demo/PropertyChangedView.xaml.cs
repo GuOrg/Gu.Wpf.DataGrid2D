@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.DataGrid2D.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.DataGrid2D.Demo;
 
-    /// <summary>
-    /// Interaction logic for PropertyChangedView.xaml.
-    /// </summary>
-    public partial class PropertyChangedView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for PropertyChangedView.xaml.
+/// </summary>
+public partial class PropertyChangedView : UserControl
+{
+    public PropertyChangedView()
     {
-        public PropertyChangedView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

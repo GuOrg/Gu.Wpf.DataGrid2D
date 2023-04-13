@@ -1,39 +1,38 @@
-namespace Gu.Wpf.DataGrid2D
+namespace Gu.Wpf.DataGrid2D;
+
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+
+internal sealed class RowsListener : IDisposable
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
+    private readonly DataGrid dataGrid;
+    private bool disposed;
 
-    internal sealed class RowsListener : IDisposable
+    internal RowsListener(DataGrid dataGrid)
     {
-        private readonly DataGrid dataGrid;
-        private bool disposed;
+        this.dataGrid = dataGrid;
+        dataGrid.ItemContainerGenerator.StatusChanged += this.OnStatusChanged;
+    }
 
-        internal RowsListener(DataGrid dataGrid)
+    /// <inheritdoc/>
+    public void Dispose()
+    {
+        if (this.disposed)
         {
-            this.dataGrid = dataGrid;
-            dataGrid.ItemContainerGenerator.StatusChanged += this.OnStatusChanged;
+            return;
         }
 
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-            if (this.disposed)
-            {
-                return;
-            }
+        this.disposed = true;
+        this.dataGrid.ItemContainerGenerator.StatusChanged -= this.OnStatusChanged;
+    }
 
-            this.disposed = true;
-            this.dataGrid.ItemContainerGenerator.StatusChanged -= this.OnStatusChanged;
-        }
-
-        private void OnStatusChanged(object? o, EventArgs e)
+    private void OnStatusChanged(object? o, EventArgs e)
+    {
+        if (o is ItemContainerGenerator { Status: GeneratorStatus.ContainersGenerated })
         {
-            if (o is ItemContainerGenerator { Status: GeneratorStatus.ContainersGenerated })
-            {
-                this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.RowsChangedEvent));
-            }
+            this.dataGrid.RaiseEvent(new RoutedEventArgs(Events.RowsChangedEvent));
         }
     }
 }
