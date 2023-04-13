@@ -165,10 +165,7 @@ public static class Selected
                         var index = new RowColumnIndex(r, c);
                         dataGrid.SetIndex(index);
                         var cell = dataGrid.GetCell(index);
-                        if (cell != null)
-                        {
-                            cell.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
-                        }
+                        cell?.SetCurrentValue(DataGridCell.IsSelectedProperty, true);
 
                         return;
                     }

@@ -77,7 +77,7 @@ public abstract class Lists2DViewBase : IList, INotifyCollectionChanged, INotify
     object ICollection.SyncRoot => (this.Source as ICollection)?.SyncRoot ?? new object();
 
     /// <inheritdoc />
-    bool ICollection.IsSynchronized => (this.Source as ICollection)?.IsSynchronized == true;
+    bool ICollection.IsSynchronized => this.Source is ICollection { IsSynchronized: true };
 
     /// <inheritdoc />
     IEnumerable? IView2D.Source => this.Source;

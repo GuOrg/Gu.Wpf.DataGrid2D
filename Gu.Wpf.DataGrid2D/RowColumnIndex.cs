@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 /// For specifying a cell index.
 /// </summary>
 [TypeConverter(typeof(RowColumnIndexConverter))]
-public struct RowColumnIndex : IEquatable<RowColumnIndex>
+public readonly struct RowColumnIndex : IEquatable<RowColumnIndex>
 {
     /// <summary>
     /// No selection.

@@ -54,7 +54,7 @@ public static partial class ItemsSource
     private static void OnRowsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var dataGrid = (DataGrid)d;
-        if (!(e.NewValue is IEnumerable<IEnumerable>))
+        if (e.NewValue is not IEnumerable<IEnumerable>)
         {
             BindingOperations.ClearBinding(dataGrid, ItemsControl.ItemsSourceProperty);
             BindingOperations.ClearBinding(dataGrid, ItemsSourceProxyProperty);

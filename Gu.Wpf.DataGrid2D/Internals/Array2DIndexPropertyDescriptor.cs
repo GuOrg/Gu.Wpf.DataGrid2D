@@ -87,7 +87,7 @@ internal class Array2DIndexPropertyDescriptor : IndexPropertyDescriptor
         }
     }
 
-    private struct Key : IEquatable<Key>
+    private readonly struct Key : IEquatable<Key>
     {
         internal static readonly Key Empty = new(typeof(int), 0);
 
