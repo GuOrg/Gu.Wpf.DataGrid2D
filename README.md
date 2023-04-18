@@ -5,6 +5,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.DataGrid2D.svg)](https://www.nuget.org/packages/Gu.Wpf.DataGrid2D/)
 [![Build Status](https://dev.azure.com/guorg/Gu.Wpf.DataGrid2D/_apis/build/status/GuOrg.Gu.Wpf.DataGrid2D?branchName=master)](https://dev.azure.com/guorg/Gu.Wpf.DataGrid2D/_build/latest?definitionId=10&branchName=master)
 [![Build status](https://ci.appveyor.com/api/projects/status/a92oxrywc9nv7f21/branch/master?svg=true)](https://ci.appveyor.com/project/JohanLarsson/gu-wpf-datagrid2d/branch/master)
+[![ci](https://github.com/GuOrg/Gu.Wpf.DataGrid2D/actions/workflows/ci.yml/badge.svg)](https://github.com/GuOrg/Gu.Wpf.DataGrid2D/actions/workflows/ci.yml)
 
 Attached properties for WPF DataGrid enabling binding to sources of different types. For using `DataGrid2D` you need to add `xmlns:dataGrid2D="http://gu.se/DataGrid2D"` in XAML
 
