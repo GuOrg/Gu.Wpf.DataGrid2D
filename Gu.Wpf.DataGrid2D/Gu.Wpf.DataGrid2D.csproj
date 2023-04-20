@@ -35,7 +35,7 @@
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\\Gu.Wpf.DataGrid2D.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\Gu.Wpf.DataGrid2D.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -59,10 +59,5 @@
     <PackageReference Include="ReflectionAnalyzers" Version="0.3.1" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435" PrivateAssets="all" />
     <PackageReference Include="WpfAnalyzers" Version="4.1.1" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
-    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160" PrivateAssets="all" />
   </ItemGroup>
 </Project>
